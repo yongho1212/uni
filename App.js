@@ -13,7 +13,11 @@ import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Home from "./screens/Home";
 
-const Stack = createStackNavigator();
+
+
+
+
+ const Stack = createStackNavigator();
 
 const Auth = () => {
   // Stack Navigator for Login and Sign up Screen
@@ -45,8 +49,8 @@ const Auth = () => {
 /* Main Navigator */
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="SplashScreen">
         {/* SplashScreen which will come once for 2 Seconds */}
         <Stack.Screen
           name="SplashScreen"
@@ -74,8 +78,11 @@ const App = () => {
             },
           }}
         />
+     
+ 
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 };
 

@@ -20,18 +20,64 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
+import {
+  LoginButton,
+  AccessToken,
+  GraphRequest,
+  GraphRequestManager,
+} from 'react-native-fbsdk-next';
+
+import FLogin from '../components/fLogin';
+
 
 
 const LoginScreen = ({ navigation }) => {
+  //custom
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [errortext, setErrortext] = useState("");
-
+  // google
   const [loggedIn, setloggedIn] = useState(false);
   const [userInfo, setuserInfo] = useState([]);
+  
 
   const passwordInputRef = createRef();
 
+
+
+// CUSTOM
+  const handleSubmitPress = () => {
+    setErrortext("");
+    if (!userEmail) {
+      alert("Please fill Email");
+      return;
+    }
+    if (!userPassword) {
+      alert("Please fill Password");
+      return;
+    }
+    auth()
+      .signInWithEmailAndPassword(userEmail, userPassword)
+      .then((user) => {
+        console.log(user);
+        // If server response message same as Data Matched
+        if (user) navigation.replace("HomeScreen");
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.code === "auth/invalid-email")
+          setErrortext(error.message);
+        else if (error.code === "auth/user-not-found")
+          setErrortext("No User Found");
+        else {
+          setErrortext(
+            "Please check your email id or password"
+          );
+        }
+      });
+  };
+
+  // GOOGLE
   useEffect(() => {
     // Initial configuration
     GoogleSignin.configure({
@@ -45,7 +91,7 @@ const LoginScreen = ({ navigation }) => {
   
   }, []);
 
-  const _signIn = async () => {
+  const g_signIn = async () => {
     // It will prompt google Signin Widget
     try {
       await GoogleSignin.hasPlayServices();
@@ -79,37 +125,10 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
+  
 
-  const handleSubmitPress = () => {
-    setErrortext("");
-    if (!userEmail) {
-      alert("Please fill Email");
-      return;
-    }
-    if (!userPassword) {
-      alert("Please fill Password");
-      return;
-    }
-    auth()
-      .signInWithEmailAndPassword(userEmail, userPassword)
-      .then((user) => {
-        console.log(user);
-        // If server response message same as Data Matched
-        if (user) navigation.replace("HomeScreen");
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.code === "auth/invalid-email")
-          setErrortext(error.message);
-        else if (error.code === "auth/user-not-found")
-          setErrortext("No User Found");
-        else {
-          setErrortext(
-            "Please check your email id or password"
-          );
-        }
-      });
-  };
+
+  
 
   return (
     <SafeAreaView style={styles.mainBody}>
@@ -218,8 +237,11 @@ const LoginScreen = ({ navigation }) => {
                 style={{width: 312, height: 48}}
                 size={GoogleSigninButton.Size.Wide}
                 color={GoogleSigninButton.Color.Light}
-                onPress={_signIn}
+                onPress={g_signIn}
               />
+              <FLogin/>
+    
+              
     </SafeAreaView>
   );
 };

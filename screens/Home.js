@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Alert,
+  Button,
 } from "react-native";
 
 import auth from "@react-native-firebase/auth";
@@ -107,6 +108,10 @@ const HomeScreen = ({ navigation }) => {
         >
           www.aboutreact.com
         </Text>
+        <Button
+        title='move'
+        onPress={()=> navigation.navigate('NewProfile')}
+        />
       </View>
     </SafeAreaView>
   );

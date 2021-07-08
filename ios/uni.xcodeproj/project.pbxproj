@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		351E447B268EF80C00C79BCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 351E447A268EF80C00C79BCD /* GoogleService-Info.plist */; };
+		35B8849E268F185B00491092 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8849D268F185B00491092 /* File.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		90E821296B6DA9E4F680A038 /* libPods-uni.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA21262441F962CFE566D35 /* libPods-uni.a */; };
 		FE52FF79D42C50E036B461EC /* libPods-uni-uniTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1D252BBBA93DC02D95C1EC /* libPods-uni-uniTests.a */; };
@@ -38,7 +39,25 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = uni/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = uni/main.m; sourceTree = "<group>"; };
 		1BA21262441F962CFE566D35 /* libPods-uni.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uni.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35176C3726945B2600CD60F0 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		35176C3826945B2700CD60F0 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		35176C3926945B2700CD60F0 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		35176C3A26945B2700CD60F0 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		35176C3B26945B2700CD60F0 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		35176C3C26945B2700CD60F0 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		35176C3D26945B2700CD60F0 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		35176C3E26945B2700CD60F0 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		35176C3F26945B2700CD60F0 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		35176C4026945B2700CD60F0 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		35176C4126945B2700CD60F0 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		35176C4226945B2700CD60F0 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		35176C4326945B2700CD60F0 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		35176C4426945B2700CD60F0 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		35176C4526945B2700CD60F0 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		35176C4626945B2700CD60F0 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
 		351E447A268EF80C00C79BCD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		35B8849C268F185B00491092 /* uni-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-Bridging-Header.h"; sourceTree = "<group>"; };
+		35B8849D268F185B00491092 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		53C8EE0F4A2B6AEDA439176E /* Pods-uni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uni.release.xcconfig"; path = "Target Support Files/Pods-uni/Pods-uni.release.xcconfig"; sourceTree = "<group>"; };
 		7C627CEF1FEA84F6AD377838 /* Pods-uni-uniTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uni-uniTests.debug.xcconfig"; path = "Target Support Files/Pods-uni-uniTests/Pods-uni-uniTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = uni/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -95,6 +114,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				35B8849D268F185B00491092 /* File.swift */,
+				35B8849C268F185B00491092 /* uni-Bridging-Header.h */,
 			);
 			name = uni;
 			sourceTree = "<group>";
@@ -109,6 +130,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		35176C3626945A9D00CD60F0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				35176C3A26945B2700CD60F0 /* AntDesign.ttf */,
+				35176C3826945B2700CD60F0 /* Entypo.ttf */,
+				35176C4226945B2700CD60F0 /* EvilIcons.ttf */,
+				35176C3D26945B2700CD60F0 /* Feather.ttf */,
+				35176C4526945B2700CD60F0 /* FontAwesome.ttf */,
+				35176C4326945B2700CD60F0 /* FontAwesome5_Brands.ttf */,
+				35176C4126945B2700CD60F0 /* FontAwesome5_Regular.ttf */,
+				35176C3726945B2600CD60F0 /* FontAwesome5_Solid.ttf */,
+				35176C4626945B2700CD60F0 /* Fontisto.ttf */,
+				35176C3E26945B2700CD60F0 /* Foundation.ttf */,
+				35176C4026945B2700CD60F0 /* Ionicons.ttf */,
+				35176C3926945B2700CD60F0 /* MaterialCommunityIcons.ttf */,
+				35176C3B26945B2700CD60F0 /* MaterialIcons.ttf */,
+				35176C4426945B2700CD60F0 /* Octicons.ttf */,
+				35176C3F26945B2700CD60F0 /* SimpleLineIcons.ttf */,
+				35176C3C26945B2700CD60F0 /* Zocial.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +163,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				35176C3626945A9D00CD60F0 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* uni */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* uniTests */,
@@ -211,7 +256,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -429,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				35B8849E268F185B00491092 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7C627CEF1FEA84F6AD377838 /* Pods-uni-uniTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -475,6 +522,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD245E0D04BF748121B0C97F /* Pods-uni-uniTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = uniTests/Info.plist;
@@ -516,6 +564,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = uni;
+				SWIFT_OBJC_BRIDGING_HEADER = "uni-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -542,6 +591,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = uni;
+				SWIFT_OBJC_BRIDGING_HEADER = "uni-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
