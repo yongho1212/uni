@@ -13,6 +13,7 @@ import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Home from "./screens/Home";
 
+import PhoneAuth from './components//phoneAuth/PhoneAuth';
 
 
 
@@ -27,6 +28,10 @@ const Auth = () => {
         name="LoginScreen"
         component={Login}
         options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="PhoneAuth"
+        component={PhoneAuth}
       />
       <Stack.Screen
         name="RegisterScreen"
@@ -64,6 +69,7 @@ const App = () => {
           component={Auth}
           options={{ headerShown: false }}
         />
+       
         <Stack.Screen
           name="HomeScreen"
           component={Home}

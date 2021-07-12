@@ -32,7 +32,7 @@ const SplashScreen = ({ navigation }) => {
     >
       <View style={styles.container}>
         <Image
-          source={require("../assets/logo/logo.jpg")}
+          source={require("../assets/logo/uni_logo.png")}
           style={{
             width: "90%",
             resizeMode: "contain",
@@ -53,17 +53,9 @@ const SplashScreen = ({ navigation }) => {
           color: "white",
         }}
       >
-        React Native Firebase Authentication
+        U n I
       </Text>
-      <Text
-        style={{
-          fontSize: 16,
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        www.aboutreact.com
-      </Text>
+     
     </SafeAreaView>
   );
 };

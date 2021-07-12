@@ -5,11 +5,12 @@ import {
   TextInput,
   View,
   Text,
-  ScrollView,
+
   Image,
   Keyboard,
   TouchableOpacity,
   KeyboardAvoidingView,
+  Pressable,
 } from "react-native";
 
 import auth from "@react-native-firebase/auth";
@@ -28,6 +29,7 @@ import {
 } from 'react-native-fbsdk-next';
 
 import FLogin from '../components/fLogin';
+import PhoneAuth from '../components/phoneAuth/PhoneAuth';
 
 
 
@@ -132,28 +134,26 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.mainBody}>
-      <ScrollView
+      <View
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
           flex: 1,
-          justifyContent: "center",
-          alignContent: "center",
         }}
       >
-        <View>
+        <View style={{alignItems:'center',alignContent:'center', justifyContent:'center'}}> 
           <KeyboardAvoidingView enabled>
             <View style={{ alignItems: "center" }}>
               <Image
-                source={require("../assets/logo/logo.jpg")}
+                source={require("../assets/logo/uni_logo.png")}
                 style={{
-                  width: "50%",
-                  height: 100,
+                  width: "70%",
+                  height: 300,
                   resizeMode: "contain",
                   margin: 30,
                 }}
               />
             </View>
-            <View style={styles.sectionStyle}>
+             {/*<View style={styles.sectionStyle}>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserEmail) =>
@@ -172,7 +172,7 @@ const LoginScreen = ({ navigation }) => {
                 blurOnSubmit={false}
               />
             </View>
-            <View style={styles.sectionStyle}>
+           <View style={styles.sectionStyle}>
               <TextInput
                 style={styles.inputStyle}
                 onChangeText={(UserPassword) =>
@@ -188,58 +188,46 @@ const LoginScreen = ({ navigation }) => {
                 underlineColorAndroid="#f000"
                 returnKeyType="next"
               />
-            </View>
-            {errortext != "" ? (
+            </View>*/}
+            {/*{errortext != "" ? (
               <Text style={styles.errorTextStyle}>
                 {" "}
                 {errortext}{" "}
               </Text>
-            ) : null}
+            ) : null}*/}
             <TouchableOpacity
               style={styles.buttonStyle}
               activeOpacity={0.5}
-              onPress={handleSubmitPress}
+              // onPress={handleSubmitPress}
+              onPress={() => navigation.navigate('PhoneAuth')}
             >
-              <Text style={styles.buttonTextStyle}>
-                LOGIN
+              <Text 
+              style={styles.buttonTextStyle}>
+                Login With Phone 
               </Text>
             </TouchableOpacity>
-            <Text
-              style={styles.registerTextStyle}
-              onPress={() =>
-                navigation.navigate("RegisterScreen")
-              }
-            >
-              New Here ? Register
-            </Text>
-          </KeyboardAvoidingView>
-        </View>
-      </ScrollView>
-      <Text
-        style={{
-          fontSize: 18,
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        React Native Firebase Authentication
-      </Text>
-      <Text
-        style={{
-          fontSize: 16,
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        www.aboutreact.com
-      </Text>
-      <GoogleSigninButton
-                style={{width: 312, height: 48}}
+            <View>
+              <GoogleSigninButton
+                style={{width: 300, height: 50, }}
                 size={GoogleSigninButton.Size.Wide}
                 color={GoogleSigninButton.Color.Light}
                 onPress={g_signIn}
               />
+              </View>
               <FLogin/>
+
+           {/* <Text
+              style={styles.registerTextStyle}
+              onPress={() =>
+                navigation.navigate("RegisterScreen")
+              }
+            > 
+              New Here ? Register
+            </Text>*/}
+          </KeyboardAvoidingView>
+        </View>
+      </View>
+    
     
               
     </SafeAreaView>
@@ -251,8 +239,9 @@ const styles = StyleSheet.create({
   mainBody: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#307ecc",
+    backgroundColor: "#FFF",
     alignContent: "center",
+    alignItems:'center'
   },
   sectionStyle: {
     flexDirection: "row",
@@ -263,13 +252,14 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: "#7DE24E",
+    backgroundColor: "grey",
     borderWidth: 0,
     color: "#FFFFFF",
     borderColor: "#7DE24E",
     height: 40,
+    width:300,
     alignItems: "center",
-    borderRadius: 30,
+    borderRadius: 5,
     marginLeft: 35,
     marginRight: 35,
     marginTop: 20,
