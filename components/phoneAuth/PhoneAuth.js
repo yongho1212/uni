@@ -37,6 +37,9 @@ export default function PhoneAuth() {
   if (authenticated) return <Authenticated />;
 
   if (confirm) return <VerifyCode onSubmit={confirmVerificationCode} />;
+  // if (confirm) navigation.replace("HomeScreen");
 
-  return <PhoneNumber onSubmit={signIn} />;
+  return (
+    <PhoneNumber onSubmit={signIn} />
+  )
 }

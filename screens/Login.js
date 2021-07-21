@@ -108,7 +108,7 @@ const LoginScreen = ({ navigation }) => {
       .then((idToken) => {
         console.log(idToken);
         // If server response message same as Data Matched
-        if (idToken) navigation.replace("HomeScreen");
+        if (idToken) navigation.replace("Gender");
       })
      
     } catch (error) {
@@ -195,6 +195,7 @@ const LoginScreen = ({ navigation }) => {
                 {errortext}{" "}
               </Text>
             ) : null}*/}
+            <View style={styles.sectionStyle}>
             <TouchableOpacity
               style={styles.buttonStyle}
               activeOpacity={0.5}
@@ -206,15 +207,18 @@ const LoginScreen = ({ navigation }) => {
                 Login With Phone 
               </Text>
             </TouchableOpacity>
-            <View>
+            </View>
+            <View style={styles.sectionStyle}>
               <GoogleSigninButton
-                style={{width: 300, height: 50, }}
+                style={{width: 312, height: 48, }}
                 size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Light}
+                color={GoogleSigninButton.Color.Dark}
                 onPress={g_signIn}
               />
               </View>
-              <FLogin/>
+              <View style={styles.sectionStyle}>
+                <FLogin/>
+              </View>
 
            {/* <Text
               style={styles.registerTextStyle}
@@ -253,17 +257,12 @@ const styles = StyleSheet.create({
   },
   buttonStyle: {
     backgroundColor: "grey",
-    borderWidth: 0,
     color: "#FFFFFF",
     borderColor: "#7DE24E",
     height: 40,
-    width:300,
+    width:312,
     alignItems: "center",
-    borderRadius: 5,
-    marginLeft: 35,
-    marginRight: 35,
-    marginTop: 20,
-    marginBottom: 25,
+    justifyContent:'center'
   },
   buttonTextStyle: {
     color: "#FFFFFF",
@@ -292,4 +291,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 14,
   },
+  googleButtonStyle:{
+    justifyContent:'center',
+    alignItems:'center'
+  }
 });

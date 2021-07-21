@@ -1,6 +1,18 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    height: 50,
+  },
+  back: {
+      fontSize: 22,
+      fontWeight: 'bold',
+      marginRight: 30,
+      marginLeft: 10,
+  },
   imageBoard: {
     marginTop: 20,
     marginLeft: 10, 
@@ -38,7 +50,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: 40,
     backgroundColor: "#fff",
-  }
+    justifyContent: 'center',
+  },
 });
 
 export default styles;

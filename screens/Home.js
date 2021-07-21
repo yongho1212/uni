@@ -9,6 +9,8 @@ import {
   Button,
 } from "react-native";
 
+import logoutBtn from '../components/logOutBtn';
+
 import auth from "@react-native-firebase/auth";
 
 const HomeScreen = ({ navigation }) => {
