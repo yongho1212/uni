@@ -75,6 +75,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>LOOF would like to use your camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>LOOF would like to your microphone (for videos)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>LOOF would like access to your photo gallery</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This application requires location services to work</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

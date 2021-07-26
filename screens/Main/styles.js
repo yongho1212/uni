@@ -72,6 +72,28 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         color: 'black',
     },
+    joinButton: {
+        backgroundColor: '#00FF7F',
+        height: 60,
+        width: Dimensions.get('window').width * 0.6,
+        marginLeft: Dimensions.get('window').width * 0.15,
+        borderRadius: 30,
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop:30
+    },
+    modifyButton: {
+        backgroundColor: '#00FF7F',
+        height: 60,
+        width: Dimensions.get('window').width * 0.6,
+        marginLeft: Dimensions.get('window').width * 0.15,
+        borderRadius: 30,
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop:30
+    },
 });
 
 export default styles;

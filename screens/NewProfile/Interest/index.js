@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Text, TouchableOpacity, Pressable, FlatList, Dimensions, Image, TextInput, Alert} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text, TouchableOpacity, Pressable, FlatList, Dimensions, Image, TextInput, Alert} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+
+
 import styles from './styles';
+
 
 export default class Interest extends Component {   
     constructor(props) {
@@ -145,7 +148,7 @@ export default class Interest extends Component {
                 onPress={() => 
                     {
                         this.state.cnt >= 3 
-                        ? (this.send_Interest(), this.props.navigation.navigate('NewProfile'))
+                        ? (this.send_Interest(), this.props.navigation.navigate('NewProfileImg'))
                         : Alert.alert('관심사를 최소 3개 이상 설정해주세요');
                     }
                 }
@@ -199,24 +202,25 @@ export default class Interest extends Component {
                     }
                     style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
                 >
-                    <Text key={data._id + '5'}>{data.category}</Text>
+                    <Text key={data._id + '5'} style={styles.buttonText}>{data.category}</Text>
                 </Pressable>
             )
         })
 
         list.push(<Pressable key={'last'} style={styles.vaccum}></Pressable>)
         list.push(
+            <View style={styles.nextBtnContainer} key={'next_container'}>
             <Pressable
                 key={'next'}
                 style={{
                     width: Dimensions.get('window').width * 0.7,
                     height: 50,
                     borderColor: this.state.nextColor,
-                    borderWidth: 3,    
+                    borderWidth: 2,    
                     marginVertical: 5,
                     borderRadius: 20,
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    
+                    
                 }}
                 onPress={() => 
                     {
@@ -226,8 +230,10 @@ export default class Interest extends Component {
                     }
                 }
             >
+
                 <Text>다음  ({this.state.cnt}/5)</Text>
-            </Pressable>     
+            </Pressable> 
+            </View>    
         )
 
         this.setState({
@@ -238,20 +244,22 @@ export default class Interest extends Component {
     render() {
         return (   
             <SafeAreaView>
+            <ScrollView style={{backgroundColor:'white', height:'100%'}}>
                 <View style={styles.headerContainer}>
                     <AntDesign 
-                        name={"arrowleft"}
+                        name={"doubleleft"}
                         style={styles.back} 
                         onPress={() => this.props.navigation.navigate('Birth')}
                         //onPress={() => this.props.navigation.push('NewProfile', {hobby : this.state.hobby})}
                     />
-                    <Text style={{fontSize: 18}}>관심사 설정</Text>
+                    <Text style={{fontSize: 18}}></Text>
                     <Pressable style={styles.vaccum}></Pressable>
                 </View>
                 <View style={styles.listContainer}>
                     {this.state.list}
                 </View>                
-            </SafeAreaView>                
+            </ScrollView> 
+            </SafeAreaView>               
         )
     }
 }

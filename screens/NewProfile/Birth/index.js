@@ -19,7 +19,7 @@ export default class Birth extends Component {
            
            date: '',
            check: 0,    
-           nextColor: '#00ff00',                   
+           nextColor: '#fff',                   
         }
     }
 
@@ -51,7 +51,7 @@ export default class Birth extends Component {
         this.state.age = currentYear - birthYear + 1;
         
         this.setState({
-            nextColor: 'red',
+            nextColor: '#f5ff00',
         })
     }   
 
@@ -75,10 +75,10 @@ export default class Birth extends Component {
             this.state.date = new Date();
         }
         return (       
-            <SafeAreaView>
+            <SafeAreaView style={{backgroundColor:'#fff'}}>
                 <View style={styles.headerContainer}>
                     <AntDesign 
-                        name={"arrowleft"}
+                        name={"doubleleft"}
                         style={styles.back} 
                         onPress={() => this.props.navigation.navigate('Gender')}
                     />
@@ -86,21 +86,33 @@ export default class Birth extends Component {
                     <Pressable style={styles.vaccum}></Pressable>
                 </View>
                 <View style={styles.contentContainer}>
+                <View style={styles.announceContainer}>
+                        <Text style={ styles.announce}>
+                            생일을 알려주세요! 
+                        </Text>
+                        <Text style={ styles.announce}>
+                       
+                        </Text>
+                        <Text style={ styles.announce}>
+                            생일은 변경이 불가하니 신중하게 골라주세요!
+                        </Text>
+                    </View>
                     <DatePicker
                         mode='date'
                         date={this.state.date}                                       
                         minuteInterval={10}
                         onDateChange={this.changeDate}
-                        androidVariant="nativeAndroid"
+                        androidVariant="iosClone"
                         locale="ko"
                         is24hourSource="locale"
+                        style={{width:500, height:400,}}
                     />
                     <Pressable
                         style={{
                             width: Dimensions.get('window').width * 0.7,
                             height: 50,
-                            borderColor: this.state.nextColor,
-                            borderWidth: 3,    
+                            backgroundColor: this.state.nextColor,
+                             
                             marginVertical: 20,
                             borderRadius: 20,
                             justifyContent: 'center',
@@ -109,7 +121,7 @@ export default class Birth extends Component {
                         }}
                         onPress={() => {this.connect(); this.props.navigation.navigate('Interest');}}
                     >
-                        <Text>다음</Text>
+                        <Text style={{fontWeight:'bold', fontSize:20}}>다음</Text>
                     </Pressable>
                 </View>
             </SafeAreaView>

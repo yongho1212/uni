@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   },
   back: {
       fontSize: 22,
-      fontWeight: 'bold',
       marginRight: 30,
       marginLeft: 10,
   },
@@ -18,28 +17,44 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     flexWrap: 'wrap', 
     padding: 10,
+    backgroundColor:'red'
   },
+ 
   selectBox: {
-    width: 60,
-    height: 30,
+    
+    height: 35,
     borderColor: '#dcdcdc',
-    borderWidth: 3,   
-    marginRight: 30, 
-    marginVertical: 5,
-    borderRadius: 20,
+    borderWidth: 2,   
+    marginRight: 20, 
+    marginVertical: 6,
+    borderRadius: 15,
+    justifyContent:'center',
+    alignItems:'center',
+    alignSelf:'center',
+    paddingHorizontal:10
   },
   selectedBox: {
-    width: 60,
-    height: 30,
-    borderColor: 'red',
+    height: 35,
+    borderColor: '#fc0fc0',
+    backgroundColor:'#E8F550',
     borderWidth: 3,   
-    marginRight: 30, 
-    marginVertical: 5,
-    borderRadius: 20,
+    marginRight: 20, 
+    marginVertical: 6,
+    borderRadius: 15,
+    justifyContent:'center',
+    alignItems:'center',
+    alignSelf:'center',
+    fontWeight:'bold',
+    paddingHorizontal:10
   },
   vaccum: {
     width: Dimensions.get('window').width,
     height: 10,
+  },
+  nextBtnContainer:{
+    justifyContent:'center',
+    alignItems:'center',
+    marginTop:40
   }
 });
 

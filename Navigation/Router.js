@@ -6,7 +6,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SplashScreen from '../screens/Splash';
 import LoginScreen from '../screens/Login';
 import RegisterScreen from '../screens/Register';
-import HomeScreen from '../screens/Home';
+
+import PhoneAuth from '../components/phoneAuth/PhoneAuth'
 
 import Gender from '../screens/NewProfile/Gender';
 import Birth from '../screens/NewProfile/Birth';
@@ -19,6 +20,8 @@ import LocationSearch from "../screens/Host/LocationSearch";
 import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
 import Chat from '../screens/Chat';
+
+import Drawer from './Drawer';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +47,10 @@ const Auth = () => {
             },
             }}
         />
+        <Stack.Screen
+            name="PhoneAuth"
+            component={PhoneAuth}
+        />
         </Stack.Navigator>
     );
 };
@@ -62,20 +69,7 @@ const Router = () => {
                     component={Auth}
                     options={{ headerShown: false }}
                 />
-                <Stack.Screen
-                    name="HomeScreen"
-                    component={HomeScreen}
-                    options={{
-                        title: "Home", 
-                        headerStyle: {
-                        backgroundColor: "#307ecc", 
-                        },
-                        headerTintColor: "#fff", 
-                        headerTitleStyle: {
-                        fontWeight: "bold",
-                        },
-                    }}
-                />
+                
                 <Stack.Screen
                     name="Gender"
                     component={Gender}
@@ -96,6 +90,7 @@ const Router = () => {
                     component={NewProfileImg}
                     options={{ headerShown: false }}
                 />
+                
                 <Stack.Screen
                     name={"Main"}
                     component={Main}

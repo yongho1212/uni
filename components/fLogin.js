@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Pressable } from 'react-native';
+import { View, Pressable, Text, Image } from 'react-native';
 import { LoginButton, AccessToken,LoginManager } from 'react-native-fbsdk-next';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import auth from '@react-native-firebase/auth';
@@ -45,16 +45,29 @@ const FLogin = () => {
       return auth().signInWithCredential(facebookCredential);
     }
         return(
-          <View>
+          <View style={{}}>
          
-            <Icon.Button
-            name="facebook"
-            backgroundColor="#3b5998"
+            <Pressable
             onPress={onFacebookButtonPress}
-            style={{width:312, height:48}}
+            style={{
+              backgroundColor: "white",
+              borderColor: "black",
+              width:312, 
+              height:48, 
+              flexDirection:'row', 
+              justifyContent: 'space-between',
+              paddingHorizontal:30,
+              alignItems:'center',
+              
+              borderRadius:40
+            }}
             >
-            Login with Facebook
-            </Icon.Button>
+            <Image
+            source={require('../assets/logo/flogo.png')}
+            style={{width:38, height:38}}
+            />
+            <Text style={{fontWeight:'bold', color:'black', fontSize: 16,}}> Continue with Facebook</Text>
+            </Pressable>
           </View>
         )
   }

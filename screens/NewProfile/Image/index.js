@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert} from 'react-native';
+import {View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert, SafeAreaView} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import {Convert} from 'mongo-image-converter';
 
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
@@ -28,17 +29,14 @@ export default class NewProfileImg extends Component {
                 {uri: undefined, width: 100, height: 150, mime: undefined},
                 {uri: undefined, width: 100, height: 150, mime: undefined},    
             ],
-            profile: [],
-            hobby: [],
 
-            sequence: 0,
-            notice: '',
+            index: 0,
+            uploadFile: {uri: undefined, width: 100, height: 150, mime: undefined},
             nextColor: '#dcdcdc',
         }
     }
 
     componentDidMount = () => {
-        console.log('프로필 이미지');
         this.getProfile();
     }
 
@@ -53,6 +51,7 @@ export default class NewProfileImg extends Component {
         } catch(e) {
             console.log(e);
         }
+        console.log(this.state.id);
 
         fetch("http://127.0.0.1:3000/firstProfile/?id=" + this.state.id  + "&time=" + new Date())
         .then(responseData => {
@@ -103,11 +102,12 @@ export default class NewProfileImg extends Component {
 
     picker = () => {
         let picker = new Array();
+
         this.state.image.map((data, index) => { 
             picker.push (
                 <TouchableOpacity
                     style={styles.imageBoard}
-                    onPress={() => {this.setState({sequence : index}); this.bs.current.snapTo(0);}}
+                    onPress={() => {this.setState({index : index}); this.bs.current.snapTo(0);}}
                     key={index}
                 >                    
                     {data.uri === undefined ?
@@ -158,66 +158,73 @@ export default class NewProfileImg extends Component {
     pickImage = async(option) => {
         if(option === 'camera') {
             ImagePicker.openCamera({
-                width: 300, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,                
-            }).then((image) => {
+                width: 300, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,           
+            })
+            .then(image => {
                 var sequence = 6;
-                var cnt = 0;
+                var check = 0;
+
                 this.state.image.map((data, index) => {
                     if(data.uri !== undefined) {
-                        if(this.state.sequence === index) {
-                            cnt++;
+                        if(this.state.index === index) {
                             data.uri = image.path;
                             data.mime = image.mime;
-                        }
-                    }else {
-                        if(cnt === 0) {
-                            if(sequence > index){
-                                data.uri = image.path;
-                                data.mime = image.mime;
-                                sequence = index;
-                                this.setState({sequence : sequence});
-                            }
-                        }
-                    }
-                    /*
-                    if(data.uri !== undefined) {
-                        if(this.state.check === index) {
-                            cnt++;
-                            data.uri = image.path;
-                            data.mime = image.mime;
+                            check += 1;
                         }
                     }else if(data.uri === undefined) {
-                        if(cnt === 0) {
-                            if(sequence > index) {                            
+                        if(check === 0) {
+                            if(sequence > index) {
                                 data.uri = image.path;
                                 data.mime = image.mime;
                                 sequence = index;
-                                this.setState({check : sequence})
+                                this.setState({index: sequence});
                             }
                         }
                     }
-                    */
-                })    
-                this.uploadImage(image, this.state.sequence);
-                this.picker();            
-            }).catch((e) => Alert.alert(JSON.stringify(e)));
+                })
+                
+                this.uploadImage(image, this.state.index);
+                this.picker();
+            })
         }else {
             ImagePicker.openPicker({
                 width: 300, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,
             }).then((image) => {
-                data[index] = image
-                this.setState({image: data}) 
+                var sequence = 6;
+                var check = 0;
+
+                this.state.image.map((data, index) => {
+                    if(data.uri !== undefined) {
+                        if(this.state.index === index) {
+                            data.uri = image.path;
+                            data.mime = image.mime;
+                            check += 1;
+                        }
+                    }else if(data.uri === undefined) {
+                        if(check === 0) {
+                            if(sequence > index) {
+                                data.uri = image.path;
+                                data.mime = image.mime;
+                                sequence = index;
+                                this.setState({index: sequence});
+                            }
+                        }
+                    }
+                })
+                
+                this.uploadImage(image, this.state.index);
+                this.picker();    
             }).catch((e) => Alert.alert(JSON.stringify(e)));
         }
 
         this.bs.current.snapTo(1);        
     }
 
-    uploadImage = async(image, sequence) => {
+    uploadImage = async(image, index) => {
         const formData = new FormData();
 
         var path = image.path;
-        var name = path.substring(path.lastIndexOf('/') + 1, path.length);
+        var name = image.path.substring(path.lastIndexOf('/') + 1, path.length);
         var type = image.mime;
 
         var id = this.state.id;
@@ -225,7 +232,7 @@ export default class NewProfileImg extends Component {
 
         formData.append('id', id);
         formData.append('date', date);
-        formData.append('index', sequence);
+        formData.append('index', index);
         formData.append('profile', {
             name: name,
             uri: path,  
@@ -280,11 +287,11 @@ export default class NewProfileImg extends Component {
             <SafeAreaView>   
                 <View style={styles.headerContainer}>
                     <AntDesign 
-                        name={"arrowleft"}
+                        name={"doubleleft"}
                         style={styles.back} 
                         onPress={() => this.props.navigation.navigate('Interest')}
                     />
-                    <Text style={{fontSize: 18}}>사진</Text>
+                    <Text style={{fontSize: 18}}>관심사 설정</Text>
                     <Pressable style={styles.vaccum}></Pressable>
                 </View>   
                 <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start'}}>  

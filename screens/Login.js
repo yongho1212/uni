@@ -5,7 +5,7 @@ import {
   TextInput,
   View,
   Text,
-
+  ImageBackground,
   Image,
   Keyboard,
   TouchableOpacity,
@@ -31,6 +31,9 @@ import {
 import FLogin from '../components/fLogin';
 import PhoneAuth from '../components/phoneAuth/PhoneAuth';
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 
 const LoginScreen = ({ navigation }) => {
@@ -45,6 +48,36 @@ const LoginScreen = ({ navigation }) => {
 
   const passwordInputRef = createRef();
 
+// BACK
+  const connect = async(id, email) => {
+    try {
+      await AsyncStorage.setItem('id', id)    
+    } catch (e) {
+      console.log(e);
+    }  
+
+    const URL = "http://127.0.0.1:3000/signIn";
+    fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: id,
+            email: email,
+        })
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        if(responseData) {
+          console.log(responseData);
+          navigation.navigate('Main');    
+        }else {
+          console.log(responseData);
+          navigation.navigate('Gender');
+        }
+    })
+}
 
 
 // CUSTOM
@@ -63,7 +96,7 @@ const LoginScreen = ({ navigation }) => {
       .then((user) => {
         console.log(user);
         // If server response message same as Data Matched
-        if (user) navigation.replace("HomeScreen");
+        if (user) navigation.replace("Main");
       })
       .catch((error) => {
         console.log(error);
@@ -84,7 +117,7 @@ const LoginScreen = ({ navigation }) => {
     // Initial configuration
     GoogleSignin.configure({
       // Mandatory method to call before calling signIn()
-      scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+     // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
       // Repleace with your webClientId
       // Generated from Firebase console
       webClientId: '913377494399-3utpu41533gamaa6fgqtui5ajcu54pt6.apps.googleusercontent.com',
@@ -108,7 +141,13 @@ const LoginScreen = ({ navigation }) => {
       .then((idToken) => {
         console.log(idToken);
         // If server response message same as Data Matched
-        if (idToken) navigation.replace("Gender");
+        // if (idToken) navigation.replace("Gender");
+        var id = idToken.additionalUserInfo.profile.sub;   
+        var email = idToken.additionalUserInfo.profile.email;
+                
+        // If server response message same as Data Matched
+        //if (idToken) navigation.replace("HomeScreen");
+        connect(id, email);
       })
      
     } catch (error) {
@@ -133,25 +172,21 @@ const LoginScreen = ({ navigation }) => {
   
 
   return (
-    <SafeAreaView style={styles.mainBody}>
+    <View style={styles.mainBody}>
       <View
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{
-          flex: 1,
-        }}
+       
       >
-        <View style={{alignItems:'center',alignContent:'center', justifyContent:'center'}}> 
+        <ImageBackground
+        source={require("../assets/imgs/party.jpg")} resizeMode="cover" 
+        style={{width:"100%", height:'100%'}}
+        >
+        <View style={{alignItems:'center', justifyContent:'center'}}> 
           <KeyboardAvoidingView enabled>
-            <View style={{ alignItems: "center" }}>
-              <Image
-                source={require("../assets/logo/uni_logo.png")}
-                style={{
-                  width: "70%",
-                  height: 300,
-                  resizeMode: "contain",
-                  margin: 30,
-                }}
-              />
+            <View style={{ alignItems: "center", flex:1, top:200 }}>
+              <Text style={{justifyContent:'center', height:500, color:'white', alignItems:'center', fontSize:100, fontWeight:'bold', fontStyle:'italic', }}>
+                LOOF!
+              </Text>
             </View>
              {/*<View style={styles.sectionStyle}>
               <TextInput
@@ -195,31 +230,64 @@ const LoginScreen = ({ navigation }) => {
                 {errortext}{" "}
               </Text>
             ) : null}*/}
-            <View style={styles.sectionStyle}>
+            <View style={{flex:1, justifyContent:'center'}}>
+              <View style={styles.sectionStyle}>
             <TouchableOpacity
-              style={styles.buttonStyle}
+              style={{backgroundColor: "white",
+              borderColor: "black",
+              width:312, 
+              height:48, 
+              flexDirection:'row', 
+              justifyContent: 'space-between',
+              paddingHorizontal:30,
+              alignItems:'center',
+              
+              borderRadius:40
+            }}
               activeOpacity={0.5}
               // onPress={handleSubmitPress}
               onPress={() => navigation.navigate('PhoneAuth')}
             >
+              <Ionicons 
+                        name={"phone-portrait-outline"}
+                        style={{fontSize:38}}
+                        />
               <Text 
               style={styles.buttonTextStyle}>
-                Login With Phone 
+                 Continue with Phone 
               </Text>
             </TouchableOpacity>
             </View>
             <View style={styles.sectionStyle}>
-              <GoogleSigninButton
-                style={{width: 312, height: 48, }}
-                size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Dark}
+              <Pressable
                 onPress={g_signIn}
-              />
+                style={{
+                backgroundColor: "white",
+                borderColor: "black",
+                width:312, 
+                height:48, 
+                flexDirection:'row', 
+                justifyContent: 'space-between',
+                paddingHorizontal:30,
+                alignItems:'center',
+                
+                borderRadius:40
+                }}
+              >
+                <Image
+                source={require('../assets/logo/g-logo.png')}
+                style={{width:38, height:38,}}
+                />
+                <Text 
+                style={styles.buttonTextStyle}>
+                 Continue with Google
+                </Text>
+              </Pressable>
               </View>
               <View style={styles.sectionStyle}>
                 <FLogin/>
               </View>
-
+              </View>
            {/* <Text
               style={styles.registerTextStyle}
               onPress={() =>
@@ -230,22 +298,23 @@ const LoginScreen = ({ navigation }) => {
             </Text>*/}
           </KeyboardAvoidingView>
         </View>
+        </ImageBackground>
       </View>
     
     
               
-    </SafeAreaView>
+    </View>
   );
 };
 export default LoginScreen;
 
 const styles = StyleSheet.create({
   mainBody: {
-    flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#FFF",
-    alignContent: "center",
-    alignItems:'center'
+    justifyContent:'center',
+    
+    
+    
+    
   },
   sectionStyle: {
     flexDirection: "row",
@@ -256,21 +325,25 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   buttonStyle: {
-    backgroundColor: "grey",
-    color: "#FFFFFF",
-    borderColor: "#7DE24E",
-    height: 40,
-    width:312,
-    alignItems: "center",
-    justifyContent:'center'
+    backgroundColor: "white",
+              borderColor: "#1877F2",
+              width:312, 
+              height:48, 
+              flexDirection:'row', 
+              justifyContent:'space-around',
+              alignItems:'center',
+              borderWidth:2,
+              borderRadius:40
+
   },
   buttonTextStyle: {
-    color: "#FFFFFF",
+    color: "black",
     paddingVertical: 10,
     fontSize: 16,
+    fontWeight:'bold'
   },
   inputStyle: {
-    flex: 1,
+    
     color: "white",
     paddingLeft: 15,
     paddingRight: 15,

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Pressable, Text, Image, Dimensions } from 'react-native';
+import { View, Pressable, Text, Image, Dimensions, StyleSheet } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -26,6 +26,7 @@ export default class MyMapView extends Component {
     componentDidMount = () => {
         this.connect();
         this.removeStorage();
+        
     }
 
     removeStorage = async() => {
@@ -148,7 +149,11 @@ export default class MyMapView extends Component {
                     {this.createMarker()}
                 </MapView>
                 {marker}
-                <ActionButton buttonColor="rgba(231,76,60,1)" verticalOrientation="down">
+                <ActionButton 
+                buttonColor="#ff0081" 
+                verticalOrientation="down"
+                style={styles.actionButtonIcon} 
+                >
                         {this.state.hobbies}  
                 </ActionButton>  
             </View>
@@ -156,7 +161,13 @@ export default class MyMapView extends Component {
     }
 }
 
-
+const styles = StyleSheet.create({
+    actionButtonIcon: {
+      fontSize: 20,
+      marginTop:20,
+     
+    },
+  });
 
 
 

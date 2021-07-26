@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         height: 50,
+
     },
     back: {
         fontSize: 22,
@@ -14,10 +15,20 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     contentContainer: {
-        justifyContent: 'center',
+        marginVertical: 40,
         alignItems: 'center',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height - 50,
+     
+    },
+    announceContainer: {
+        marginTop:20,
+        marginLeft:10,
+        marginBottom:20,
+        
+    },
+    announce:{
+        fontSize:19
     },
 });
 

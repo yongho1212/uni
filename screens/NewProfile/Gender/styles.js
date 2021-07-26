@@ -6,18 +6,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         height: 50,
+     
     },
     back: {
         fontSize: 22,
         fontWeight: 'bold',
         marginRight: 30,
         marginLeft: 10,
+        fontWeight:'bold'
     },
     contentContainer: {
-        justifyContent: 'center',
+      marginTop:80,
         alignItems: 'center',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height - 50,
+      
       
     },
     bottomContainer: {
@@ -25,14 +28,27 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height - 50,
+        
     },
     announceContainer: {
         marginTop:20,
-        marginLeft:20
+        marginLeft:20,
+        marginBottom:-20,
+        
     },
     announce:{
-        fontSize:18
-    }
+        fontSize:19
+    },
+    btnFonts:{
+        fontSize:20,
+        fontWeight:'bold'
+    },
+    linearGradient: {
+      
+       
+        borderRadius: 20
+      },
+      
 });
 
 export default styles;

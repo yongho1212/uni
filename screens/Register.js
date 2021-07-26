@@ -46,7 +46,7 @@ const RegisterScreen = ({ navigation }) => {
               photoURL:
                 "https://aboutreact.com/profile.png",
             })
-            .then(() => navigation.replace("HomeScreen"))
+            .then(() => navigation.replace("Main"))
             .catch((error) => {
               alert(error);
               console.error(error);

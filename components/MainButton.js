@@ -9,14 +9,20 @@ export default class MainButton extends Component {
                     style={styles.Button}
                     onPress={() => this.props.navigate('Hosting')}
                 >
-                    <Text>Make</Text>
+                    <Text style={styles.Txt}>Make</Text>
                 </Pressable>
 
                 <Pressable
                     style={styles.Button}
                     onPress={() => this.props.navigate('Chat')}
                 >
-                    <Text>Chat</Text>
+                    <Text style={styles.Txt}>Chat</Text>
+                </Pressable>
+                <Pressable
+                    style={styles.Button}
+                    onPress={() => this.props.navigate('Room')}
+                >
+                    <Text style={styles.Txt}>Room</Text>
                 </Pressable>
             </View>
         )
@@ -25,26 +31,33 @@ export default class MainButton extends Component {
 
 const styles = StyleSheet.create({
     btnContainer: {
-        width: Dimensions.get('screen').width - 20,
-        marginHorizontal: 10,
+        width: Dimensions.get('screen').width - 40,
+        marginHorizontal: 20,
         justifyContent:'center',
-        alignItems:'center',
-        alignContent:'center',
         position:'absolute',
         zIndex:100,
         flexDirection:'row',
-        bottom: 40  
+        bottom: 30,
+
+        padding:5,
+        borderRadius:20,
+        backgroundColor:'#fff'
+        
+        
     },
     Button: {
         width:70,
         height:70,
-        backgroundColor:'#00FF7F',
+        backgroundColor:'#ff0081',
         borderRadius:25,
-        alignContent:'center',
         justifyContent:'center',
         alignItems:'center',
-        margin:30,
+        marginHorizontal:26,
+
+    },
+    Txt:{
         fontWeight:'bold',
-        borderWidth:2
+        color:'white',
+        fontSize:17
     }
 });

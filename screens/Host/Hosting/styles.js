@@ -107,7 +107,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop:30
     },
+    modifyButton: {
+        padding: 10,
+        backgroundColor: '#00FF7F',
+        height: 60,
+        width: Dimensions.get('window').width * 0.7,
+        borderRadius: 30,
+        marginLeft: Dimensions.get('window').width * 0.15,
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop:30
+    }
 });
 
 export default styles;
-
