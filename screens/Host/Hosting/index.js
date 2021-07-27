@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, SafeAreaView} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -168,7 +168,7 @@ export default class Hosting extends Component {
 
     render() {
         return (
-            <View>
+            <SafeAreaView>
                 <View style={styles.headerConatiner}>
                     <AntDesign
                         name={"arrowleft"}
@@ -240,7 +240,7 @@ export default class Hosting extends Component {
                     </Pressable>
                     }
                 </View>
-            </View>
+            </SafeAreaView>
         )
     }
 }

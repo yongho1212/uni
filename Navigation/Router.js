@@ -21,7 +21,8 @@ import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
 import Chat from '../screens/Chat';
 
-import Drawer from './Drawer';
+import LogoutBtn from '../components/logOutBtn';
+
 
 const Stack = createStackNavigator();
 
@@ -51,6 +52,7 @@ const Auth = () => {
             name="PhoneAuth"
             component={PhoneAuth}
         />
+         
         </Stack.Navigator>
     );
 };
@@ -129,6 +131,13 @@ const Router = () => {
                 <Stack.Screen
                     name={"Chat"}
                     component={Chat}
+                    options={{
+                        headerShown: false,    
+                    }}
+                />
+                <Stack.Screen
+                    name={"LogoutBtn"}
+                    component={LogoutBtn}
                     options={{
                         headerShown: false,    
                     }}

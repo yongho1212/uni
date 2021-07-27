@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyMapView from '../../components/MyMapView';
 import MainButton from '../../components/MainButton';
 import ViewProfiles from '../../components/ViewProfiles';
+import LogoutBtn from '../../components/logOutBtn';
 
 import Moment from 'moment';
 import 'moment/locale/ko';
@@ -236,7 +237,8 @@ export default class Main extends Component {
           >
                {this.state.roomInfo !== undefined ?
                <View style={styles.roomContainer}>
-                    <View style={styles.placeContainer}>   
+                    <View style={styles.placeContainer}>  
+                    
                          <Image 
                               source={{uri : this.state.image[0].uri}}
                               style={{width: 80, height: 80, borderRadius: 40, overflow: 'hidden', borderWidth: 3,}}                           
@@ -327,11 +329,13 @@ export default class Main extends Component {
                          sendData={this.getData}
                     >
                     </MyMapView>  
+                    
                     <MainButton                         
                          navigate={this.navigate}   
                          push={this.state.push}                      
                     >
-                    </MainButton>                
+                    </MainButton>    
+                    
                     <BottomSheet
                          ref={this.bs}
                          renderContent={this.renderContent}
