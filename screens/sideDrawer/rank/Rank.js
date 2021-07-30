@@ -1,14 +1,13 @@
 import React from 'react'
-import {Text, SafeAreaView} from 'react-native';
+import {Text, SafeAreaView, View, Button} from 'react-native';
 
-const Rank = () => {
+function Rank ({ navigation }) {
      return(
-          <SafeAreaView>
-               <Text>
-                    Rank
-               </Text>
-          </SafeAreaView>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button onPress={() => navigation.goBack()} title="Go back home" />
+    </View>
      );
 };
+
 
 export default Rank;

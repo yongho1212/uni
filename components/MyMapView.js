@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MapView, { Marker } from 'react-native-maps';
 import ActionButton from 'react-native-action-button';
 import Animated from 'react-native-reanimated';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class MyMapView extends Component {
     constructor(props){
@@ -48,7 +49,7 @@ export default class MyMapView extends Component {
             console.log(e);
         }
 
-        const URL = "http://10.0.2.2:3000/main";
+        const URL = "http://127.0.0.1:3000/main";
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -106,7 +107,7 @@ export default class MyMapView extends Component {
     connectFilter = async(hobby) => {
         this.state.onFilter = true;
 
-        const URL = "http://10.0.2.2:3000/main";
+        const URL = "http://127.0.0.1:3000/main";
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -125,6 +126,15 @@ export default class MyMapView extends Component {
         })
     }
 
+    mapRef = React.createRef();
+
+    /*
+    animateToRegion = (region) => {
+        this.mapRef.current.animateToRegion(region, 2000);
+    };
+    */
+    
+
     render() {
         let marker = <View style={{top: '50%', left: '50%', marginLeft: -24, marginTop: -48, position: 'absolute'}}>
                         <Image style={{height: 48, width: 48}} source={require('../assets/marker/marker.png')}/>   
@@ -132,8 +142,12 @@ export default class MyMapView extends Component {
         return (
             <View>
                 <MapView
-                    style={{width: '100%', height: '100%'}}
+                    style={{width: '100%', height: '100%',padding:100}}
                     showsUserLocation={true}
+                    showsCompass={true}
+                    ref={this.mapRef} 
+                    userLocationCalloutEnabled={true}
+                    showsMyLocationButton={true}
                     region={this.props.region}
                     onRegionChangeComplete={(reg) => {
                         this.props.onRegionChange(reg);
@@ -149,6 +163,14 @@ export default class MyMapView extends Component {
                     {this.createMarker()}
                 </MapView>
                 {marker}
+                <Pressable 
+                    style={{position: 'absolute', justifyContent:'center', alignItems:'center', width:40, height:40, backgroundColor:'white', right:25, bottom:120, borderRadius:20, borderWidth:2}}
+                    onPress={() => this.props.getLocation()}
+                >
+                    <Text>
+                         <Icon name="ios-locate" color="##000" size={30} /> 
+                    </Text>
+                </Pressable>
                 <ActionButton 
                 buttonColor="#ff0081" 
                 verticalOrientation="down"

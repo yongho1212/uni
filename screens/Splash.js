@@ -21,7 +21,7 @@ const SplashScreen = ({ navigation }) => {
       // If not then send for Authentication
       // else send to Home Screen
       navigation.replace(
-        auth().currentUser ? "Main" : "Auth"
+        auth().currentUser ? "DrawerNav" : "Auth"
       );
     }, 5000);
   }, []);

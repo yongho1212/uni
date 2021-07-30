@@ -46,7 +46,7 @@ const RegisterScreen = ({ navigation }) => {
               photoURL:
                 "https://aboutreact.com/profile.png",
             })
-            .then(() => navigation.replace("Main"))
+            .then(() => navigation.replace("DrawerNav"))
             .catch((error) => {
               alert(error);
               console.error(error);

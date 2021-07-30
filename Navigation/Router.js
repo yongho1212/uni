@@ -21,6 +21,8 @@ import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
 import Chat from '../screens/Chat';
 
+import DrawerNav from './Ctrl';
+
 import LogoutBtn from '../components/logOutBtn';
 
 
@@ -94,8 +96,8 @@ const Router = () => {
                 />
                 
                 <Stack.Screen
-                    name={"Main"}
-                    component={Main}
+                    name={"DrawerNav"}
+                    component={DrawerNav}
                     options={{
                         headerShown: false,    
                     }}

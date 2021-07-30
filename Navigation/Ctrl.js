@@ -14,13 +14,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Main from '../Screens/Main/index';
-import Announce from '../screens/sideDrawer/announce'
-import History from '../screens/sideDrawer/history'
-import Rank from '../screens/sideDrawer/rank'
-import Cs from '../screens/sideDrawer/cs'
+import Main from '../screens/Main/index';
+import Announce from '../screens/sideDrawer/announce/Announce';
+import History from '../screens/sideDrawer/history/History';
+import Rank from '../screens/sideDrawer/rank/Rank';
+import Cs from '../screens/sideDrawer/cs/Cs';
 
 import CustomSidebarMenu from './customSidebar';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 const Stack = createStackNavigator();
@@ -34,32 +36,23 @@ const NavigationDrawerStructure = (props)=> {
   };
 
   return (
-    <View style={{ }}>
+    <View style={{ zIndex:100, left:10}}>
       <Pressable 
-      
       onPress={()=> toggleDrawer()}>
         {/*Donute Button Image */}
-        <Image
-          source={{uri: 'https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfile25.uf.tistory.com%2Fimage%2F140BA24D4F14F8E92E8CF1'}}
-          style={{
-            width: 25,
-            height: 25,
-            marginLeft: 5,
-            
-          }}
-        />
+        <Icon name="ios-menu" color="#e91e63" size={40} /> 
       </Pressable>
     </View>
   );
 }
 
 
-{/*function homeScreenStack({ navigation }) {
+function homeScreenStack({ navigation }) {
   return (
       <Stack.Navigator initialRouteName="HomePage">
         <Stack.Screen
-          name="home"
-          component={Router}
+          name="Main"
+          component={Main}
           options={{
             title: '', //Set Header Title
             headerLeft: ()=>
@@ -73,10 +66,11 @@ const NavigationDrawerStructure = (props)=> {
       </Stack.Navigator>
   );
 }
-*/}
 
 
-function Drawer({ navigation }) {
+
+
+function DrawerNav({ navigation }) {
   return (
      <Drawer.Navigator
      drawerContentOptions={{
@@ -89,7 +83,7 @@ function Drawer({ navigation }) {
        name="HomePage"
        options={{ drawerLabel: 'Home' ,
      }}
-       component={Main} />     
+       component={homeScreenStack} />     
      <Drawer.Screen
        name="FirstPage"
        options={{ drawerLabel: '공지사항' }}
@@ -115,4 +109,4 @@ function Drawer({ navigation }) {
 
 
 
-export default Drawer;
+export default DrawerNav;

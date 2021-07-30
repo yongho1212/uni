@@ -17,6 +17,8 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
+import { Avatar } from 'react-native-paper';
+
 const CustomSidebarMenu = (props) => {
   const BASE_PATH =
     'https://raw.githubusercontent.com/AboutReact/sampleresource/master/';
@@ -25,32 +27,37 @@ const CustomSidebarMenu = (props) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       {/*Top Large Image */}
-      <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center', top:10}}>
+      <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center', marginTop:20}}>
         <View style={{justifyContent: 'center', }}>
-          <Text style={{fontWeight:'bold', fontSize:20}}>
+          <Text style={{fontWeight:'bold', fontSize:20, marginVertical:5}}>
             Email
           </Text>
-          <Text style={{fontWeight:'bold', fontSize:18}}>
+          <Text style={{fontWeight:'bold', fontSize:18, marginVertical:5}}>
             Nick Name
           </Text>
         </View>
-        
-        <Image
-          source={{uri: BASE_PATH + proileImage}}
-          style={styles.sideMenuProfileIcon}
-        />
+
+        {/* image - shoul be connected to - DB */}
+        <View style={{marginHorizontal:25}}>
+        <Avatar.Image size={85} source={{uri: 'https://lh3.googleusercontent.com/proxy/dkDDg73wan0U0UIbhbwQd9ydmKTOF11LsFZaZ7GfoeqpUXlSfNLgkn0qQHZx-H-X6FH7lm8ZqzQI8x01oILFSkolDgdDGKFlAlhHigLYGvx4OhYfpLeDXQ'}} />
+        </View>
       </View>
+      <View style={{justifyContent:'center', alignItems:'center', marginTop:20, marginBottom:-10}}>
+          <Text style={{color:'grey', fontSize:13, }}>
+            Edit Profile
+          </Text>
+        </View>
       
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
         <DrawerItem
           label="Visit Us"
-          onPress={() => Linking.openURL('https://aboutreact.com/')}
+          onPress={() => Linking.openURL('https://loof.party/')}
         />
         <View style={styles.customItem}>
           <Text
             onPress={() => {
-              Linking.openURL('https://aboutreact.com/');
+              Linking.openURL('https://loof.party/');
             }}>
             Rate Us
           </Text>
@@ -66,7 +73,7 @@ const CustomSidebarMenu = (props) => {
           textAlign: 'center',
           color: 'grey'
         }}>
-        www.aboutreact.com
+        loof.party
       </Text>
     </SafeAreaView>
   );

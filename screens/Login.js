@@ -68,7 +68,7 @@ const LoginScreen = ({ navigation }) => {
     .then(responseData => {
         if(responseData) {
           console.log(responseData);
-          navigation.navigate('Main');    
+          navigation.navigate('DrawerNav');    
         }else {
           console.log(responseData);
           navigation.navigate('Gender');
@@ -93,7 +93,7 @@ const LoginScreen = ({ navigation }) => {
       .then((user) => {
         console.log(user);
         // If server response message same as Data Matched
-        if (user) navigation.replace("Main");
+        if (user) navigation.replace("DrawerNav");
       })
       .catch((error) => {
         console.log(error);

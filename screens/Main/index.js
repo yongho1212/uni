@@ -125,7 +125,7 @@ export default class Main extends Component {
                               longitudeDelta: 0.0121, 
                          },
                     });
-                    Geocoder.init('AIzaSyBMk4s9KTSOS2IICXgJ8jQQAeITjx8f3fE', {language: 'ko'});
+                    Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', {language: 'ko'});
                     Geocoder.from(position.coords.latitude, position.coords.longitude)
                     .then(json => {
                          var address = json.results[0].formatted_address;
@@ -142,7 +142,7 @@ export default class Main extends Component {
      onMapRegionChange = async(region) => {
           await this.setState({region});
 
-          await Geocoder.init('AIzaSyBMk4s9KTSOS2IICXgJ8jQQAeITjx8f3fE', {language: 'ko'});
+          await Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', {language: 'ko'});
           await Geocoder.from(this.state.region.latitude, this.state.region.longitude)
           .then(json => {
                var address = json.results[0].formatted_address;
@@ -210,6 +210,8 @@ export default class Main extends Component {
           }
      }
 
+
+
      checkJoin = async() => {
           const URL = "http://127.0.0.1:3000/checkJoin";
           fetch(URL, {
@@ -228,6 +230,11 @@ export default class Main extends Component {
                })
           })
      }
+
+     moveToMyLocation = () => {
+          this.mapView.animateToRegion(initialRegion, 2000); 
+     }
+
 
      bs = React.createRef();
 
@@ -290,6 +297,7 @@ export default class Main extends Component {
                     >
                          <Text>modify</Text>
                     </Pressable>
+                    
                     }                             
                </View>               
                : null}
@@ -320,6 +328,8 @@ export default class Main extends Component {
           });
      } 
 
+     
+
      render() {
           return (
                <View style={{width: '100%', height: Dimensions.get('window').height}}> 
@@ -327,14 +337,18 @@ export default class Main extends Component {
                          region={this.state.region}
                          onRegionChange={(reg) => this.onMapRegionChange(reg)}
                          sendData={this.getData}
+                         getLocation={() => this.getCurrentLocation()}
                     >
+                         
                     </MyMapView>  
                     
                     <MainButton                         
                          navigate={this.navigate}   
                          push={this.state.push}                      
                     >
-                    </MainButton>    
+                         
+                    </MainButton>  
+                     
                     
                     <BottomSheet
                          ref={this.bs}
