@@ -19,6 +19,7 @@ import Announce from '../screens/sideDrawer/announce/Announce';
 import History from '../screens/sideDrawer/history/History';
 import Rank from '../screens/sideDrawer/rank/Rank';
 import Cs from '../screens/sideDrawer/cs/Cs';
+import Setting from'../screens/sideDrawer/setting/Setting';
 
 import CustomSidebarMenu from './customSidebar';
 
@@ -34,7 +35,6 @@ const NavigationDrawerStructure = (props)=> {
     //Props to open/close the drawer
     props.navigationProps.toggleDrawer();
   };
-
   return (
     <View style={{ zIndex:100, left:10}}>
       <Pressable 
@@ -100,6 +100,23 @@ function DrawerNav({ navigation }) {
        name="fourthPage"
        options={{ drawerLabel: '고객센터' }}
        component={Cs} />
+       <Drawer.Screen
+       name="SetPage"
+       options={{ 
+         drawerLabel: 'Setting',
+         headerShown: true,
+         headerLeft: () => (
+          <Button
+            onPress={() => navigation.goBack()}
+            title="<"
+            color="black"
+            />
+             
+        
+          
+        ),
+        }}
+       component={Setting} />
    </Drawer.Navigator>
   );
 }

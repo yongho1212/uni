@@ -9,6 +9,7 @@ import {
   Image,
   Text,
   Linking,
+  Pressable,
 } from 'react-native';
 
 import {
@@ -18,6 +19,10 @@ import {
 } from '@react-navigation/drawer';
 
 import { Avatar } from 'react-native-paper';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+
 
 const CustomSidebarMenu = (props) => {
   const BASE_PATH =
@@ -39,14 +44,16 @@ const CustomSidebarMenu = (props) => {
 
         {/* image - shoul be connected to - DB */}
         <View style={{marginHorizontal:25}}>
-        <Avatar.Image size={85} source={{uri: 'https://lh3.googleusercontent.com/proxy/dkDDg73wan0U0UIbhbwQd9ydmKTOF11LsFZaZ7GfoeqpUXlSfNLgkn0qQHZx-H-X6FH7lm8ZqzQI8x01oILFSkolDgdDGKFlAlhHigLYGvx4OhYfpLeDXQ'}} />
+        <Avatar.Image size={85} source={{uri: 'http://image.uc.cn/s/wemedia/s/upload/2020/7dmsUQ1ebgjl5bu/86f8d0fe046c2304481b85575418c5cc.jpg'}} />
         </View>
       </View>
-      <View style={{justifyContent:'center', alignItems:'center', marginTop:20, marginBottom:-10}}>
+        <Pressable 
+        style={{justifyContent:'center', alignItems:'center', marginTop:20, flexDirection:'row'}}>
           <Text style={{color:'grey', fontSize:13, }}>
             Edit Profile
           </Text>
-        </View>
+          <Icon name="keyboard-arrow-right" color="grey" size={30} /> 
+        </Pressable>
       
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
@@ -67,6 +74,13 @@ const CustomSidebarMenu = (props) => {
           />
         </View>
       </DrawerContentScrollView>
+      <Pressable 
+        style={{justifyContent:'center', alignItems:'center', marginTop:20, flexDirection:'row'}}>
+          <Text style={{color:'grey', fontSize:20, }}>
+            개인정보 및 설정
+          </Text>
+          <Icon name="settings" color="grey" size={20} /> 
+        </Pressable>
       <Text
         style={{
           fontSize: 16,

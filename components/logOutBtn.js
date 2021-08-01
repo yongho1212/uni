@@ -81,10 +81,10 @@ export default LogoutBtn;
 const styles = StyleSheet.create({
   buttonStyle: {
     minWidth: 300,
-    backgroundColor: "#7DE24E",
+    backgroundColor: "grey",
     borderWidth: 0,
-    color: "#FFFFFF",
-    borderColor: "#7DE24E",
+    color: "red",
+    
     height: 40,
     alignItems: "center",
     borderRadius: 30,
@@ -94,8 +94,9 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   buttonTextStyle: {
-    color: "#FFFFFF",
+    color: "red",
     paddingVertical: 10,
-    fontSize: 16,
+    fontSize: 20,
+    
   },
 });
