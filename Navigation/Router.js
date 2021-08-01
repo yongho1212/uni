@@ -9,6 +9,7 @@ import RegisterScreen from '../screens/Register';
 
 import PhoneAuth from '../components/phoneAuth/PhoneAuth'
 
+import Nickname from '../screens/NewProfile/Nickname';
 import Gender from '../screens/NewProfile/Gender';
 import Birth from '../screens/NewProfile/Birth';
 import Interest from '../screens/NewProfile/Interest';
@@ -20,6 +21,8 @@ import LocationSearch from "../screens/Host/LocationSearch";
 import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
 import Chat from '../screens/Chat';
+import RoomList from '../screens/Room/RoomList';
+import UserList from "../screens/Room/UserList";
 
 import DrawerNav from './Ctrl';
 
@@ -73,7 +76,11 @@ const Router = () => {
                     component={Auth}
                     options={{ headerShown: false }}
                 />
-                
+                <Stack.Screen
+                    name="Nickname"
+                    component={Nickname}
+                    options={{ headerShown: false }}
+                />
                 <Stack.Screen
                     name="Gender"
                     component={Gender}
@@ -126,6 +133,20 @@ const Router = () => {
                 <Stack.Screen
                     name={"Time"}
                     component={Time}
+                    options={{
+                        headerShown: false,    
+                    }}
+                />
+                 <Stack.Screen
+                    name={"RoomList"}
+                    component={RoomList}
+                    options={{
+                        headerShown: false,    
+                    }}
+                />
+                <Stack.Screen
+                    name={"UserList"}
+                    component={UserList}
                     options={{
                         headerShown: false,    
                     }}

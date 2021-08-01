@@ -33,57 +33,36 @@ export default class Main extends Component {
                     longitudeDelta: 0.0121,     
                },
                roomInfo: undefined,
-               image: [
-                    {uri: undefined, width: 100, height: 150, mime: undefined},
-                    {uri: undefined, width: 100, height: 150, mime: undefined},
-                    {uri: undefined, width: 100, height: 150, mime: undefined},
-                    {uri: undefined, width: 100, height: 150, mime: undefined},
-                    {uri: undefined, width: 100, height: 150, mime: undefined},
-                    {uri: undefined, width: 100, height: 150, mime: undefined},    
-               ],
+               usersProfile: [],
                address: 0,
                id: '',
                push: 0,
           }
      }
 
+
+
      componentDidMount = async() => {                    
           this.getId();                 
-
+          // ONESIGNAL 추가후에 주석제거 0802
  //         OneSignal.setLogLevel(6, 0);
  //         OneSignal.setAppId('1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea');   
-
-          setInterval(() => {
-               const URL = "http://127.0.0.1:3000/getPush";
-               fetch(URL, {
-                    method: 'POST',
-                    headers: {
-                         'Content-Type' : 'application/json',
-                    },
-                    body: JSON.stringify({
-                         id: this.state.id,
-                    })
-               })
-               .then(response => response.json())
-               .then(responseData => {
-                    this.setState({
-                         push: responseData,
-                    })
-               })   
-          }, 10000);
+ //         await OneSignal.setExternalUserId(await AsyncStorage.getItem('id'), (result) => {
+ //              console.log(result);
+ //         });
 
           if(this.props.route.params === undefined) {
                this.requestPermission().then(result => {
                     if(result === 'granted') {
                          this.getCurrentLocation();
                     }else {
-                     //    Alert.alert();
+                         // Alert.alert('');
                     }
                })      
           }else {
                this.hosted();
           }
-     }     
+     }    
 
      getId = async() => {
           try {
@@ -152,29 +131,34 @@ export default class Main extends Component {
           })
      }         
 
-     getData = async(data) => {        
+     getData = async(data) => { 
+          var usersProfile = new Array();
+          
           if(data !== undefined) {
-               this.setState({roomInfo: data});               
-               fetch("http://127.0.0.1:3000/firstProfile/?id=" + data.id  + "&time=" + new Date())
-               .then(responseData => {
-                    if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
-                         this.state.image[0].uri = responseData.url;    
-                    }
-               })   
-               .then(() => this.bs.current.snapTo(0));                          
+               this.setState({roomInfo: data});    
+               for(let i = 0; i < data.joinUser.length; i++) {
+                    fetch("http://127.0.0.1:3000/firstProfile/?id=" + data.joinUser[i]  + "&time=" + new Date())
+                    .then(responseData => {
+                         if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
+                              usersProfile.push(responseData.url);    
+                         }
+                    })
+                    .then(() => {
+                         this.setState({usersProfile: usersProfile})
+                    })           
+               }
+
+               //this.setState({usersProfile: usersProfile});
+               this.bs.current.snapTo(0);                          
           }else {
                this.bs.current.snapTo(5);
           }
      }
 
-     joinRoom = async(hostId) => {
-          /* 
-          위치조정 중
-          await OneSignal.setExternalUserId(await AsyncStorage.getItem('id'), (result) => {
-               console.log(result);
-          });
-          */
 
+     joinRoom = async(hostId) => {
+       
+          // ONESIGNAL 축가후에 주석 제거 - 0802
      {/*     const URL = "https://onesignal.com/api/v1/notifications";
           fetch(URL, {
                method: 'POST',
@@ -189,7 +173,7 @@ export default class Main extends Component {
                }),
           })        
           .then(response => response.json())
-     .then(responseData => this.joinSuccess(hostId, responseData))    */}
+          .then(responseData => this.joinSuccess(hostId, roomId, responseData))   */}
      }
 
      joinSuccess = async(hostId, responseData) => {
@@ -203,6 +187,7 @@ export default class Main extends Component {
                     },
                     body: JSON.stringify({
                          id: hostId,
+                         roomId: roomId,
                     }),
                })                            
           }else {
@@ -231,9 +216,9 @@ export default class Main extends Component {
           })
      }
 
-     moveToMyLocation = () => {
+/*     moveToMyLocation = () => {
           this.mapView.animateToRegion(initialRegion, 2000); 
-     }
+*/
 
 
      bs = React.createRef();
@@ -244,12 +229,18 @@ export default class Main extends Component {
           >
                {this.state.roomInfo !== undefined ?
                <View style={styles.roomContainer}>
-                    <View style={styles.placeContainer}>  
-                    
-                         <Image 
-                              source={{uri : this.state.image[0].uri}}
-                              style={{width: 80, height: 80, borderRadius: 40, overflow: 'hidden', borderWidth: 3,}}                           
-                         />                     
+                    <View style={styles.placeContainer}>
+                         <View style={styles.usersProfile}>  
+                              {this.state.usersProfile.map((data, index) => {
+                                   return (
+                                        <Image 
+                                             source={{uri : data}}
+                                             style={{width: 50, height: 50, borderRadius: 25, borderWidth: 3, marginLeft: 3,}}
+                                             key={++index}
+                                        />
+                                   )
+                              })}    
+                         </View>                       
                          <Text style={styles.placeText}>Place</Text>
                          <TextInput
                               style={styles.placeInfo}
@@ -283,7 +274,7 @@ export default class Main extends Component {
                     </View>           
                     {this.state.id === this.state.roomInfo.id ?
                     <Pressable
-                         onPress={() => this.joinRoom(this.state.roomInfo.id)}
+                         onPress={() => this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id)}
                          style={styles.joinButton}
                     >
                          <Text>join</Text>
@@ -297,7 +288,6 @@ export default class Main extends Component {
                     >
                          <Text>modify</Text>
                     </Pressable>
-                    
                     }                             
                </View>               
                : null}
@@ -309,7 +299,7 @@ export default class Main extends Component {
           if(screen === 'Hosting') {
                this.props.navigation.push('Hosting', {address: this.state.address, lat: this.state.region.latitude, lng: this.state.region.longitude, Info: 'place'})
           }else if(screen === 'Room') {
-               this.props.navigation.navigate('Room');
+               this.props.navigation.navigate('RoomList'); 
                this.checkJoin();               
           }else if(screen === 'Chat') {
                this.props.navigation.navigate('Chat');

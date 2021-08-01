@@ -73,6 +73,7 @@ function homeScreenStack({ navigation }) {
 function DrawerNav({ navigation }) {
   return (
      <Drawer.Navigator
+     
      drawerContentOptions={{
        activeTintColor: '#e91e63',
        itemStyle: { marginVertical: 5 },

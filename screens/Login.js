@@ -25,7 +25,6 @@ import {
   AccessToken,LoginManager
 } from 'react-native-fbsdk-next';
 
-import FLogin from '../components/fLogin';
 import PhoneAuth from '../components/phoneAuth/PhoneAuth';
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -71,7 +70,7 @@ const LoginScreen = ({ navigation }) => {
           navigation.navigate('DrawerNav');    
         }else {
           console.log(responseData);
-          navigation.navigate('Gender');
+          navigation.navigate('Nickname');
         }
     })
 }

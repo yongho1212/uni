@@ -31,7 +31,6 @@ export default class NewProfileImg extends Component {
             ],
 
             index: 0,
-            uploadFile: {uri: undefined, width: 100, height: 150, mime: undefined},
             nextColor: '#dcdcdc',
         }
     }
@@ -291,7 +290,7 @@ export default class NewProfileImg extends Component {
                         style={styles.back} 
                         onPress={() => this.props.navigation.navigate('Interest')}
                     />
-                    <Text style={{fontSize: 18}}>관심사 설정</Text>
+                    <Text style={{fontSize: 18}}>사진 설정</Text>
                     <Pressable style={styles.vaccum}></Pressable>
                 </View>   
                 <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start'}}>  

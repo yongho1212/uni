@@ -105,7 +105,7 @@ export default class Hosting extends Component {
         const {id, address, lat, lng, category, title, time, timeInfo} = this.state.room;
         console.log(this.state.room);
 
-        const URL = "http://10.0.2.2:3000/createRoom";
+        const URL = "http://127.0.0.1:3000/createRoom";
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -130,7 +130,7 @@ export default class Hosting extends Component {
 
         console.log(_id);
         
-        const URL = "http://10.0.2.2:3000/modifyRoom";
+        const URL = "http://127.0.0.1:3000/modifyRoom";
         fetch(URL, {
             method: 'POST',
             headers: {

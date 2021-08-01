@@ -74,7 +74,7 @@ export default class Gender extends Component {
                     <AntDesign 
                         name={"doubleleft"}
                         style={styles.back} 
-                        onPress={() => this.props.navigation.navigate('Auth')}
+                        onPress={() => this.props.navigation.navigate('Nickname')}
                     />
                     <Text style={{fontSize: 18}}></Text>
                     <Pressable style={styles.vaccum}></Pressable>

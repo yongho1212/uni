@@ -144,7 +144,6 @@ export default class MyMapView extends Component {
                 <MapView
                     style={{width: '100%', height: '100%',padding:100}}
                     showsUserLocation={true}
-                    showsCompass={true}
                     ref={this.mapRef} 
                     userLocationCalloutEnabled={true}
                     showsMyLocationButton={true}
