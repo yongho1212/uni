@@ -76,7 +76,7 @@ export default class MyMapView extends Component {
             if(this.state.check === 1) {
                 Interest.map((hobby, index) => {
                     this.state.hobbies.push(
-                        <ActionButton.Item key={index} buttonColor='#00FF7F' onPress={() => {this.connectFilter(hobby); this.state.hobby = hobby;}}>
+                        <ActionButton.Item key={index} buttonColor='#49ffbd' onPress={() => {this.connectFilter(hobby); this.state.hobby = hobby;}}>
                             <Text>{hobby}</Text>
                         </ActionButton.Item>                    
                     )
@@ -93,8 +93,8 @@ export default class MyMapView extends Component {
             this.state.roomData.map(roomInfo => marker.push (
                 <Marker 
                     coordinate={{latitude: roomInfo.latitude, longitude: roomInfo.longitude}}
-                    onPress={() => {
-                        this.props.sendData(roomInfo);
+                    onPress={() => {                        
+                        this.props.sendData(roomInfo);                    
                     }}
                     key={key++}
                 />
@@ -144,6 +144,7 @@ export default class MyMapView extends Component {
                 <MapView
                     style={{width: '100%', height: '100%',padding:100}}
                     showsUserLocation={true}
+                    mapType={'mutedStandard'}
                     ref={this.mapRef} 
                     userLocationCalloutEnabled={true}
                     showsMyLocationButton={true}
@@ -163,15 +164,16 @@ export default class MyMapView extends Component {
                 </MapView>
                 {marker}
                 <Pressable 
-                    style={{position: 'absolute', justifyContent:'center', alignItems:'center', width:40, height:40, backgroundColor:'white', right:25, bottom:120, borderRadius:20, borderWidth:2}}
+                    style={styles.locationBtn}
                     onPress={() => this.props.getLocation()}
                 >
                     <Text>
-                         <Icon name="ios-locate" color="##000" size={30} /> 
+                         <Icon name="ios-locate" color="grey" size={30} /> 
                     </Text>
                 </Pressable>
                 <ActionButton 
-                buttonColor="#ff0081" 
+                size={48}
+                buttonColor="#fb009e" 
                 verticalOrientation="down"
                 style={styles.actionButtonIcon} 
                 >
@@ -185,9 +187,27 @@ export default class MyMapView extends Component {
 const styles = StyleSheet.create({
     actionButtonIcon: {
       fontSize: 20,
-      marginTop:20,
+      position:'absolute',
+      top:25,
+      right:-10
      
     },
+    locationBtn:{
+        position: 'absolute', 
+        justifyContent:'center', 
+        alignItems:'center', 
+        width:40, 
+        height:40, 
+        backgroundColor:'white', 
+        right:25,
+        bottom:120, 
+        borderRadius:20,
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { height: 3, width: 3 },
+
+    }
   });
 
 

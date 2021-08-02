@@ -1,12 +1,16 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
+    hostingContainer:{
+        backgroundColor:'#fff',
+        flex:1
+    },
     headerConatiner: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
         height: 50,
-        borderBottomWidth: 0.5,
+        
     },
     backIcon: {
         fontSize: 22,
@@ -14,10 +18,10 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     contentContainer: {
-        marginTop: 10,
+        marginTop: 20,
     },
     placeContainer: {
-        paddingBottom: 15,
+        marginVertical:10
     },
     placeText: {
         fontSize: 20,
@@ -27,15 +31,16 @@ const styles = StyleSheet.create({
     placeInput: {
         paddingLeft: 10,
         height: 50,
+        height:Dimensions.get('window').width * 0.15,
         width: Dimensions.get('window').width * 0.9,
         marginLeft: Dimensions.get('window').width * 0.05,        
-        borderWidth: 1,
-        borderRadius: 30,
+        borderRadius: 25,
+        paddingLeft:20,
         backgroundColor: '#EBEBEB',
         justifyContent: 'center',
     },
     categoryContainer: {
-        marginTop: 10,
+        marginVertical:10
     },
     categoryText: {
         fontSize: 20,
@@ -45,15 +50,16 @@ const styles = StyleSheet.create({
     categoryInput: {
         paddingLeft: 10,
         height: 50,
+        height:Dimensions.get('window').width * 0.15,
         width: Dimensions.get('window').width * 0.9,
         marginLeft: Dimensions.get('window').width * 0.05,        
-        borderWidth: 1,
-        borderRadius: 30,
+        paddingLeft:20,
+        borderRadius: 25,
         backgroundColor: '#EBEBEB',
         justifyContent: 'center',
     },
     titleConatiner: {
-        marginTop: 10,
+        marginVertical:10
     },
     titleText: {
         fontSize: 20,
@@ -61,17 +67,16 @@ const styles = StyleSheet.create({
         marginLeft: Dimensions.get('window').width * 0.05,
     },
     titleInput: {
-        paddingLeft: 10,
-        height: 50,
+        height:Dimensions.get('window').width * 0.15,
         width: Dimensions.get('window').width * 0.9,
         marginLeft: Dimensions.get('window').width * 0.05,        
-        borderWidth: 1,
-        borderRadius: 30,
         backgroundColor: '#EBEBEB',
-        justifyContent: 'center',
+        borderRadius:25,
+        paddingLeft:20,
+        
     },
     timeConatiner: {
-        marginTop: 10,
+        marginVertical:10
     },
     timeText: {
         fontSize: 20,
@@ -79,12 +84,13 @@ const styles = StyleSheet.create({
         marginLeft: Dimensions.get('window').width * 0.05,
     },
     timeInput: {
-        paddingLeft: 10,
+
         height: 50,
         width: Dimensions.get('window').width * 0.9,
+        height:Dimensions.get('window').width * 0.15,
         marginLeft: Dimensions.get('window').width * 0.05,        
-        borderWidth: 1,
-        borderRadius: 30,
+        paddingLeft:20,
+        borderRadius: 25,
         backgroundColor: '#EBEBEB',
         justifyContent: 'center',
     },
@@ -97,27 +103,27 @@ const styles = StyleSheet.create({
     },
     hostButton: {
         padding: 10,
-        backgroundColor: '#00FF7F',
+        backgroundColor: '#fb009e',
         height: 60,
         width: Dimensions.get('window').width * 0.7,
-        borderRadius: 30,
+        borderRadius: 25,
         marginLeft: Dimensions.get('window').width * 0.15,
         textAlign: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:30
+        marginTop:70
     },
     modifyButton: {
         padding: 10,
-        backgroundColor: '#00FF7F',
+        backgroundColor: '#fb009e',
         height: 60,
         width: Dimensions.get('window').width * 0.7,
-        borderRadius: 30,
+        borderRadius: 25,
         marginLeft: Dimensions.get('window').width * 0.15,
         textAlign: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:30
+        marginTop:70
     }
 });
 

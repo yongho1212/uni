@@ -6,7 +6,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         height: 50,
-        borderBottomWidth: 0.5,
+        
+    },
+    renderContainer:{
+        backgroundColor:'#fff',
+        flex:1
     },
     backIcon: {
         fontSize: 22,
@@ -14,18 +18,60 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     line: {
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
+        justifyContent:'center',
+        alignItems:'center',
+     
+        
     },
-    roomList: {
-        width: Dimensions.get('window').width,
+    roomCard: {
+        width: Dimensions.get('window').width*0.9,
+        marginHorizontal: Dimensions.get('window').width*0.05,
         flexDirection: 'row',
         flexWrap: 'wrap', 
         alignItems: 'center',
-        marginLeft: 5,
+        padding:15,
         justifyContent: 'space-between',
         marginVertical: 15,
+        borderWidth:1,
+        borderRadius:25,
+        backgroundColor:'#96FFD9',
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { height: 3, width: 3 },
+
+        
     },  
+    headerInfoContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        marginVertical:3,
+        justifyContent:'space-between',
+    },
+    roomInfoContainer:{
+        marginVertical:3
+    },
+    peopleInfoContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        marginVertical:3
+    },
+    titleText:{
+        fontSize:19,
+        fontWeight:'bold'
+    },
+    locationText:{
+        fontSize:14,
+        color:'grey'
+    },
+    peopleText:{
+        fontSize:21
+    },
+    timeText:{
+        fontSize:22
+    }
+
 });
 
 export default styles;

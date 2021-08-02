@@ -286,7 +286,7 @@ export default class Main extends Component {
                                           category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'})}                              
                          style={styles.modifyButton}
                     >
-                         <Text>modify</Text>
+                         <Text>Modify</Text>
                     </Pressable>
                     }                             
                </View>               
@@ -347,6 +347,7 @@ export default class Main extends Component {
                          initialSnap={5}
                          borderRadius={10}
                          enabledContentTapInteraction={false}
+                         style={{width:100}}
                     />
                </View>  
           )

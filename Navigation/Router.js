@@ -1,4 +1,5 @@
 import React from "react";
+import {Button} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -62,7 +63,7 @@ const Auth = () => {
     );
 };
 
-const Router = () => {
+const Router = ({navigation}) => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="SplashScreen">
@@ -141,7 +142,9 @@ const Router = () => {
                     name={"RoomList"}
                     component={RoomList}
                     options={{
-                        headerShown: false,    
+                        headerShown: true,
+                        title: '참가 정보',
+                        
                     }}
                 />
                 <Stack.Screen

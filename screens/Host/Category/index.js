@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, TextInput, Pressable, FlatList} from 'react-native';
+import {View, Text, TextInput, Pressable, FlatList, SafeAreaView} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -104,7 +104,7 @@ export default class Category extends Component {
 
     render() {
         return (
-            <View style={styles.fullConatiner}>
+            <SafeAreaView style={styles.fullConatiner}>
                 <View style={styles.headerConatiner}>
                     <AntDesign
                         name={"arrowleft"}
@@ -137,7 +137,7 @@ export default class Category extends Component {
                     }}
                     keyExtractor={(item) => item._id}
                 />
-            </View>
+            </SafeAreaView>
         )
     }
 }

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, SafeAreaView} from 'react-native';
+import {Text, View, Pressable, Alert, SafeAreaView, TextInput} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import styles from './styles';
+
+
 
 export default class Hosting extends Component {
     constructor(props) {
@@ -168,7 +171,7 @@ export default class Hosting extends Component {
 
     render() {
         return (
-            <SafeAreaView>
+            <SafeAreaView style={styles.hostingContainer}>
                 <View style={styles.headerConatiner}>
                     <AntDesign
                         name={"arrowleft"}
@@ -208,6 +211,7 @@ export default class Hosting extends Component {
                         <Text style={styles.titleText}>Title</Text>
                         <TextInput
                             style={styles.titleInput}
+                            autoCapitalize="none"
                             onChangeText={text => this.onChangeText(text)}
                             value={this.state.room.title}
                         />
@@ -223,6 +227,7 @@ export default class Hosting extends Component {
                                 <Text>{this.state.room.timeInfo}</Text>
                             </View>                                                                
                         </Pressable>
+                        
                     </View>
                     {this.state.check === 'modify' ?
                     <Pressable
@@ -236,7 +241,7 @@ export default class Hosting extends Component {
                         style={styles.hostButton}
                         onPress={() => this.hosting()}                        
                     >
-                        <Text>Hosting</Text>
+                        <Text style={{color:'#fff', fontSize:25, fontWeight:'bold'}}>Hosting</Text>
                     </Pressable>
                     }
                 </View>

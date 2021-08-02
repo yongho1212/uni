@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+import SuggestionRow from "./SuggestionRow";
+
 import styles from './styles';
 
 export default class LocationSearch extends Component {
     render() {
         return (
-            <View style={{width: '100%', height: '100%'}}>
+            <SafeAreaView style={{width: '100%', height: '100%', backgroundColor:'#fff'}}>
                 <View style={styles.headerConatiner}>
                     <AntDesign
                         name={"arrowleft"}
@@ -24,6 +26,7 @@ export default class LocationSearch extends Component {
                     placeholder='주소 또는 건물명을 입력하세요'
                     enableHighAccuracyLocation={true}
                     enablePoweredByContainer={false}
+                    listViewDisplayed="auto"
                     fetchDetails={true}
                     renderRow={(rowData) => {
                         const main = rowData.structured_formatting.main_text;
@@ -39,13 +42,17 @@ export default class LocationSearch extends Component {
                         this.props.navigation.push('Hosting', {address: data.description, lat: details.geometry.location.lat, lng: details.geometry.location.lng, Info: 'place'})
                     }}
                     query={{
-                        key: 'AIzaSyBMk4s9KTSOS2IICXgJ8jQQAeITjx8f3fE',
+                        key: 'AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8',
                         components: 'country:kr',
                         language: 'ko',
                         rankby: 'distance',
+                        
                     }}
+                    
+                   
+                    
                 />
-            </View>
+            </SafeAreaView>
         )
     }
 }

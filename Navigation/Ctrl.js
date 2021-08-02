@@ -40,7 +40,7 @@ const NavigationDrawerStructure = (props)=> {
       <Pressable 
       onPress={()=> toggleDrawer()}>
         {/*Donute Button Image */}
-        <Icon name="ios-menu" color="#e91e63" size={40} /> 
+        <Icon name="ios-menu" color="#fb009e" size={48} /> 
       </Pressable>
     </View>
   );
@@ -87,19 +87,55 @@ function DrawerNav({ navigation }) {
        component={homeScreenStack} />     
      <Drawer.Screen
        name="FirstPage"
-       options={{ drawerLabel: '공지사항' }}
+       options={{ drawerLabel: '공지사항',
+       headerShown: true,
+       headerLeft: () => (
+        <Button
+          onPress={() => navigation.goBack()}
+          title="<"
+          color="black"
+          />
+        ),
+       }}
        component={Announce} />
      <Drawer.Screen
        name="SecondPage"
-       options={{ drawerLabel: '이용내역' }}
+       options={{ drawerLabel: '이용내역',
+       headerShown: true,
+       headerLeft: () => (
+        <Button
+          onPress={() => navigation.goBack()}
+          title="<"
+          color="black"
+          />
+        ),
+      }}
        component={History} />
        <Drawer.Screen
        name="ThirdPage"
-       options={{ drawerLabel: '랭크' }}
+       options={{ drawerLabel: '랭크',
+       headerShown: true,
+       headerLeft: () => (
+        <Button
+          onPress={() => navigation.goBack()}
+          title="<"
+          color="black"
+          />
+        ),
+      }}
        component={Rank} />
        <Drawer.Screen
        name="fourthPage"
-       options={{ drawerLabel: '고객센터' }}
+       options={{ drawerLabel: '고객센터',
+       headerShown: true,
+       headerLeft: () => (
+        <Button
+          onPress={() => navigation.goBack()}
+          title="<"
+          color="black"
+          />
+        ), 
+      }}
        component={Cs} />
        <Drawer.Screen
        name="SetPage"
@@ -112,10 +148,7 @@ function DrawerNav({ navigation }) {
             title="<"
             color="black"
             />
-             
-        
-          
-        ),
+          ),
         }}
        component={Setting} />
    </Drawer.Navigator>

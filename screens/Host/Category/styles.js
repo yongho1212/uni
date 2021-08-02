@@ -3,10 +3,13 @@ import { StyleSheet, Dimensions } from 'react-native';
 const styles = StyleSheet.create({
     fullConatiner: {
         backgroundColor: 'white',
+        flex:1
     },
     headerConatiner: {
         flexDirection: 'row',
         alignItems: 'center',
+        backgroundColor: '#fff',
+        height: 50,
     },
     backIcon: {
         fontSize: 22,

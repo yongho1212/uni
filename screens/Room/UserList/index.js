@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, Image} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, Image,SafeAreaView} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -153,7 +153,7 @@ export default class UserList extends Component {
 
     render() {
         return (
-            <View>
+            <SafeAreaView>
                 <View style={styles.headerConatiner}>
                         <AntDesign
                             name={"arrowleft"}
@@ -165,7 +165,7 @@ export default class UserList extends Component {
                 <View>
                     {this.showUsersProfile()}
                 </View>
-            </View>
+            </SafeAreaView>
         )
     }
 }

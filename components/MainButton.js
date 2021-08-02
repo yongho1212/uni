@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text, Pressable, Dimensions, StyleSheet} from 'react-native';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Foundation from 'react-native-vector-icons/Foundation';
+
 export default class MainButton extends Component {   
     render() {
         return (       
@@ -9,6 +12,11 @@ export default class MainButton extends Component {
                     style={styles.Button}
                     onPress={() => this.props.navigate('Hosting')}
                 >
+                    <Ionicons
+                    color="#fff"
+                    name='golf'
+                    size={30}
+                    />
                     <Text style={styles.Txt}>Make</Text>
                 </Pressable>
 
@@ -16,12 +24,22 @@ export default class MainButton extends Component {
                     style={styles.Button}
                     onPress={() => this.props.navigate('Chat')}
                 >
+                    <Ionicons
+                    color="#fff"
+                    name='chatbubbles-sharp'
+                    size={30}
+                    />
                     <Text style={styles.Txt}>Chat</Text>
                 </Pressable>
                 <Pressable
                     style={styles.Button}
                     onPress={() => this.props.navigate('Room')}
                 >
+                    <Foundation
+                    color="#fff"
+                    name='results-demographics'
+                    size={30}
+                    />
                     <Text style={styles.Txt}>Room</Text>
                 </Pressable>
             </View>
@@ -41,23 +59,27 @@ const styles = StyleSheet.create({
 
         padding:5,
         borderRadius:20,
-        backgroundColor:'#fff'
+        
         
         
     },
     Button: {
         width:70,
         height:70,
-        backgroundColor:'#ff0081',
+        backgroundColor:'#fb009e',
         borderRadius:25,
         justifyContent:'center',
         alignItems:'center',
         marginHorizontal:26,
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { height: 3, width: 3 },
 
     },
     Txt:{
-        fontWeight:'bold',
-        color:'white',
-        fontSize:17
+        fontWeight:'900',
+        color:'#fff',
+        fontSize:15
     }
 });

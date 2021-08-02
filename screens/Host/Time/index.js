@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, SafeAreaView} from 'react-native';
 
 import DatePicker from 'react-native-date-picker';
 import Moment from 'moment';
@@ -28,13 +28,16 @@ export default class Time extends Component {
         
         if(!this.state.isChange) {
             this.state.time = currentTime;
-            this.state.showTime = Moment(currentTime).format('MM/DD(dd)  HH:mm');
+            this.state.showTime = Moment(currentTime).format('MM / DD dd요일 ');
+            this.state.onlyTime = Moment(currentTime).format('HH:mm');
         }
 
         return (
-            <View>        
+            <View style={{justifyContent:'center', alignItems:'center'}}>        
                 <View style={styles.timeInfoContainer}>
-                    <Text style={styles.timeInfoText}>{this.state.showTime}</Text>                                        
+                    <Text style={styles.timeInfoText}>{this.state.showTime}</Text>                 
+                    <Text style={styles.timeInfoTextTime}>{this.state.onlyTime}</Text>                                                            
+
                 </View>
                 <DatePicker
                     mode='datetime'
@@ -42,9 +45,13 @@ export default class Time extends Component {
                     onDateChange={this.onChangeTime}
                     minimumDate={currentTime}
                     minuteInterval={10}
+                    themeVariant="dark"
                     locale="ko"
                     is24hourSource="locale"
-                    androidVariant="nativeAndroid"
+                    style={{
+                        width:400,
+                        height:400
+                    }}
                     
                 />
             </View>
@@ -70,7 +77,7 @@ export default class Time extends Component {
 
     render() {
         return (
-            <View>
+            <SafeAreaView style={{backgroundColor:'#fff', flex:1,}}>
                 <View style={styles.headerContainer}>
                     <AntDesign                        
                         name={"arrowleft"}
@@ -82,7 +89,15 @@ export default class Time extends Component {
                 <View style={styles.contentContainer}>                    
                     {this.datePicker()}                    
                 </View>
-            </View>
+                <Pressable
+                onPress={() => this.props.navigation.push('Hosting', {time: JSON.stringify(this.state.time), timeInfo: this.state.showTime, Info: 'time'})}
+                style={styles.setBtn}
+                >
+                    <Text style={{color:'#fff', fontSize:25, fontWeight:'bold'}}>
+                        SET
+                    </Text>
+                </Pressable>
+            </SafeAreaView>
         )
     }
 }
