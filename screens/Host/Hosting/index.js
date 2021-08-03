@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 
 import styles from './styles';
 
@@ -173,16 +175,28 @@ export default class Hosting extends Component {
         return (
             <SafeAreaView style={styles.hostingContainer}>
                 <View style={styles.headerConatiner}>
-                    <AntDesign
-                        name={"arrowleft"}
-                        style={styles.backIcon}
+                    <View style={styles.backIcon}>
+                        <Pressable
                         onPress={() => {this.removeStorage(); this.props.navigation.navigate('Main');}}
-                    />  
-                    {this.state.check === 'modify' ?                  
-                    <Text>Modify</Text>
-                    :
-                    <Text>Hosting</Text>
-                    }
+                        style={styles.backIcon}
+                        >
+                        <Ionicons
+                                    name={"ios-chevron-back"}
+                                    size={30}
+                                    
+                                />  
+                                <Text style={{fontSize:18}}>Back</Text>
+                        </Pressable>
+                    </View>
+                    
+                    <View style={styles.headerTextContainer}>
+                        {this.state.check === 'modify' ?                  
+                        <Text style={styles.headerText}>Modify</Text>
+                        :
+                        <Text style={styles.headerText}>Hosting</Text>
+                        }
+                    </View>
+                    
                 </View>      
                 <View style={styles.contentContainer}>
                     <View style={styles.placeContainer}>

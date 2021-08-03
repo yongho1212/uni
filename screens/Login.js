@@ -32,6 +32,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 
+
 const LoginScreen = ({ navigation }) => {
   //custom
   const [userEmail, setUserEmail] = useState("");
@@ -205,12 +206,13 @@ const onFacebookButtonPress = async() => {
 
   return (
     <View style={styles.mainBody}>
+      
       <View
         keyboardShouldPersistTaps="handled"
        
       >
         <ImageBackground
-        source={require("../assets/imgs/party.jpg")} resizeMode="cover" 
+        source={require("../assets/imgs/1.png")} resizeMode="cover" 
         style={{width:"100%", height:'100%'}}
         >
         <View style={{alignItems:'center', justifyContent:'center'}}> 

@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert} from 'react-native';
+import {View, Text, ImageBackground, Pressable, Dimensions, Image, Alert, SafeAreaView, TextInput} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import styles from './styles';
 
@@ -13,7 +14,7 @@ export default class Nickname extends Component {
         this.state = {
             id: '',
             nickname: '',
-            nextColor: '#dcdcdc',
+            nextColor: '#FFF',
         }
     }
 
@@ -36,9 +37,9 @@ export default class Nickname extends Component {
 
     onChangeText = async(text) => { 
         if(text.length !== 0) {
-            this.setState({nextColor: 'red'})    
+            this.setState({nextColor: '#fb009e'})    
         }else {
-            this.setState({nextColor: '#dcdcdc'})
+            this.setState({nextColor: '#FFF'})
         }
         
         this.setState({nickname: text})
@@ -65,38 +66,55 @@ export default class Nickname extends Component {
 
     render() {
         return (       
-            <View>
-                <View style={styles.headerContainer}>
+            <View style={styles.nicknameContainer}>
+                <ImageBackground
+                source={require("../../../assets/imgs/2.png")} resizeMode="cover" 
+                style={{width:"100%", height:'110%', }}
+                >
+                {/*<View style={styles.headerContainer}>
                     <AntDesign 
                         name={"arrowleft"}
                         style={styles.back} 
                         onPress={() => this.props.navigation.navigate('Auth')}
                     />
                     <Text style={{fontSize: 18}}>닉네임</Text>                    
-                </View>                 
+        </View> */}                
                 <View style={styles.contentContainer}>
                     <TextInput
                         style={styles.nicknameInput}
+                        outlineColor="#96FFD9"
+                        selectionColor="#49ffbd"
+                        textAlign={'center'}
+                        placeholder="Tell me your nickname!!"
                         onChangeText={text => this.onChangeText(text)}
                         value={this.state.nickname}
                     />
                     <Pressable
                         style={{
-                            marginTop: 50,
                             width: Dimensions.get('window').width * 0.7,
                             height: 50,
-                            borderColor: this.state.nextColor,
-                            borderWidth: 3,    
-                            marginVertical: 5,
+                            backgroundColor: this.state.nextColor,
+                            marginTop:50,
                             borderRadius: 20,
                             justifyContent: 'center',
                             alignItems: 'center',
+                            flexDirection:'row',
+                            shadowOpacity: 0.75,
+                            shadowRadius: 5,
+                            shadowColor: 'grey',
+                            shadowOffset: { height: 2, width: 2 },
+                            borderRadius:20
                         }}
                         onPress={() => this.connect()}
                     >
-                        <Text>다음</Text>
+                        <Text style={styles.btnFonts}>NEXT </Text>
+                        <MaterialIcons 
+                        name={"navigate-next"}
+                        style={styles.btnFonts}
+                        />
                     </Pressable>
-                </View>                    
+                </View>      
+                </ImageBackground>              
             </View>
         )
     }

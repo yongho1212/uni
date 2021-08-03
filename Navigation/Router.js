@@ -28,6 +28,7 @@ import UserList from "../screens/Room/UserList";
 import DrawerNav from './Ctrl';
 
 import LogoutBtn from '../components/logOutBtn';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 
 const Stack = createStackNavigator();
@@ -80,17 +81,63 @@ const Router = ({navigation}) => {
                 <Stack.Screen
                     name="Nickname"
                     component={Nickname}
-                    options={{ headerShown: false }}
+                    options={{ 
+                        headerShown: true,
+                        headerStyle:{
+                            backgroundColor:"#49ffbd",
+                            shadowColor: 'transparent'
+                        },
+                        title: 'NickName',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:'',
+                        headerBackTitleStyle:{
+                            fontSize:18,
+                            color:'black'
+                        }
+                     }}
                 />
                 <Stack.Screen
                     name="Gender"
                     component={Gender}
-                    options={{ headerShown: false }}
+                    options={{
+                        headerShown: true,
+                        headerStyle:{
+                            backgroundColor:"#49ffbd",
+                            shadowColor: 'transparent'
+                        },
+                        title: 'Gender',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:'',
+                        headerBackTitleStyle:{
+                            fontSize:18,
+                            color:'black'
+                        }}}
                 />
                 <Stack.Screen
                     name="Birth"
                     component={Birth}
-                    options={{ headerShown: false }}
+                    options={{ 
+                        headerShown: true,
+                        headerStyle:{
+                            backgroundColor:"#49ffbd",
+                            shadowColor: 'transparent'
+                        },
+                        title: 'Birth',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:'',
+                        headerBackTitleStyle:{
+                            fontSize:18,
+                            color:'black'
+                        } }}
                 />
                 <Stack.Screen
                     name="Interest"
@@ -100,7 +147,21 @@ const Router = ({navigation}) => {
                 <Stack.Screen
                     name="NewProfileImg"
                     component={NewProfileImg}
-                    options={{ headerShown: false }}
+                    options={{ headerShown: true,
+                        headerStyle:{
+                            backgroundColor:"#49ffbd",
+                            shadowColor: 'transparent'
+                        },
+                        title: 'Gender',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:'',
+                        headerBackTitleStyle:{
+                            fontSize:18,
+                            color:'black'
+                        }}}
                 />
                 
                 <Stack.Screen
@@ -114,7 +175,8 @@ const Router = ({navigation}) => {
                     name={"Hosting"}
                     component={Hosting}
                     options={{
-                        headerShown: false,    
+                        headerShown: false,
+                        
                     }}
                 />
                 <Stack.Screen
@@ -144,7 +206,15 @@ const Router = ({navigation}) => {
                     options={{
                         headerShown: true,
                         title: '참가 정보',
-                        
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:'',
+                        headerBackTitleStyle:{
+                            fontSize:18,
+                            color:'black'
+                        }
                     }}
                 />
                 <Stack.Screen
@@ -158,7 +228,18 @@ const Router = ({navigation}) => {
                     name={"Chat"}
                     component={Chat}
                     options={{
-                        headerShown: false,    
+                        headerShown: true,
+                        title: 'Chat',
+                        headerTitleStyle:{
+                            fontSize:18
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:'',
+                        headerBackTitleStyle:{
+                            fontWeight: 'bold',
+                            color:'black',
+                            
+                        }
                     }}
                 />
                 <Stack.Screen

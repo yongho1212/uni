@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert, Platform} from 'react-native';
+import {SafeAreaView, View, Text, ImageBackground, Pressable, Dimensions, Image, TextInput, Alert, Platform} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -42,14 +42,14 @@ export default class Gender extends Component {
 
     check_Gender = (gender) => {
         if(gender === '남성') {
-            this.state.manColor = '#ff0081';
+            this.state.manColor = '#fb009e';
             this.state.womanColor = '#fff';
         }else {
-            this.state.womanColor = '#ff0081';
+            this.state.womanColor = '#fb009e';
             this.state.manColor = '#fff';
         }
 
-        this.state.nextColor = '#f5ff00';
+        this.state.nextColor = '#49ffbd';
     }
 
     connect = async () => {
@@ -69,8 +69,12 @@ export default class Gender extends Component {
 
     render() {
         return (       
-            <SafeAreaView style={{backgroundColor:'white'}}>
-                <View style={styles.headerContainer}>
+            <View style={{flex:1}}>
+                <ImageBackground
+                source={require("../../../assets/imgs/2r.png")} resizeMode="cover" 
+                style={{width:"100%", height:'100%', }}
+                >
+                {/*<View style={styles.headerContainer}>
                     <AntDesign 
                         name={"doubleleft"}
                         style={styles.back} 
@@ -78,7 +82,7 @@ export default class Gender extends Component {
                     />
                     <Text style={{fontSize: 18}}></Text>
                     <Pressable style={styles.vaccum}></Pressable>
-                </View>
+        </View>*/}
                     <View style={styles.announceContainer}>
                         <Text style={ styles.announce}>
                             성별을 알려주세요! 
@@ -172,8 +176,9 @@ export default class Gender extends Component {
                         />
                     </Pressable>
           
-                </View>                     
-            </SafeAreaView>
+                </View>  
+                </ImageBackground>                   
+            </View>
         )
     }
 }

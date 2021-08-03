@@ -14,15 +14,13 @@ const styles = StyleSheet.create({
       marginLeft: 10,
   },
   imageBoard: {
-    marginTop: 20,
-    marginLeft: 10, 
-    width: 100,
+    width: 98,
     height: 150,
-    borderWidth: 1,
-    borderColor: 'lightgrey',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'row',
+    backgroundColor:'#fff',
+    borderRadius:25,
+    margin:9
   },
  
   //BottomSheet
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     marginBottom: 10,
-    backgroundColor: '#8bc34a',
+    backgroundColor:'#fff',
     flexDirection: 'row',
   },
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert, SafeAreaView} from 'react-native';
+import {View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert, SafeAreaView, ImageBackground} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {Convert} from 'mongo-image-converter';
 
@@ -116,7 +116,7 @@ export default class NewProfileImg extends Component {
                         :
                         <Image 
                             source={{uri : data.uri}}
-                            style={{width: 100, height: 150}}
+                            style={{width: 100, height: 150, borderRadius:25}}
                         />
                     }
                 </TouchableOpacity>
@@ -137,6 +137,8 @@ export default class NewProfileImg extends Component {
             backgroundColor: '#fff',
             padding: 20,
             height: 700,
+            justifyContent:'center',
+            alignItems:'center'
           }}
         >      
             <Pressable
@@ -283,8 +285,12 @@ export default class NewProfileImg extends Component {
 
     render() {
         return (
-            <SafeAreaView>   
-                <View style={styles.headerContainer}>
+            <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>   
+                <ImageBackground
+                source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
+                style={{width:"100%", height:'100%', }}
+                >
+                {/*<View style={styles.headerContainer}>
                     <AntDesign 
                         name={"doubleleft"}
                         style={styles.back} 
@@ -292,26 +298,32 @@ export default class NewProfileImg extends Component {
                     />
                     <Text style={{fontSize: 18}}>사진 설정</Text>
                     <Pressable style={styles.vaccum}></Pressable>
-                </View>   
-                <View style={{width: Dimensions.get('window').width, height: Dimensions.get('window').height, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start'}}>  
+        </View>   */}
+                <View style={{ flex:1, justifyContent:'center', }}>  
+                    <View style={{flexDirection:'row', flexWrap: 'wrap', justifyContent:'center', width: Dimensions.get('window').width*0.9, marginHorizontal:Dimensions.get('window').width*0.05, marginBottom:80}}>
                     {this.state.picker}
-                    <Pressable
-                        style={{
-                            width: Dimensions.get('window').width * 0.7,
-                            height: 50,
-                            borderColor: this.state.nextColor,
-                            borderWidth: 3,    
-                            marginVertical: 5,
-                            borderRadius: 20,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                        onPress={() => 
-                            this.check()
-                        }
-                    >
-                        <Text>완료</Text>
-                    </Pressable>
+                    </View>
+                    <View>
+                        <Pressable
+                            style={{
+                                width: Dimensions.get('window').width * 0.7,
+                                height: 50,
+                                borderColor: this.state.nextColor,
+                                marginHorizontal:Dimensions.get('window').width * 0.15,
+                                marginTop: 70,
+                                borderRadius: 25,
+                                justifyContent:'center',
+                                alignItems: 'center',
+                                backgroundColor:'#fff',
+                            }}
+                            onPress={() => 
+                                this.check()
+                            }
+                        >
+                            <Text>완료</Text>
+                        </Pressable>
+                    </View>
+                    
                     <BottomSheet
                         ref={this.bs}
                         snapPoints={[300, 0]}
@@ -321,7 +333,8 @@ export default class NewProfileImg extends Component {
                         enabledInnerScrolling={false}
                     />                                       
                 </View>
-            </SafeAreaView> 
+                </ImageBackground>
+            </View> 
         )
     }
 }

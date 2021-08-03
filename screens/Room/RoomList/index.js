@@ -103,12 +103,12 @@ export default class RoomList extends Component {
           return (
                <SafeAreaView style={styles.renderContainer}>
                     <View style={styles.headerConatiner}>
-                         <AntDesign
+                         {/* <AntDesign
                               name={"arrowleft"}
                               style={styles.backIcon}
                               onPress={() => {this.props.navigation.navigate('Main');}}
                          />  
-                         <Text>Room List</Text> 
+                         <Text>Room List</Text> */}
                     </View>                         
                     <ScrollView>
                         {this.showRoomList()}                  

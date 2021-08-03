@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {SafeAreaView, View, Text, Pressable, Dimensions} from 'react-native';
+import {SafeAreaView, View, Text, Pressable, Dimensions, ImageBackground} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -75,16 +75,20 @@ export default class Birth extends Component {
             this.state.date = new Date();
         }
         return (       
-            <SafeAreaView style={{backgroundColor:'#fff'}}>
-                <View style={styles.headerContainer}>
+            <View style={{backgroundColor:'#fff'}}>
+                <ImageBackground
+                source={require("../../../assets/imgs/3r.png")} resizeMode="cover" 
+                style={{width:"100%", height:'100%', }}
+                >
+                {/*<View style={styles.headerContainer}>
                     <AntDesign 
                         name={"doubleleft"}
                         style={styles.back} 
                         onPress={() => this.props.navigation.navigate('Gender')}
                     />
                     <Text style={{fontSize: 18}}>생일</Text>
-                    <Pressable style={styles.vaccum}></Pressable>
-                </View>
+        <Pressable style={styles.vaccum}></Pressable>
+                </View>*/}
                 <View style={styles.contentContainer}>
                 <View style={styles.announceContainer}>
                         <Text style={ styles.announce}>
@@ -97,16 +101,20 @@ export default class Birth extends Component {
                             생일은 변경이 불가하니 신중하게 골라주세요!
                         </Text>
                     </View>
-                    <DatePicker
-                        mode='date'
-                        date={this.state.date}                                       
-                        minuteInterval={10}
-                        onDateChange={this.changeDate}
-                        androidVariant="iosClone"
-                        locale="ko"
-                        is24hourSource="locale"
-                        style={{width:500, height:400,}}
-                    />
+                    
+                        <DatePicker
+                            mode='date'
+                            date={this.state.date}                                       
+                            minuteInterval={10}
+                            onDateChange={this.changeDate}
+                            androidVariant="iosClone"
+                            locale="ko"
+                            is24hourSource="locale"
+                            style={{width:300, height:300, backgroundColor: 'rgba(255, 255, 255, 0.8)'}}
+                            textColor="#000"
+                        />
+                   
+                    
                     <Pressable
                         style={{
                             width: Dimensions.get('window').width * 0.7,
@@ -124,7 +132,8 @@ export default class Birth extends Component {
                         <Text style={{fontWeight:'bold', fontSize:20}}>다음</Text>
                     </Pressable>
                 </View>
-            </SafeAreaView>
+                </ImageBackground>
+            </View>
         )
     }
 }

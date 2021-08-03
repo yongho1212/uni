@@ -7,15 +7,29 @@ const styles = StyleSheet.create({
     },
     headerConatiner: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center', 
         backgroundColor: '#fff',
-        height: 50,
+        justifyContent:'flex-start'
+    },
+    headerText:{
+        fontSize:19,
+        fontWeight:'500'
+    },
+    headerTextContainer:{
+        justifyContent: 'center',
+        
+        position:'absolute',
+        width: Dimensions.get('window').width * 0.6,
+        marginHorizontal:Dimensions.get('window').width * 0.2,
+        alignItems:'center'
         
     },
     backIcon: {
-        fontSize: 22,
+        justifyContent:'center',
+        alignItems:'center',
         fontWeight: 'bold',
         marginRight: 10,
+        flexDirection:'row'
     },
     contentContainer: {
         marginTop: 20,
