@@ -83,97 +83,103 @@ export default class Gender extends Component {
                     <Text style={{fontSize: 18}}></Text>
                     <Pressable style={styles.vaccum}></Pressable>
         </View>*/}
-                    <View style={styles.announceContainer}>
-                        <Text style={ styles.announce}>
-                            성별을 알려주세요! 
+                    
+
+
+                <View style={styles.contentContainer}>
+                <View style={styles.announceContainer}>
+                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
+                    <Text style={ styles.announceTitle}>
+                            성별
                         </Text>
                         <Text style={ styles.announce}>
-                       
+                             을 
                         </Text>
+                        </View>
                         <Text style={ styles.announce}>
+                             알려주세요! 
+                        </Text>
+                    
+                        <Text style={ styles.announceSpecific}>
                             성별은 변경이 불가하니 신중하게 골라주세요!
                         </Text>
                     </View>
-                <View style={styles.contentContainer}>
-                  
-                  
-                    <Pressable
-                        style={{
-                            width: Dimensions.get('window').width * 0.5,
-                            height: Dimensions.get('window').width * 0.5,
-                            backgroundColor:this.state.manColor,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginVertical:10,
-                            flexDirection:'row',
-                            shadowOpacity: 0.75,
-                            shadowRadius: 5,
-                            shadowColor: 'grey',
-                            shadowOffset: { height: 2, width: 2 },
-                            borderRadius:20
-                            
-                            
-                            
-                        }}
-                        onPress={() => {this.setState({gender: '남성'}); this.check_Gender('남성');}}
-                    >
-                        <Text style={styles.btnFonts}>남성 </Text>
-                        <FontAwesome 
-                        name={"male"}
-                        style={styles.btnFonts}
-                        />
-                    </Pressable>
+                    <View style={styles.selectboxContainer}>
+                        <Pressable
+                            style={{
+                                width: Dimensions.get('window').width * 0.4,
+                                height: Dimensions.get('window').width * 0.4,
+                                backgroundColor:this.state.manColor,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginVertical:10,
+                                marginHorizontal:10,
+                                
+                                shadowOpacity: 0.5,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:20,
+
+                            }}
+                            onPress={() => {this.setState({gender: '남성'}); this.check_Gender('남성');}}
+                        >
+                           
+                         
+                             <Text style={styles.btnFonts}>남성</Text>
+                        </Pressable>
+                        
                     
-                   
-                    <Pressable
-                        style={{
-                            width: Dimensions.get('window').width * 0.5,
-                            height: Dimensions.get('window').width * 0.5,
-                            backgroundColor: this.state.womanColor,
-                            borderRadius: 20,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginVertical:10,
-                            flexDirection:'row',
-                            shadowOpacity: 0.75,
-                            shadowRadius: 5,
-                            shadowColor: 'grey',
-                            shadowOffset: { height: 2, width: 2 },
-                            borderRadius:20
-                        }}
-                        onPress={() => {this.setState({gender: '여성'}); this.check_Gender('여성');}}
-                    >
-                        <Text style={styles.btnFonts}>여성 </Text>
-                        <FontAwesome 
-                        name={"female"}
-                        style={styles.btnFonts}
-                        />
-                    </Pressable>
+                        <Pressable
+                            style={{
+                                width: Dimensions.get('window').width * 0.4,
+                                height: Dimensions.get('window').width * 0.4,
+                                backgroundColor: this.state.womanColor,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginVertical:10,
+                                marginHorizontal:10,
+                                
+                                shadowOpacity: 0.75,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:25
+                            }}
+                            onPress={() => {this.setState({gender: '여성'}); this.check_Gender('여성');}}
+                        >
+                            
+                            
+                            <Text style={styles.btnFonts}>여성</Text>
+                        </Pressable>
+                    </View>
+                    
                     
                     <Pressable
                         style={{
                             width: Dimensions.get('window').width * 0.7,
                             height: 50,
                             backgroundColor: this.state.nextColor,
-                            marginTop:50,
-                            borderRadius: 20,
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexDirection:'row',
-                            shadowOpacity: 0.75,
+                            shadowOpacity: 0.5,
                             shadowRadius: 5,
                             shadowColor: 'grey',
                             shadowOffset: { height: 2, width: 2 },
-                            borderRadius:20
+                            borderRadius:25,
+                            position:'absolute',
+                            bottom:10
+                            
                        
                         }}
                         onPress={() => {this.connect(); this.props.navigation.navigate('Birth');}}
                     >
-                        <Text style={styles.btnFonts}>NEXT </Text>
-                        <MaterialIcons 
-                        name={"navigate-next"}
-                        style={styles.btnFonts}
-                        />
+                       <Text style={{fontSize:20}}>NEXT </Text>
+                            <MaterialIcons 
+                            name={"navigate-next"}
+                            style={styles.btnFonts}
+                            />
                     </Pressable>
           
                 </View>  

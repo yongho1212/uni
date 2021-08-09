@@ -3,8 +3,9 @@ import {View, Text, ImageBackground, Pressable, Dimensions, Image, Alert, SafeAr
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
+
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 import styles from './styles';
 
@@ -80,39 +81,64 @@ export default class Nickname extends Component {
                     <Text style={{fontSize: 18}}>닉네임</Text>                    
         </View> */}                
                 <View style={styles.contentContainer}>
+                <View style={styles.announceContainer}>
+                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
+                    <Text style={ styles.announceTitle}>
+                            닉네임
+                        </Text>
+                        <Text style={ styles.announce}>
+                             을 
+                        </Text>
+                        </View>
+                        <Text style={ styles.announce}>
+                             알려주세요! 
+                        </Text>
+                    
+                        <Text style={ styles.announceSpecific}>
+                        닉네임은 변경이 불가하니 신중하게 골라주세요!
+                        </Text>
+                    </View>
                     <TextInput
                         style={styles.nicknameInput}
                         outlineColor="#96FFD9"
                         selectionColor="#49ffbd"
                         textAlign={'center'}
-                        placeholder="Tell me your nickname!!"
+                        placeholder="Tell me your nickname"
                         onChangeText={text => this.onChangeText(text)}
                         value={this.state.nickname}
                     />
-                    <Pressable
-                        style={{
-                            width: Dimensions.get('window').width * 0.7,
-                            height: 50,
-                            backgroundColor: this.state.nextColor,
-                            marginTop:50,
-                            borderRadius: 20,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection:'row',
-                            shadowOpacity: 0.75,
-                            shadowRadius: 5,
-                            shadowColor: 'grey',
-                            shadowOffset: { height: 2, width: 2 },
-                            borderRadius:20
-                        }}
-                        onPress={() => this.connect()}
-                    >
-                        <Text style={styles.btnFonts}>NEXT </Text>
-                        <MaterialIcons 
-                        name={"navigate-next"}
-                        style={styles.btnFonts}
-                        />
-                    </Pressable>
+                    <View
+                    style={{
+                        position:'absolute',
+                        bottom:10
+                    }}>
+                        <Pressable
+                            style={{
+                                width: Dimensions.get('window').width * 0.7,
+                                height: 50,
+                                backgroundColor: this.state.nextColor,
+                                borderRadius:25,
+                                
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                flexDirection:'row',
+                                shadowOpacity: 0.5,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                
+                               
+                            }}
+                            onPress={() => this.connect()}
+                        >
+                            <Text style={styles.btnFonts}>NEXT </Text>
+                            <MaterialIcons 
+                            name={"navigate-next"}
+                            style={styles.btnFonts}
+                            />
+                        </Pressable>
+                    </View>
+                    
                 </View>      
                 </ImageBackground>              
             </View>

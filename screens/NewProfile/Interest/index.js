@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
-import {SafeAreaView, ScrollView, View, Text, TouchableOpacity, Pressable, FlatList, Dimensions, Image, TextInput, Alert} from 'react-native';
+import {View, Text, ScrollView, Pressable, ImageBackground, Dimensions, SafeAreaView, TextInput, Alert} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-
-
 import styles from './styles';
-
 
 export default class Interest extends Component {   
     constructor(props) {
@@ -19,19 +16,13 @@ export default class Interest extends Component {
            list: [],
            hobby: [],
            cnt: 0,
-           selectColor: '#dcdcdc',
+           selectColor: '#fff',
            selectedColor: 'red',
-           nextColor: '#dcdcdc',
+           nextColor: '#fff',
         }
     }
 
     componentDidMount = () => {  
-        /*
-        if(this.props.route.params.selectedHobby !== undefined) {
-            console.log(this.props.route.params.selectedHobby)
-            this.state.hobby = this.props.route.params.selectedHobby;
-        }
-        */
         this.get_Interest();
         this.getId();
     }
@@ -83,9 +74,9 @@ export default class Interest extends Component {
 
     getList = () => {
         if(this.state.cnt >= 3) {
-            this.state.nextColor = 'red';
+            this.state.nextColor = '#49ffbd';
         }else {
-            this.state.nextColor = '#dcdcdc';
+            this.state.nextColor = '#fff';
         }
 
         let list = new Array();
@@ -95,19 +86,19 @@ export default class Interest extends Component {
         this.state.data.map((data, index) => {
             if(cnt === 0) {
                 cnt += 1;
-                list.push(<Text key={data._id + '1'}>{this.state.data[0].area}</Text>)
+                list.push(<Text key={data._id + '1'} style={styles.listName}>{this.state.data[0].area}</Text>)
                 list.push(<Pressable key={data._id + '2'} style={styles.vaccum}></Pressable>)
             }
 
             if(area !== data.no) {
                 list.push(<Pressable key={data._id + '3'} style={styles.vaccum}></Pressable>)
-                list.push(<Text key={data._id}>{data.area}</Text>)
+                list.push(<Text key={data._id} style={styles.listName}>{data.area}</Text>)
                 list.push(<Pressable key={data._id + '4'} style={styles.vaccum}></Pressable>)
             
                 area = data.no;
             }
 
-            list.push(
+            list.push(   
                 <Pressable
                     key={index}
                     onPress={() =>                                                     
@@ -121,40 +112,41 @@ export default class Interest extends Component {
                     }
                     style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
                 >
-                    <Text key={data._id + '5'}>{data.category}</Text>
-                </Pressable>
+                    <Text key={data._id + '5'} style={styles.boxText}>{data.category}</Text>
+                </Pressable>          
             )
-            /*
-            this.setState({
-                list: list
-            })
-            */
         })
 
         list.push(<Pressable key={'last'} style={styles.vaccum}></Pressable>)
         list.push(
-            <Pressable
-               key={'next'} 
-                style={{
-                    width: Dimensions.get('window').width * 0.7,
-                    height: 50,
-                    borderColor: this.state.nextColor,
-                    borderWidth: 3,    
-                    marginVertical: 5,
-                    borderRadius: 20,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-                onPress={() => 
-                    {
-                        this.state.cnt >= 3 
-                        ? (this.send_Interest(), this.props.navigation.navigate('NewProfileImg'))
-                        : Alert.alert('관심사를 최소 3개 이상 설정해주세요');
+            <View style={styles.nextButtonContainer} key={'next_container'}>
+                <Pressable
+                    key={'next'} 
+                    style={{
+                        width: Dimensions.get('window').width * 0.7,
+                        marginHorizontal:Dimensions.get('window').width * 0.1,
+                        height: 50,
+                        backgroundColor: this.state.nextColor,
+                        marginVertical:70,
+                        borderRadius: 25,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        shadowOpacity: 0.3,
+                        shadowRadius: 5,
+                        shadowColor: 'grey',
+                        shadowOffset: { height: 3, width: 3 },
+                    }}
+                    onPress={() => 
+                        {
+                            this.state.cnt >= 3 
+                            ? (this.send_Interest(), this.props.navigation.navigate('NewProfileImg'))
+                            : Alert.alert('관심사를 최소 3개 이상 설정해주세요');
+                        }
                     }
-                }
-            >
-                <Text>다음  ({this.state.cnt}/5)</Text>
-            </Pressable>     
+                >
+                    <Text style={{fontSize:20}}>Next  ({this.state.cnt}/5)</Text>
+                </Pressable> 
+            </View>    
         )
        
         this.setState({
@@ -164,9 +156,9 @@ export default class Interest extends Component {
 
     updateList = () => {
         if(this.state.cnt >= 3) {
-            this.state.nextColor = 'red';
+            this.state.nextColor = '#49ffbd';
         }else {
-            this.state.nextColor = '#dcdcdc';
+            this.state.nextColor = '#fff';
         }
 
         let list = new Array();
@@ -176,63 +168,66 @@ export default class Interest extends Component {
         this.state.data.map((data, index) => {
             if(cnt === 0) {
                 cnt += 1;
-                list.push(<Text key={data._id + '1'}>{this.state.data[0].area}</Text>)
+                list.push(<Text key={data._id + '1'} style={styles.listName}>{this.state.data[0].area}</Text>)
                 list.push(<Pressable key={data._id + '2'} style={styles.vaccum}></Pressable>)
             }
 
             if(area !== data.no) {
                 list.push(<Pressable key={data._id + '3'} style={styles.vaccum}></Pressable>)
-                list.push(<Text key={data._id}>{data.area}</Text>)
+                list.push(<Text key={data._id} style={styles.listName}>{data.area}</Text>)
                 list.push(<Pressable key={data._id + '4'} style={styles.vaccum}></Pressable>)
             
                 area = data.no;
             }
 
             list.push(
-                <Pressable
-                    key={index}
-                    onPress={() =>                                                     
-                        {
-                        this.state.hobby.indexOf(data.category) < 0 
-                        ? (this.state.hobby.push(data.category), this.state.cnt += 1)
-                        : (this.state.hobby.splice(this.state.hobby.indexOf(data.category), 1), this.state.cnt -= 1);
+                    <Pressable
+                        key={index}
+                        onPress={() =>                                                     
+                            {
+                            this.state.hobby.indexOf(data.category) < 0 
+                            ? (this.state.hobby.push(data.category), this.state.cnt += 1)
+                            : (this.state.hobby.splice(this.state.hobby.indexOf(data.category), 1), this.state.cnt -= 1);
 
-                        this.getList();
+                            this.getList();
+                            }
                         }
-                    }
-                    style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
-                >
-                    <Text key={data._id + '5'} style={styles.buttonText}>{data.category}</Text>
-                </Pressable>
+                        style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
+                    >
+                        <Text key={data._id + '5'}  style={styles.boxText}>{data.category}</Text>
+                    </Pressable>
             )
         })
 
         list.push(<Pressable key={'last'} style={styles.vaccum}></Pressable>)
         list.push(
-            <View style={styles.nextBtnContainer} key={'next_container'}>
-            <Pressable
-                key={'next'}
-                style={{
-                    width: Dimensions.get('window').width * 0.7,
-                    height: 50,
-                    borderColor: this.state.nextColor,
-                    borderWidth: 2,    
-                    marginVertical: 5,
-                    borderRadius: 20,
-                    
-                    
-                }}
-                onPress={() => 
-                    {
-                        this.state.cnt >= 3 
-                        ? (this.send_Interest(), this.props.navigation.navigate('NewProfileImg'))
-                        : Alert.alert('관심사를 최소 3개 이상 설정해주세요');
+            <View style={styles.nextButtonContainer} key={'next_container'}>
+                <Pressable
+                    key={'next'}
+                    style={{
+                        width: Dimensions.get('window').width * 0.7,
+                        marginHorizontal:Dimensions.get('window').width * 0.1,
+                        height: 50,
+                        backgroundColor: this.state.nextColor,
+                        marginVertical:70,
+                        borderRadius: 25,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        shadowOpacity: 0.3,
+                        shadowRadius: 5,
+                        shadowColor: 'grey',
+                        shadowOffset: { height: 3, width: 3 },
+                    }}
+                    onPress={() => 
+                        {
+                            this.state.cnt >= 3 
+                            ? (this.send_Interest(), this.props.navigation.navigate('NewProfileImg'))
+                            : Alert.alert('관심사를 최소 3개 이상 설정해주세요');
+                        }
                     }
-                }
-            >
-
-                <Text>다음  ({this.state.cnt}/5)</Text>
-            </Pressable> 
+                >
+                    <Text style={{fontSize:20}}>Next  ({this.state.cnt}/5)</Text>
+                </Pressable> 
             </View>    
         )
 
@@ -243,23 +238,49 @@ export default class Interest extends Component {
 
     render() {
         return (   
-            <SafeAreaView>
-            <ScrollView style={{backgroundColor:'white', height:'100%'}}>
-                <View style={styles.headerContainer}>
+            <View style={{}}>
+                <ImageBackground
+                source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
+                style={{height:"100%", 
+                width:"100%", }}
+                >
+                    
+            <ScrollView >
+            <View style={styles.announceContainer}>
+                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
+                    <Text style={ styles.announceTitle}>
+                            관심사
+                        </Text>
+                        <Text style={ styles.announce}>
+                             를 
+                        </Text>
+                        </View>
+                        <Text style={ styles.announce}>
+                             알려주세요! 
+                        </Text>
+                    
+                        <Text style={ styles.announceSpecific}>
+                        3개이상 선택해 주세요!
+                        </Text>
+                    </View>
+                
+                {/*<View style={styles.headerContainer}>
                     <AntDesign 
-                        name={"doubleleft"}
+                        name={"arrowleft"}
                         style={styles.back} 
                         onPress={() => this.props.navigation.navigate('Birth')}
                         //onPress={() => this.props.navigation.push('NewProfile', {hobby : this.state.hobby})}
                     />
-                    <Text style={{fontSize: 18}}></Text>
+                    <Text style={{fontSize: 18}}>관심사 설정</Text>
                     <Pressable style={styles.vaccum}></Pressable>
-                </View>
+        </View>*/}
                 <View style={styles.listContainer}>
                     {this.state.list}
-                </View>                
-            </ScrollView> 
-            </SafeAreaView>               
+                </View>     
+                        
+            </ScrollView>     
+            </ImageBackground>   
+            </View>           
         )
     }
 }

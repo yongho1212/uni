@@ -28,7 +28,9 @@ import UserList from "../screens/Room/UserList";
 import DrawerNav from './Ctrl';
 
 import LogoutBtn from '../components/logOutBtn';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 
 const Stack = createStackNavigator();
@@ -87,12 +89,17 @@ const Router = ({navigation}) => {
                             backgroundColor:"#49ffbd",
                             shadowColor: 'transparent'
                         },
-                        title: 'NickName',
+                        title: '',
                         headerTitleStyle:{
                             fontSize:19
                         },
-                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
-                        headerBackTitle:'',
+                        headerBackImage: ()=>( 
+                        <MaterialIcons name={"arrow-back-ios"} 
+                        size={35} 
+                        color={'balck'}
+                        style={{marginLeft:30}}
+                        />),
+                        headerBackTitle:' ',
                         headerBackTitleStyle:{
                             fontSize:18,
                             color:'black'
@@ -108,12 +115,17 @@ const Router = ({navigation}) => {
                             backgroundColor:"#49ffbd",
                             shadowColor: 'transparent'
                         },
-                        title: 'Gender',
+                        title: '',
                         headerTitleStyle:{
                             fontSize:19
                         },
-                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
-                        headerBackTitle:'',
+                        headerBackImage: ()=>( 
+                        <MaterialIcons name={"arrow-back-ios"} 
+                        size={35} 
+                        color={'balck'}
+                        style={{marginLeft:30}}
+                        />),
+                        headerBackTitle:' ',
                         headerBackTitleStyle:{
                             fontSize:18,
                             color:'black'
@@ -128,12 +140,17 @@ const Router = ({navigation}) => {
                             backgroundColor:"#49ffbd",
                             shadowColor: 'transparent'
                         },
-                        title: 'Birth',
+                        title: '',
                         headerTitleStyle:{
                             fontSize:19
                         },
-                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
-                        headerBackTitle:'',
+                        headerBackImage: ()=>( 
+                        <MaterialIcons name={"arrow-back-ios"} 
+                        size={35} 
+                        color={'balck'}
+                        style={{marginLeft:30}}
+                        />),
+                        headerBackTitle:' ',
                         headerBackTitleStyle:{
                             fontSize:18,
                             color:'black'
@@ -142,7 +159,28 @@ const Router = ({navigation}) => {
                 <Stack.Screen
                     name="Interest"
                     component={Interest}
-                    options={{ headerShown: false }}
+                    options={{ 
+                        headerShown: true,
+                        headerStyle:{
+                            backgroundColor:"#49ffbd",
+                            shadowColor: 'transparent'
+                        },
+                        title: '',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>( 
+                        <MaterialIcons name={"arrow-back-ios"} 
+                        size={35} 
+                        color={'balck'}
+                        style={{marginLeft:30}}
+                        />),
+                        headerBackTitle:' ',
+                        headerBackTitleStyle:{
+                            fontSize:18,
+                            color:'black'
+                        }
+                     }}
                 />
                 <Stack.Screen
                     name="NewProfileImg"
@@ -152,12 +190,17 @@ const Router = ({navigation}) => {
                             backgroundColor:"#49ffbd",
                             shadowColor: 'transparent'
                         },
-                        title: 'Gender',
+                        title: '',
                         headerTitleStyle:{
                             fontSize:19
                         },
-                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
-                        headerBackTitle:'',
+                        headerBackImage: ()=>( 
+                        <MaterialIcons name={"arrow-back-ios"} 
+                        size={35} 
+                        color={'balck'}
+                        style={{marginLeft:30}}
+                        />),
+                        headerBackTitle:' ',
                         headerBackTitleStyle:{
                             fontSize:18,
                             color:'black'

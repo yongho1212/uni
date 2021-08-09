@@ -5,7 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import DatePicker from 'react-native-date-picker';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 import styles from './styles';
 
@@ -45,13 +46,14 @@ export default class Birth extends Component {
         this.state.check = 1;
 
         this.state.birth = date;
+        console.log(date);
 
         var currentYear = new Date().getFullYear();
         var birthYear = date.getFullYear();
         this.state.age = currentYear - birthYear + 1;
         
         this.setState({
-            nextColor: '#f5ff00',
+            nextColor: '#49ffbd',
         })
     }   
 
@@ -91,13 +93,19 @@ export default class Birth extends Component {
                 </View>*/}
                 <View style={styles.contentContainer}>
                 <View style={styles.announceContainer}>
-                        <Text style={ styles.announce}>
-                            생일을 알려주세요! 
+                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
+                    <Text style={ styles.announceTitle}>
+                            생일
                         </Text>
                         <Text style={ styles.announce}>
-                       
+                             을 
                         </Text>
+                        </View>
                         <Text style={ styles.announce}>
+                             알려주세요! 
+                        </Text>
+                    
+                        <Text style={ styles.announceSpecific}>
                             생일은 변경이 불가하니 신중하게 골라주세요!
                         </Text>
                     </View>
@@ -113,23 +121,33 @@ export default class Birth extends Component {
                             style={{width:300, height:300, backgroundColor: 'rgba(255, 255, 255, 0.8)'}}
                             textColor="#000"
                         />
-                   
+
+                                    
                     
                     <Pressable
                         style={{
                             width: Dimensions.get('window').width * 0.7,
                             height: 50,
                             backgroundColor: this.state.nextColor,
-                             
-                            marginVertical: 20,
-                            borderRadius: 20,
                             justifyContent: 'center',
                             alignItems: 'center',
+                            flexDirection:'row',
+                            shadowOpacity: 0.5,
+                            shadowRadius: 5,
+                            shadowColor: 'grey',
+                            shadowOffset: { height: 2, width: 2 },
+                            borderRadius:25,
+                            position:'absolute',
+                            bottom:10
 
                         }}
                         onPress={() => {this.connect(); this.props.navigation.navigate('Interest');}}
                     >
-                        <Text style={{fontWeight:'bold', fontSize:20}}>다음</Text>
+                        <Text style={styles.btnFonts}>NEXT </Text>
+                            <MaterialIcons 
+                            name={"navigate-next"}
+                            style={styles.btnFonts}
+                            />
                     </Pressable>
                 </View>
                 </ImageBackground>

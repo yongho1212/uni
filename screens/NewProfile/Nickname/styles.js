@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         shadowOpacity: 0.5,
         shadowRadius: 5,
-        shadowColor: '#000',
+        shadowColor: 'grey',
         shadowOffset: { height: 3, width: 3 },
         color:'black',
         fontSize:21,
@@ -41,8 +41,26 @@ const styles = StyleSheet.create({
     },
     btnFonts:{
         fontSize:20,
+        
+    },
+    announceContainer:{
+        position:'absolute',
+        top:20
+    },
+    announceTitle:{
+        fontSize:75,
+        color: '#000',
         fontWeight:'bold'
     },
+    announce:{
+        fontSize:35,
+        color: '#000',
+    },
+    announceSpecific:{
+        fontSize:18,
+        color: 'grey',
+        lineHeight:70
+    }
 });
 
 export default styles;

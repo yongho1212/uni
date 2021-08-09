@@ -16,32 +16,38 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     contentContainer: {
-      marginTop:80,
-        alignItems: 'center',
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 50,
-      
-      
-    },
-    bottomContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height - 50,
-        
+        height: Dimensions.get('window').height * 0.8,
+      
+      
     },
-    announceContainer: {
-        marginTop:20,
-        marginLeft:20,
-        marginBottom:-20,
-        
+    selectboxContainer: {
+       position:'absolute',
+       flexDirection:'row',
+    },
+    announceContainer:{
+        position:'absolute',
+        top:20
+    },
+    announceTitle:{
+        fontSize:75,
+        color: '#000',
+        fontWeight:'bold'
     },
     announce:{
-        fontSize:19
+        fontSize:35,
+        color: '#000',
+    },
+    announceSpecific:{
+        fontSize:18,
+        color: 'grey',
+        lineHeight:70
     },
     btnFonts:{
-        fontSize:20,
-        fontWeight:'bold'
+        fontSize:35,
+        
     },
     linearGradient: {
       

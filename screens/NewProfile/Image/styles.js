@@ -20,7 +20,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor:'#fff',
     borderRadius:25,
-    margin:9
+    margin:9,
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    shadowColor: 'grey',
+    shadowOffset: { height: 3, width: 3 },
   },
  
   //BottomSheet
@@ -28,8 +32,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     marginBottom: 10,
-    backgroundColor:'#fff',
+    backgroundColor:'blue',
     flexDirection: 'row',
+    
   },
 
   intro_Title: {
@@ -50,6 +55,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: 'center',
   },
+  btnFonts:{
+    fontSize:20,
+        
+  },
+  announceContainer:{
+    position:'absolute',
+    top:20,
+    marginLeft:20
+},
+announceTitle:{
+    fontSize:75,
+    color: '#000',
+    fontWeight:'bold'
+},
+announce:{
+    fontSize:35,
+    color: '#000',
+},
+announceSpecific:{
+    fontSize:18,
+    color: 'grey',
+    lineHeight:70
+},
 });
 
 export default styles;

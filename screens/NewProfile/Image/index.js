@@ -8,7 +8,7 @@ import Animated from 'react-native-reanimated';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -137,8 +137,6 @@ export default class NewProfileImg extends Component {
             backgroundColor: '#fff',
             padding: 20,
             height: 700,
-            justifyContent:'center',
-            alignItems:'center'
           }}
         >      
             <Pressable
@@ -290,6 +288,21 @@ export default class NewProfileImg extends Component {
                 source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
                 style={{width:"100%", height:'100%', }}
                 >
+                    <View style={styles.announceContainer}>
+                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
+                    <Text style={ styles.announceTitle}>
+                            사진
+                        </Text>
+                        <Text style={ styles.announce}>
+                             을 
+                        </Text>
+                        </View>
+                        <Text style={ styles.announce}>
+                             추가해 주세요! 
+                        </Text>
+                    
+                       
+                    </View>
                 {/*<View style={styles.headerContainer}>
                     <AntDesign 
                         name={"doubleleft"}
@@ -300,7 +313,7 @@ export default class NewProfileImg extends Component {
                     <Pressable style={styles.vaccum}></Pressable>
         </View>   */}
                 <View style={{ flex:1, justifyContent:'center', }}>  
-                    <View style={{flexDirection:'row', flexWrap: 'wrap', justifyContent:'center', width: Dimensions.get('window').width*0.9, marginHorizontal:Dimensions.get('window').width*0.05, marginBottom:80}}>
+                    <View style={{flexDirection:'row', flexWrap: 'wrap', justifyContent:'center', width: Dimensions.get('window').width*0.9, marginHorizontal:Dimensions.get('window').width*0.05,}}>
                     {this.state.picker}
                     </View>
                     <View>
@@ -315,12 +328,19 @@ export default class NewProfileImg extends Component {
                                 justifyContent:'center',
                                 alignItems: 'center',
                                 backgroundColor:'#fff',
+                                shadowOpacity: 0.5,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 3, width: 3 },
+                                position:'absolute'
                             }}
+                            
                             onPress={() => 
                                 this.check()
                             }
                         >
-                            <Text>완료</Text>
+                            <Text style={styles.btnFonts}>NEXT </Text>
+                            
                         </Pressable>
                     </View>
                     
