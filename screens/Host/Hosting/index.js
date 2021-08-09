@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Text, View, Pressable, Alert, SafeAreaView, TextInput} from 'react-native';
+import {Text, View, Pressable, Alert, SafeAreaView, TextInput, ImageBackground} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
@@ -173,19 +173,25 @@ export default class Hosting extends Component {
 
     render() {
         return (
-            <SafeAreaView style={styles.hostingContainer}>
+            <View style={styles.hostingContainer}>
+          
+                <ImageBackground
+                source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
+                style={{width:"100%", height:'100%', }}
+                >
+                     <SafeAreaView >
                 <View style={styles.headerConatiner}>
                     <View style={styles.backIcon}>
                         <Pressable
                         onPress={() => {this.removeStorage(); this.props.navigation.navigate('Main');}}
                         style={styles.backIcon}
                         >
-                        <Ionicons
-                                    name={"ios-chevron-back"}
-                                    size={30}
-                                    
-                                />  
-                                <Text style={{fontSize:18}}>Back</Text>
+                       <MaterialIcons name={"arrow-back-ios"} 
+                        size={35} 
+                        color={'balck'}
+                        style={{marginLeft:30}}
+                        />
+                                
                         </Pressable>
                     </View>
                     
@@ -199,16 +205,7 @@ export default class Hosting extends Component {
                     
                 </View>      
                 <View style={styles.contentContainer}>
-                    <View style={styles.placeContainer}>
-                        <Text style={styles.placeText}>Place</Text>
-                        <Pressable
-                            style={styles.placeInput}
-                            onPress={() => this.props.navigation.navigate('LocationSearch')}
-                        >                            
-                            <Text>{this.state.room.address}</Text>                            
-                        </Pressable>
-                    </View>
-                    <View style={styles.categoryContainer}>
+                <View style={styles.categoryContainer}>
                         <Text style={styles.categoryText}>Category</Text>
                         <Pressable
                             style={styles.categoryInput}
@@ -221,6 +218,16 @@ export default class Hosting extends Component {
                             }
                         </Pressable>
                     </View>
+                    <View style={styles.placeContainer}>
+                        <Text style={styles.placeText}>Place</Text>
+                        <Pressable
+                            style={styles.placeInput}
+                            onPress={() => this.props.navigation.navigate('LocationSearch')}
+                        >                            
+                            <Text>{this.state.room.address}</Text>                            
+                        </Pressable>
+                    </View>
+                    
                     <View style={styles.titleConatiner}>
                         <Text style={styles.titleText}>Title</Text>
                         <TextInput
@@ -255,11 +262,13 @@ export default class Hosting extends Component {
                         style={styles.hostButton}
                         onPress={() => this.hosting()}                        
                     >
-                        <Text style={{color:'#fff', fontSize:25, fontWeight:'bold'}}>Hosting</Text>
+                        <Text style={{color:'#000', fontSize:25, fontWeight:'bold'}}>Hosting</Text>
                     </Pressable>
                     }
                 </View>
-            </SafeAreaView>
+                </SafeAreaView>
+                </ImageBackground>
+            </View>
         )
     }
 }

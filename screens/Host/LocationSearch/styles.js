@@ -6,8 +6,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         height: 50,
-        borderBottomWidth: 0.5,
+        
     },
+    headerTextContainer:{
+      width: Dimensions.get('window').width * 0.2,    
+      marginHorizontal: Dimensions.get('window').width * 0.4,    
+      position:'absolute',
+      justifyContent:'center',
+      alignItems:'center'
+     },
+     headerText:{
+        fontSize:18
+     },
     backIcon: {
         fontSize: 22,
         fontWeight: 'bold',
@@ -32,7 +42,14 @@ const styles = StyleSheet.create({
       textInput: {
         fontSize: 20,
         marginBottom: 20,
+        paddingHorizontal:10
       },
+      resultContainer: {
+        borderWidth:1, 
+        paddingVertical:7, 
+        paddingHorizontal:13, 
+        borderRadius:25
+      }
 });
 
 export default styles;

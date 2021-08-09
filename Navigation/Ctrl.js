@@ -23,7 +23,7 @@ import Setting from'../screens/sideDrawer/setting/Setting';
 
 import CustomSidebarMenu from './customSidebar';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 const Stack = createStackNavigator();
@@ -40,7 +40,7 @@ const NavigationDrawerStructure = (props)=> {
       <Pressable 
       onPress={()=> toggleDrawer()}>
         {/*Donute Button Image */}
-        <Icon name="ios-menu" color="#fb009e" size={48} /> 
+        <Ionicons name="ios-menu" color="#fb009e" size={48} /> 
       </Pressable>
     </View>
   );
@@ -82,66 +82,44 @@ function DrawerNav({ navigation }) {
 
      <Drawer.Screen
        name="HomePage"
-       options={{ drawerLabel: 'Home' ,
+       options={{ drawerLabel: 'Home 🏠' ,
      }}
        component={homeScreenStack} />     
      <Drawer.Screen
        name="FirstPage"
-       options={{ drawerLabel: '공지사항',
-       headerShown: true,
-       headerLeft: () => (
-        <Button
-          onPress={() => navigation.goBack()}
-          title="<"
-          color="black"
-          />
-        ),
+       options={{ 
+          drawerLabel: '공지사항 📋',
+          
+          headerShown: false,
        }}
        component={Announce} />
      <Drawer.Screen
        name="SecondPage"
-       options={{ drawerLabel: '이용내역',
-       headerShown: true,
-       headerLeft: () => (
-        <Button
-          onPress={() => navigation.goBack()}
-          title="<"
-          color="black"
-          />
-        ),
+       options={{ drawerLabel: '이용내역 📑',
+       headerShown: false,
       }}
        component={History} />
        <Drawer.Screen
        name="ThirdPage"
-       options={{ drawerLabel: '랭크',
-       headerShown: true,
-       headerLeft: () => (
-        <Button
-          onPress={() => navigation.goBack()}
-          title="<"
-          color="black"
-          />
-        ),
+       options={{ drawerLabel: '랭크 🏆',
+       headerShown: false,
+      
       }}
        component={Rank} />
+
        <Drawer.Screen
        name="fourthPage"
-       options={{ drawerLabel: '고객센터',
-       headerShown: true,
-       headerLeft: () => (
-        <Button
-          onPress={() => navigation.goBack()}
-          title="<"
-          color="black"
-          />
-        ), 
+       options={{ 
+       drawerLabel: '고객센터 👩🏻‍💻',
+       headerShown: false,
+      
       }}
        component={Cs} />
        <Drawer.Screen
        name="SetPage"
        options={{ 
-         drawerLabel: 'Setting',
-         headerShown: true,
+         drawerLabel: 'Setting ⚙️',
+         headerShown: false,
          headerLeft: () => (
           <Button
             onPress={() => navigation.goBack()}

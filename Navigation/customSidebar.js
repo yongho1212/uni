@@ -58,25 +58,28 @@ const CustomSidebarMenu = (props) => {
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
         <DrawerItem
-          label="Visit Us"
+          label="Visit Us 🌐"
           onPress={() => Linking.openURL('https://loof.party/')}
         />
-        <View style={styles.customItem}>
+        <DrawerItem
+          label="Rate Us ⭐️"
+          onPress={() => Linking.openURL('https://loof.party/')}
+        />
+
+
+        {/*<View style={styles.customItem}>
           <Text
             onPress={() => {
               Linking.openURL('https://loof.party/');
             }}>
-            Rate Us
+            Rate Us ⭐️
           </Text>
-          <Image
-            source={{uri: BASE_PATH + 'star_filled.png'}}
-            style={styles.iconStyle}
-          />
-        </View>
+          </View>*/}
+
       </DrawerContentScrollView>
       <Pressable 
         style={{justifyContent:'center', alignItems:'center', marginTop:20, flexDirection:'row'}}>
-          <Text style={{color:'grey', fontSize:20, }}>
+          <Text style={{color:'grey', fontSize:10, }}>
             개인정보 및 설정
           </Text>
           <Icon name="settings" color="grey" size={20} /> 
