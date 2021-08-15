@@ -21,7 +21,7 @@ import Hosting from '../screens/Host/Hosting';
 import LocationSearch from "../screens/Host/LocationSearch";
 import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
-import Chat from '../screens/Chat';
+import Chat from '../screens/Chat'
 import RoomList from '../screens/Room/RoomList';
 import UserList from "../screens/Room/UserList";
 
@@ -31,6 +31,8 @@ import LogoutBtn from '../components/logOutBtn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+
 
 
 const Stack = createStackNavigator();
@@ -272,17 +274,6 @@ const Router = ({navigation}) => {
                     component={Chat}
                     options={{
                         headerShown: true,
-                        title: 'Chat',
-                        headerTitleStyle:{
-                            fontSize:18
-                        },
-                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
-                        headerBackTitle:'',
-                        headerBackTitleStyle:{
-                            fontWeight: 'bold',
-                            color:'black',
-                            
-                        }
                     }}
                 />
                 <Stack.Screen

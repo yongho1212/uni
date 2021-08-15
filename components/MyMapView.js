@@ -145,6 +145,7 @@ export default class MyMapView extends Component {
                     style={{width: '100%', height: '100%',padding:100}}
                     showsUserLocation={true}
                     mapType={'mutedStandard'}
+                    
                     ref={this.mapRef} 
                     userLocationCalloutEnabled={true}
                     showsMyLocationButton={true}
