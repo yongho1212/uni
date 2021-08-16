@@ -22,6 +22,7 @@ import Cs from '../screens/sideDrawer/cs/Cs';
 import Setting from'../screens/sideDrawer/setting/Setting';
 
 import CustomSidebarMenu from './customSidebar';
+import EditProfile from '../screens/EditProfile';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -63,6 +64,14 @@ function homeScreenStack({ navigation }) {
               headerTransparent: true,
           }}
         />
+        <Stack.Screen
+                    name={"EditProfile"}
+                    component={EditProfile}
+                    options={{
+                        headerShown: true,    
+                    }}
+                />
+        
       </Stack.Navigator>
   );
 }

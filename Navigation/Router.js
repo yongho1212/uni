@@ -26,6 +26,7 @@ import RoomList from '../screens/Room/RoomList';
 import UserList from "../screens/Room/UserList";
 
 import DrawerNav from './Ctrl';
+import EditProfile from '../screens/EditProfile';
 
 import LogoutBtn from '../components/logOutBtn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -274,6 +275,17 @@ const Router = ({navigation}) => {
                     component={Chat}
                     options={{
                         headerShown: true,
+                        headerBackImage: ()=>( 
+                            <MaterialIcons name={"arrow-back-ios"} 
+                            size={35} 
+                            color={'balck'}
+                            style={{marginLeft:30}}
+                            />),
+                            headerBackTitle:' ',
+                            headerBackTitleStyle:{
+                                fontSize:18,
+                                color:'black'
+                            }
                     }}
                 />
                 <Stack.Screen
@@ -281,6 +293,13 @@ const Router = ({navigation}) => {
                     component={LogoutBtn}
                     options={{
                         headerShown: false,    
+                    }}
+                />
+                <Stack.Screen
+                    name={"EditProfile"}
+                    component={EditProfile}
+                    options={{
+                        headerShown: true,    
                     }}
                 />
             </Stack.Navigator>

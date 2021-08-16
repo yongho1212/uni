@@ -48,7 +48,9 @@ const CustomSidebarMenu = (props) => {
         </View>
       </View>
         <Pressable 
-        style={{justifyContent:'center', alignItems:'center', marginTop:20, flexDirection:'row'}}>
+        style={{justifyContent:'center', alignItems:'center', marginTop:20, flexDirection:'row'}}
+        onPress={()=> props.navigation.navigate('EditProfile')}
+        >
           <Text style={{color:'grey', fontSize:13, }}>
             Edit Profile
           </Text>
