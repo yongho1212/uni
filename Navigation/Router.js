@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {Button} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
@@ -33,7 +33,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
+import RNBootSplash from "react-native-bootsplash";
+import auth from "@react-native-firebase/auth";
 
 
 const Stack = createStackNavigator();
@@ -70,8 +71,11 @@ const Auth = () => {
 };
 
 const Router = ({navigation}) => {
+   
+
+
     return (
-        <NavigationContainer>
+        <NavigationContainer >
             <Stack.Navigator initialRouteName="SplashScreen">
                 <Stack.Screen
                     name="SplashScreen"

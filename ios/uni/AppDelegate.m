@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "RNBootSplash.h"
 #import <UIKit/UIKit.h>
 #import <Firebase.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
@@ -16,6 +17,8 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
+
+
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -57,6 +60,9 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
   [FIRApp configure];
   [FBSDKApplicationDelegate initializeSDK:launchOptions];
+
+  [RNBootSplash initWithStoryboard:@"BootSplash" rootView:rootView];
+
   return YES;
 }
 

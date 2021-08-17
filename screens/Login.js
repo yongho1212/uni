@@ -217,10 +217,19 @@ const onFacebookButtonPress = async() => {
         >
         <View style={{alignItems:'center', justifyContent:'center'}}> 
           <KeyboardAvoidingView enabled>
-            <View style={{ alignItems: "center", flex:1, top:200 }}>
-              <Text style={{justifyContent:'center', height:500, color:'white', alignItems:'center', fontSize:100, fontWeight:'bold', fontStyle:'italic', }}>
-                LOOF!
+            <View style={{ alignItems: "center", flex:1, top:150 }}>
+              <Image
+              source={require("../assets/logo/pinklogo.png")}
+              style={{height:150, resizeMode:'contain'}}
+              />
+              <Text style={{justifyContent:'center', color:'grey', alignItems:'center', fontSize:23, marginTop:25,}}>
+                GATHER TOGRTHER 
+                
               </Text>
+              <Text style={{justifyContent:'center', color:'#000', alignItems:'center', fontSize:25, marginTop:7, fontWeight:'bold'}}>
+              LOOF!
+              </Text>
+              
             </View>
              {/*<View style={styles.sectionStyle}>
               <TextInput
@@ -264,7 +273,7 @@ const onFacebookButtonPress = async() => {
                 {errortext}{" "}
               </Text>
             ) : null}*/}
-            <View style={{flex:1, justifyContent:'center'}}>
+            <View style={{flex:2, justifyContent:'center', alignItems:'center', top:50}}>
               <View style={styles.sectionStyle}>
             <TouchableOpacity
               style={{backgroundColor: "white",
@@ -275,8 +284,12 @@ const onFacebookButtonPress = async() => {
               justifyContent: 'space-between',
               paddingHorizontal:30,
               alignItems:'center',
-              
-              borderRadius:40
+              borderRadius:25,
+              shadowOpacity: 0.5,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:20,
             }}
               activeOpacity={0.5}
               // onPress={handleSubmitPress}
@@ -304,8 +317,12 @@ const onFacebookButtonPress = async() => {
                 justifyContent: 'space-between',
                 paddingHorizontal:30,
                 alignItems:'center',
-                
-                borderRadius:40
+                borderRadius:25,
+                shadowOpacity: 0.5,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:20,
                 }}
               >
                 <Image
@@ -330,8 +347,13 @@ const onFacebookButtonPress = async() => {
                     justifyContent: 'space-between',
                     paddingHorizontal:30,
                     alignItems:'center',
-                    
-                    borderRadius:40
+                    borderRadius:25,
+                    shadowOpacity: 0.5,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:20,
+
                   }}
                 >
               <Image
@@ -365,10 +387,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   mainBody: {
     justifyContent:'center',
-    
-    
-    
-    
+
   },
   sectionStyle: {
     flexDirection: "row",
@@ -394,7 +413,8 @@ const styles = StyleSheet.create({
     color: "black",
     paddingVertical: 10,
     fontSize: 16,
-    fontWeight:'bold'
+    fontWeight:'bold',
+    
   },
   inputStyle: {
     

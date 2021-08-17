@@ -9,67 +9,31 @@ import {
 } from "react-native";
 
 import auth from "@react-native-firebase/auth";
+import RNBootSplash from "react-native-bootsplash";
 
 const SplashScreen = ({ navigation }) => {
   //State for ActivityIndicator animation
   const [animating, setAnimating] = useState(true);
 
-  useEffect(() => {
+
+ React.useEffect(() => {
     setTimeout(() => {
-      setAnimating(false);
-      // Check if currentUser is set or not
-      // If not then send for Authentication
-      // else send to Home Screen
+      
       navigation.replace(
         auth().currentUser ? "DrawerNav" : "Auth"
       );
-    }, 5000);
+    }, 1);
   }, []);
+
 
   return (
     <SafeAreaView
-      style={{ flex: 1, backgroundColor: "#307ecc" }}
+      style={{ flex: 1,}}
     >
-      <View style={styles.container}>
-        <Image
-          source={require("../assets/logo/uni_logo.png")}
-          style={{
-            width: "90%",
-            resizeMode: "contain",
-            margin: 30,
-          }}
-        />
-        <ActivityIndicator
-          animating={animating}
-          color="#FFFFFF"
-          size="large"
-          style={styles.activityIndicator}
-        />
-      </View>
-      <Text
-        style={{
-          fontSize: 18,
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        U n I
-      </Text>
-     
+    <ActivityIndicator size="large" color="#fb009e" />
     </SafeAreaView>
   );
 };
 
 export default SplashScreen;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  activityIndicator: {
-    alignItems: "center",
-    height: 80,
-  },
-});

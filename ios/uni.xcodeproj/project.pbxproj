@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		35026B8626CBFCBA00D0E4A1 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35026B8526CBFCBA00D0E4A1 /* BootSplash.storyboard */; };
 		351E447B268EF80C00C79BCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 351E447A268EF80C00C79BCD /* GoogleService-Info.plist */; };
 		35B8849E268F185B00491092 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8849D268F185B00491092 /* File.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -39,6 +40,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = uni/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = uni/main.m; sourceTree = "<group>"; };
 		1BA21262441F962CFE566D35 /* libPods-uni.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uni.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35026B8526CBFCBA00D0E4A1 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = uni/BootSplash.storyboard; sourceTree = "<group>"; };
 		35176C3726945B2600CD60F0 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
 		35176C3826945B2700CD60F0 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		35176C3926945B2700CD60F0 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				35026B8526CBFCBA00D0E4A1 /* BootSplash.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				35B8849D268F185B00491092 /* File.swift */,
 				35B8849C268F185B00491092 /* uni-Bridging-Header.h */,
@@ -294,6 +297,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				351E447B268EF80C00C79BCD /* GoogleService-Info.plist in Resources */,
+				35026B8626CBFCBA00D0E4A1 /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +552,7 @@
 			baseConfigurationReference = FE372725322FD93D7BD1DBED /* Pods-uni.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
@@ -567,7 +572,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = uni;
 				PRODUCT_NAME = uni;
 				SWIFT_OBJC_BRIDGING_HEADER = "uni-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -581,6 +586,7 @@
 			baseConfigurationReference = 53C8EE0F4A2B6AEDA439176E /* Pods-uni.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -599,7 +605,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = uni;
 				PRODUCT_NAME = uni;
 				SWIFT_OBJC_BRIDGING_HEADER = "uni-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
