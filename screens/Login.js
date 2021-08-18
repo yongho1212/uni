@@ -184,20 +184,22 @@ const onFacebookButtonPress = async() => {
   const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
 
   // Sign-in the user with the credential
-  return auth().signInWithCredential(facebookCredential).then((idToken) => {
-    console.log(idToken);
+  return auth().signInWithCredential(facebookCredential).then((accessToken) => {
+    console.log(accessToken);
     // If server response message same as Data Matched
     // if (idToken) navigation.replace("Gender");
-    var id = idToken.additionalUserInfo.profile.sub;   
-    var email = idToken.additionalUserInfo.profile.email;
+    var id = accessToken.additionalUserInfo.profile.id
+    var email = accessToken.user.email
+    console.log(email);
             
     // If server response message same as Data Matched
     //if (idToken) navigation.replace("HomeScreen");
     connect(id, email);
   }) 
+ 
+
+
 }
-
-
 
   
 
