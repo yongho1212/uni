@@ -154,14 +154,14 @@ export default class UserList extends Component {
     render() {
         return (
             <SafeAreaView>
-                <View style={styles.headerConatiner}>
+               {/* <View style={styles.headerConatiner}>
                         <AntDesign
                             name={"arrowleft"}
                             style={styles.backIcon}
                             onPress={() => {this.props.navigation.navigate('RoomList');}}
                         />  
                         <Text>Request User List</Text>                    
-                </View>
+        </View>*/}
                 <View>
                     {this.showUsersProfile()}
                 </View>

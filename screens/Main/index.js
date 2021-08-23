@@ -277,7 +277,7 @@ export default class Main extends Component {
                          onPress={() => this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id)}
                          style={styles.joinButton}
                     >
-                         <Text>join</Text>
+                         <Text>참가 신청</Text>
                     </Pressable>                    
                     :
                     <Pressable

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, Image} from 'react-native';
+import {Text, View, TextInput, Pressable, ScrollView, Image} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -58,15 +58,26 @@ export default class RoomList extends Component {
           if(this.state.roomInfo !== 0) {
                this.state.roomInfo.map(data => roomList.push (
                     <View
-                         style={styles.line}
+                         style={styles.cardContainer}
                          key={key++}
                     >
-                         <View style={styles.roomList}>
+                         <View style={styles.roomCard}>
                               <Pressable
-                              onPress={() => this.props.navigation.push('UserList', {_id: data._id})}
+                              
+                              onPress={() => this.props.navigation.push('Roomctrl', {_id: data._id})}
                               >
-                              <Text>주소 : {data.address}</Text>                    
-                              <Text>제목 : {data.title}</Text>
+                              <View style={styles.categoryIcon}>
+                                   <Text style={styles.categoryText}> {data.category}</Text> 
+                              </View>
+                              <View style={styles.infoContainer}>
+                                   <View style={styles.titleContainer}>
+                                        <Text numberOfLines={1}  style={styles.titleText}> {data.title}</Text>
+                                   </View>
+                                   
+                                   <Text numberOfLines={2} style={styles.locationText}> {data.address}</Text>                    
+                                   <Text style={styles.timeText}> {data.timeInfo}~</Text>
+                              </View>
+                              
                               </Pressable>    
                          </View>
                     </View>
@@ -78,19 +89,27 @@ export default class RoomList extends Component {
 
      render() {
           return (
-               <View>
-                    <View style={styles.headerConatiner}>
+               <ScrollView style={{backgroundColor:'#fff'}}>
+                   {/* <View style={styles.headerConatiner}>
                          <AntDesign
                               name={"arrowleft"}
                               style={styles.backIcon}
                               onPress={() => {this.props.navigation.navigate('Main');}}
                          />  
                          <Text>Room List</Text> 
-                    </View>                         
-                    <View>                 
+          </View>  */} 
+               <View style={styles.sectionConatiner}>
+                    <Text style={styles.sectionText}>
+                         Hosting Rooms
+                    </Text>
+               </View>                      
+                    <View style={{flexDirection:'row', flexWrap:'wrap'}}>                 
                          {this.showRoomList()}                                                
-                    </View>                     
-                </View>
+                    </View>
+                    <Text style={styles.sectionText}>
+                         Join Rooms
+                    </Text>                     
+                </ScrollView>
           )
      }
 }

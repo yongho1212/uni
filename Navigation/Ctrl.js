@@ -119,7 +119,7 @@ function DrawerNav({ navigation }) {
        <Drawer.Screen
        name="fourthPage"
        options={{ 
-       drawerLabel: '고객센터 👩🏻‍💻',
+       drawerLabel: '고객지원 👩🏻‍💻',
        headerShown: false,
       
       }}

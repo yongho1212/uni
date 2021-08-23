@@ -14,12 +14,17 @@ function Cs ({ navigation }) {
                    onPress={() => navigation.goBack()}
           />
           <View style={styles.headerTextContainer }>
-           <Text style={styles.headerText }>공지사항</Text>
+           <Text style={styles.headerText }>고객지원</Text>
           </View>
                
               
            </View>
- <Button onPress={() => navigation.goBack()} title="Go back home" />
+          <Text>
+           Email
+          </Text>
+          <Text>
+           unicorporated@gmail.com
+          </Text>
 </SafeAreaView>
      );
 };

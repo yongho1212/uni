@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
      marginTop:15,
      justifyContent:'space-around',
      borderBottomColor:'#49ffbd',
-     borderBottomWidth:1
+     borderBottomWidth:1,
+     paddingBottom:15
     },
     mainImage:{
      shadowRadius: 5,
@@ -38,6 +39,9 @@ const styles = StyleSheet.create({
           flexDirection:'row',
           flexWrap: 'wrap', 
           marginHorizontal: Dimensions.get('window').width * 0.05,
+          borderBottomColor:'#49ffbd',
+     borderBottomWidth:1,
+     paddingBottom:15
     },
     selectBox: {
      height: 50,
@@ -53,5 +57,19 @@ const styles = StyleSheet.create({
      shadowColor: 'grey',
      shadowOffset: { height: 3, width: 3 },
    },
+   aboutContainer:{
+      marginTop:30,
+      },
+   aboutmeInput:{
+            marginHorizontal: Dimensions.get('window').width * 0.05,
+            width:Dimensions.get('window').width * 0.9,
+            height:Dimensions.get('window').width * 0.2,
+         backgroundColor:'#EBEAE9',
+         borderRadius:25,
+         paddingHorizontal:15,
+         paddingTop:10,
+         flexShrink:1
+   },
+   
 })
 export default styles;

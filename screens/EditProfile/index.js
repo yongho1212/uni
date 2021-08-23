@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Pressable, Image, ScrollView } from 'react-native'
+import { View, Text, Pressable, Image, ScrollView, TextInput } from 'react-native'
 import styles from './styles';
 import { Avatar } from 'react-native-paper';
 
@@ -66,6 +66,21 @@ export default function EditProfile() {
                                    축구
                               </Text>
                          </View>
+
+                    </View>
+                    <Text style={{ left:10,top:10}}>
+                    Interest
+                    </Text>
+                    <View style={styles.aboutContainer}>
+                         
+                         <TextInput 
+                         style={styles.aboutmeInput}
+                         multiline ={true}
+                         placeholder="About Me"
+                         >
+                              
+                         </TextInput>
+                         
 
                     </View>
                </View>

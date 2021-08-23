@@ -211,7 +211,6 @@ const onFacebookButtonPress = async() => {
       
       <View
         keyboardShouldPersistTaps="handled"
-       
       >
         <ImageBackground
         source={require("../assets/imgs/1.png")} resizeMode="cover" 
@@ -225,12 +224,10 @@ const onFacebookButtonPress = async() => {
               style={{height:150, resizeMode:'contain'}}
               />
               <Text style={{justifyContent:'center', color:'grey', alignItems:'center', fontSize:23, marginTop:25,}}>
-                GATHER TOGRTHER 
+                GATHER TOGRTHER LOOF!
                 
               </Text>
-              <Text style={{justifyContent:'center', color:'#000', alignItems:'center', fontSize:25, marginTop:7, fontWeight:'bold'}}>
-              LOOF!
-              </Text>
+              
               
             </View>
              {/*<View style={styles.sectionStyle}>

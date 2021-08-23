@@ -1,12 +1,17 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
-    headerConatiner: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        height: 50,
+    sectionConatiner: {
         
+        height: 40,
+        justifyContent:'center',
+        
+    },
+    sectionText:{
+        fontSize:18,
+        marginLeft:10,
+        backgroundColor:"#fff",
+        width:125
     },
     renderContainer:{
         backgroundColor:'#fff',
@@ -17,59 +22,68 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginRight: 10,
     },
-    line: {
-        justifyContent:'center',
-        alignItems:'center',
-     
-        
+    cardContainer: {
+        flexDirection: 'row',
     },
     roomCard: {
-        width: Dimensions.get('window').width*0.9,
+        width: Dimensions.get('window').width*0.4,
         marginHorizontal: Dimensions.get('window').width*0.05,
-        flexDirection: 'row',
-        flexWrap: 'wrap', 
-        alignItems: 'center',
+        height: Dimensions.get('window').width*0.4,
         padding:15,
-        justifyContent: 'space-between',
         marginVertical: 15,
-        borderWidth:1,
         borderRadius:25,
         backgroundColor:'#96FFD9',
         shadowOpacity: 0.3,
         shadowRadius: 5,
         shadowColor: 'grey',
         shadowOffset: { height: 3, width: 3 },
+        resizeMode:'contain'
 
         
     },  
-    headerInfoContainer:{
-        flexDirection:'row',
-        alignItems:'center',
-        marginVertical:3,
-        justifyContent:'space-between',
-    },
-    roomInfoContainer:{
-        marginVertical:3
-    },
-    peopleInfoContainer:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'space-between',
-        marginVertical:3
+
+    titleContainer:{
+        width:100,
+        alignItems:'flex-end'
     },
     titleText:{
-        fontSize:19,
-        fontWeight:'bold'
+        fontSize:20,
+        fontWeight:'bold',
+        
+        
     },
     locationText:{
         fontSize:14,
-        color:'grey'
+        color:'grey',
+        marginTop:10
+
     },
-    peopleText:{
-        fontSize:21
-    },
+  
     timeText:{
-        fontSize:22
+        fontSize:15,
+        marginTop:10
+        
+    },
+    categoryIcon:{
+        justifyContent:'center',
+        alignItems:'center',
+        position:'absolute',
+        marginLeft:-25,
+        marginTop:-25,
+        backgroundColor:'#fb009e',
+        width:45,
+        height:45,
+        borderRadius:25,
+        
+    },
+    categoryText:{
+        fontSize:20,
+        color:'#fff',
+        marginLeft:-4
+    },
+    infoContainer:{
+        
+        alignItems:'flex-end'
     }
 
 });

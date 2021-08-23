@@ -23,7 +23,7 @@ import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
 import Chat from '../screens/Chat'
 import RoomList from '../screens/Room/RoomList';
-import UserList from "../screens/Room/UserList";
+import Roomctrl from "../screens/Room/Roomctrl";
 
 import DrawerNav from './Ctrl';
 import EditProfile from '../screens/EditProfile';
@@ -260,7 +260,7 @@ const Router = ({navigation}) => {
                             fontSize:19
                         },
                         headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
-                        headerBackTitle:'',
+                        headerBackTitle:' ',
                         headerBackTitleStyle:{
                             fontSize:18,
                             color:'black'
@@ -268,10 +268,21 @@ const Router = ({navigation}) => {
                     }}
                 />
                 <Stack.Screen
-                    name={"UserList"}
-                    component={UserList}
+                    name={"Roomctrl"}
+                    component={Roomctrl}
                     options={{
-                        headerShown: false,    
+                        headerShown: true,
+                        headerBackImage: ()=>( 
+                            <MaterialIcons name={"arrow-back-ios"} 
+                            size={35} 
+                            color={'balck'}
+                            style={{marginLeft:30}}
+                            />),
+                            headerBackTitle:' ',
+                            headerBackTitleStyle:{
+                                fontSize:18,
+                                color:'black'
+                            }
                     }}
                 />
                 <Stack.Screen

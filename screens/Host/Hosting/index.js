@@ -153,7 +153,7 @@ export default class Hosting extends Component {
             })
         })
         
-        this.props.navigation.push('Main', {lat: this.state.room.lat, lng: this.state.room.lng})
+        this.props.navigation.push('DrawerNav', {lat: this.state.room.lat, lng: this.state.room.lng})
     }
 
     hosting = async() => {
@@ -167,7 +167,7 @@ export default class Hosting extends Component {
             Alert.alert('시간을 설정하세요');
         }else {
             this.createRoom();
-            this.props.navigation.push('Main', {lat: this.state.room.lat, lng: this.state.room.lng})
+            this.props.navigation.push('DrawerNav', {lat: this.state.room.lat, lng: this.state.room.lng})
         }        
     }      
 
@@ -188,7 +188,7 @@ export default class Hosting extends Component {
                         >
                        <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'#000'}
                         style={{marginLeft:30}}
                         />
                                 

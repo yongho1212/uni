@@ -32,7 +32,7 @@ const CustomSidebarMenu = (props) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       {/*Top Large Image */}
-      <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center', marginTop:20}}>
+      <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center', marginTop:40}}>
         <View style={{justifyContent: 'center', }}>
           <Text style={{fontWeight:'bold', fontSize:20, marginVertical:5}}>
             Email
@@ -44,11 +44,11 @@ const CustomSidebarMenu = (props) => {
 
         {/* image - shoul be connected to - DB */}
         <View style={{marginHorizontal:25}}>
-        <Avatar.Image size={85} source={{uri: 'http://image.uc.cn/s/wemedia/s/upload/2020/7dmsUQ1ebgjl5bu/86f8d0fe046c2304481b85575418c5cc.jpg'}} />
+        <Avatar.Image size={100} source={{uri: 'http://image.uc.cn/s/wemedia/s/upload/2020/7dmsUQ1ebgjl5bu/86f8d0fe046c2304481b85575418c5cc.jpg'}} />
         </View>
       </View>
         <Pressable 
-        style={{justifyContent:'center', alignItems:'center', marginTop:20, flexDirection:'row'}}
+        style={{justifyContent:'center', alignItems:'center', marginTop:15, flexDirection:'row', marginBottom:-15}}
         onPress={()=> props.navigation.navigate('EditProfile')}
         >
           <Text style={{color:'grey', fontSize:13, }}>
@@ -58,6 +58,13 @@ const CustomSidebarMenu = (props) => {
         </Pressable>
       
       <DrawerContentScrollView {...props}>
+        <View style={{width:"100%", height:80, backgroundColor:'grey', justifyContent:'center', alignItems:'center', marginBottom:10}}>
+          <Pressable style={{width:"90%", height:70, backgroundColor:'#fff',  alignItems:'center',justifyContent:'center', }}>
+            <Text>
+              AD
+            </Text>
+          </Pressable>
+        </View>
         <DrawerItemList {...props} />
         <DrawerItem
           label="Visit Us 🌐"
@@ -79,13 +86,13 @@ const CustomSidebarMenu = (props) => {
           </View>*/}
 
       </DrawerContentScrollView>
-      <Pressable 
+      {/*<Pressable 
         style={{justifyContent:'center', alignItems:'center', marginTop:20, flexDirection:'row'}}>
           <Text style={{color:'grey', fontSize:10, }}>
             개인정보 및 설정
           </Text>
           <Icon name="settings" color="grey" size={20} /> 
-        </Pressable>
+      </Pressable>*/}
       <Text
         style={{
           fontSize: 16,
