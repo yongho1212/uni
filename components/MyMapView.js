@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
-import { View, Pressable, Text, Image, Dimensions, StyleSheet } from 'react-native';
+import { View, Pressable, Text, Image, Dimensions, StyleSheet, ImageBackground } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MapView, { Marker } from 'react-native-maps';
 import ActionButton from 'react-native-action-button';
 import Animated from 'react-native-reanimated';
-import Icon from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default class MyMapView extends Component {
     constructor(props){
@@ -97,7 +100,36 @@ export default class MyMapView extends Component {
                         this.props.sendData(roomInfo);                    
                     }}
                     key={key++}
-                />
+                    // image={require('../assets/marker/pingk.png')}    
+                >
+                    {roomInfo.category === '축구' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}}>
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <MaterialCommunityIcons
+                            name={"soccer"}
+                            size={37}
+                            color={'black'}
+                            style={{ zIndex:10, marginBottom:8 }}   
+                        />
+                    </View>
+                    : roomInfo.category === '농구' ? 
+                    <View style={{ justifyContent:'center', alignItems:'center'}}>
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Ionicons
+                            name={"basketball"}
+                            size={37}   
+                            color={'#B96319'}     
+                            style={{ zIndex:10, marginBottom:8 }}                                        
+                        />
+                    </View>
+                    : roomInfo.category === '볼링' ?
+                    <FontAwesome5 
+                        name={"bowling-ball"}
+                        size={20}
+                        color={'#bc2b62'}
+                    />
+                    : null}
+                </Marker>
             ))
         }
         
@@ -169,7 +201,7 @@ export default class MyMapView extends Component {
                     onPress={() => this.props.getLocation()}
                 >
                     <Text>
-                         <Icon name="ios-locate" color="grey" size={30} /> 
+                         <Ionicons name="ios-locate" color="grey" size={30} /> 
                     </Text>
                 </Pressable>
                 <ActionButton 
