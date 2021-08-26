@@ -9,7 +9,8 @@ import Animated from 'react-native-reanimated';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 export default class MyMapView extends Component {
     constructor(props){
@@ -26,6 +27,7 @@ export default class MyMapView extends Component {
             check: 0,
         }
     }
+    
 
     componentDidMount = () => {
         this.connect();
@@ -102,6 +104,7 @@ export default class MyMapView extends Component {
                     key={key++}
                     // image={require('../assets/marker/pingk.png')}    
                 >
+                    
                     {roomInfo.category === '축구' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}}>
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
@@ -168,8 +171,8 @@ export default class MyMapView extends Component {
     
 
     render() {
-        let marker = <View style={{top: '50%', left: '50%', marginLeft: -24, marginTop: -48, position: 'absolute'}}>
-                        <Image style={{height: 48, width: 48}} source={require('../assets/marker/marker.png')}/>   
+        let marker = <View style={{top: '50%', left: '50%', marginLeft: -15, marginTop: -40, position: 'absolute'}}>
+                        <Image style={{height: 50, resizeMode:'contain'}} source={require('../assets/marker/mpin.png')}/>   
                      </View>
         return (
             <View>

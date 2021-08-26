@@ -273,21 +273,22 @@ export default class Main extends Component {
                          />
                     </View>           
                     {this.state.id === this.state.roomInfo.id ?
+                         <Pressable
+                         onPress={() => this.props.navigation.push(
+                              'Hosting', {_id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
+                                          category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'})}                              
+                         style={styles.modifyButton}
+                         >
+                           <Text>Modify</Text>
+                         </Pressable>
+                               
+                    :
                     <Pressable
                          onPress={() => this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id)}
                          style={styles.joinButton}
                     >
                          <Text>참가 신청</Text>
-                    </Pressable>                    
-                    :
-                    <Pressable
-                         onPress={() => this.props.navigation.push(
-                              'Hosting', {_id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
-                                          category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'})}                              
-                         style={styles.modifyButton}
-                    >
-                         <Text>Modify</Text>
-                    </Pressable>
+                    </Pressable>  
                     }                             
                </View>               
                : null}

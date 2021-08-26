@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, Image,SafeAreaView} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, Image} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { CometChat } from '@cometchat-pro/react-native-chat';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -104,7 +106,7 @@ export default class UserList extends Component {
                             <AntDesign
                                  name={"checkcircleo"}
                                  style={styles.allowIcon}           
-                                 onPress={() => this.allowUser(this.state.usersId[i])}                                             
+                                 onPress={() => {this.allowUser(this.state.usersId[i]); this.joinGroup()}}                                             
                             />
                             <AntDesign
                                  name={"closecircleo"}
@@ -151,21 +153,37 @@ export default class UserList extends Component {
         .then(() => this.getUsersProfile())
     }
 
+    //그룹채팅 합류
+    joinGroup = () => {
+        var GUID = this.props.route.params.GUID;
+        var groupType = CometChat.GROUP_TYPE.PUBLIC;
+
+        CometChat.joinGroup(GUID, groupType).then(
+            group => {
+                console.log("Group joined successfully:", group);
+            },
+            error => {
+                console.log("Group joining failed with exception:", error);
+            }
+        )
+    }
+
     render() {
         return (
-            <SafeAreaView>
-               {/* <View style={styles.headerConatiner}>
+            <View>
+                <View style={styles.headerConatiner}>
                         <AntDesign
                             name={"arrowleft"}
                             style={styles.backIcon}
                             onPress={() => {this.props.navigation.navigate('RoomList');}}
                         />  
                         <Text>Request User List</Text>                    
-        </View>*/}
+                </View>
                 <View>
                     {this.showUsersProfile()}
                 </View>
-            </SafeAreaView>
+                
+            </View>
         )
     }
 }

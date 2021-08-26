@@ -19,9 +19,10 @@ function Roomctrl () {
           tabBarOptions={{
                activeTintColor: '#fff',
                labelStyle: { fontSize: 20 , fontWeight:'bold'},
-               style: { backgroundColor: '#fb009e', height:80, borderRadius:30 },
+               style: { backgroundColor: '#fb009e', height:80, borderRadius:25 },
              }}
              tabBarPosition={'bottom'}
+             style={{backgroundColor:'#49ffbd', marginBottom:-10}}
     >
       <Tab.Screen name="Roominfo" component={Roominfo} />
       <Tab.Screen name="UserList" component={UserList} />

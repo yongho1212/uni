@@ -63,8 +63,16 @@ export default class RoomList extends Component {
                     >
                          <View style={styles.roomCard}>
                               <Pressable
-                              
-                              onPress={() => this.props.navigation.push('Roomctrl', {_id: data._id})}
+                              onPress={() => this.props.navigation.push('Roomctrl', 
+                                   {
+                                   screen: 'Roominfo',
+                                   params: {sendd: data}
+                                   },
+                                   {
+                                   screen: 'UserList',
+                                   params:{_id: data._id, GUID: data.GUID}
+                                   }
+                              )}
                               >
                               <View style={styles.categoryIcon}>
                                    <Text style={styles.categoryText}> {data.category}</Text> 

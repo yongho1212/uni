@@ -3,9 +3,14 @@ import { SafeAreaView, Text, View, Pressable, ScrollView } from 'react-native'
 import styles from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
-function Roominfo() {
+
+
+function Roominfo({ route, navigation }) {
+
+     const { sendd } = route.params;
+
      return (
-          <SafeAreaView style={{flex:1, backgroundColor:"#fff"}}>
+          <View style={{backgroundColor:"#49ffbd"}}>
                <ScrollView>
 
                
@@ -15,24 +20,37 @@ function Roominfo() {
                               <MaterialCommunityIcons
                               name={"soccer"}
                               style={{fontSize:60}}
-                         />  
+                              />
+                              <Text>{JSON.stringify(sendd.category).replace(/\"/gi, "")}</Text>  
                          </View>
                          <View style={styles.time}>
-                              <Text>time</Text>
+                              
+                              <Text style={styles.dateText}> {JSON.stringify(sendd.timeInfo).replace(/\"/gi, "").slice(0,8)}</Text>
+                              <Text style={styles.timeText}> {JSON.stringify(sendd.timeInfo).replace(/\"/gi, "").slice(9)}</Text>
                          </View>
                     </View>
                     <View style={styles.l2Container}>
                          <View style={styles.title}>
-                              <Text>Title</Text>
+                              
+                              <Text 
+                              ellipsizeMode='tail' 
+                              numberOfLines={2} 
+                               style={styles.titleText}
+                               >
+                              {JSON.stringify(sendd.title).replace(/\"/gi, "")}
+                              </Text>
+                              
                          </View>
                          <View style={styles.host}>
                               <Text>Host</Text>
+                              <Text>{JSON.stringify(sendd.joinUser).replace(/\"/gi, "")}</Text>
                          </View>
                     </View>
                     <View style={styles.l3Container}>
                          <View style={styles.location}>
                          
-                              <Text>Location</Text>
+                              
+                              <Text numberOfLines={2} ellipsizeMode='tail' style={styles.locationText}>{JSON.stringify(sendd.address).replace(/\"/gi, "")}</Text>
                          
                          </View>
                     </View>
@@ -41,23 +59,23 @@ function Roominfo() {
 
                <View style={styles.btnContainer}>
                     <Pressable style={styles.chatBtn}>
-                         <Text>
+                         <Text style={styles.chatBtnText}>
                               Chat
                          </Text>
                     </Pressable>
                     <Pressable style={styles.editBtn}>
-                         <Text>
+                         <Text style={styles.chatBtnText}>
                               Edit
                          </Text>
                     </Pressable>
                     <Pressable style={styles.delBtn}>
-                         <Text>
+                         <Text style={styles.chatBtnText}>
                               Delete
                          </Text>
                     </Pressable>
                </View>
                </ScrollView>
-          </SafeAreaView>
+          </View>
      )
 }
 

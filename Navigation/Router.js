@@ -279,6 +279,10 @@ const Router = ({navigation}) => {
                             style={{marginLeft:30}}
                             />),
                             headerBackTitle:' ',
+                            headerStyle:{
+                                backgroundColor:"#49ffbd",
+
+                            },
                             headerBackTitleStyle:{
                                 fontSize:18,
                                 color:'black'
