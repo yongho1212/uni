@@ -22,6 +22,7 @@ export default class UserList extends Component {
     }
   
     componentDidMount = async() => {
+        console.log(this.props.route.params.sendd._id);
         this.connect();
     }
 
@@ -30,7 +31,7 @@ export default class UserList extends Component {
 
         this.setState({
             id: id,
-            _id: this.props.route.params._id,
+            _id: this.props.route.params.sendd._id,
         })
 
         var usersId = new Array();
@@ -132,7 +133,7 @@ export default class UserList extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                _id: this.props.route.params._id,
+                _id: this.props.route.params.sendd._id,
                 id: userId,
             })
         })

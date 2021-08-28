@@ -11,6 +11,9 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import { CometChat } from '@cometchat-pro/react-native-chat';
+
+
 
 export default class MyMapView extends Component {
     constructor(props){
@@ -43,6 +46,8 @@ export default class MyMapView extends Component {
     }
 
     connect = async() => {
+        var Interest = new Array();
+        var Nickname;
         try {
             const id = await AsyncStorage.getItem('id');
             if(id !== null) {
@@ -72,10 +77,11 @@ export default class MyMapView extends Component {
                 userData: responseData[1],
             })
 
-            var Interest = new Array();
-            this.state.userData.map(userData => 
-                Interest = userData.hobby.split(',')            
-            )
+            this.state.userData.map(userData => {
+                Interest = userData.hobby.split(',');
+                Nickname = userData.nickname;          
+            })            
+
 
             this.state.check += 1;
             if(this.state.check === 1) {

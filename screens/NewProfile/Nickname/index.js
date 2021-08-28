@@ -50,6 +50,13 @@ export default class Nickname extends Component {
         if(this.state.nickname === '') {
             Alert.alert('닉네임을 설정해주세요');
         }else {
+
+            try {
+                await AsyncStorage.setItem('nickname', this.state.nickname)    
+            } catch (e) {
+                console.log(e);
+            }
+
             const URL = "http://127.0.0.1:3000/setNickname";
             fetch(URL, {
                 method: 'POST',

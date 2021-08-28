@@ -10,6 +10,8 @@ import RegisterScreen from '../screens/Register';
 
 import PhoneAuth from '../components/phoneAuth/PhoneAuth'
 
+import CometChatMessages from '../lib/chat/cometchat-pro-react-native-ui-kit-3/src/components/Messages/CometChatMessages';
+
 import Nickname from '../screens/NewProfile/Nickname';
 import Gender from '../screens/NewProfile/Gender';
 import Birth from '../screens/NewProfile/Birth';
@@ -297,7 +299,7 @@ const Router = ({navigation}) => {
                         headerBackImage: ()=>( 
                             <MaterialIcons name={"arrow-back-ios"} 
                             size={35} 
-                            color={'balck'}
+                            color={'black'}
                             style={{marginLeft:30}}
                             />),
                             headerBackTitle:' ',
@@ -305,6 +307,13 @@ const Router = ({navigation}) => {
                                 fontSize:18,
                                 color:'black'
                             }
+                    }}
+                />
+                <Stack.Screen
+                    name={"CometChatMessages"}
+                    component={CometChatMessages}
+                    options={{
+                        headerShown: false,    
                     }}
                 />
                 <Stack.Screen

@@ -12,8 +12,6 @@ function Roominfo({ route, navigation }) {
      return (
           <View style={{backgroundColor:"#49ffbd"}}>
                <ScrollView>
-
-               
                <View style={styles.infoContainer}>
                     <View style={styles.l1Container}>
                          <View style={styles.category}>
@@ -31,7 +29,6 @@ function Roominfo({ route, navigation }) {
                     </View>
                     <View style={styles.l2Container}>
                          <View style={styles.title}>
-                              
                               <Text 
                               ellipsizeMode='tail' 
                               numberOfLines={2} 

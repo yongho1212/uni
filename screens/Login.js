@@ -28,6 +28,7 @@ import {
 import PhoneAuth from '../components/phoneAuth/PhoneAuth';
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { CometChat } from '@cometchat-pro/react-native-chat';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -44,6 +45,14 @@ const LoginScreen = ({ navigation }) => {
   
 
   const passwordInputRef = createRef();
+
+  //chatting
+  const appID = '192332ba9a7ee10b';
+  const region = 'us';
+  const appSetting = new CometChat.AppSettingsBuilder()
+  .subscribePresenceForAllUsers()
+  .setRegion(region)
+  .build();
 
 // BACK
   const connect = async(id, email) => {
@@ -67,10 +76,28 @@ const LoginScreen = ({ navigation }) => {
     .then(response => response.json())
     .then(responseData => {
         if(responseData) {
-          console.log(responseData);
+          
+
+          CometChat.init(appID, appSetting).then(
+            () => {
+              console.log('Initialization completed successfully');
+            },
+            (error) => {
+              console.log('Initialization failed with error:', error);
+            }
+          );
+
+          CometChat.login(id, '92a48b2397822aea1cbebd8c615115bd3a14d4fa').then (
+            User => {
+              console.log("Login Successful:", { User });
+            },
+            error => {
+              console.log("Login failed with exception:", { error });
+            }
+          )
           navigation.navigate('DrawerNav');    
         }else {
-          console.log(responseData);
+          
           navigation.navigate('Nickname');
         }
     })

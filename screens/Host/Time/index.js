@@ -63,7 +63,7 @@ export default class Time extends Component {
 
         if(currentTime > selectedTime) {
             //Alert 대신 Fade out으로 바꿀 예정
-            Alert.alert('X');
+            console.log('X');
         }else {
             this.setState({       
                 time: selectedTime,         

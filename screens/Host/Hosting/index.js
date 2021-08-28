@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import {Text, View, Pressable, Alert, SafeAreaView, TextInput, ImageBackground} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Moment from 'moment';
+import 'moment/locale/ko';
+
+import { CometChat } from '@cometchat-pro/react-native-chat';
 
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -108,7 +112,7 @@ export default class Hosting extends Component {
 
     createRoom = async() => {        
         const {id, address, lat, lng, category, title, time, timeInfo} = this.state.room;
-        console.log(this.state.room);
+        var GUID = Moment(new Date()).format('MMDD_HHmmss');
 
         const URL = "http://127.0.0.1:3000/createRoom";
         fetch(URL, {
@@ -125,6 +129,7 @@ export default class Hosting extends Component {
                 title: title,
                 time: time,
                 timeInfo: timeInfo,
+                GUID: GUID,
             })
         })
     }
@@ -170,6 +175,40 @@ export default class Hosting extends Component {
             this.props.navigation.push('DrawerNav', {lat: this.state.room.lat, lng: this.state.room.lng})
         }        
     }      
+
+     //방 생성과 동시에 그룹 채팅 생성
+    createGroup = () => {
+        var GUID = Moment(new Date()).format('MMDD_HHmmss');
+        var groupName = this.state.room.title;
+        var groupType = CometChat.GROUP_TYPE.PUBLIC;
+        var password = "";
+        var icon;
+
+        if(this.state.room.category === '축구') {            
+            icon = 'https://cdn.pixabay.com/photo/2014/10/14/20/24/soccer-488700_960_720.jpg';
+        }else if(this.state.room.category === '농구') {
+            icon = 'https://cdn.pixabay.com/photo/2015/05/15/14/49/basketball-768713_960_720.jpg';
+        }else if(this.state.room.category === '테니스') {
+            icon = 'https://cdn.pixabay.com/photo/2016/11/29/01/14/athletes-1866487_960_720.jpg';
+        }else if(this.state.room.category === '탁구') {
+            icon = 'https://cdn.pixabay.com/photo/2019/03/07/16/40/table-tennis-4040584_960_720.jpg';
+        }else if(this.state.room.category === '풋살') {
+            icon = 'https://t4.ftcdn.net/jpg/02/51/90/51/240_F_251905127_onmn1GR6Gmq7WXzIsA0WRWQ7atoQEgkt.jpg';
+        }else if(this.state.room.category === '볼링') {
+            icon = 'https://cdn.pixabay.com/photo/2014/01/03/02/48/bowling-237905_960_720.jpg';
+        }
+        
+        var group = new CometChat.Group(GUID, groupName, groupType, password, icon);
+
+        CometChat.createGroup(group).then (
+            group => {
+                console.log("Group created successfully:", group);
+            },
+            error => {
+                console.log("Group creation failed with exception:", error);
+            }    
+        )
+    }
 
     render() {
         return (
@@ -260,7 +299,7 @@ export default class Hosting extends Component {
                     :        
                     <Pressable
                         style={styles.hostButton}
-                        onPress={() => this.hosting()}                        
+                        onPress={() => {this.hosting(); this.createGroup();}}                              
                     >
                         <Text style={{color:'#000', fontSize:25, fontWeight:'bold'}}>Hosting</Text>
                     </Pressable>

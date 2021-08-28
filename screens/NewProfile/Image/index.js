@@ -7,6 +7,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CometChat } from '@cometchat-pro/react-native-chat';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
@@ -262,10 +263,61 @@ export default class NewProfileImg extends Component {
             Alert.alert('프로필 사진을 1장 이상 등록하세요');
         }else {
             console.log('프로필 등록 완료');
+            this.createUser();
             this.setCompleted();
             this.props.navigation.navigate('DrawerNav');            
         }
     }
+
+       //채팅 아이디 생성
+       createUser = async() => {
+        var appID = "192332ba9a7ee10b";
+        var region = "us";
+        var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
+
+        CometChat.init('192332ba9a7ee10b', appSetting).then(
+            () => {
+                console.log('Initialization completed successfully');
+            },
+            (error) => {
+                console.log('Initialization failed with error:', error);
+            },
+        );
+
+        const nickname = await AsyncStorage.getItem('nickname'); 
+        console.log(nickname);
+        fetch("http://127.0.0.1:3000/firstProfile/?id=" + this.state.id  + "&time=" + new Date())
+        .then(responseData => {           
+            const URL = 'https://api-us.cometchat.io/v3.0/users';
+            fetch(URL, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    appId: '192332ba9a7ee10b',
+                    apiKey: 'e545675a7e11466d096a79bc9c5270838d6d633d',
+                },
+                body: JSON.stringify({
+                    uid: this.state.id,
+                    name: nickname,   
+                    avatar: responseData.url,             
+                })
+            })    
+            .then(response => response.json())
+            .then(responseData => console.log(responseData))   
+            .then(() => {
+                CometChat.login(this.state.id, '92a48b2397822aea1cbebd8c615115bd3a14d4fa').then (
+                    User => {
+                      console.log("Login Successful:", { User });
+                    },
+                    error => {
+                      console.log("Login failed with exception:", { error });
+                    }
+                )
+            }) 
+        })            
+    }
+
 
     setCompleted = () => {
         const URL = "http://127.0.0.1:3000/setCompleted";

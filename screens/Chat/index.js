@@ -2,19 +2,20 @@ import React from 'react'
 import {Text, SafeAreaView, View} from 'react-native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import Chatting from '../Chatting';
-import Friends from '../Friends'
-
-
-   const Tab = createMaterialTopTabNavigator();
+// import Chatting from '../Chatting';
+// import Friends from '../Friends'
 
 
-function Chat () {
+   // const Tab = createMaterialTopTabNavigator();
+   import { CometChatUI } from '../../lib/chat/cometchat-pro-react-native-ui-kit-3';
+
+
+   export default function Chat () {
      return(
           
-     <Tab.Navigator
+  /*   <Tab.Navigator
           initialRouteName="Chatting"
           tabBarOptions={{
                activeTintColor: '#fff',
@@ -25,11 +26,14 @@ function Chat () {
     >
       <Tab.Screen name="Chatting" component={Chatting} />
       <Tab.Screen name="Friends" component={Friends} />
-    </Tab.Navigator>
+          </Tab.Navigator>*/
+
+     <View style={{ flex: 1 }}>
+          <CometChatUI />
+     </View>
 
         
           
      );
 };
 
-export default Chat;

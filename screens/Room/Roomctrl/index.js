@@ -11,9 +11,10 @@ import Roominfo from '../Roominfo'
    const Tab = createMaterialTopTabNavigator();
 
 
-function Roomctrl () {
+function Roomctrl (props) {
+     const params = props.route.params;
+     
      return(
-          
      <Tab.Navigator
           initialRouteName="Chatting"
           tabBarOptions={{
@@ -24,8 +25,8 @@ function Roomctrl () {
              tabBarPosition={'bottom'}
              style={{backgroundColor:'#49ffbd', marginBottom:-10}}
     >
-      <Tab.Screen name="Roominfo" component={Roominfo} />
-      <Tab.Screen name="UserList" component={UserList} />
+      <Tab.Screen name="Roominfo" component={Roominfo} initialParams={params}/>
+      <Tab.Screen name="UserList" component={UserList} initialParams={params}/>
     </Tab.Navigator>
 
         
