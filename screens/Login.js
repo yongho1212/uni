@@ -34,6 +34,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 
 
 
+
 const LoginScreen = ({ navigation }) => {
   //custom
   const [userEmail, setUserEmail] = useState("");
@@ -50,9 +51,22 @@ const LoginScreen = ({ navigation }) => {
   const appID = '192332ba9a7ee10b';
   const region = 'us';
   const appSetting = new CometChat.AppSettingsBuilder()
-  .subscribePresenceForAllUsers()
-  .setRegion(region)
-  .build();
+    .subscribePresenceForAllUsers()
+    .setRegion(region)
+    .build();
+
+    useEffect(() => {
+      // Initial configuration
+      GoogleSignin.configure({
+        // Mandatory method to call before calling signIn()
+       // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+        // Repleace with your webClientId
+        // Generated from Firebase console
+        webClientId: '913377494399-3utpu41533gamaa6fgqtui5ajcu54pt6.apps.googleusercontent.com',
+      });
+      // Check if user is already signed in
+    
+    }, []);
 
 // BACK
   const connect = async(id, email) => {
@@ -84,7 +98,7 @@ const LoginScreen = ({ navigation }) => {
             },
             (error) => {
               console.log('Initialization failed with error:', error);
-            }
+            },
           );
 
           CometChat.login(id, '92a48b2397822aea1cbebd8c615115bd3a14d4fa').then (
@@ -95,6 +109,7 @@ const LoginScreen = ({ navigation }) => {
               console.log("Login failed with exception:", { error });
             }
           )
+
           navigation.navigate('DrawerNav');    
         }else {
           
@@ -137,18 +152,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   // GOOGLE
-  useEffect(() => {
-    // Initial configuration
-    GoogleSignin.configure({
-      // Mandatory method to call before calling signIn()
-     // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
-      // Repleace with your webClientId
-      // Generated from Firebase console
-      webClientId: '913377494399-3utpu41533gamaa6fgqtui5ajcu54pt6.apps.googleusercontent.com',
-    });
-    // Check if user is already signed in
-  
-  }, []);
+
 
   const g_signIn = async () => {
     // It will prompt google Signin Widget

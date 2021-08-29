@@ -14,6 +14,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
+
 import styles from './styles';
 
 export default class NewProfileImg extends Component {
@@ -271,9 +272,11 @@ export default class NewProfileImg extends Component {
 
        //채팅 아이디 생성
        createUser = async() => {
-        var appID = "192332ba9a7ee10b";
-        var region = "us";
-        var appSetting = new CometChat.AppSettingsBuilder().subscribePresenceForAllUsers().setRegion(region).build();
+
+        const appSetting = new CometChat.AppSettingsBuilder()
+        .subscribePresenceForAllUsers()
+        .setRegion('us')
+        .build();
 
         CometChat.init('192332ba9a7ee10b', appSetting).then(
             () => {
@@ -317,6 +320,7 @@ export default class NewProfileImg extends Component {
             }) 
         })            
     }
+
 
 
     setCompleted = () => {

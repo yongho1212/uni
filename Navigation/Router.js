@@ -10,7 +10,7 @@ import RegisterScreen from '../screens/Register';
 
 import PhoneAuth from '../components/phoneAuth/PhoneAuth'
 
-import CometChatMessages from '../lib/chat/cometchat-pro-react-native-ui-kit-3/src/components/Messages/CometChatMessages';
+
 
 import Nickname from '../screens/NewProfile/Nickname';
 import Gender from '../screens/NewProfile/Gender';
@@ -309,13 +309,13 @@ const Router = ({navigation}) => {
                             }
                     }}
                 />
-                <Stack.Screen
+             {/*   <Stack.Screen
                     name={"CometChatMessages"}
                     component={CometChatMessages}
                     options={{
                         headerShown: false,    
                     }}
-                />
+                />*/}
                 <Stack.Screen
                     name={"LogoutBtn"}
                     component={LogoutBtn}
