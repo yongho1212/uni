@@ -18,7 +18,7 @@ import 'moment/locale/ko';
 import Geolocation from '@react-native-community/geolocation';
 import Geocoder from 'react-native-geocoding';
 
-// import OneSignal from 'react-native-onesignal';
+ import OneSignal from 'react-native-onesignal';
 
 import styles from './styles';
 
@@ -45,11 +45,11 @@ export default class Main extends Component {
      componentDidMount = async() => {                    
           this.getId();                 
           // ONESIGNAL 추가후에 주석제거 0802
- //         OneSignal.setLogLevel(6, 0);
- //         OneSignal.setAppId('1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea');   
- //         await OneSignal.setExternalUserId(await AsyncStorage.getItem('id'), (result) => {
- //              console.log(result);
- //         });
+         OneSignal.setLogLevel(6, 0);
+          OneSignal.setAppId('1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea');   
+          await OneSignal.setExternalUserId(await AsyncStorage.getItem('id'), (result) => {
+               console.log(result);
+          });
 
           if(this.props.route.params === undefined) {
                this.requestPermission().then(result => {
@@ -158,8 +158,7 @@ export default class Main extends Component {
 
      joinRoom = async(hostId) => {
        
-          // ONESIGNAL 축가후에 주석 제거 - 0802
-     {/*     const URL = "https://onesignal.com/api/v1/notifications";
+          const URL = "https://onesignal.com/api/v1/notifications";
           fetch(URL, {
                method: 'POST',
                headers: {
@@ -173,7 +172,7 @@ export default class Main extends Component {
                }),
           })        
           .then(response => response.json())
-          .then(responseData => this.joinSuccess(hostId, roomId, responseData))   */}
+          .then(responseData => this.joinSuccess(hostId, roomId, responseData))   
      }
 
      joinSuccess = async(hostId, responseData) => {
