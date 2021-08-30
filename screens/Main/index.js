@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, Alert, Button, Pressable, Dimensions, TextInput, Image } from 'react-native';
+import { View, Text, Alert, ScrollView, Pressable, Dimensions, TextInput, Image } from 'react-native';
 import { Platform, PermissionsAndroid } from 'react-native';
 
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -33,6 +33,7 @@ export default class Main extends Component {
                     longitudeDelta: 0.0121,     
                },
                roomInfo: undefined,
+               hostsProfile: [],
                usersProfile: [],
                address: 0,
                id: '',
@@ -40,12 +41,10 @@ export default class Main extends Component {
           }
      }
 
-
-
      componentDidMount = async() => {                    
           this.getId();                 
-          // ONESIGNAL 추가후에 주석제거 0802
-         OneSignal.setLogLevel(6, 0);
+
+          OneSignal.setLogLevel(6, 0);
           OneSignal.setAppId('1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea');   
           await OneSignal.setExternalUserId(await AsyncStorage.getItem('id'), (result) => {
                console.log(result);
@@ -56,13 +55,13 @@ export default class Main extends Component {
                     if(result === 'granted') {
                          this.getCurrentLocation();
                     }else {
-                         // Alert.alert('');
+                         console.log('');
                     }
                })      
           }else {
                this.hosted();
           }
-     }    
+     }     
 
      getId = async() => {
           try {
@@ -75,7 +74,7 @@ export default class Main extends Component {
           } catch(e) {
                console.log(e);
           }
-     }
+     }          
 
      //임시
      requestPermission = async() => {
@@ -131,39 +130,52 @@ export default class Main extends Component {
           })
      }         
 
+     //수정사항 : this.state.hostsProfile로 하면 한번에 방에 참가한 사람들의 모든 프로필 이미지를 한번에 불러오지만 지도를 움직이지 않은 상태에서 3번 째부터는 이미지를 불러오지 못한다.
      getData = async(data) => { 
+          var hostsProfile = new Array();
           var usersProfile = new Array();
-          
+
           if(data !== undefined) {
                this.setState({roomInfo: data});    
+               
+               for(let i = 0; i < data.hostUser.length; i++) {
+                    fetch("http://127.0.0.1:3000/firstProfile/?id=" + data.hostUser[i] + "&time=" + new Date())
+                    .then(responseData => {
+                         if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {
+                              hostsProfile.push(responseData.url);
+                         }
+                    })   
+                    //.then(() => this.setState({hostsProfile: hostsProfile}))                 
+                    .then(() => this.state.hostsProfile = hostsProfile);
+               }
+               //this.setState({hostsProfile: hostsProfile});
+
                for(let i = 0; i < data.joinUser.length; i++) {
                     fetch("http://127.0.0.1:3000/firstProfile/?id=" + data.joinUser[i]  + "&time=" + new Date())
                     .then(responseData => {
                          if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
                               usersProfile.push(responseData.url);    
                          }
-                    })
-                    .then(() => {
-                         this.setState({usersProfile: usersProfile})
-                    })           
+                    })    
+                    //.then(() => this.setState({usersProfile: usersProfile}))                
+                    .then(() => this.state.usersProfile = usersProfile)                               
                }
-
                //this.setState({usersProfile: usersProfile});
+
                this.bs.current.snapTo(0);                          
           }else {
+               this.setState({hostsProfile: null, usersProfile: null})
                this.bs.current.snapTo(5);
           }
      }
 
-
-     joinRoom = async(hostId) => {
-       
+     joinRoom = async(hostId, roomId) => {          
           const URL = "https://onesignal.com/api/v1/notifications";
           fetch(URL, {
                method: 'POST',
                headers: {
                     'Content-Type' : 'application/json; charset=utf-8',
-                    'Authorization' : 'Basic YzU2MWJkNzEtNzJmYy00YTliLTg1MGEtODRhMzIwMDM1NWM3'
+                    'Authorization' : 'Basic ODk4YjFjNTctOTZkZi00ODBlLWIyNTAtMTY5OWU0ZmZhNTc0'
                },
                body: JSON.stringify({                    
                     app_id: "1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea",
@@ -172,12 +184,12 @@ export default class Main extends Component {
                }),
           })        
           .then(response => response.json())
-          .then(responseData => this.joinSuccess(hostId, roomId, responseData))   
+          .then(responseData => this.joinSuccess(hostId, roomId, responseData))                  
      }
 
-     joinSuccess = async(hostId, responseData) => {
+     joinSuccess = async(hostId, roomId, responseData) => {
           console.log(responseData.recipients);
-          if(responseData.recipients === 1) {
+          if(responseData.recipients !== 0) {
                const URL = "http://127.0.0.1:3000/joinRoom";
                fetch(URL, {
                     method: 'POST',
@@ -185,7 +197,8 @@ export default class Main extends Component {
                          'Content-Type' : 'application/json',                         
                     },
                     body: JSON.stringify({
-                         id: hostId,
+                         requestId: this.state.id,
+                         hostId: hostId,
                          roomId: roomId,
                     }),
                })                            
@@ -193,8 +206,6 @@ export default class Main extends Component {
                Alert.alert('다시 시도해주세요');
           }
      }
-
-
 
      checkJoin = async() => {
           const URL = "http://127.0.0.1:3000/checkJoin";
@@ -215,31 +226,43 @@ export default class Main extends Component {
           })
      }
 
-/*     moveToMyLocation = () => {
-          this.mapView.animateToRegion(initialRegion, 2000); 
-*/
-
-
      bs = React.createRef();
 
-     renderContent = () => (
+     renderContent = () => (    
           <View
              style={{flex: 0, backgroundColor: '#fff', padding: 20, height: 700,}}
           >
-               {this.state.roomInfo !== undefined ?
+               {this.state.roomInfo !== undefined ? 
+               /* ScrollView 끝에 잘리는거 수정 필요 */
                <View style={styles.roomContainer}>
-                    <View style={styles.placeContainer}>
-                         <View style={styles.usersProfile}>  
-                              {this.state.usersProfile.map((data, index) => {
-                                   return (
-                                        <Image 
-                                             source={{uri : data}}
-                                             style={{width: 50, height: 50, borderRadius: 25, borderWidth: 3, marginLeft: 3,}}
-                                             key={++index}
-                                        />
-                                   )
-                              })}    
-                         </View>                       
+                    <View style={styles.placeContainer}>                                                                   
+                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                              {this.state.hostsProfile !== null ?
+                                   this.state.hostsProfile.map((data, index) => {
+                                        return (
+                                             <View key={index++}>
+                                                  <Image 
+                                                       source={{uri : data}}
+                                                       style={{width: 50, height: 50, borderRadius: 25, borderWidth: 3, marginLeft: 7,}}
+                                                       key={index++}
+                                                  />
+                                                  <Image style={{position: 'absolute', left: 26, top: 22, flex: 1, width: 30, height: 30,}} source={require('../../assets/logo/crown.png')} key={index++}/> 
+                                             </View>
+                                        )
+                                   })
+                              : null}
+                              {this.state.usersProfile !== null ?                              
+                                   this.state.usersProfile.map((data, index) => {                                                   
+                                        return (                                                          
+                                             <Image 
+                                                  source={{uri : data}}
+                                                  style={{width: 50, height: 50, borderRadius: 25, borderWidth: 3, marginLeft: 7,}}
+                                                  key={index++}
+                                             />                                                                                                                                                                                                                                                        
+                                        )                                             
+                                   }) 
+                              : null}                              
+                         </ScrollView>                                                                                     
                          <Text style={styles.placeText}>Place</Text>
                          <TextInput
                               style={styles.placeInfo}
@@ -272,26 +295,25 @@ export default class Main extends Component {
                          />
                     </View>           
                     {this.state.id === this.state.roomInfo.id ?
-                         <Pressable
-                         onPress={() => this.props.navigation.push(
-                              'Hosting', {_id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
-                                          category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'})}                              
-                         style={styles.modifyButton}
-                         >
-                           <Text>Modify</Text>
-                         </Pressable>
-                               
+                    <Pressable
+                    onPress={() => this.props.navigation.push(
+                         'Hosting', {_id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
+                                   category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'})}                              
+                    style={styles.modifyButton}
+                    >
+                    <Text>modify</Text>
+               </Pressable>                   
                     :
                     <Pressable
                          onPress={() => this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id)}
                          style={styles.joinButton}
                     >
-                         <Text>참가 신청</Text>
+                         <Text>join</Text>
                     </Pressable>  
                     }                             
-               </View>               
+               </View>                                           
                : null}
-          </View>
+          </View>          
      )
 
      //메인버튼 3개
@@ -299,7 +321,7 @@ export default class Main extends Component {
           if(screen === 'Hosting') {
                this.props.navigation.push('Hosting', {address: this.state.address, lat: this.state.region.latitude, lng: this.state.region.longitude, Info: 'place'})
           }else if(screen === 'Room') {
-               this.props.navigation.navigate('RoomList'); 
+               this.props.navigation.navigate('RoomList');
                this.checkJoin();               
           }else if(screen === 'Chat') {
                this.props.navigation.navigate('Chat');
@@ -318,8 +340,6 @@ export default class Main extends Component {
           });
      } 
 
-     
-
      render() {
           return (
                <View style={{width: '100%', height: Dimensions.get('window').height}}> 
@@ -329,17 +349,12 @@ export default class Main extends Component {
                          sendData={this.getData}
                          getLocation={() => this.getCurrentLocation()}
                     >
-                         
                     </MyMapView>  
-                    
                     <MainButton                         
                          navigate={this.navigate}   
                          push={this.state.push}                      
                     >
-                         
-                    </MainButton>  
-                     
-                    
+                    </MainButton>                
                     <BottomSheet
                          ref={this.bs}
                          renderContent={this.renderContent}
@@ -347,7 +362,6 @@ export default class Main extends Component {
                          initialSnap={5}
                          borderRadius={10}
                          enabledContentTapInteraction={false}
-                         style={{width:100}}
                     />
                </View>  
           )

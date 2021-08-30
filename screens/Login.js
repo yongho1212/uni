@@ -47,13 +47,18 @@ const LoginScreen = ({ navigation }) => {
 
   const passwordInputRef = createRef();
 
-  //chatting
-  const appID = '192332ba9a7ee10b';
-  const region = 'us';
-  const appSetting = new CometChat.AppSettingsBuilder()
-    .subscribePresenceForAllUsers()
-    .setRegion(region)
-    .build();
+   //chatting
+   const appID = '192332ba9a7ee10b';
+   const region = 'us';
+   const appSetting = new CometChat.AppSettingsBuilder()
+     .subscribePresenceForAllUsers()
+     .setRegion(region)
+     .build();
+ 
+   const usersRequest = new CometChat.UsersRequestBuilder()
+     .setLimit(100)
+     .friendsOnly(true)
+     .build();
 
     useEffect(() => {
       // Initial configuration
@@ -108,15 +113,24 @@ const LoginScreen = ({ navigation }) => {
             error => {
               console.log("Login failed with exception:", { error });
             }
-          )
+          ).then(() => {
+            usersRequest.fetchNext().then(
+              userList => {
+                console.log("User list received:", userList)
+              },
+              error =>  {
+                console.log("User list fetching failed with error:", error);
+              }
+            )
+          })                    
 
-          navigation.navigate('DrawerNav');    
+          navigation.navigate('DrawerNav');             
         }else {
-          
+          console.log(responseData);          
           navigation.navigate('Nickname');
         }
     })
-}
+  }  
 
 
 // CUSTOM

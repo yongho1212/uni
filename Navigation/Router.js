@@ -23,7 +23,8 @@ import Hosting from '../screens/Host/Hosting';
 import LocationSearch from "../screens/Host/LocationSearch";
 import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
-import Chat from '../screens/Chat'
+import Chat from '../screens/Chat';
+import CometChatMessages from '../cometchat-pro-react-native-ui-kit/src/components/Messages/CometChatMessages';
 import RoomList from '../screens/Room/RoomList';
 import Roomctrl from "../screens/Room/Roomctrl";
 
@@ -309,13 +310,13 @@ const Router = ({navigation}) => {
                             }
                     }}
                 />
-             {/*   <Stack.Screen
+                <Stack.Screen
                     name={"CometChatMessages"}
                     component={CometChatMessages}
                     options={{
                         headerShown: false,    
                     }}
-                />*/}
+                />
                 <Stack.Screen
                     name={"LogoutBtn"}
                     component={LogoutBtn}
