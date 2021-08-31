@@ -15,6 +15,11 @@
 		351E447B268EF80C00C79BCD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 351E447A268EF80C00C79BCD /* GoogleService-Info.plist */; };
 		3560058E26DD1FBD0040371B /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3560058D26DD1FBD0040371B /* NotificationService.swift */; };
 		3560059226DD1FBD0040371B /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3560058B26DD1FBD0040371B /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3560059D26DE28EF0040371B /* outgoingmessage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3560059826DE28EF0040371B /* outgoingmessage.wav */; };
+		3560059E26DE28EF0040371B /* incomingothermessage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3560059926DE28EF0040371B /* incomingothermessage.wav */; };
+		3560059F26DE28EF0040371B /* outgoingcall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3560059A26DE28EF0040371B /* outgoingcall.wav */; };
+		356005A026DE28EF0040371B /* incomingcall.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3560059B26DE28EF0040371B /* incomingcall.wav */; };
+		356005A126DE28EF0040371B /* incomingmessage.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3560059C26DE28EF0040371B /* incomingmessage.wav */; };
 		35B8849E268F185B00491092 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8849D268F185B00491092 /* File.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		90E821296B6DA9E4F680A038 /* libPods-uni.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA21262441F962CFE566D35 /* libPods-uni.a */; };
@@ -88,6 +93,11 @@
 		3560058D26DD1FBD0040371B /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		3560058F26DD1FBD0040371B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3560059726DD21820040371B /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		3560059826DE28EF0040371B /* outgoingmessage.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = outgoingmessage.wav; path = "../cometchat-pro-react-native-ui-kit/src/resources/audio/outgoingmessage.wav"; sourceTree = "<group>"; };
+		3560059926DE28EF0040371B /* incomingothermessage.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = incomingothermessage.wav; path = "../cometchat-pro-react-native-ui-kit/src/resources/audio/incomingothermessage.wav"; sourceTree = "<group>"; };
+		3560059A26DE28EF0040371B /* outgoingcall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = outgoingcall.wav; path = "../cometchat-pro-react-native-ui-kit/src/resources/audio/outgoingcall.wav"; sourceTree = "<group>"; };
+		3560059B26DE28EF0040371B /* incomingcall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = incomingcall.wav; path = "../cometchat-pro-react-native-ui-kit/src/resources/audio/incomingcall.wav"; sourceTree = "<group>"; };
+		3560059C26DE28EF0040371B /* incomingmessage.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = incomingmessage.wav; path = "../cometchat-pro-react-native-ui-kit/src/resources/audio/incomingmessage.wav"; sourceTree = "<group>"; };
 		35B8849C268F185B00491092 /* uni-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-Bridging-Header.h"; sourceTree = "<group>"; };
 		35B8849D268F185B00491092 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		53C8EE0F4A2B6AEDA439176E /* Pods-uni.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uni.release.xcconfig"; path = "Target Support Files/Pods-uni/Pods-uni.release.xcconfig"; sourceTree = "<group>"; };
@@ -218,6 +228,11 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3560059B26DE28EF0040371B /* incomingcall.wav */,
+				3560059C26DE28EF0040371B /* incomingmessage.wav */,
+				3560059926DE28EF0040371B /* incomingothermessage.wav */,
+				3560059A26DE28EF0040371B /* outgoingcall.wav */,
+				3560059826DE28EF0040371B /* outgoingmessage.wav */,
 				35176C3626945A9D00CD60F0 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* uni */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -375,10 +390,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				356005A126DE28EF0040371B /* incomingmessage.wav in Resources */,
+				3560059D26DE28EF0040371B /* outgoingmessage.wav in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				3560059F26DE28EF0040371B /* outgoingcall.wav in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				356005A026DE28EF0040371B /* incomingcall.wav in Resources */,
 				351E447B268EF80C00C79BCD /* GoogleService-Info.plist in Resources */,
 				35026B8626CBFCBA00D0E4A1 /* BootSplash.storyboard in Resources */,
+				3560059E26DE28EF0040371B /* incomingothermessage.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

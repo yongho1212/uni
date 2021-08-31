@@ -29,7 +29,7 @@ const SplashScreen = ({ navigation }) => {
   React.useEffect(() => {
     setTimeout(() => {
       navigation.replace(
-        auth().currentUser ? "DrawerNav" : "Login"        
+        auth().currentUser ? "DrawerNav" : "Auth"        
       );
 
       auth().currentUser ? chatInit() : console.log('Login Please');

@@ -1,5 +1,9 @@
 #import "AppDelegate.h"
 
+#if RCT_DEV
+#import <React/RCTDevLoadingView.h>
+#endif
+
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -8,6 +12,7 @@
 #import <Firebase.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+
 
 
 #ifdef FB_SONARKIT_ENABLED

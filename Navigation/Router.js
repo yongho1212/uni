@@ -25,6 +25,7 @@ import Category from '../screens/Host/Category';
 import Time from '../screens/Host/Time'
 import Chat from '../screens/Chat';
 import CometChatMessages from '../cometchat-pro-react-native-ui-kit/src/components/Messages/CometChatMessages';
+import { CometChatGroupListWithMessages } from '../cometchat-pro-react-native-ui-kit';
 import RoomList from '../screens/Room/RoomList';
 import Roomctrl from "../screens/Room/Roomctrl";
 
@@ -296,7 +297,7 @@ const Router = ({navigation}) => {
                     name={"Chat"}
                     component={Chat}
                     options={{
-                        headerShown: true,
+                        headerShown: false,
                         headerBackImage: ()=>( 
                             <MaterialIcons name={"arrow-back-ios"} 
                             size={35} 
@@ -317,6 +318,7 @@ const Router = ({navigation}) => {
                         headerShown: false,    
                     }}
                 />
+                
                 <Stack.Screen
                     name={"LogoutBtn"}
                     component={LogoutBtn}
