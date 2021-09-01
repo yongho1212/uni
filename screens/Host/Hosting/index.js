@@ -216,31 +216,31 @@ export default class Hosting extends Component {
           
                 <ImageBackground
                 source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
-                style={{width:"100%", height:'100%', }}
+                style={{width:"100%", height:'100%' }}
                 >
-                     <SafeAreaView >
-                <View style={styles.headerConatiner}>
-                    <View style={styles.backIcon}>
-                        <Pressable
-                        onPress={() => {this.removeStorage(); this.props.navigation.navigate('Main');}}
-                        style={styles.backIcon}
-                        >
-                       <MaterialIcons name={"arrow-back-ios"} 
-                        size={35} 
-                        color={'#000'}
-                        style={{marginLeft:30}}
-                        />
-                                
-                        </Pressable>
-                    </View>
+                      <SafeAreaView >
+                    <View style={styles.headerConatiner}>
+                        <View style={styles.backIcon}>
+                            <Pressable
+                                onPress={() => {this.removeStorage(); this.props.navigation.navigate('Main');}}
+                                style={styles.backIcon}
+                            >
+                            <MaterialIcons name={"arrow-back-ios"} 
+                                size={35} 
+                                color={'#000'}
+                                style={{marginLeft:30}}
+                            />                                
+                            </Pressable>
+                        </View>
                     
-                    <View style={styles.headerTextContainer}>
-                        {this.state.check === 'modify' ?                  
-                        <Text style={styles.headerText}>Modify</Text>
-                        :
-                        <Text style={styles.headerText}>Hosting</Text>
-                        }
-                    </View>
+                        <View style={styles.headerTextContainer}>
+                            {this.state.check === 'modify' 
+                            ? 
+                            <Text style={styles.headerText}>Modify</Text>
+                            : 
+                            <Text style={styles.headerText}>Hosting</Text>
+                            }
+                        </View>
                     
                 </View>      
                 <View style={styles.contentContainer}>

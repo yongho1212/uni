@@ -1,7 +1,7 @@
 // Custom Navigation Drawer / Sidebar with Image and Icon in Menu Options
 // https://aboutreact.com/custom-navigation-drawer-sidebar-with-image-and-icon-in-menu-options/
 
-import React from 'react';
+import React, { useEffect, useState }  from 'react';
 import {
   SafeAreaView,
   View,
@@ -22,12 +22,46 @@ import { Avatar } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const CustomSidebarMenu = (props) => {
-  const BASE_PATH =
-    'https://raw.githubusercontent.com/AboutReact/sampleresource/master/';
-  const proileImage = 'react_logo.png';
+
+const CustomSidebarMenu = (props) => {  
+  const [url, setUrl] = useState('https://cdn.pixabay.com/photo/2014/10/14/20/24/soccer-488700_960_720.jpg');
+  const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState('');
+
+  useEffect(() => {
+    getUserInfo();
+  });
+
+  const getUserInfo = async() => {
+    var id = await AsyncStorage.getItem('id');
+
+    fetch("http://127.0.0.1:3000/firstProfile/?id=" + id + "&time=" + new Date())
+    .then(responseData => {
+      setUrl(responseData.url);
+    })
+    .then(
+      fetch("http://127.0.0.1:3000/userInfo", {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json',
+        },
+        body: JSON.stringify({
+          id: id,
+        })
+      })
+      .then(response => response.json())
+      .then(responseData => {
+        responseData.map(userData => {
+          setEmail(userData.email);
+          setNickname(userData.nickname);
+        })
+      })
+    )        
+  }
+
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -35,16 +69,16 @@ const CustomSidebarMenu = (props) => {
       <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center', marginTop:40}}>
         <View style={{justifyContent: 'center', }}>
           <Text style={{fontWeight:'bold', fontSize:20, marginVertical:5}}>
-            Email
+         s s{email}
           </Text>
           <Text style={{fontWeight:'bold', fontSize:18, marginVertical:5}}>
-            Nick Name
+          {nickname}
           </Text>
         </View>
 
         {/* image - shoul be connected to - DB */}
         <View style={{marginHorizontal:25}}>
-        <Avatar.Image size={100} source={{uri: 'http://image.uc.cn/s/wemedia/s/upload/2020/7dmsUQ1ebgjl5bu/86f8d0fe046c2304481b85575418c5cc.jpg'}} />
+        <Avatar.Image size={100} source={{uri: url}} />
         </View>
       </View>
         <Pressable 

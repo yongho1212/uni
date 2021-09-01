@@ -18,6 +18,7 @@ export default class Category extends Component {
             allCategories: [],
             historyCategories: [],
             category: '',
+            selectCategory: '',
         }
     }
 
@@ -62,7 +63,6 @@ export default class Category extends Component {
                 })
             }
             
-            console.log(this.state.list);
             this.setState({allCategories: responseData[0]})
         })
     }
@@ -109,7 +109,7 @@ export default class Category extends Component {
                     <AntDesign
                         name={"arrowleft"}
                         style={styles.backIcon}
-                        onPress={() => this.props.navigation.push('Hosting', {category: this.state.category, Info: 'category'})}
+                        onPress={() => this.props.navigation.push('Hosting', {category: this.state.selectCategory, Info: 'category'})}
                     />                    
                     <TextInput
                         placeholder="카테고리를 입력하세요"
@@ -125,7 +125,7 @@ export default class Category extends Component {
                                 <Pressable
                                     onPress={() =>
                                         {
-                                            this.setState({category: item.category,});
+                                            this.setState({selectCategory: item.category,});
                                             this.props.navigation.push('Hosting', {category: item.category, Info: 'category'})
                                         }
                                     }

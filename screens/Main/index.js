@@ -18,7 +18,8 @@ import 'moment/locale/ko';
 import Geolocation from '@react-native-community/geolocation';
 import Geocoder from 'react-native-geocoding';
 
- import OneSignal from 'react-native-onesignal';
+import messaging from '@react-native-firebase/messaging';
+// import OneSignal from 'react-native-onesignal';
 
 import styles from './styles';
 
@@ -44,11 +45,11 @@ export default class Main extends Component {
      componentDidMount = async() => {                    
           this.getId();                 
 
-          OneSignal.setLogLevel(6, 0);
+      {/*    OneSignal.setLogLevel(6, 0);
           OneSignal.setAppId('1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea');   
           await OneSignal.setExternalUserId(await AsyncStorage.getItem('id'), (result) => {
                console.log(result);
-          });
+          });*/}
 
           if(this.props.route.params === undefined) {
                this.requestPermission().then(result => {
@@ -296,13 +297,16 @@ export default class Main extends Component {
                     </View>           
                     {this.state.id === this.state.roomInfo.id ?
                     <Pressable
-                    onPress={() => this.props.navigation.push(
-                         'Hosting', {_id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
-                                   category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'})}                              
-                    style={styles.modifyButton}
+                    onPress={() => this.props.navigation.push('Hosting', 
+                              {
+                                   _id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
+                                   category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'
+                              }
+                         )}                              
+                         style={styles.modifyButton}
                     >
                     <Text>modify</Text>
-               </Pressable>                   
+                    </Pressable>                      
                     :
                     <Pressable
                          onPress={() => this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id)}
