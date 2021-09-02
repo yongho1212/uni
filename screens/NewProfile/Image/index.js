@@ -108,7 +108,7 @@ export default class NewProfileImg extends Component {
             picker.push (
                 <TouchableOpacity
                     style={styles.imageBoard}
-                    onPress={() => {this.setState({index : index}); this.bs.current.snapTo(0);}}
+                    onPress={() => {this.setState({index : index}); this.pickImage('gallery');}}
                     key={index}
                 >                    
                     {data.uri === undefined ?
@@ -132,7 +132,8 @@ export default class NewProfileImg extends Component {
 
     bs = React.createRef();
 
-    renderContent = () => (
+
+        renderContent = () => (
         <View
           style={{
             flex: 0,
@@ -155,7 +156,7 @@ export default class NewProfileImg extends Component {
             </Pressable>
         </View>
     );
-
+        
     pickImage = async(option) => {
         if(option === 'camera') {
             ImagePicker.openCamera({
@@ -189,7 +190,7 @@ export default class NewProfileImg extends Component {
             })
         }else {
             ImagePicker.openPicker({
-                width: 300, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,
+                width: 200, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,
             }).then((image) => {
                 var sequence = 6;
                 var check = 0;
@@ -215,7 +216,7 @@ export default class NewProfileImg extends Component {
                 
                 this.uploadImage(image, this.state.index);
                 this.picker();    
-            }).catch((e) => Alert.alert(JSON.stringify(e)));
+            }).catch((e) => console.log(JSON.stringify(e)));
         }
 
         this.bs.current.snapTo(1);        

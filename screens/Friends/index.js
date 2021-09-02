@@ -1,5 +1,8 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Pressable } from 'react-native'
+
+
+
 
 const  Friends = () => {
      return (
@@ -7,7 +10,10 @@ const  Friends = () => {
                <Text>it is friends</Text>
                <Text>add friend</Text>
                <Text>accept friends</Text>
+               
+               <Pressable>
                <Text>friends list</Text>
+               </Pressable>
           </View>
      )
 }

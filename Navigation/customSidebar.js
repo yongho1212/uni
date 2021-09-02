@@ -58,6 +58,7 @@ const CustomSidebarMenu = (props) => {
           setEmail(userData.email);
           setNickname(userData.nickname);
         })
+        
       })
     )        
   }
@@ -66,23 +67,24 @@ const CustomSidebarMenu = (props) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       {/*Top Large Image */}
-      <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center', marginTop:40}}>
-        <View style={{justifyContent: 'center', }}>
-          <Text style={{fontWeight:'bold', fontSize:20, marginVertical:5}}>
-         s s{email}
-          </Text>
-          <Text style={{fontWeight:'bold', fontSize:18, marginVertical:5}}>
-          {nickname}
-          </Text>
-        </View>
-
-        {/* image - shoul be connected to - DB */}
-        <View style={{marginHorizontal:25}}>
-        <Avatar.Image size={100} source={{uri: url}} />
+      <View style={{ marginTop:30}}>
+        <View style={{flexDirection:'row',  alignItems:'center', justifyContent: 'center', height:100}}>
+         <View style={{flex:1, paddingHorizontal:10, }} >
+            <Text style={{fontWeight:'bold', fontSize:23, marginVertical:5}}>
+            {nickname}
+            </Text>
+            <Text numberOfLines={1} style={{fontWeight:'bold', fontSize:15, marginVertical:5}}>
+            {email}
+            </Text> 
+         </View>
+            <View style={{flex:1, paddingHorizontal:10,}}>
+              <Avatar.Image size={120} source={{uri: url}} />
+            </View>
         </View>
       </View>
+
         <Pressable 
-        style={{justifyContent:'center', alignItems:'center', marginTop:15, flexDirection:'row', marginBottom:-15}}
+        style={{justifyContent:'center', alignItems:'center', marginTop:10, flexDirection:'row', marginBottom:-20}}
         onPress={()=> props.navigation.navigate('EditProfile')}
         >
           <Text style={{color:'grey', fontSize:13, }}>

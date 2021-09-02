@@ -2,6 +2,9 @@ import React from 'react'
 import {Text, SafeAreaView, View, Button} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
+import {Config} from "react-native-config";
+
+const geoKey = Config.GEO_KEY;
 
 function History ({ navigation }) {
      return(
@@ -9,7 +12,7 @@ function History ({ navigation }) {
                <View style={styles.headerContainer}>
                <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'black'}
                         style={{marginLeft:30}}
                         onPress={() => navigation.goBack()}
                />
@@ -20,6 +23,7 @@ function History ({ navigation }) {
                    
                 </View>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
+      <Button onPress={() => console.log(Config.GOOGLE_MAPS_API_KEY)} title="CSLOG" />
     </SafeAreaView>
      );
 };
