@@ -81,17 +81,18 @@ const CustomSidebarMenu = (props) => {
               <Avatar.Image size={120} source={{uri: url}} />
             </View>
         </View>
-      </View>
-
         <Pressable 
         style={{justifyContent:'center', alignItems:'center', marginTop:10, flexDirection:'row', marginBottom:-20}}
         onPress={()=> props.navigation.navigate('EditProfile')}
         >
           <Text style={{color:'grey', fontSize:13, }}>
-            Edit Profile
+            My Profile
           </Text>
           <Icon name="keyboard-arrow-right" color="grey" size={30} /> 
         </Pressable>
+      </View>
+
+        
       
       <DrawerContentScrollView {...props}>
         <View style={{width:"100%", height:80, backgroundColor:'grey', justifyContent:'center', alignItems:'center', marginBottom:10}}>
