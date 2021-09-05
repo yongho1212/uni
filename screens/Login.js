@@ -29,6 +29,10 @@ import PhoneAuth from '../components/phoneAuth/PhoneAuth';
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CometChat } from '@cometchat-pro/react-native-chat';
+import {
+  AppleButton,
+  appleAuth,
+} from '@invertase/react-native-apple-authentication';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -241,9 +245,27 @@ const onFacebookButtonPress = async() => {
     //if (idToken) navigation.replace("HomeScreen");
     connect(id, email);
   }) 
- 
 
+}
 
+async function onAppleButtonPress() {
+  // Start the sign-in request
+  const appleAuthRequestResponse = await appleAuth.performRequest({
+    requestedOperation: appleAuth.Operation.LOGIN,
+    requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+  });
+
+  // Ensure Apple returned a user identityToken
+  if (!appleAuthRequestResponse.identityToken) {
+    throw 'Apple Sign-In failed - no identify token returned';
+  }
+
+  // Create a Firebase credential from the response
+  const { identityToken, nonce } = appleAuthRequestResponse;
+  const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
+
+  // Sign the user in with the credential
+  return auth().signInWithCredential(appleCredential);
 }
 
   
@@ -379,6 +401,44 @@ const onFacebookButtonPress = async() => {
                 </Text>
               </Pressable>
               </View>
+
+
+              <View style={styles.sectionStyle}>
+                
+              <Pressable
+              
+                style={{      backgroundColor: "white",
+                borderColor: "black",
+                width:312, 
+                height:48, 
+                flexDirection:'row', 
+                justifyContent: 'space-between',
+                paddingHorizontal:30,
+                alignItems:'center',
+                borderRadius:25,
+                shadowOpacity: 0.5,
+                            shadowRadius: 5,
+                            shadowColor: 'grey',
+                            shadowOffset: { height: 2, width: 2 },
+                            borderRadius:20,}}
+                onPress={() =>
+                  onAppleButtonPress().then(() =>
+                    console.log('Apple sign-in complete!'),
+                  )
+                }
+              >
+                <Ionicons 
+                        name={"ios-logo-apple"}
+                        style={{fontSize:38}}
+                        />
+                <Text style={styles.buttonTextStyle}>
+                Continue with Apple
+                </Text>
+                </Pressable>
+              
+            </View>
+
+              
               <View style={styles.sectionStyle}>
                 <Pressable
                   onPress={() => onFacebookButtonPress()}
@@ -406,7 +466,14 @@ const onFacebookButtonPress = async() => {
               />
               <Text style={{fontWeight:'bold', color:'black', fontSize: 16,}}> Continue with Facebook</Text>
             </Pressable>
+            
+            
+            <View>
+              
+            </View>
+            
               </View>
+              
               </View>
            {/* <Text
               style={styles.registerTextStyle}

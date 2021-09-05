@@ -10,6 +10,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Foundation from 'react-native-vector-icons/Foundation';
 
 import { CometChat } from '@cometchat-pro/react-native-chat';
 
@@ -102,6 +103,7 @@ export default class MyMapView extends Component {
 
         for(let index = 0; index < this.state.roomData.length; index++) {
             this.state.roomData.map(roomInfo => marker.push (
+                
                 <Marker 
                     coordinate={{latitude: roomInfo.latitude, longitude: roomInfo.longitude}}
                     onPress={() => {                        
@@ -122,21 +124,150 @@ export default class MyMapView extends Component {
                         />
                     </View>
                     : roomInfo.category === '농구' ? 
-                    <View style={{ justifyContent:'center', alignItems:'center'}}>
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                        <Ionicons
+                        {/*<Image  style={{ backgroundColor:'brown', width:40,height:40, zIndex:10, marginBottom:8, borderRadius:30 ,  }}   source={require('../assets/cateicon/003-basketball.png')}/>*/}
+                         <Ionicons
                             name={"basketball"}
                             size={37}   
                             color={'#B96319'}     
                             style={{ zIndex:10, marginBottom:8 }}                                        
-                        />
+                        /> 
                     </View>
                     : roomInfo.category === '볼링' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
                     <FontAwesome5 
                         name={"bowling-ball"}
-                        size={20}
+                        size={37}   
                         color={'#bc2b62'}
                     />
+                    </View>
+                    : roomInfo.category === '야구' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <FontAwesome5 
+                        name={"baseball-outline"}
+                        size={37}   
+                        color={'#bc2b62'}
+                    />
+                    </View>
+                    : roomInfo.category === '배드민턴' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <MaterialCommunityIcons 
+                        name={"badminton"}
+                        size={37}   
+                        color={'#bc2b62'}
+                    />
+                    </View>
+                    : roomInfo.category === '등산' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <Foundation 
+                        name={"mountains"}
+                        size={37}   
+                        color={'#bc2b62'}
+                    />
+                    </View>
+                    : roomInfo.category === '당구' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <MaterialCommunityIcons 
+                        name={"billiards"}
+                        size={37}   
+                        color={'#bc2b62'}
+                    />
+                    </View>
+                    : roomInfo.category === '요가' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <MaterialCommunityIcons 
+                        name={"yoga"}
+                        size={37}   
+                        color={'#bc2b62'}
+                    />
+                    </View>
+                    : roomInfo.category === '웨이트' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <MaterialCommunityIcons 
+                        name={"weight-lifter"}
+                        size={37}   
+                        color={'#bc2b62'}
+                    />
+                    </View>
+                    : roomInfo.category === '자전거' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <Ionicons 
+                        name={"bicycle"}
+                        size={37}   
+                        color={'#000'}
+                    />
+                    </View>
+                    : roomInfo.category === '런닝' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <FontAwesome5 
+                        name={"running"}
+                        size={37}   
+                        color={'#000'}
+                    />
+                    </View>
+                    : roomInfo.category === '골프' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <MaterialCommunityIcons 
+                        name={"golf"}
+                        size={37}   
+                        color={'#000'}
+                    />
+                    </View>
+                    : roomInfo.category === '탁구' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <FontAwesome5 
+                        name={"gotable-tennislf"}
+                        size={37}   
+                        color={'#000'}
+                    />
+                    </View>
+                    : roomInfo.category === '스케이트 보드' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                    <MaterialCommunityIcons 
+                        name={"skateboard"}
+                        size={37}   
+                        color={'#000'}
+                    />
+                    </View>
+                     : roomInfo.category === '커피 한잔' ?
+                     <View style={{ justifyContent:'center', alignItems:'center'}} >
+                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                     <MaterialCommunityIcons 
+                         name={"coffee"}
+                         size={37}   
+                         color={'#000'}
+                     />
+                     </View>
+                     : roomInfo.category === '밥 한끼!' ? 
+                     <View style={{ justifyContent:'center', alignItems:'center'}} >
+                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                         <Image  
+                         style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                         source={require('../assets/cateicon/dish.png')}/>
+                          
+                     </View>
+                    : roomInfo.category === '클럽' ? 
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                        source={require('../assets/cateicon/disco-ball.png')}/>
+                         
+                    </View>
+                    
                     : null}
                 </Marker>
             ))

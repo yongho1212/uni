@@ -14,7 +14,7 @@ import LogoutBtn from '../../components/logOutBtn';
 
 import Moment from 'moment';
 import 'moment/locale/ko';
-import Config from "react-native-config";
+
 
 import Geolocation from '@react-native-community/geolocation';
 import Geocoder from 'react-native-geocoding';
@@ -143,7 +143,7 @@ export default class Main extends Component {
           var usersProfile = new Array();
 
           if(data !== undefined) {
-               this.setState({roomInfo: data});    
+               this.setState({roomInfo: data});
                
                for(let i = 0; i < data.hostUser.length; i++) {
                     fetch("http://127.0.0.1:3000/firstProfile/?id=" + data.hostUser[i] + "&time=" + new Date())
@@ -152,8 +152,7 @@ export default class Main extends Component {
                               hostsProfile.push(responseData.url);
                          }
                     })   
-                    //.then(() => this.setState({hostsProfile: hostsProfile}))                 
-                    .then(() => this.state.hostsProfile = hostsProfile);
+                    .then(() => this.setState({hostsProfile: hostsProfile}))                 
                }
                //this.setState({hostsProfile: hostsProfile});
 
@@ -268,8 +267,8 @@ export default class Main extends Component {
                                              />                                                                                                                                                                                                                                                        
                                         )                                             
                                    }) 
-                              : null}                              
-                         </ScrollView>                                                                                     
+                              : null}    
+                         </ScrollView>                                                                                      
                          <Text style={styles.placeText}>Place</Text>
                          <TextInput
                               style={styles.placeInfo}
@@ -301,7 +300,7 @@ export default class Main extends Component {
                               editable={false}
                          />
                     </View>           
-                    {this.state.id !== this.state.roomInfo.id ?
+                    {this.state.id === this.state.roomInfo.id ?
                     <Pressable
                          onPress={() => this.props.navigation.push('Hosting', 
                               {

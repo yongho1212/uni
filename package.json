@@ -13,6 +13,7 @@
     "@babel/plugin-transform-react-jsx": "^7.14.5",
     "@cometchat-pro/react-native-calls": "^2.1.1-beta3",
     "@cometchat-pro/react-native-chat": "3.0.0",
+    "@invertase/react-native-apple-authentication": "^2.1.2",
     "@react-native-async-storage/async-storage": "react-native-async-storage/async-storage",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/geolocation": "^2.0.2",
