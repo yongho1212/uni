@@ -21,6 +21,8 @@
 		35B8849E268F185B00491092 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B8849D268F185B00491092 /* File.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		90E821296B6DA9E4F680A038 /* libPods-uni.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA21262441F962CFE566D35 /* libPods-uni.a */; };
+		EF969A3626E91C6F000A9D4E /* OpenSSL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF969A3526E91C6F000A9D4E /* OpenSSL.xcframework */; };
+		EF969A3726E91C6F000A9D4E /* OpenSSL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF969A3526E91C6F000A9D4E /* OpenSSL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE52FF79D42C50E036B461EC /* libPods-uni-uniTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1D252BBBA93DC02D95C1EC /* libPods-uni-uniTests.a */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,17 @@
 			files = (
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF969A3826E91C6F000A9D4E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EF969A3726E91C6F000A9D4E /* OpenSSL.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -93,6 +106,7 @@
 		CD245E0D04BF748121B0C97F /* Pods-uni-uniTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uni-uniTests.release.xcconfig"; path = "Target Support Files/Pods-uni-uniTests/Pods-uni-uniTests.release.xcconfig"; sourceTree = "<group>"; };
 		DD1D252BBBA93DC02D95C1EC /* libPods-uni-uniTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uni-uniTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EF969A3526E91C6F000A9D4E /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "Pods/OpenSSL-Universal/Frameworks/OpenSSL.xcframework"; sourceTree = "<group>"; };
 		FE372725322FD93D7BD1DBED /* Pods-uni.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uni.debug.xcconfig"; path = "Target Support Files/Pods-uni/Pods-uni.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF969A3626E91C6F000A9D4E /* OpenSSL.xcframework in Frameworks */,
 				90E821296B6DA9E4F680A038 /* libPods-uni.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,6 +169,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF969A3526E91C6F000A9D4E /* OpenSSL.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				1BA21262441F962CFE566D35 /* libPods-uni.a */,
 				DD1D252BBBA93DC02D95C1EC /* libPods-uni-uniTests.a */,
@@ -273,6 +289,7 @@
 				6E48650EA3782974D082F006 /* [CP] Copy Pods Resources */,
 				DC492065F248748C4E24C7D2 /* [CP-User] [RNFB] Core Configuration */,
 				3560059626DD1FBD0040371B /* Embed App Extensions */,
+				EF969A3826E91C6F000A9D4E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -543,6 +560,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = ZWD7SY4JK8;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -572,6 +590,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = ZWD7SY4JK8;
 				INFOPLIST_FILE = uniTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -598,6 +617,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = uni/uni.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWD7SY4JK8;
 				ENABLE_BITCODE = NO;
@@ -619,6 +640,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uni.loof;
 				PRODUCT_NAME = uni;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "uni-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -634,6 +656,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = uni/uni.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = ZWD7SY4JK8;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -655,6 +679,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uni.loof;
 				PRODUCT_NAME = uni;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "uni-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -694,7 +719,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -760,7 +785,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

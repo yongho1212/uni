@@ -8,7 +8,6 @@ PODS:
   - BVLinearGradient (2.5.6):
     - React
   - CocoaAsyncSocket (7.6.5)
-  - CometChatCalls (2.1.1-beta2)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.64.2)
   - FBReactNativeSpec (0.64.2):
@@ -413,9 +412,6 @@ PODS:
     - React-jsi (= 0.64.2)
     - React-perflogger (= 0.64.2)
   - React-jsinspector (0.64.2)
-  - react-native-cometchat-rtc (2.1.1-beta3):
-    - CometChatCalls (= 2.1.1-beta2)
-    - React
   - react-native-date-picker (3.4.3):
     - React-Core
   - react-native-document-picker (6.0.4):
@@ -653,7 +649,6 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-  - "react-native-cometchat-rtc (from `../node_modules/@cometchat-pro/react-native-calls`)"
   - react-native-date-picker (from `../node_modules/react-native-date-picker`)
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - react-native-fbsdk-next (from `../node_modules/react-native-fbsdk-next`)
@@ -703,7 +698,6 @@ SPEC REPOS:
     - AppAuth
     - boost-for-react-native
     - CocoaAsyncSocket
-    - CometChatCalls
     - FBSDKCoreKit
     - FBSDKLoginKit
     - FBSDKShareKit
@@ -772,8 +766,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
-  react-native-cometchat-rtc:
-    :path: "../node_modules/@cometchat-pro/react-native-calls"
   react-native-date-picker:
     :path: "../node_modules/react-native-date-picker"
   react-native-document-picker:
@@ -866,10 +858,9 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
-  CometChatCalls: cd55f739d9e7c4f3d56b61392b15af3c7af49c8d
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: a02e47c9c444dfffdf0ba8e686752fb468e51e54
+  FBReactNativeSpec: f33995f660d2f29d064605657730053dbb034e7d
   FBSDKCoreKit: 0d1ae58388a458b8222f72025804cdc84eb5d0c3
   FBSDKLoginKit: aea68df6121c5e165ccae2fabfdc83c4644ee40f
   FBSDKShareKit: 70889c97c62f0c6b3ccb8b999e73a85f19024001
@@ -912,7 +903,6 @@ SPEC CHECKSUMS:
   React-jsi: 67747b9722f6dab2ffe15b011bcf6b3f2c3f1427
   React-jsiexecutor: 80c46bd381fd06e418e0d4f53672dc1d1945c4c3
   React-jsinspector: cc614ec18a9ca96fd275100c16d74d62ee11f0ae
-  react-native-cometchat-rtc: 990116373c1357c473e6754e501966e15f40e4ee
   react-native-date-picker: 201b481c94dcb7678f4712477ad026dd7793305b
   react-native-document-picker: a7950caaee8587002c9acbc7fe497a342094d93a
   react-native-fbsdk-next: 19e974b071047b7ed1dad86a9dc3fe77dff76b8c
@@ -963,4 +953,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f1285fe20456f26e003f57b7ccb34ea8d805c0ab
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.0

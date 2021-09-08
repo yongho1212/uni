@@ -733,11 +733,6 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@cometchat-pro/react-native-calls@^2.1.1-beta3":
-  version "2.1.1-beta3"
-  resolved "https://registry.yarnpkg.com/@cometchat-pro/react-native-calls/-/react-native-calls-2.1.1-beta3.tgz#5a13c81a12b6069239b02e6bc9afdff309ee7b1d"
-  integrity sha512-T0Aw9j3JhgTFoiWKEIyo+OhUB8VglYqtdQVWNYGRfs33LEe7W7Dwy7LqKU9bqmOExVZnLoMA15X4YSExrQoT+A==
-
 "@cometchat-pro/react-native-chat@3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@cometchat-pro/react-native-chat/-/react-native-chat-3.0.0.tgz#ca02af3c66a965756e11c3eea704f84463493cc1"
