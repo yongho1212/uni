@@ -10,11 +10,13 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import Foundation from 'react-native-vector-icons/Foundation';
 
 import { CometChat } from '@cometchat-pro/react-native-chat';
 
-
+//
 
 export default class MyMapView extends Component {
     constructor(props){
@@ -88,8 +90,147 @@ export default class MyMapView extends Component {
             if(this.state.check === 1) {
                 Interest.map((hobby, index) => {
                     this.state.hobbies.push(
-                        <ActionButton.Item key={index} buttonColor='#49ffbd' onPress={() => {this.connectFilter(hobby); this.state.hobby = hobby;}}>
-                            <Text>{hobby}</Text>
+                        <ActionButton.Item 
+                            key={index} 
+                            buttonColor='#49ffbd' 
+                            onPress={() => {this.connectFilter(hobby); 
+                                const hobby = this.state.hobby;}}
+                        >
+                         {/*  { hobby === 축구 ?
+                            
+                                <MaterialCommunityIcons
+                            name={"soccer"}
+                            size={37}
+                            color={'black'}
+                            style={{ zIndex:10, marginBottom:8 }}   
+                        />
+                        
+                        : hobby === 농구 ?
+                        
+                        <Ionicons
+                            name={"basketball"}
+                            size={37}   
+                            color={'#B96319'}     
+                            style={{ zIndex:10, marginBottom:8 }}                                        
+                        /> 
+                        
+                        : null}   */}
+                       
+                            
+                            {/*<Text>{hobby}</Text>*/}
+                            
+                        { hobby === '축구' ?                   
+                                <MaterialCommunityIcons
+                                name={"soccer"}
+                                size={37}
+                                color={'black'}
+                                style={{ zIndex:10,  }}   
+                                />
+                                : hobby === '농구' ?
+                                <Ionicons
+                                    name={"basketball"}
+                                    size={37}    
+                                    style={{ zIndex:10, }}                                        
+                                /> 
+                                : hobby === '볼링' ?
+                                <FontAwesome5 
+                                    name={"bowling-ball"}
+                                    size={37}   
+                                    color={'#bc2b62'}
+                                />
+                                : hobby === '야구' ?
+                                <Ionicons 
+                                name={"baseball-outline"}
+                                size={37}   
+                                
+                                />
+                                : hobby === '배드민턴' ?
+                                <MaterialCommunityIcons 
+                                    name={"badminton"}
+                                    size={37}   
+                                    
+                                />
+                                : hobby === '요가' ?
+                                <FontAwesome5 
+                                    name={"baseball-outline"}
+                                    size={37}   
+                                    
+                                />
+                                : hobby === '웨이트' ?
+                                <MaterialCommunityIcons 
+                                    name={"weight-lifter"}
+                                    size={37}   
+                                    
+                                />
+                                : hobby === '등산' ?
+                                <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                                : hobby === '자전거' ?
+                                <Ionicons 
+                                    name={"bicycle"}
+                                    size={37}   
+                                    color={'#000'}
+                                />
+                                : hobby === '런닝' ?
+                                <FontAwesome5 
+                                    name={"running"}
+                                    size={37}   
+                                    color={'#000'}
+                                />
+                                : hobby === '골프' ?
+                                
+                                <MaterialCommunityIcons 
+                                    name={"golf"}
+                                    size={37}   
+                                    color={'#000'}
+                                />
+                                : hobby === '당구' ?
+                                
+                                <Image  
+                                style={{ width:38,height:38, zIndex:10,  borderRadius:19 ,  }}   
+                                source={require('../assets/cateicon/pool.png')}/>
+                                
+                                : hobby === '탁구' ?
+                                
+                                <FontAwesome5 
+                                    name={"gotable-tennislf"}
+                                    size={37}   
+                                    color={'#000'}
+                                />
+                                
+                                : hobby === '스케이트 보드' ?
+                                
+                                <Image  
+                                style={{ width:38,height:38, zIndex:10,  borderRadius:19 ,  }}   
+                                source={require('../assets/cateicon/skateboard.png')}/>
+       
+                                 : hobby === '커피 한잔' ?
+                                
+                                 <MaterialCommunityIcons 
+                                     name={"coffee"}
+                                     size={37}   
+                                     color={'#000'}
+                                 />
+                             
+                                 : hobby === '밥 한끼!' ? 
+                            
+                                     <Image  
+                                     style={{ width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                                     source={require('../assets/cateicon/dish.png')}/>
+                                      
+                            
+                                : hobby === '클럽' ? 
+                                
+                                
+                                    <Image  
+                                    style={{  width:38,height:38,  borderRadius:19 ,  }}   
+                                    source={require('../assets/cateicon/disco-ball.png')}/>
+                                     
+                                
+                        : <Text>{hobby}</Text>
+                        } 
+                            
+                            
+                            
                         </ActionButton.Item>                    
                     )
                 })
@@ -126,13 +267,9 @@ export default class MyMapView extends Component {
                     : roomInfo.category === '농구' ? 
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                        {/*<Image  style={{ backgroundColor:'brown', width:40,height:40, zIndex:10, marginBottom:8, borderRadius:30 ,  }}   source={require('../assets/cateicon/003-basketball.png')}/>*/}
-                         <Ionicons
-                            name={"basketball"}
-                            size={37}   
-                            color={'#B96319'}     
-                            style={{ zIndex:10, marginBottom:8 }}                                        
-                        /> 
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                        source={require('../assets/cateicon/basketball.png')}/>
                     </View>
                     : roomInfo.category === '볼링' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
@@ -173,11 +310,9 @@ export default class MyMapView extends Component {
                     : roomInfo.category === '당구' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <MaterialCommunityIcons 
-                        name={"billiards"}
-                        size={37}   
-                        color={'#bc2b62'}
-                    />
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                        source={require('../assets/cateicon/pool.png')}/>
                     </View>
                     : roomInfo.category === '요가' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
@@ -209,11 +344,9 @@ export default class MyMapView extends Component {
                     : roomInfo.category === '런닝' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <FontAwesome5 
-                        name={"running"}
-                        size={37}   
-                        color={'#000'}
-                    />
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                        source={require('../assets/cateicon/running.png')}/>
                     </View>
                     : roomInfo.category === '골프' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
@@ -236,11 +369,10 @@ export default class MyMapView extends Component {
                     : roomInfo.category === '스케이트 보드' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <MaterialCommunityIcons 
-                        name={"skateboard"}
-                        size={37}   
-                        color={'#000'}
-                    />
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                        source={require('../assets/cateicon/skateboard.png')}/>
+                         {/*https://www.flaticon.com/authors/photo3idea-studio*/}
                     </View>
                      : roomInfo.category === '커피 한잔' ?
                      <View style={{ justifyContent:'center', alignItems:'center'}} >
@@ -348,6 +480,7 @@ export default class MyMapView extends Component {
                 size={48}
                 buttonColor="#fb009e" 
                 verticalOrientation="down"
+                renderIcon={active => active ? (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconOpen} /> ) : (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconClose} />)}
                 style={styles.actionButtonIcon} 
                 >
                         {this.state.hobbies}  
@@ -363,7 +496,16 @@ const styles = StyleSheet.create({
       position:'absolute',
       top:25,
       right:-10
-     
+    },
+    actionButtonIconClose:{
+        fontSize:25,
+        color:'#49ffbd',
+        
+    },
+    actionButtonIconOpen:{
+        fontSize:25,
+        color:'#fff',
+        
     },
     locationBtn:{
         position: 'absolute', 

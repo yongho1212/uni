@@ -112,7 +112,7 @@ export default class Interest extends Component {
                     }
                     style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
                 >
-                    <Text key={data._id + '5'} style={styles.boxText}>{data.category}</Text>
+                    <Text key={data._id + '5'} style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectText : styles.selectedText}>{data.category}</Text>
                 </Pressable>          
             )
         })
@@ -194,7 +194,7 @@ export default class Interest extends Component {
                         }
                         style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
                     >
-                        <Text key={data._id + '5'}  style={styles.boxText}>{data.category}</Text>
+                        <Text key={data._id + '5'}  style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectText : styles.selectedText}  >{data.category}</Text>
                     </Pressable>
             )
         })

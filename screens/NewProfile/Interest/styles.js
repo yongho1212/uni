@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     flexDirection: 'row', 
     flexWrap: 'wrap', 
-    marginHorizontal: Dimensions.get('window').width * 0.05,
+    marginHorizontal: Dimensions.get('window').width * 0.03,
+    
      
     
   },
@@ -14,7 +15,8 @@ const styles = StyleSheet.create({
   selectBox: {
     
     height: 50,
-    
+    borderWidth:2, 
+    borderColor: '#fff',
     backgroundColor:'#fff',  
     marginRight: 20, 
     marginVertical: 6,
@@ -45,9 +47,18 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowColor: 'grey',
     shadowOffset: { height: 3, width: 3 },
+    
   },
   boxText:{
-    fontSize:20
+    fontSize:20,
+  },
+  selectText:{
+    color:'grey',
+    fontSize:20,
+  },
+  selectedText:{
+    color:'#000',
+    fontSize:20,
   },
   vaccum: {
     width: Dimensions.get('window').width,
