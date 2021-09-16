@@ -85,7 +85,7 @@ const LoginScreen = ({ navigation }) => {
       console.log(e);
     }  
 
-    const URL = "http://127.0.0.1:3000/signIn";
+    const URL = "https://loof-back.herokuapp.com/signIn";
     fetch(URL, {
         method: 'POST',
         headers: {

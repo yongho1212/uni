@@ -58,7 +58,7 @@ export default class Birth extends Component {
     }   
 
     connect = async () => {
-        const URL = "http://127.0.0.1:3000/setBirth";
+        const URL = "https://loof-back.herokuapp.com/setBirth";
         fetch(URL, {
             method: 'POST',
             headers: {

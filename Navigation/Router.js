@@ -31,6 +31,7 @@ import Roomctrl from "../screens/Room/Roomctrl";
 
 import DrawerNav from './Ctrl';
 import EditProfile from '../screens/EditProfile';
+import EditHobby from '../screens/EditProfile/editHobby';
 
 import LogoutBtn from '../components/logOutBtn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -331,6 +332,13 @@ const Router = ({navigation}) => {
                     component={EditProfile}
                     options={{
                         headerShown: true,    
+                    }}
+                />
+                 <Stack.Screen
+                    name={"editHobby"}
+                    component={EditHobby}
+                    options={{
+                        headerShown: false,    
                     }}
                 />
             </Stack.Navigator>

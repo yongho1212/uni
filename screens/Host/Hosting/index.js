@@ -89,11 +89,7 @@ export default class Hosting extends Component {
         } catch(e) {
             console.log(e);
         }
-
-        //console.log(this.state.room);
-        console.log(this.state.check);
     }
-
     removeStorage = async() => {
         await AsyncStorage.removeItem('check');
         await AsyncStorage.removeItem('category');
@@ -114,7 +110,7 @@ export default class Hosting extends Component {
         const {id, address, lat, lng, category, title, time, timeInfo} = this.state.room;
         var GUID = Moment(new Date()).format('MMDD_HHmmss');
 
-        const URL = "http://127.0.0.1:3000/createRoom";
+        const URL = "https://loof-back.herokuapp.com/createRoom";
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -132,6 +128,7 @@ export default class Hosting extends Component {
                 GUID: GUID,
             })
         })
+        .then(() => this.props.navigation.push('DrawerNav', {lat: this.state.room.lat, lng: this.state.room.lng}))
     }
 
     modifyRoom = async() => {
@@ -140,7 +137,7 @@ export default class Hosting extends Component {
 
         console.log(_id);
         
-        const URL = "http://127.0.0.1:3000/modifyRoom";
+        const URL = "https://loof-back.herokuapp.com/modifyRoom";
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -222,7 +219,7 @@ export default class Hosting extends Component {
                     <View style={styles.headerConatiner}>
                         <View style={styles.backIcon}>
                             <Pressable
-                                onPress={() => {this.removeStorage(); this.props.navigation.navigate('Main');}}
+                                onPress={() => {this.removeStorage(); this.props.navigation.navigate('DrawerNav');}}
                                 style={styles.backIcon}
                             >
                             <MaterialIcons name={"arrow-back-ios"} 

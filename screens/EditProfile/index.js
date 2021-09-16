@@ -1,90 +1,350 @@
-import React from 'react'
-import { View, Text, Pressable, Image, ScrollView, TextInput } from 'react-native'
+import React, {Component} from 'react';
+import {KeyboardAvoidingView, View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert, SafeAreaView, ImageBackground} from 'react-native';
+import ImagePicker from 'react-native-image-crop-picker';
+
+import BottomSheet from 'reanimated-bottom-sheet';
+import Animated from 'react-native-reanimated';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+
 import styles from './styles';
-import { Avatar } from 'react-native-paper';
+import { ScrollView } from 'react-native-gesture-handler';
 
-export default function EditProfile() {
-     return (
-          <ScrollView style={styles.editContainer}>
-               <Text style={{left:10,top:10}}>
-                    Image
-               </Text>
-               <View style={styles.imageContainer}>
-                    
-                    <View style={styles.mainImageContainer}>
-                         
-                         <Pressable>
-                         <Avatar.Image 
-                         style={styles.mainImage}
-                         size={200} source={{uri: 'http://image.uc.cn/s/wemedia/s/upload/2020/7dmsUQ1ebgjl5bu/86f8d0fe046c2304481b85575418c5cc.jpg'}} />
-                         </Pressable>
-                    </View>
-                    <View style={styles.subImageContainer}>
-                         <Pressable>
-                              <Avatar.Image 
-                              style={styles.subImage}
-                              size={100} source={{uri: 'https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/65781703_314942746052494_3117483165485105152_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=0PvxMe4wmRoAX9zSkNc&tn=zPDLxhLSMNHgm3Xe&_nc_ht=scontent-ssn1-1.xx&oh=19963bdbf03c68e22e508ed3afc32700&oe=613F9927'}} />
-                         </Pressable>
-                         <Pressable>
-                              <Avatar.Image 
-                              style={styles.subImage}
-                              size={100} source={{uri: 'https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/67295560_324573861756049_6752734289294524416_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=urC0wvWZXr4AX8EJcpj&tn=zPDLxhLSMNHgm3Xe&_nc_ht=scontent-ssn1-1.xx&oh=17fe0a2a8d5b23c4aaeb8132296dbea1&oe=614182E1'}} />
-                         </Pressable>
-                         <Pressable>
-                              <Avatar.Image 
-                              style={styles.subImage}
-                              size={100} source={{uri: 'https://scontent-ssn1-1.xx.fbcdn.net/v/t1.6435-9/72133855_376680976545337_8393998703647522816_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=8bfeb9&_nc_ohc=cAeuzrVjx38AX-pU76P&_nc_ht=scontent-ssn1-1.xx&oh=f61346d1c4ef8626e27e3c4202f9f987&oe=61400694'}} />
-                         </Pressable>
-                    </View>
-                    <Text style={{ left:10,top:10}}>
-                    Interest
-                    </Text>
-                    <View style={styles.boxContainer}>
-                         
-                         <View style={styles.selectBox}>
-                              <Text>
-                                   드라이빙
-                              </Text>
-                         </View>
-                         <View style={styles.selectBox}>
-                              <Text>
-                                   배드민턴
-                              </Text>
-                         </View>
-                         <View style={styles.selectBox}>
-                              <Text>
-                                   축구
-                              </Text>
-                         </View>
-                         <View style={styles.selectBox}>
-                              <Text>
-                                   농구
-                              </Text>
-                         </View>
-                         <View style={styles.selectBox}>
-                              <Text>
-                                   축구
-                              </Text>
-                         </View>
+export default class EditProfile extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: '',
+            picker: [],
+            image: [
+                {uri: undefined, width: 100, height: 150, mime: undefined},
+                {uri: undefined, width: 100, height: 150, mime: undefined},
+                {uri: undefined, width: 100, height: 150, mime: undefined},
+                {uri: undefined, width: 100, height: 150, mime: undefined},
+                {uri: undefined, width: 100, height: 150, mime: undefined},
+                {uri: undefined, width: 100, height: 150, mime: undefined},    
+            ],
+            index: 0,
+            interestList: [],
+            userInterest: [],
+        }
+    }
 
-                    </View>
-                    <Text style={{ left:10,top:10}}>
-                    Interest
-                    </Text>
-                    <View style={styles.aboutContainer}>
-                         
-                         <TextInput 
-                         style={styles.aboutmeInput}
-                         multiline ={true}
-                         placeholder="About Me"
-                         >
-                              
-                         </TextInput>
-                         
+    componentDidMount = () => {                   
+        this.props.navigation.addListener('focus', () => {   
+            this.getProfile();  
+            this.getUserInfo();                                                          
+        })                
+    }
 
+    getProfile = async () => {                
+        const id = await AsyncStorage.getItem('id');
+        this.setState({ 
+            id: id,
+        })
+
+        fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + id  + "&time=" + new Date())
+        .then(responseData => {
+            if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
+                this.state.image[0].uri = responseData.url;     
+            }
+        })
+        .then(() =>
+            fetch("https://loof-back.herokuapp.com/secondProfile/?id=" + id + "&time=" + new Date())
+            .then(responseData => {  
+                if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {
+                    this.state.image[1].uri = responseData.url;                                     
+                }
+            })
+        )
+        .then(() =>
+            fetch("https://loof-back.herokuapp.com/thirdProfile/?id=" + id + "&time=" + new Date())
+            .then(responseData => {
+                if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
+                    this.state.image[2].uri = responseData.url;                                   
+                }
+            })
+        )
+        .then(() =>
+            fetch("https://loof-back.herokuapp.com/fourthProfile/?id=" + id + "&time=" + new Date())
+            .then(responseData => {
+                if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
+                    this.state.image[3].uri = responseData.url;     
+                }
+            })
+        ).then(() =>
+            fetch("https://loof-back.herokuapp.com/fifthProfile/?id=" + id + "&time=" + new Date())
+            .then(responseData => {
+                if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
+                    this.state.image[4].uri = responseData.url;                                     
+                }
+            })
+        ).then(() => 
+            fetch("https://loof-back.herokuapp.com/sixthProfile/?id=" + id + "&time=" + new Date())
+            .then(responseData => {
+                if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
+                    this.state.image[5].uri = responseData.url;                                     
+                }
+            })
+        )
+        .then(() => this.picker())
+    }
+
+    picker = () => {
+        let picker = new Array();
+
+        this.state.image.map((data, index) => { 
+            picker.push (
+                <TouchableOpacity
+                    style={styles.imageBoard}
+                    onPress={() => {this.setState({index : index}); this.bs.current.snapTo(0);}}
+                    key={index}
+                >                    
+                    {data.uri === undefined ?
+                        <Fontisto
+                            name={"plus-a"}
+                        />
+                        :
+                        <Image 
+                            source={{uri: data.uri}}
+                            style={{width: 100, height: 150, borderRadius: 25}}
+                        />
+                    }
+                </TouchableOpacity>
+            )
+        })
+
+        this.setState({
+            picker: picker
+        })
+    }
+
+    pickImage = async(option) => {
+        if(option === 'camera') {
+            ImagePicker.openCamera({
+                width: 300, height: 400, cropping: true, freeStyleCropEnabled: true, includeBase64: true,           
+            })
+            .then(image => {
+                var sequence = 6;
+                var check = 0;
+
+                this.state.image.map((data, index) => {
+                    if(data.uri !== undefined) {
+                        if(this.state.index === index) {
+                            data.uri = image.path;
+                            data.mime = image.mime;
+                            data.width = image.width;
+                            data.height = image.height;
+                            
+                            check += 1;
+                        }
+                    }else if(data.uri === undefined) {
+                        if(check === 0) {
+                            if(sequence > index) {
+                                data.uri = image.path;
+                                data.mime = image.mime;
+                                data.width = image.width;
+                                data.height = image.height;
+
+                                sequence = index;
+                                this.setState({index: sequence});
+                            }
+                        }
+                    }
+                })
+                
+                this.uploadImage(image, this.state.index);
+                this.picker();
+            })
+        }else {
+            ImagePicker.openPicker({
+                width: 300, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,
+            }).then((image) => {
+                var sequence = 6;
+                var check = 0;
+
+                this.state.image.map((data, index) => {
+                    if(data.uri !== undefined) {
+                        if(this.state.index === index) {
+                            data.uri = image.path;
+                            data.mime = image.mime;
+                            check += 1;
+                        }
+                    }else if(data.uri === undefined) {
+                        if(check === 0) {
+                            if(sequence > index) {
+                                data.uri = image.path;
+                                data.mime = image.mime;
+                                sequence = index;
+                                this.setState({index: sequence});
+                            }
+                        }
+                    }
+                })
+                
+                this.uploadImage(image, this.state.index);
+                this.picker();    
+            }).catch((e) => Alert.alert(JSON.stringify(e)));
+        }
+
+        this.bs.current.snapTo(1);        
+    }
+
+    uploadImage = async(image, index) => {
+        const formData = new FormData();
+
+        var path = image.path;
+        var name = image.path.substring(path.lastIndexOf('/') + 1, path.length);
+        var type = image.mime;
+
+        var id = this.state.id;
+        var date = Date.now();
+
+        formData.append('id', id);
+        formData.append('date', date);
+        formData.append('index', index);
+        formData.append('profile', {
+            name: name,
+            uri: path,  
+            type: type,
+        })
+
+        const URL = "https://loof-back.herokuapp.com/uploadProfile";
+        fetch(URL, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+            },
+            body: formData,
+        })
+    }
+
+    bs = React.createRef();
+    renderContent = () => (
+        <View
+            style={{
+                flex: 0,
+                backgroundColor: '#fff',
+                paddingTop: 30,
+                height: 700,
+            }}
+        >      
+            <Pressable
+                style={styles.pickerButton}
+                onPress={() => this.pickImage('camera')}
+            >
+                <Fontisto 
+                    name={'camera'}
+                    size={25} 
+                    style={{marginHorizontal: 40}}
+                />                
+                <Text style={{fontSize: 17}}>Take Photo</Text>
+            </Pressable>
+            <Pressable
+                style={styles.pickerButton}
+                onPress={() => this.pickImage('gallery')}
+            >
+                <FontAwesome 
+                    name={'image'}
+                    size={25}
+                    style={{marginHorizontal: 40}}
+                />
+                <Text style={{fontSize: 17}}>Choose From Gallery</Text>
+            </Pressable>
+        </View>
+    );    
+
+    getUserInfo = async() => {       
+        this.state.interestList = '';
+
+        const id = await AsyncStorage.getItem('id');
+        const URL = "https://loof-back.herokuapp.com/userInfo";
+        var interest = new Array();
+
+        fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+                id: id,
+            })
+        })
+        .then(response => response.json())
+        .then(responseData => {
+          responseData.map(userData => {
+            interest = userData.hobby.split(',');                        
+          })
+        })
+        .then(() => {
+            this.state.userInterest = interest; 
+
+            interest.map(data => {                
+                this.state.interestList += data;
+                
+                if(data !== interest[interest.length - 1]) {
+                    this.state.interestList += ', ';
+                }
+            })
+        })                
+    }            
+
+    render() {
+        return (
+            <View style={styles.editContainer}>                                   
+                <ImageBackground
+                    source={require("../../assets/imgs/3.png")} resizeMode="cover" 
+                    style={{ width: "100%", height: '110%' }}                    
+                >                    
+                    <View style={styles.announceContainer}>
+                        <View style={styles.headerConatiner}>
+                            <MaterialIcons name={"arrow-back-ios"} 
+                                size={45} 
+                                color={'#000'}
+                                style={{marginLeft:10}}
+                                onPress={() => {this.props.navigation.navigate('DrawerNav');}}
+                            />                   
+                        </View>
+                        <View style={{ flexDirection:'row', alignItems:'flex-end' }}>
+                            <Text style={styles.announceTitle}>
+                                사진
+                            </Text>
+                            <Text style={styles.announce}>
+                                을 
+                            </Text>
+                        </View>
+                        <Text style={styles.announce}>
+                             추가해 주세요! 
+                        </Text>                                           
                     </View>
-               </View>
-               
-          </ScrollView>
-     )
+                    <View style={{ flex: 1, justifyContent: 'center', marginTop: 60 }}>  
+                        <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', width: Dimensions.get('window').width*0.9, marginHorizontal: Dimensions.get('window').width*0.05}}>
+                            {this.state.picker}
+                        </View>                        
+                        <View style={styles.interestContainer}>
+                            <Pressable
+                                style={styles.interestList}
+                                onPress={() => this.props.navigation.push('editHobby', {interest: this.state.userInterest})}
+                            >
+                                <Text>{this.state.interestList}</Text>
+                            </Pressable>                                                     
+                        </View>   
+                        <BottomSheet
+                            ref={this.bs}
+                            snapPoints={[250, 0]}
+                            initialSnap={1}
+                            renderContent={this.renderContent}                   
+                            enabledContentTapInteraction={false}
+                            enabledInnerScrolling={false}
+                        />                                                                                                      
+                    </View>
+                </ImageBackground>               
+            </View> 
+        )
+    }
 }

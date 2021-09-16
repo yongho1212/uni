@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
-import { View, Text, Alert, ScrollView, Pressable, Dimensions, TextInput, Image } from 'react-native';
+import { View, Text, Alert, Pressable, Dimensions, TextInput, Image } from 'react-native';
 import { Platform, PermissionsAndroid } from 'react-native';
 
 import BottomSheet from 'reanimated-bottom-sheet';
+import ActionButton from 'react-native-action-button';
 import Animated from 'react-native-reanimated';
+import {ScrollView} from 'react-native-gesture-handler';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MyMapView from '../../components/MyMapView';
 import MainButton from '../../components/MainButton';
 import ViewProfiles from '../../components/ViewProfiles';
-import LogoutBtn from '../../components/logOutBtn';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
 
 import Moment from 'moment';
 import 'moment/locale/ko';
@@ -41,93 +46,239 @@ export default class Main extends Component {
                address: 0,
                id: '',
                push: 0,
-               
-               
+
+               roomData: [],
+               userData: [],
+               hobbyList: [],               
+               hobby: '',
+               onFilter: false,   
+               firstLoading: true,            
           }
-          
      }
     
      
      componentDidMount = async() => {                    
-          this.getId();                 
-
-      {/*    OneSignal.setLogLevel(6, 0);
-          OneSignal.setAppId('1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea');   
-          await OneSignal.setExternalUserId(await AsyncStorage.getItem('id'), (result) => {
-               console.log(result);
-          });*/}
-
-          if(this.props.route.params === undefined) {
-               this.requestPermission().then(result => {
-                    if(result === 'granted') {
-                         this.getCurrentLocation();
-                    }else {
-                         console.log('');
-                    }
-               })      
+          if(this.state.firstLoading) {
+               console.log(this.state.firstLoading);
+               this.state.firstLoading = false;               
+               this.getCurrentLocation();     
           }else {
                this.hosted();
           }
+
+          this.props.navigation.addListener('focus', async () => {
+               this.connect();
+          })               
      }     
 
-     getId = async() => {
-          try {
-               const id = await AsyncStorage.getItem('id');
-               if(id !== null) {
-                    this.setState({ 
-                         id: id,
-                    })
-               }
-          } catch(e) {
-               console.log(e);
-          }
-     }          
+     connect = async() => {
+          const id = await AsyncStorage.getItem('id');
+          this.setState({id: id});
 
-     //임시
-     requestPermission = async() => {
-          try {
-               if(Platform.OS === 'ios') {
-                    return await Geolocation.requestAuthorization('always');
-               }
-               if(Platform.OS === 'android') {
-                    return await PermissionsAndroid.request (
-                         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-                    );
-               }
-          }catch(e) {
-               console.log(e);
+          var Interest = new Array();
+          var hobbyList = new Array();
+
+          const URL = "https://loof-back.herokuapp.com/main";
+          fetch(URL, {
+               method: 'POST',
+               headers: {
+                    'Content-Type' : 'application/json',
+               },
+               body: JSON.stringify({
+                    id: id,
+                    onFilter: false,
+               })            
+          })
+          .then(response => response.json())
+          .then(responseData => {
+               this.setState({
+                    roomData: responseData[0],
+                    userData: responseData[1],
+               })
+     
+               this.state.userData.map(userData => {
+                    Interest = userData.hobby.split(',');       
+               })                                        
+          })
+  
+          .then(() => {
+               Interest.map((hobby, index) => {
+                    hobbyList.push (  
+                         <ActionButton.Item key={index} buttonColor='#49ffbd' onPress={() => {this.connectFilter(hobby); this.state.hobby = hobby;}}>
+                          
+                              
+                          { hobby === '축구' ?                   
+                                  <MaterialCommunityIcons
+                                  name={"soccer"}
+                                  size={37}
+                                  color={'black'}
+                                  style={{ zIndex:10,  }}   
+                                  />
+                                  : hobby === '농구' ?
+                                  <Ionicons
+                                      name={"basketball"}
+                                      size={37}    
+                                      style={{ zIndex:10, }}                                        
+                                  /> 
+                                  : hobby === '볼링' ?
+                                  <FontAwesome5 
+                                      name={"bowling-ball"}
+                                      size={37}   
+                                      color={'#bc2b62'}
+                                  />
+                                  : hobby === '야구' ?
+                                  <Ionicons 
+                                  name={"baseball-outline"}
+                                  size={37}   
+                                  
+                                  />
+                                  : hobby === '배드민턴' ?
+                                  <MaterialCommunityIcons 
+                                      name={"badminton"}
+                                      size={37}   
+                                      
+                                  />
+                                  : hobby === '요가' ?
+                                  <FontAwesome5 
+                                      name={"baseball-outline"}
+                                      size={37}   
+                                      
+                                  />
+                                  : hobby === '웨이트' ?
+                                  <MaterialCommunityIcons 
+                                      name={"weight-lifter"}
+                                      size={37}   
+                                      
+                                  />
+                                  : hobby === '등산' ?
+                                  <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../../assets/marker/pingk.png')}/>
+                                  : hobby === '자전거' ?
+                                  <Ionicons 
+                                      name={"bicycle"}
+                                      size={37}   
+                                      color={'#000'}
+                                  />
+                                  : hobby === '런닝' ?
+                                  <FontAwesome5 
+                                      name={"running"}
+                                      size={37}   
+                                      color={'#000'}
+                                  />
+                                  : hobby === '골프' ?
+                                  
+                                  <MaterialCommunityIcons 
+                                      name={"golf"}
+                                      size={37}   
+                                      color={'#000'}
+                                  />
+                                  : hobby === '당구' ?
+                                  
+                                  <Image  
+                                  style={{ width:38,height:38, zIndex:10,  borderRadius:19 ,  }}   
+                                  source={require('../../assets/cateicon/pool.png')}/>
+                                  
+                                  : hobby === '탁구' ?
+                                  
+                                  <FontAwesome5 
+                                      name={"gotable-tennislf"}
+                                      size={37}   
+                                      color={'#000'}
+                                  />
+                                  
+                                  : hobby === '스케이트 보드' ?
+                                  
+                                  <Image  
+                                  style={{ width:38,height:38, zIndex:10,  borderRadius:19 ,  }}   
+                                  source={require('../../assets/cateicon/skateboard.png')}/>
+         
+                                   : hobby === '커피 한잔' ?
+                                  
+                                   <MaterialCommunityIcons 
+                                       name={"coffee"}
+                                       size={37}   
+                                       color={'#000'}
+                                   />
+                               
+                                   : hobby === '밥 한끼!' ? 
+                              
+                                       <Image  
+                                       style={{ width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                                       source={require('../../assets/cateicon/dish.png')}/>
+                                        
+                              
+                                  : hobby === '클럽' ? 
+                                  
+                                  
+                                      <Image  
+                                      style={{  width:38,height:38,  borderRadius:19 ,  }}   
+                                      source={require('../../assets/cateicon/disco-ball.png')}/>
+                                       
+                                  
+                          : <Text>{hobby}</Text>
+                          } 
+                              
+                              
+                              
+                          </ActionButton.Item>                    
+                      )
+                  })
+               })        
+               .then(() => {
+                    this.setState({
+                         hobbyList: hobbyList,
+                    })
+               })            
           }
-     }
+
+          connectFilter = async(hobby) => {
+               this.state.onFilter = true;
+       
+               const URL = "https://loof-back.herokuapp.com/main";
+               fetch(URL, {
+                    method: 'POST',
+                    headers: {
+                         'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                         onFilter: this.state.onFilter,
+                         category: hobby,
+                    })
+               })
+               .then(response => response.json())
+               .then(responseData => {
+                    this.setState({
+                         roomData: responseData[0],
+                    })
+               })
+          }   
 
      getCurrentLocation = async() => {
-          await Geolocation.getCurrentPosition (
+          Geolocation.getCurrentPosition(
                position => {
                     this.setState({
                          region: {
                               latitude: position.coords.latitude,
                               longitude: position.coords.longitude,
                               latitudeDelta: 0.015,
-                              longitudeDelta: 0.0121, 
+                              longitudeDelta: 0.0121,
                          },
                     });
-                    Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', {language: 'ko'});
+                    Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', { language: 'ko' });
                     Geocoder.from(position.coords.latitude, position.coords.longitude)
-                    .then(json => {
-                         var address = json.results[0].formatted_address;
-                         this.setState({
-                              address: address
+                         .then(json => {
+                              var address = json.results[0].formatted_address;
+                              this.setState({
+                                   address: address
+                              });
                          });
-                    })
                },
                error => Alert.alert(error.message),
-               {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+               { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 }
           )
      }
-
-     onMapRegionChange = async(region) => {
-          await this.setState({region});
-          
-          await Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', {language: 'ko'});
+     onMapRegionChange = async(region) => {                    
+          this.setState({ region: region });
+          Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', { language: 'ko' });
           await Geocoder.from(this.state.region.latitude, this.state.region.longitude)
           .then(json => {
                var address = json.results[0].formatted_address;
@@ -135,38 +286,35 @@ export default class Main extends Component {
                     address: address,
                });
           })
-     }         
+     }           
 
      //수정사항 : this.state.hostsProfile로 하면 한번에 방에 참가한 사람들의 모든 프로필 이미지를 한번에 불러오지만 지도를 움직이지 않은 상태에서 3번 째부터는 이미지를 불러오지 못한다.
-     getData = async(data) => { 
+     getRoomData = async(data) => { 
           var hostsProfile = new Array();
           var usersProfile = new Array();
 
           if(data !== undefined) {
-               this.setState({roomInfo: data});
+               this.setState({roomInfo: data});    
                
                for(let i = 0; i < data.hostUser.length; i++) {
-                    fetch("http://127.0.0.1:3000/firstProfile/?id=" + data.hostUser[i] + "&time=" + new Date())
+                    fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + data.hostUser[i] + "&time=" + new Date())
                     .then(responseData => {
                          if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {
                               hostsProfile.push(responseData.url);
                          }
-                    })   
-                    .then(() => this.setState({hostsProfile: hostsProfile}))                 
+                    })                   
+                    .then(() => this.state.hostsProfile = hostsProfile);
                }
-               //this.setState({hostsProfile: hostsProfile});
 
                for(let i = 0; i < data.joinUser.length; i++) {
-                    fetch("http://127.0.0.1:3000/firstProfile/?id=" + data.joinUser[i]  + "&time=" + new Date())
+                    fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + data.joinUser[i]  + "&time=" + new Date())
                     .then(responseData => {
                          if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
                               usersProfile.push(responseData.url);    
                          }
-                    })    
-                    //.then(() => this.setState({usersProfile: usersProfile}))                
+                    })                    
                     .then(() => this.state.usersProfile = usersProfile)                               
                }
-               //this.setState({usersProfile: usersProfile});
 
                this.bs.current.snapTo(0);                          
           }else {
@@ -196,7 +344,7 @@ export default class Main extends Component {
      joinSuccess = async(hostId, roomId, responseData) => {
           console.log(responseData.recipients);
           if(responseData.recipients !== 0) {
-               const URL = "http://127.0.0.1:3000/joinRoom";
+               const URL = "https://loof-back.herokuapp.com/joinRoom";
                fetch(URL, {
                     method: 'POST',
                     headers: {
@@ -214,7 +362,7 @@ export default class Main extends Component {
      }
 
      checkJoin = async() => {
-          const URL = "http://127.0.0.1:3000/checkJoin";
+          const URL = "https://loof-back.herokuapp.com/checkJoin";
           fetch(URL, {
                method: 'POST',
                headers: {
@@ -355,10 +503,33 @@ export default class Main extends Component {
                     <MyMapView
                          region={this.state.region}
                          onRegionChange={(reg) => this.onMapRegionChange(reg)}
-                         sendData={this.getData}
                          getLocation={() => this.getCurrentLocation()}
+                         connect={this.connect}
+                         connectFilter={this.connectFilter}
+                         sendData={this.getRoomData}
+                         onFilter={this.state.onFilter}
+                         roomData={this.state.roomData}
+                         hobby={this.state.hobby}
                     >
-                    </MyMapView>  
+                    </MyMapView>
+                    
+                    <ActionButton 
+                size={48}
+                buttonColor="#fb009e" 
+                verticalOrientation="down"
+                renderIcon={active => active ? (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconOpen} /> ) : (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconClose} />)}
+                style={styles.actionButtonIcon} 
+                >
+                         {this.state.hobbyList}   
+                </ActionButton>     
+                <Pressable 
+                    style={styles.locationBtn}
+                    onPress={() => this.props.getLocation()}
+                >
+                    <Text>
+                         <Ionicons name="ios-locate" color="grey" size={30} /> 
+                    </Text>
+                </Pressable>
                     <MainButton                         
                          navigate={this.navigate}   
                          push={this.state.push}                      

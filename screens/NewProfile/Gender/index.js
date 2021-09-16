@@ -54,7 +54,7 @@ export default class Gender extends Component {
 
     connect = async () => {
         
-        const URL = "http://127.0.0.1:3000/setGender";
+        const URL = "https://loof-back.herokuapp.com/setGender";
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -74,18 +74,6 @@ export default class Gender extends Component {
                 source={require("../../../assets/imgs/2r.png")} resizeMode="cover" 
                 style={{width:"100%", height:'100%', }}
                 >
-                {/*<View style={styles.headerContainer}>
-                    <AntDesign 
-                        name={"doubleleft"}
-                        style={styles.back} 
-                        onPress={() => this.props.navigation.navigate('Nickname')}
-                    />
-                    <Text style={{fontSize: 18}}></Text>
-                    <Pressable style={styles.vaccum}></Pressable>
-        </View>*/}
-                    
-
-
                 <View style={styles.contentContainer}>
                 <View style={styles.announceContainer}>
                     <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
@@ -173,7 +161,13 @@ export default class Gender extends Component {
                             
                        
                         }}
-                        onPress={() => {this.connect(); this.props.navigation.navigate('Birth');}}
+                        onPress={() => 
+                            {
+                                this.state.gender === '' 
+                                ? Alert.alert('성별을 설정해주세요')
+                                : (this.connect(), this.props.navigation.navigate('Birth'));                                    
+                            }
+                        }
                     >
                        <Text style={{fontSize:20}}>NEXT </Text>
                             <MaterialIcons 

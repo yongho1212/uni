@@ -33,7 +33,7 @@ export default class RoomList extends Component {
                console.log(e);
           }
 
-          const URL = "http://127.0.0.1:3000/roomList";
+          const URL = "https://loof-back.herokuapp.com/roomList";
           fetch(URL, {
               method: 'POST',
               headers: {

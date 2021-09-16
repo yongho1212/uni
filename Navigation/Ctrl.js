@@ -1,13 +1,14 @@
 import 'react-native-gesture-handler';
 
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Button,
   View,
   Text,
   TouchableOpacity,
   Image,
-  Pressable
+  Pressable,
+  Dimensions
 } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -31,6 +32,15 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const NavigationDrawerStructure = (props)=> {
+
+  useEffect(() => {  
+    props.navigationProps.addListener('focus', () => {
+        closeDrawer(); 
+    })                   
+}, []);
+  const closeDrawer = () => {
+    props.navigationProps.closeDrawer();
+  }
   //Structure for the navigatin Drawer
   const toggleDrawer = () => {
     //Props to open/close the drawer
@@ -87,7 +97,11 @@ function DrawerNav({ navigation }) {
        activeTintColor: '#e91e63',
        itemStyle: { marginVertical: 5 },
      }}
-     drawerContent={(props) => <CustomSidebarMenu {...props} />}>
+     drawerContent={(props) => <CustomSidebarMenu {...props} />}
+     drawerStyle={{
+      width: Dimensions.get('window').width * 0.82
+    }}  
+    >
 
      <Drawer.Screen
        name="HomePage"

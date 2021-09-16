@@ -95,6 +95,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop:30
     },
+    actionButtonIcon: {
+        fontSize: 20,
+        position:'absolute',
+        top:25,
+        right:-10
+      },
+      actionButtonIconClose:{
+          fontSize:25,
+          color:'#49ffbd',
+          
+      },
+      actionButtonIconOpen:{
+          fontSize:25,
+          color:'#fff',
+          
+      },
 });
 
 export default styles;

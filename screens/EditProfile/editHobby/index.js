@@ -3,11 +3,12 @@ import {View, Text, ScrollView, Pressable, ImageBackground, Dimensions, SafeArea
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import styles from './styles';
 
-export default class Interest extends Component {   
+export default class EditHobby extends Component {   
     constructor(props) {
         super(props);
         this.state = {
@@ -22,9 +23,21 @@ export default class Interest extends Component {
         }
     }
 
-    componentDidMount = () => {  
+    componentDidMount = () => {          
         this.get_Interest();
+        this.getUserInterest();
         this.getId();
+    }
+
+    getUserInterest = () => {
+        var cnt = 0;
+
+        this.props.route.params.interest.map((data) => {
+            cnt++;
+            this.state.hobby.push(data);
+        })
+
+        this.state.cnt = cnt;
     }
 
     getId = async () => {
@@ -112,7 +125,7 @@ export default class Interest extends Component {
                     }
                     style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
                 >
-                    <Text key={data._id + '5'} style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectText : styles.selectedText}>{data.category}</Text>
+                    <Text key={data._id + '5'} style={styles.boxText}>{data.category}</Text>
                 </Pressable>          
             )
         })
@@ -142,11 +155,11 @@ export default class Interest extends Component {
                             ? Alert.alert('관심사를 3개 이상 설정해주세요')
                             : this.state.cnt > 5 
                             ? Alert.alert('관심사는 5개까지 설정할 수 있습니다')
-                            : (this.send_Interest(), this.props.navigation.navigate('NewProfileImg'));                                                        
+                            : (this.send_Interest(), this.props.navigation.goBack());                                                        
                         }
                     }
                 >
-                    <Text style={{fontSize:20}}>Next  ({this.state.cnt}/5)</Text>
+                    <Text style={{fontSize:20}}>Complete  ({this.state.cnt}/5)</Text>
                 </Pressable> 
             </View>    
         )
@@ -196,7 +209,7 @@ export default class Interest extends Component {
                         }
                         style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectBox : styles.selectedBox}                                                                  
                     >
-                        <Text key={data._id + '5'}  style={this.state.hobby.indexOf(data.category) < 0 ? styles.selectText : styles.selectedText}  >{data.category}</Text>
+                        <Text key={data._id + '5'}  style={styles.boxText}>{data.category}</Text>
                     </Pressable>
             )
         })
@@ -208,10 +221,10 @@ export default class Interest extends Component {
                     key={'next'}
                     style={{
                         width: Dimensions.get('window').width * 0.7,
-                        marginHorizontal:Dimensions.get('window').width * 0.1,
+                        marginHorizontal: Dimensions.get('window').width * 0.1,
                         height: 50,
                         backgroundColor: this.state.nextColor,
-                        marginVertical:70,
+                        marginVertical: 70,
                         borderRadius: 25,
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -226,11 +239,11 @@ export default class Interest extends Component {
                             ? Alert.alert('관심사를 3개 이상 설정해주세요')
                             : this.state.cnt > 5 
                             ? Alert.alert('관심사는 5개까지 설정할 수 있습니다')
-                            : (this.send_Interest(), this.props.navigation.navigate('NewProfileImg'));   
+                            : (this.send_Interest(), this.props.navigation.goBack());   
                         }
                     }
                 >
-                    <Text style={{fontSize:20}}>Next  ({this.state.cnt}/5)</Text>
+                    <Text style={{fontSize:20}}>Complete  ({this.state.cnt}/5)</Text>
                 </Pressable> 
             </View>    
         )
@@ -244,46 +257,37 @@ export default class Interest extends Component {
         return (   
             <View style={{}}>
                 <ImageBackground
-                source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
-                style={{height:"100%", 
-                width:"100%", }}
-                >
-                    
-            <ScrollView >
-            <View style={styles.announceContainer}>
-                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
-                    <Text style={ styles.announceTitle}>
-                            관심사
-                        </Text>
-                        <Text style={ styles.announce}>
-                             를 
-                        </Text>
+                    source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
+                    style={{ height: "100%", width: "100%" }}                
+                >                    
+                    <ScrollView>                                                                    
+                        <View style={styles.announceContainer}>
+                            <MaterialIcons name={"arrow-back-ios"} 
+                                size={45} 
+                                color={'#000'}
+                                style={{marginLeft:10}}
+                                onPress={() => {this.props.navigation.navigate('EditProfile');}}
+                            />
+                            <View style={{ flexDirection:'row', alignItems:'flex-end' }}>
+                                <Text style={styles.announceTitle}>
+                                    관심사
+                                </Text>
+                                <Text style={ styles.announce}>
+                                    를 
+                                </Text>
+                            </View>
+                            <Text style={ styles.announce}>
+                                알려주세요! 
+                            </Text>                    
+                            <Text style={styles.announceSpecific}>
+                                3개이상 선택해 주세요!
+                            </Text>
                         </View>
-                        <Text style={ styles.announce}>
-                             알려주세요! 
-                        </Text>
-                    
-                        <Text style={ styles.announceSpecific}>
-                        3개이상 선택해 주세요!
-                        </Text>
-                    </View>
-                
-                {/*<View style={styles.headerContainer}>
-                    <AntDesign 
-                        name={"arrowleft"}
-                        style={styles.back} 
-                        onPress={() => this.props.navigation.navigate('Birth')}
-                        //onPress={() => this.props.navigation.push('NewProfile', {hobby : this.state.hobby})}
-                    />
-                    <Text style={{fontSize: 18}}>관심사 설정</Text>
-                    <Pressable style={styles.vaccum}></Pressable>
-        </View>*/}
-                <View style={styles.listContainer}>
-                    {this.state.list}
-                </View>     
-                        
-            </ScrollView>     
-            </ImageBackground>   
+                        <View style={styles.listContainer}>
+                            {this.state.list}
+                        </View>                             
+                    </ScrollView>     
+                </ImageBackground>   
             </View>           
         )
     }

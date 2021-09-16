@@ -57,7 +57,7 @@ export default class Nickname extends Component {
                 console.log(e);
             }
 
-            const URL = "http://127.0.0.1:3000/setNickname";
+            const URL = "https://loof-back.herokuapp.com/setNickname";
             fetch(URL, {
                 method: 'POST',
                 headers: {
@@ -79,14 +79,7 @@ export default class Nickname extends Component {
                 source={require("../../../assets/imgs/2.png")} resizeMode="cover" 
                 style={{width:"100%", height:'110%', }}
                 >
-                {/*<View style={styles.headerContainer}>
-                    <AntDesign 
-                        name={"arrowleft"}
-                        style={styles.back} 
-                        onPress={() => this.props.navigation.navigate('Auth')}
-                    />
-                    <Text style={{fontSize: 18}}>닉네임</Text>                    
-        </View> */}                
+                              
                 <View style={styles.contentContainer}>
                 <View style={styles.announceContainer}>
                     <View style={{ flexDirection:'row', alignItems:'flex-end'}}>

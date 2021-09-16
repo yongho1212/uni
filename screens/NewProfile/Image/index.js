@@ -54,14 +54,14 @@ export default class NewProfileImg extends Component {
         }
         console.log(this.state.id);
 
-        fetch("http://127.0.0.1:3000/firstProfile/?id=" + this.state.id  + "&time=" + new Date())
+        fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + this.state.id  + "&time=" + new Date())
         .then(responseData => {
             if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
                 this.state.image[0].uri = responseData.url;     
             }
         })
         .then(() =>
-            fetch("http://127.0.0.1:3000/secondProfile/?id=" + this.state.id + "&time=" + new Date())
+            fetch("https://loof-back.herokuapp.com/secondProfile/?id=" + this.state.id + "&time=" + new Date())
             .then(responseData => {  
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {
                     this.state.image[1].uri = responseData.url;                                     
@@ -69,7 +69,7 @@ export default class NewProfileImg extends Component {
             })
         )
         .then(() =>
-            fetch("http://127.0.0.1:3000/thirdProfile/?id=" + this.state.id + "&time=" + new Date())
+            fetch("https://loof-back.herokuapp.com/thirdProfile/?id=" + this.state.id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[2].uri = responseData.url;                                   
@@ -77,21 +77,21 @@ export default class NewProfileImg extends Component {
             })
         )
         .then(() =>
-            fetch("http://127.0.0.1:3000/fourthProfile/?id=" + this.state.id + "&time=" + new Date())
+            fetch("https://loof-back.herokuapp.com/fourthProfile/?id=" + this.state.id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[3].uri = responseData.url;     
                 }
             })
         ).then(() =>
-            fetch("http://127.0.0.1:3000/fifthProfile/?id=" + this.state.id + "&time=" + new Date())
+            fetch("https://loof-back.herokuapp.com/fifthProfile/?id=" + this.state.id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[4].uri = responseData.url;                                     
                 }
             })
         ).then(() => 
-            fetch("http://127.0.0.1:3000/sixthProfile/?id=" + this.state.id + "&time=" + new Date())
+            fetch("https://loof-back.herokuapp.com/sixthProfile/?id=" + this.state.id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[5].uri = responseData.url;                                     
@@ -241,7 +241,7 @@ export default class NewProfileImg extends Component {
             type: type,
         })
 
-        const URL = "http://127.0.0.1:3000/uploadProfile";
+        const URL = "https://loof-back.herokuapp.com/uploadProfile";
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -289,8 +289,8 @@ export default class NewProfileImg extends Component {
         );
 
         const nickname = await AsyncStorage.getItem('nickname'); 
-        console.log(nickname);
-        fetch("http://127.0.0.1:3000/firstProfile/?id=" + this.state.id  + "&time=" + new Date())
+        
+        fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + this.state.id  + "&time=" + new Date())
         .then(responseData => {           
             const URL = 'https://api-us.cometchat.io/v3.0/users';
             fetch(URL, {
@@ -325,7 +325,7 @@ export default class NewProfileImg extends Component {
 
 
     setCompleted = () => {
-        const URL = "http://127.0.0.1:3000/setCompleted";
+        const URL = "https://loof-back.herokuapp.com/setCompleted";
         fetch(URL, {
             method: 'POST',
             headers: {

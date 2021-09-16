@@ -10,9 +10,11 @@ import {
   Text,
   Linking,
   Pressable,
+  TouchableOpacity
 } from 'react-native';
 
 import {
+  DrawerContentView,
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
@@ -33,17 +35,17 @@ const CustomSidebarMenu = (props) => {
 
   useEffect(() => {
     getUserInfo();
-  });
+  }, []);
 
   const getUserInfo = async() => {
     var id = await AsyncStorage.getItem('id');
 
-    fetch("http://127.0.0.1:3000/firstProfile/?id=" + id + "&time=" + new Date())
+    fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + id + "&time=" + new Date())
     .then(responseData => {
       setUrl(responseData.url);
     })
     .then(
-      fetch("http://127.0.0.1:3000/userInfo", {
+      fetch("https://loof-back.herokuapp.com/userInfo", {
         method: 'POST',
         headers: {
           'Content-Type' : 'application/json',
@@ -67,41 +69,46 @@ const CustomSidebarMenu = (props) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       {/*Top Large Image */}
-      <View style={{ marginTop:30}}>
-        <View style={{flexDirection:'row',  alignItems:'center', justifyContent: 'center', height:100}}>
-         <View style={{flex:1, paddingHorizontal:10, }} >
-            <Text style={{fontWeight:'bold', fontSize:23, marginVertical:5}}>
-            {nickname}
-            </Text>
-            <Text numberOfLines={1} style={{fontWeight:'bold', fontSize:15, marginVertical:5}}>
-            {email}
-            </Text> 
-         </View>
-            <View style={{flex:1, paddingHorizontal:10,}}>
-              <Avatar.Image size={120} source={{uri: url}} />
-            </View>
-        </View>
-        <Pressable 
-        style={{justifyContent:'center', alignItems:'center', marginTop:10, flexDirection:'row', marginBottom:-20}}
-        onPress={()=> props.navigation.navigate('EditProfile')}
-        >
-          <Text style={{color:'grey', fontSize:13, }}>
-            My Profile
-          </Text>
-          <Icon name="keyboard-arrow-right" color="grey" size={30} /> 
-        </Pressable>
-      </View>
+      <View style={{height:280}}>
+        <View style={{flexDirection:'row',  alignItems:'center', justifyContent: 'center', flex:3}}>
+              <View style={{flex:1, paddingHorizontal:10, }} >
+                <Text style={{fontWeight:'bold', fontSize:23, marginVertical:5}}>
+                {nickname}
+                </Text>
+                <Text numberOfLines={1} style={{fontWeight:'bold', fontSize:15, marginVertical:5}}>
+                {email}
+                </Text> 
+              </View>
 
-        
-      
-      <DrawerContentScrollView {...props}>
-        <View style={{width:"100%", height:80, backgroundColor:'grey', justifyContent:'center', alignItems:'center', marginBottom:10}}>
+              <View style={{flex:1, paddingHorizontal:10,}}>
+                <Avatar.Image size={120} source={{uri: url}} />
+              </View>
+          </View>
+          <View style={{ flex:1,}}>
+            <TouchableOpacity 
+            style={{justifyContent:'center', alignItems:'center', marginTop:10, flexDirection:'row',  }}
+            onPress={()=> props.navigation.navigate('EditProfile')}
+            >
+              <Text style={{color:'grey', fontSize:13, }}>
+                My Profile
+              </Text>
+              <Icon name="keyboard-arrow-right" color="grey" size={30} /> 
+            </TouchableOpacity>
+          </View>
+          <View style={{width:"100%", height:80, backgroundColor:'grey', justifyContent:'center', alignItems:'center', marginBottom:10}}>
           <Pressable style={{width:"90%", height:70, backgroundColor:'#fff',  alignItems:'center',justifyContent:'center', }}>
             <Text>
               AD
             </Text>
           </Pressable>
         </View>
+        
+      </View>
+
+        
+      
+      <DrawerContentScrollView {...props} style={{marginTop:-30}}>
+        
         <DrawerItemList {...props} />
         <DrawerItem
           label="Visit Us 🌐"

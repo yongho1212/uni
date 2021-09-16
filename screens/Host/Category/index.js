@@ -38,7 +38,7 @@ export default class Category extends Component {
             console.log(e);
         }
 
-        const URL = "http://127.0.0.1:3000/category";
+        const URL = "https://loof-back.herokuapp.com/category";
         fetch(URL, {
             method: 'POST',
             headers: {
