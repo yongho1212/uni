@@ -285,13 +285,16 @@ async function onAppleButtonPress() {
         >
         <View style={{alignItems:'center', justifyContent:'center'}}> 
           <KeyboardAvoidingView enabled>
-            <View style={{ alignItems: "center", flex:1, top:150 }}>
+            <View style={{ alignItems: "center", flex:1, top:150 , flexDirection:'row', justifyContent:'center'}}>
+              <Text style={{ fontSize:133, fontWeight:'bold', color:'#fb009e'}}>
+                L
+              </Text>
               <Image
               source={require("../assets/logo/pinklogo.png")}
-              style={{height:150, resizeMode:'contain'}}
+              style={{width: 180, height:100, resizeMode:'contain',}}
               />
-              <Text style={{justifyContent:'center', color:'grey', alignItems:'center', fontSize:23, marginTop:25,}}>
-                GATHER TOGRTHER LOOF!
+              <Text style={{ fontSize:133, fontWeight:'bold', color:'#fb009e'}}>
+                F
                 
               </Text>
               
@@ -339,8 +342,12 @@ async function onAppleButtonPress() {
                 {errortext}{" "}
               </Text>
             ) : null}*/}
+
+
             <View style={{flex:2, justifyContent:'center', alignItems:'center', top:50}}>
-              <View style={styles.sectionStyle}>
+
+            {/*PHONE LOGIN */}
+            {/*  <View style={styles.sectionStyle}>
             <TouchableOpacity
               style={{backgroundColor: "white",
               borderColor: "black",
@@ -370,7 +377,7 @@ async function onAppleButtonPress() {
                  Continue with Phone 
               </Text>
             </TouchableOpacity>
-            </View>
+          </View>*/}
             <View style={styles.sectionStyle}>
               <Pressable
                 onPress={g_signIn}

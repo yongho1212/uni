@@ -116,7 +116,7 @@ function DrawerNav({ navigation }) {
           headerShown: false,
        }}
        component={Announce} />
-     <Drawer.Screen
+     {/*<Drawer.Screen
        name="SecondPage"
        options={{ drawerLabel: '이용내역 📑',
        headerShown: false,
@@ -128,13 +128,13 @@ function DrawerNav({ navigation }) {
        headerShown: false,
       
       }}
-       component={Rank} />
+    component={Rank} />*/}
 
        <Drawer.Screen
-       name="fourthPage"
+       name="고객지원"
        options={{ 
        drawerLabel: '고객지원 👩🏻‍💻',
-       headerShown: false,
+       headerShown: true,
       
       }}
        component={Cs} />

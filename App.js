@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 
 // Import React and Component
 import React, {useEffect,  useRef, useState} from "react";
-import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
+import { Animated, Dimensions, StyleSheet, Text, View, StatusBar} from "react-native";
 import Router from "./Navigation/Router";
 import RNBootSplash from 'react-native-bootsplash';
 import messaging from '@react-native-firebase/messaging'
@@ -43,6 +43,7 @@ const App = () => {
 
   return (
     <>
+     <StatusBar barStyle="dark-content" />
       <Router/>
     </>
   );

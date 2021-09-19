@@ -82,15 +82,6 @@ export default class Birth extends Component {
                 source={require("../../../assets/imgs/3r.png")} resizeMode="cover" 
                 style={{width:"100%", height:'100%', }}
                 >
-                {/*<View style={styles.headerContainer}>
-                    <AntDesign 
-                        name={"doubleleft"}
-                        style={styles.back} 
-                        onPress={() => this.props.navigation.navigate('Gender')}
-                    />
-                    <Text style={{fontSize: 18}}>생일</Text>
-        <Pressable style={styles.vaccum}></Pressable>
-                </View>*/}
                 <View style={styles.contentContainer}>
                 <View style={styles.announceContainer}>
                     <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
