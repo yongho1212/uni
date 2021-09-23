@@ -113,7 +113,7 @@ function DrawerNav({ navigation }) {
        options={{ 
           drawerLabel: '공지사항 📋',
           
-          headerShown: false,
+          headerShown: true,
        }}
        component={Announce} />
      {/*<Drawer.Screen

@@ -6,9 +6,11 @@ import { Animated, Dimensions, StyleSheet, Text, View, StatusBar} from "react-na
 import Router from "./Navigation/Router";
 import RNBootSplash from 'react-native-bootsplash';
 import messaging from '@react-native-firebase/messaging'
+import admob, { MaxAdContentRating } from '@react-native-firebase/admob';
 
 
 /* Main Navigator */
+
 
 
 async function requestUserPermission() {
