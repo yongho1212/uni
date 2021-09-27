@@ -298,7 +298,7 @@ export default class EditProfile extends Component {
         return (
             <View style={styles.editContainer}>                                   
                 <ImageBackground
-                    source={require("../../assets/imgs/3.png")} resizeMode="cover" 
+                    source={require("../../assets/imgs/3rs.png")} resizeMode="cover" 
                     style={{ width: "100%", height: '110%' }}                    
                 >                    
                     <View style={styles.announceContainer}>
@@ -306,7 +306,7 @@ export default class EditProfile extends Component {
                             <MaterialIcons name={"arrow-back-ios"} 
                                 size={45} 
                                 color={'#000'}
-                                style={{marginLeft:10}}
+                                style={{marginLeft:10,marginTop:20}}
                                 onPress={() => {this.props.navigation.navigate('DrawerNav');}}
                             />                   
                         </View>
@@ -331,7 +331,7 @@ export default class EditProfile extends Component {
                                 style={styles.interestList}
                                 onPress={() => this.props.navigation.push('editHobby', {interest: this.state.userInterest})}
                             >
-                                <Text>{this.state.interestList}</Text>
+                                <Text style={{fontSize:15}}>{this.state.interestList}</Text>
                             </Pressable>                                                     
                         </View>   
                         <BottomSheet

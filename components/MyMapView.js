@@ -260,7 +260,9 @@ export default class MyMapView extends Component {
                 {marker}
                 <Pressable 
                     style={styles.locationBtn}
-                    onPress={() => this.props.getLocation()}
+                    onPress={() => this.props.getLocation()
+                    
+                    }
                 >
                     <Text>
                          <Ionicons name="ios-locate" color="grey" size={30} /> 

@@ -35,6 +35,7 @@ import {
 } from '@invertase/react-native-apple-authentication';
 
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import messaging from '@react-native-firebase/messaging';
 
 
 
@@ -43,6 +44,7 @@ const LoginScreen = ({ navigation }) => {
   //custom
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [fcmToken, setFcmToken] = useState("");
   const [errortext, setErrortext] = useState("");
   // google
   const [loggedIn, setloggedIn] = useState(false);
@@ -65,6 +67,7 @@ const LoginScreen = ({ navigation }) => {
      .build();
 
     useEffect(() => {
+      getFcmToken();
       // Initial configuration
       GoogleSignin.configure({
         // Mandatory method to call before calling signIn()
@@ -76,6 +79,20 @@ const LoginScreen = ({ navigation }) => {
       // Check if user is already signed in
     
     }, []);
+
+    const getFcmToken = async() => {
+      const authStatus = await messaging().requestPermission();
+  
+      const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+      if (enabled) {
+        const token = await messaging().getToken();   
+        setFcmToken(token); 
+        console.log(token);
+      } else {
+        console.log('fcm auth fail');    
+      }
+    }
+  
 
 // BACK
   const connect = async(id, email) => {
@@ -94,6 +111,7 @@ const LoginScreen = ({ navigation }) => {
         body: JSON.stringify({
             id: id,
             email: email,
+            fcm: fcmToken,
         })
     })
     .then(response => response.json())
@@ -117,16 +135,7 @@ const LoginScreen = ({ navigation }) => {
             error => {
               console.log("Login failed with exception:", { error });
             }
-          ).then(() => {
-            usersRequest.fetchNext().then(
-              userList => {
-                console.log("User list received:", userList)
-              },
-              error =>  {
-                console.log("User list fetching failed with error:", error);
-              }
-            )
-          })                    
+          )                   
 
           navigation.navigate('DrawerNav');             
         }else {
@@ -188,7 +197,7 @@ const LoginScreen = ({ navigation }) => {
         console.log(idToken);
         // If server response message same as Data Matched
         // if (idToken) navigation.replace("Gender");
-        var id = idToken.additionalUserInfo.profile.sub;   
+        var id = idToken.additionalUserInfo.profile.sub;          
         var email = idToken.additionalUserInfo.profile.email;
                 
         // If server response message same as Data Matched
@@ -260,12 +269,10 @@ async function onAppleButtonPress() {
     throw 'Apple Sign-In failed - no identify token returned';
   }
 
-  // Create a Firebase credential from the response
-  const { identityToken, nonce } = appleAuthRequestResponse;
-  const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
+  const {identityToken, nonce} = appleAuthRequestResponse;
 
-  // Sign the user in with the credential
-  return auth().signInWithCredential(appleCredential);
+  console.log('identityToken: ', identityToken);
+  console.log('nonce: ', nonce);
 }
 
   
@@ -408,10 +415,19 @@ async function onAppleButtonPress() {
                 </Text>
               </Pressable>
               </View>
-
+              <AppleButton
+        buttonStyle={AppleButton.Style.WHITE}
+        buttonType={AppleButton.Type.SIGN_IN}
+        style={{width:200, height:50}}
+        onPress={() =>
+          onAppleButtonPress().then(() =>
+            console.log('Apple sign-in complete!'),
+          )
+        }
+      />
 
               <View style={styles.sectionStyle}>
-                
+             
               <Pressable
               
                 style={{      backgroundColor: "white",
@@ -442,8 +458,10 @@ async function onAppleButtonPress() {
                 Continue with Apple
                 </Text>
                 </Pressable>
+                
               
             </View>
+            
 
               
               <View style={styles.sectionStyle}>

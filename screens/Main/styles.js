@@ -111,6 +111,22 @@ const styles = StyleSheet.create({
           color:'#fff',
           
       },
+      locationBtn:{
+        position: 'absolute', 
+        justifyContent:'center', 
+        alignItems:'center', 
+        width:40, 
+        height:40, 
+        backgroundColor:'white', 
+        right:25,
+        bottom:120, 
+        borderRadius:20,
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { height: 3, width: 3 },
+        zIndex:30
+      }
 });
 
 export default styles;

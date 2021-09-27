@@ -10,7 +10,8 @@ import {
   Text,
   Linking,
   Pressable,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
 import {
@@ -25,6 +26,14 @@ import { Avatar } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+
+
+
+
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+
 
 
 
@@ -68,6 +77,7 @@ const CustomSidebarMenu = (props) => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
+      
       {/*Top Large Image */}
       <View style={{height:280}}>
         <View style={{flexDirection:'row',  alignItems:'center', justifyContent: 'center', flex:3}}>
@@ -90,17 +100,25 @@ const CustomSidebarMenu = (props) => {
             onPress={()=> props.navigation.navigate('EditProfile')}
             >
               <Text style={{color:'grey', fontSize:13, }}>
-                My Profile
+                My Profile 
               </Text>
               <Icon name="keyboard-arrow-right" color="grey" size={30} /> 
             </TouchableOpacity>
           </View>
-          <View style={{width:"100%", height:80, backgroundColor:'grey', justifyContent:'center', alignItems:'center', marginBottom:10}}>
-          <Pressable style={{width:"90%", height:70, backgroundColor:'#fff',  alignItems:'center',justifyContent:'center', }}>
-            <Text>
-              AD
-            </Text>
-          </Pressable>
+          <View style={{width:"100%", height:80, justifyContent:'center', alignItems:'center', marginBottom:10}}>
+          <View style={{marginTop:15,width: Dimensions.get('window').width * 0.82  }}>
+            <BannerAd
+              unitId={adUnitId}
+              size={BannerAdSize.LARGE_BANNER}
+              requestOptions={{
+                requestNonPersonalizedAdsOnly: true,
+              }}
+              style={{width: Dimensions.get('window').width * 0.82}}
+            />
+          </View>
+          
+          
+          
         </View>
         
       </View>

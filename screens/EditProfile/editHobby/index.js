@@ -262,12 +262,32 @@ export default class EditHobby extends Component {
                 >                    
                     <ScrollView>                                                                    
                         <View style={styles.announceContainer}>
-                            <MaterialIcons name={"arrow-back-ios"} 
-                                size={45} 
-                                color={'#000'}
-                                style={{marginLeft:10}}
-                                onPress={() => {this.props.navigation.navigate('EditProfile');}}
-                            />
+                            <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+                                <MaterialIcons name={"arrow-back-ios"} 
+                                    size={45} 
+                                    color={'#000'}
+                                    style={{marginLeft:10, marginTop:20}}
+                                    onPress={() => {this.props.navigation.navigate('EditProfile');}}
+                                />
+                                <View style={{marginRight:15, marginTop:20}}>
+                                    <Pressable
+                                    onPress={() => 
+                                        {
+                                            this.state.cnt < 3 
+                                            ? Alert.alert('관심사를 3개 이상 설정해주세요')
+                                            : this.state.cnt > 5 
+                                            ? Alert.alert('관심사는 5개까지 설정할 수 있습니다')
+                                            : (this.send_Interest(), this.props.navigation.goBack());   
+                                        }
+                                    }
+                                    >
+                                        <Text style={{fontSize:25}}>
+                                            SAVE
+                                        </Text>
+                                    </Pressable>
+                                </View>
+                            </View>
+                            
                             <View style={{ flexDirection:'row', alignItems:'flex-end' }}>
                                 <Text style={styles.announceTitle}>
                                     관심사
@@ -277,7 +297,7 @@ export default class EditHobby extends Component {
                                 </Text>
                             </View>
                             <Text style={ styles.announce}>
-                                알려주세요! 
+                                수정하세요! 
                             </Text>                    
                             <Text style={styles.announceSpecific}>
                                 3개이상 선택해 주세요!

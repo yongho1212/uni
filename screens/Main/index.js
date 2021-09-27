@@ -324,21 +324,18 @@ export default class Main extends Component {
      }
 
      joinRoom = async(hostId, roomId) => {          
-          const URL = "https://onesignal.com/api/v1/notifications";
+          const URL = "https://loof-back.herokuapp.com/joinRoom";
           fetch(URL, {
                method: 'POST',
                headers: {
-                    'Content-Type' : 'application/json; charset=utf-8',
-                    'Authorization' : 'Basic ODk4YjFjNTctOTZkZi00ODBlLWIyNTAtMTY5OWU0ZmZhNTc0'
+                    'Content-Type' : 'application/json',                         
                },
-               body: JSON.stringify({                    
-                    app_id: "1a158c3f-3d81-4428-9ac7-b65ff2c8b9ea",
-                    include_external_user_ids: [hostId],
-                    contents: {"en": "Someone like to enjoy your room! 😀"}
+               body: JSON.stringify({
+                    requestId: this.state.id,
+                    hostId: hostId,
+                    roomId: roomId,
                }),
-          })        
-          .then(response => response.json())
-          .then(responseData => this.joinSuccess(hostId, roomId, responseData))                  
+          })               
      }
 
      joinSuccess = async(hostId, roomId, responseData) => {
@@ -522,14 +519,7 @@ export default class Main extends Component {
                 >
                          {this.state.hobbyList}   
                 </ActionButton>     
-                <Pressable 
-                    style={styles.locationBtn}
-                    onPress={() => this.props.getLocation()}
-                >
-                    <Text>
-                         <Ionicons name="ios-locate" color="grey" size={30} /> 
-                    </Text>
-                </Pressable>
+               
                     <MainButton                         
                          navigate={this.navigate}   
                          push={this.state.push}                      

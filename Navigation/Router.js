@@ -331,7 +331,7 @@ const Router = ({navigation}) => {
                     name={"EditProfile"}
                     component={EditProfile}
                     options={{
-                        headerShown: true,    
+                        headerShown: false,    
                     }}
                 />
                  <Stack.Screen

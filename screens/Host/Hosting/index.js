@@ -212,7 +212,7 @@ export default class Hosting extends Component {
             <View style={styles.hostingContainer}>
           
                 <ImageBackground
-                source={require("../../../assets/imgs/3.png")} resizeMode="cover" 
+                source={require("../../../assets/imgs/3rs.png")} resizeMode="cover" 
                 style={{width:"100%", height:'100%' }}
                 >
                       <SafeAreaView >

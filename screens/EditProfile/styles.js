@@ -18,13 +18,13 @@ const styles = StyleSheet.create({
     flexDirection:'row'
   },
   imageBoard: {
-    width: 98,
+    width: Dimensions.get('window').width*0.26,
     height: 150,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
     borderRadius: 25,
-    margin: 9,
+    margin:Dimensions.get('window').width*0.02,
     shadowOpacity: 0.5,
     shadowRadius: 5,
     shadowColor: 'grey',

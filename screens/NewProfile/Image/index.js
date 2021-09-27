@@ -267,7 +267,7 @@ export default class NewProfileImg extends Component {
             console.log('프로필 등록 완료');
             this.createUser();
             this.setCompleted();
-            this.props.navigation.navigate('DrawerNav');            
+            this.props.navigation.push('DrawerNav');            
         }
     }
 
