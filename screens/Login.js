@@ -269,12 +269,19 @@ async function onAppleButtonPress() {
     throw 'Apple Sign-In failed - no identify token returned';
   }
 
-  const {identityToken, nonce} = appleAuthRequestResponse;
+  // Create a Firebase credential from the response
+  const { identityToken, nonce } = appleAuthRequestResponse;
+  const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
 
-  console.log('identityToken: ', identityToken);
-  console.log('nonce: ', nonce);
+  // Sign the user in with the credential
+  return auth().signInWithCredential(appleCredential).then((identityToken)=> {
+    var id = identityToken.iss
+    var email = identityToken.email
+
+    connect (id, email);
+  })
+  
 }
-
   
 
 
