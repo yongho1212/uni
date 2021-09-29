@@ -106,14 +106,14 @@ const CustomSidebarMenu = (props) => {
             </TouchableOpacity>
           </View>
           <View style={{width:"100%", height:80, justifyContent:'center', alignItems:'center', marginBottom:10}}>
-          <View style={{marginTop:15,width: Dimensions.get('window').width * 0.82  }}>
+          <View style={{marginTop:15, }}>
             <BannerAd
               unitId={adUnitId}
               size={BannerAdSize.LARGE_BANNER}
               requestOptions={{
                 requestNonPersonalizedAdsOnly: true,
               }}
-              style={{width: Dimensions.get('window').width * 0.82}}
+              style={{}}
             />
           </View>
           

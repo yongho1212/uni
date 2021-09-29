@@ -99,7 +99,7 @@ function DrawerNav({ navigation }) {
      }}
      drawerContent={(props) => <CustomSidebarMenu {...props} />}
      drawerStyle={{
-      width: Dimensions.get('window').width * 0.82
+      width: Dimensions.get('window').width * 0.86
     }}  
     >
 
