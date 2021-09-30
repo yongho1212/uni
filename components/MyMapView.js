@@ -247,7 +247,7 @@ export default class MyMapView extends Component {
                     onRegionChangeComplete={(reg) => {         
                         this.state.test += 1;                                       
                         region = reg;
-                        this.props.onRegionChange(reg);                        
+                        this.props.onRegionChangeComplete(reg);                        
                         if(!this.props.onFilter) {
                             this.props.connect();
                         }else{

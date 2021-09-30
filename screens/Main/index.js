@@ -499,7 +499,7 @@ export default class Main extends Component {
                <View style={{width: '100%', height: Dimensions.get('window').height}}> 
                     <MyMapView
                          region={this.state.region}
-                         onRegionChange={(reg) => this.onMapRegionChange(reg)}
+                         onRegionChangeComplete={(reg) => this.onMapRegionChange(reg)}
                          getLocation={() => this.getCurrentLocation()}
                          connect={this.connect}
                          connectFilter={this.connectFilter}
