@@ -21,7 +21,7 @@ import Moment from 'moment';
 import 'moment/locale/ko';
 
 
-import Geolocation from '@react-native-community/geolocation';
+import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
 
 import messaging from '@react-native-firebase/messaging';
@@ -511,14 +511,14 @@ export default class Main extends Component {
                     </MyMapView>
                     
                     <ActionButton 
-                size={48}
-                buttonColor="#fb009e" 
-                verticalOrientation="down"
-                renderIcon={active => active ? (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconOpen} /> ) : (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconClose} />)}
-                style={styles.actionButtonIcon} 
-                >
-                         {this.state.hobbyList}   
-                </ActionButton>     
+                         size={48}
+                         buttonColor="#fb009e" 
+                         verticalOrientation="down"
+                         renderIcon={active => active ? (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconOpen} /> ) : (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconClose} />)}
+                         style={styles.actionButtonIcon} 
+                    >
+                              {this.state.hobbyList}   
+                    </ActionButton>     
                
                     <MainButton                         
                          navigate={this.navigate}   

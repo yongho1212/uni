@@ -27,7 +27,6 @@ import EditProfile from '../screens/EditProfile';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 

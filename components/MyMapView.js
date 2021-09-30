@@ -16,8 +16,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Foundation from 'react-native-vector-icons/Foundation';
 
 import { CometChat } from '@cometchat-pro/react-native-chat';
+import { Touchable } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 
-//
 
 export default class MyMapView extends Component {
     constructor(props){
@@ -242,7 +243,7 @@ export default class MyMapView extends Component {
                 <MapView
                     style={{width: '100%', height: '100%',padding:100}}
                     showsUserLocation={true}                                                            
-                    region={region}
+                    region={this.props.region}
                     onRegionChangeComplete={(reg) => {         
                         this.state.test += 1;                                       
                         region = reg;
@@ -255,19 +256,20 @@ export default class MyMapView extends Component {
                     }}
                     onPress={() => this.props.sendData(undefined)}
                 >
+
                     {this.createMarker()}
+
                 </MapView>
                 {marker}
-                <Pressable 
+                <TouchableOpacity
                     style={styles.locationBtn}
-                    onPress={() => this.props.getLocation()
-                    
-                    }
+                    onPress={() => this.props.getLocation()}
                 >
                     <Text>
                          <Ionicons name="ios-locate" color="grey" size={30} /> 
                     </Text>
-                </Pressable>
+
+                </TouchableOpacity>
                 
             </View>
         )                  
@@ -305,7 +307,8 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         shadowColor: '#000',
         shadowOffset: { height: 3, width: 3 },
-        zIndex:30
+        zIndex:30,
+        
     }
   });
 
