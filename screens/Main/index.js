@@ -67,9 +67,18 @@ export default class Main extends Component {
           }
 
           this.props.navigation.addListener('focus', async () => {
-               this.connect();
+               this.removeStorage();             
+               console.log(this.state.onFilter);
           })               
      }     
+
+     removeStorage = async() => {
+          await AsyncStorage.removeItem('check');
+          await AsyncStorage.removeItem('category');
+          await AsyncStorage.removeItem('title');
+          await AsyncStorage.removeItem('time');
+          await AsyncStorage.removeItem('timeInfo');
+     } 
 
      connect = async() => {
           const id = await AsyncStorage.getItem('id');
@@ -100,14 +109,18 @@ export default class Main extends Component {
                     Interest = userData.hobby.split(',');       
                })                                        
           })
-  
           .then(() => {
                Interest.map((hobby, index) => {
-                    hobbyList.push (  
-                         <ActionButton.Item key={index} buttonColor='#49ffbd' onPress={() => {this.connectFilter(hobby); this.state.hobby = hobby;}}>
-                          
-                              
-                          { hobby === '축구' ?                   
+                    hobbyList.push (                                   
+                         <ActionButton.Item 
+                              key={index} buttonColor='#49ffbd' 
+                              onPress={() => 
+                                   {
+                                        this.connectFilter(hobby); 
+                                        this.state.hobby = hobby;
+                                   }}
+                         >
+                              <Text>{hobby}</Text>           
                                   <MaterialCommunityIcons
                                   name={"soccer"}
                                   size={37}
@@ -215,19 +228,19 @@ export default class Main extends Component {
                                        
                                   
                           : <Text>{hobby}</Text>
-                          } 
+                          
                               
                               
                               
                           </ActionButton.Item>                    
-                      )
-                  })
-               })        
+                        )                              
+                    })
+               })
                .then(() => {
                     this.setState({
                          hobbyList: hobbyList,
                     })
-               })            
+               })                      
           }
 
           connectFilter = async(hobby) => {
@@ -276,6 +289,7 @@ export default class Main extends Component {
                { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 }
           )
      }
+
      onMapRegionChange = async(region) => {                    
           this.setState({ region: region });
           Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', { language: 'ko' });
@@ -499,9 +513,9 @@ export default class Main extends Component {
                <View style={{width: '100%', height: Dimensions.get('window').height}}> 
                     <MyMapView
                          region={this.state.region}
-                         onRegionChangeComplete={(reg) => this.onMapRegionChange(reg)}
+                         onRegionChange={(reg) => this.onMapRegionChange(reg)}
                          getLocation={() => this.getCurrentLocation()}
-                         connect={this.connect}
+                         connect={this.state.onFilter ? this.connectFilter : this.connect}
                          connectFilter={this.connectFilter}
                          sendData={this.getRoomData}
                          onFilter={this.state.onFilter}

@@ -24,15 +24,22 @@ export default class MyMapView extends Component {
     constructor(props){
         super(props);
         this.state = {
+            region: {
+                latitude: 37.49783315274643, 
+                longitude: 127.02783092726877,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.0121,     
+            },
             id: '',
             roomData: [],
             userData: [],            
             hobbyList: [],
             hobby: '',
             onFilter: false,
-            check: 0,
+            check: 0,            
 
-            test: 0,
+            dragCount: 0,
+            pressedCurrentBtn: false,
         }
     }
     
@@ -62,6 +69,7 @@ export default class MyMapView extends Component {
                         this.props.sendData(roomInfo);                    
                     }}
                     key={key++}
+                    tracksViewChanges={false}
                 >
                     
                     {roomInfo.category === '축구' ?
@@ -239,41 +247,70 @@ export default class MyMapView extends Component {
                      </View>
         
         return (
-            <View>
-                <MapView
-                    style={{width: '100%', height: '100%',padding:100}}
-                    showsUserLocation={true}                                                            
-                    region={this.props.region}
-                    onRegionChangeComplete={(reg) => {         
-                        this.state.test += 1;                                       
-                        region = reg;
-                        this.props.onRegionChangeComplete(reg);                        
-                        if(!this.props.onFilter) {
-                            this.props.connect();
-                        }else{
-                            this.props.connectFilter(this.props.hobby);
-                        }
-                    }}
-                    onPress={() => this.props.sendData(undefined)}
-                >
+            <View>                        
+                {this.state.dragCount === 0 ? 
+                    <View>                          
+                        <MapView
+                            style={{width: '100%', height: '100%'}}                    
+                            showsUserLocation={true}                                                                                               
+                            region={this.props.region}    
+                            onPanDrag={() => this.state.dragCount += 1}                        
+                            onRegionChangeComplete={(reg) => {
+                                region = reg;                                
+                                this.props.onRegionChange(reg);                                
+                                
+                                if(!this.props.onFilter) {
+                                    this.props.connect();
+                                }else{
+                                    this.props.connectFilter(this.props.hobby);
+                                }
+                            }}                             
+                            onPress={() => this.props.sendData(undefined)}                    
+                        >                    
+                            {this.createMarker()}                                                                                  
+                        </MapView>                
+                        {marker}  
+                    </View>
+                    :
+                    <View>                                        
+                        <MapView
+                            style={{width: '100%', height: '100%'}}                    
+                            showsUserLocation={true}                                                                                             
+                            region={this.state.pressedCurrentBtn === true ? this.props.region : region}                                   
+                            onRegionChangeComplete={(reg) => {  
+                                this.setState({pressedCurrentBtn: false})                           
+                            this.props.onRegionChange(reg);
+                            region = reg;
 
-                    {this.createMarker()}
+                            if(!this.props.onFilter) {
+                                this.props.connect();
+                            }else{
+                                this.props.connectFilter(this.props.hobby);
+                            }
+                        }}                             
+                            onPress={() => this.props.sendData(undefined)}                    
+                        >                    
+                            {this.createMarker()}                                                                                  
+                        </MapView>                
+                        {marker}     
+                        <TouchableOpacity
+                            style={styles.locationBtn}
+                            onPress={() => {
+                                this.props.getLocation();
+                                this.state.pressedCurrentBtn = true;
+                            }}
+                        >
+                            <Text>
+                                <Ionicons name="ios-locate" color="grey" size={30} /> 
+                            </Text>
 
-                </MapView>
-                {marker}
-                <TouchableOpacity
-                    style={styles.locationBtn}
-                    onPress={() => this.props.getLocation()}
-                >
-                    <Text>
-                         <Ionicons name="ios-locate" color="grey" size={30} /> 
-                    </Text>
-
-                </TouchableOpacity>
-                
+                        </TouchableOpacity>                       
+                    </View>        
+                            
+                }                                
             </View>
         )                  
-    }
+    }    
 }
 
 const styles = StyleSheet.create({
@@ -311,6 +348,8 @@ const styles = StyleSheet.create({
         
     }
   });
+
+
 
 
 
