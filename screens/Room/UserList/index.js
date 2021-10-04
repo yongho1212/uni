@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, Image} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, Image,ImageBackground} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -8,6 +8,7 @@ import { CometChat } from '@cometchat-pro/react-native-chat';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import styles from './styles';
+
 
 export default class UserList extends Component {
     constructor(props) {
@@ -91,17 +92,25 @@ export default class UserList extends Component {
                     key={key++}
                 >
                     <View style={styles.usersList}>
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                            <Image
-                                 source={{uri : this.state.usersProfile[i]}}
-                                 style={{width: 80, height: 80, borderRadius: 40, overflow: 'hidden', borderWidth: 3,}}
-                                 key={key++}
-                            />
-                            <Text
-                                 style={styles.usersNick}
-                            >
-                                 {this.state.usersNick[i]}
-                            </Text>
+                        <View style={styles.infoContainer}>
+                            <View style={styles.imgContainer}>
+                                <Image
+                                    source={{uri : this.state.usersProfile[i]}}
+                                    style={{width: 70, height: 70, borderRadius: 40, overflow: 'hidden', borderWidth: 1,marginLeft:5}}
+                                    key={key++}
+                                />
+                            </View>
+                            <View>
+                                <Text
+                                    style={styles.usersNick}
+                                >
+                                    {this.state.usersNick[i]}
+                                </Text>
+                                <Text style={styles.introText}>
+                                    introdoce about me
+                                </Text>
+                            </View>
+                            
                        </View>
                        <View style={styles.checkList}>
                             <AntDesign
@@ -171,18 +180,24 @@ export default class UserList extends Component {
 
     render() {
         return (
-            <View>
-                <View style={styles.headerConatiner}>
+            <View >
+                 <ImageBackground
+                source={require("../../../assets/imgs/3rs.png")} resizeMode="cover" 
+                style={{width:"100%", height:'100%'}}
+                >
+                <View style={{alignItems:'center'}}>
+                    {this.showUsersProfile()}
+                </View>
+                </ImageBackground>
+               {/* <View style={styles.headerConatiner}>
                         <AntDesign
                             name={"arrowleft"}
                             style={styles.backIcon}
                             onPress={() => {this.props.navigation.navigate('RoomList');}}
                         />  
                         <Text>Request User List</Text>                    
-                </View>
-                <View>
-                    {this.showUsersProfile()}
-                </View>
+        </View>*/}
+                
                 
             </View>
         )

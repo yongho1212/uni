@@ -61,26 +61,29 @@ export default class RoomList extends Component {
                          style={styles.cardContainer}
                          key={key++}
                     >
-                         <View style={styles.roomCard}>
-                              <Pressable
+                         <Pressable
                               onPress={() => this.props.navigation.push('Roomctrl', 
                                    {sendd: data}
                               )}
                               >
-                              <View style={styles.categoryIcon}>
-                                   <Text style={styles.categoryText}> {data.category}</Text> 
-                              </View>
+                         <View style={styles.roomCard}>
+                              
+                                   <View style={styles.categoryIcon}>
+                                        <Text style={styles.categoryText}> {data.category}</Text> 
+                                   </View>
                               <View style={styles.infoContainer}>
+                              
                                    <View style={styles.titleContainer}>
                                         <Text numberOfLines={1}  style={styles.titleText}> {data.title}</Text>
                                    </View>
-                                   
+                                   <Text style={styles.timeText}> {data.timeInfo}~ </Text> 
                                    <Text numberOfLines={2} style={styles.locationText}> {data.address}</Text>                    
-                                   <Text style={styles.timeText}> {data.timeInfo}~</Text>
+                                  
                               </View>
                               
-                              </Pressable>    
+                                
                          </View>
+                         </Pressable>  
                     </View>
                ))
      
