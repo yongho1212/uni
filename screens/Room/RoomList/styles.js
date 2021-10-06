@@ -8,10 +8,13 @@ const styles = StyleSheet.create({
         
     },
     sectionText:{
-        fontSize:18,
-        marginLeft:10,
+        fontSize:20,
+        marginLeft:20,
         backgroundColor:"#fff",
-        width:125
+        zIndex:10,
+        fontWeight:'bold',
+        marginTop:15,
+        color:'grey'
     },
     renderContainer:{
         backgroundColor:'#fff',
@@ -32,14 +35,16 @@ const styles = StyleSheet.create({
         padding:15,
         marginVertical: 15,
         borderRadius:25,
-        backgroundColor:'#96FFD9',
+        backgroundColor:'#fff',
         shadowOpacity: 0.3,
         shadowRadius: 5,
         shadowColor: 'grey',
         shadowOffset: { height: 3, width: 3 },
         resizeMode:'contain',
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        borderWidth:3,
+        borderColor:'#fb009e'
 
         
     },  
@@ -67,19 +72,21 @@ const styles = StyleSheet.create({
         
     },
     categoryIcon:{
-        backgroundColor:'#fb009e',
+        backgroundColor:'#96FFD9',
         width:80,
         height:80,
         borderRadius:50,
         flex:1,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        
         
     },
     categoryText:{
         fontSize:20,
         color:'#fff',
-        marginLeft:-4
+        marginLeft:-3,
+        color:'#000'
     },
     infoContainer:{
         flex:3,

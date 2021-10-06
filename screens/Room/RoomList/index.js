@@ -9,12 +9,13 @@ import styles from './styles';
 
 export default class RoomList extends Component {
      constructor(props) {
-            super(props);
-            this.state = {
-                id: '',
-                roomInfo: [],               
-                list: [],
-            }
+          super(props);
+          this.state = {
+               id: '',
+               hostRoomInfo: [], 
+               joinRoomInfo: [],              
+               list: [],
+          }
      }
   
      componentDidMount = async() => {
@@ -45,9 +46,10 @@ export default class RoomList extends Component {
           })
           .then(response => response.json())
           .then(responseData => {
-              this.setState({
-                  roomInfo: responseData,
-              })
+               this.setState({
+                    hostRoomInfo: responseData[0],
+                    joinRoomInfo: responseData[1],
+               })
           })          
      }
 
@@ -55,8 +57,8 @@ export default class RoomList extends Component {
           let roomList = [];
           var key = 0;
           
-          if(this.state.roomInfo !== 0) {
-               this.state.roomInfo.map(data => roomList.push (
+          if(this.state.hostRoomInfo !== 0) {
+               this.state.hostRoomInfo.map(data => roomList.push (
                     <View
                          style={styles.cardContainer}
                          key={key++}
@@ -91,6 +93,45 @@ export default class RoomList extends Component {
           }                   
      }
 
+     showJoinRoomList = () => {
+          let roomList = [];
+          var key = 0;
+
+          if(this.state.joinRoomInfo !== 0) {
+               this.state.joinRoomInfo.map(data => roomList.push (
+                    <View
+                         style={styles.cardContainer}
+                         key={key++}
+                    >
+                         <Pressable
+                              onPress={() => this.props.navigation.push('Roomctrl', 
+                                   {sendd: data}
+                              )}
+                         >
+                              <View style={styles.roomCard}>                              
+                                   <View style={styles.categoryIcon}>
+                                        <Text style={styles.categoryText}>{data.category}</Text> 
+                                   </View>
+                                   <View style={styles.infoContainer}>                              
+                                        <View style={styles.titleContainer}>
+                                             <Text numberOfLines={1}  style={styles.titleText}>{data.title}</Text>
+                                        </View>
+                                        <Text style={styles.timeText}> {data.timeInfo}~</Text> 
+                                        <Text numberOfLines={2} style={styles.locationText}>{data.address}</Text>                                                      
+                                   </View>                                                              
+                              </View>
+                         </Pressable>  
+                    </View>
+               ))
+
+               
+               return roomList;
+          }                   
+                     
+     }
+
+
+
      render() {
           return (
                <ScrollView style={{backgroundColor:'#fff'}}>
@@ -104,15 +145,21 @@ export default class RoomList extends Component {
           </View>  */} 
                <View style={styles.sectionConatiner}>
                     <Text style={styles.sectionText}>
-                         Hosting Rooms
+                         호스팅중
                     </Text>
                </View>                      
                     <View style={{flexDirection:'row', flexWrap:'wrap'}}>                 
                          {this.showRoomList()}                                                
                     </View>
-                    <Text style={styles.sectionText}>
-                         Join Rooms
-                    </Text>                     
+                    <View style={{}}>
+                         <Text style={styles.sectionText}>
+                              참가중
+                         </Text>
+                    </View>
+                      
+                    <View style={{flexDirection:'row', flexWrap:'wrap'}}>                 
+                              {this.showJoinRoomList()}                                                
+                         </View>                      
                 </ScrollView>
           )
      }

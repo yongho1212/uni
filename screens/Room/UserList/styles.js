@@ -37,12 +37,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         
         marginTop:10,
-        borderRadius:10,
+        borderRadius:20,
         backgroundColor:'#fff',
         shadowOpacity: 0.3,
         shadowRadius: 5,
         shadowColor: 'grey',
         shadowOffset: { height: 3, width: 3 },
+        borderWidth:3,
+        borderColor:'#fb009e'
 
         
     },
@@ -63,11 +65,15 @@ const styles = StyleSheet.create({
         flex:1
     },
     allowIcon: {
-        fontSize: 28,
+        fontSize: 30,
         marginRight: 5,
+        color:'green',
+        fontWeight:'bold'
     },
     refuseIcon: {
         fontSize: 28,
+        color:'red',
+        marginLeft:5
     }
 });
 

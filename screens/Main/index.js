@@ -95,7 +95,8 @@ export default class Main extends Component {
                },
                body: JSON.stringify({
                     id: id,
-                    onFilter: false,
+                    onFilter: this.state.onFilter,
+                    category: this.state.hobby,
                })            
           })
           .then(response => response.json())
@@ -120,7 +121,8 @@ export default class Main extends Component {
                                         this.state.hobby = hobby;
                                    }}
                          >
-                              <Text>{hobby}</Text>           
+                              {
+                               hobby === '축구' ?              
                                   <MaterialCommunityIcons
                                   name={"soccer"}
                                   size={37}
@@ -230,7 +232,7 @@ export default class Main extends Component {
                           : <Text>{hobby}</Text>
                           
                               
-                              
+                              }
                               
                           </ActionButton.Item>                    
                         )                              

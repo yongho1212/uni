@@ -180,16 +180,18 @@ export default class UserList extends Component {
 
     render() {
         return (
-            <View >
-                 <ImageBackground
-                source={require("../../../assets/imgs/3rs.png")} resizeMode="cover" 
-                style={{width:"100%", height:'100%'}}
-                >
+            <View style={{backgroundColor:'#fff', flex:1}}>
+                 
                 <View style={{alignItems:'center'}}>
                     {this.showUsersProfile()}
                 </View>
+                {/*
+                <ImageBackground
+                source={require("../../../assets/imgs/3rs.png")} resizeMode="cover" 
+                style={{width:"100%", height:'100%'}}
+                >
                 </ImageBackground>
-               {/* <View style={styles.headerConatiner}>
+                <View style={styles.headerConatiner}>
                         <AntDesign
                             name={"arrowleft"}
                             style={styles.backIcon}

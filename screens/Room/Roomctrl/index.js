@@ -23,7 +23,7 @@ function Roomctrl (props) {
                style: { backgroundColor: '#fb009e', height:80, borderRadius:25 },
              }}
              tabBarPosition={'bottom'}
-             style={{backgroundColor:'#49ffbd', marginBottom:-10}}
+             style={{ marginBottom:-10}}
     >
       <Tab.Screen name="Roominfo" component={Roominfo} initialParams={params}/>
       <Tab.Screen name="UserList" component={UserList} initialParams={params}/>
