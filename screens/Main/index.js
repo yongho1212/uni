@@ -67,9 +67,9 @@ export default class Main extends Component {
           }
 
           this.props.navigation.addListener('focus', async () => {
-               this.removeStorage();             
-               console.log(this.state.onFilter);
-          })               
+               this.removeStorage();     
+               this.connect();                       
+          })                  
      }     
 
      removeStorage = async() => {
@@ -246,6 +246,7 @@ export default class Main extends Component {
           }
 
           connectFilter = async(hobby) => {
+               const id = await AsyncStorage.getItem('id');
                this.state.onFilter = true;
        
                const URL = "https://loof-back.herokuapp.com/main";
@@ -255,17 +256,19 @@ export default class Main extends Component {
                          'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                         onFilter: this.state.onFilter,
-                         category: hobby,
+                         id: id,
+                         onFilter: this.state.onFilter,                    
+                         category: hobby,                    
                     })
                })
                .then(response => response.json())
                .then(responseData => {
                     this.setState({
                          roomData: responseData[0],
+                         userData: responseData[1]
                     })
                })
-          }   
+          }       
 
      getCurrentLocation = async() => {
           Geolocation.getCurrentPosition(
@@ -287,21 +290,21 @@ export default class Main extends Component {
                               });
                          });
                },
-               error => Alert.alert(error.message),
+               error => console.log(error),           
                { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 }
           )
      }
 
-     onMapRegionChange = async(region) => {                    
-          this.setState({ region: region });
+     onMapRegionChange = async(region) => {                             
+          this.setState({region: region})
           Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', { language: 'ko' });
-          await Geocoder.from(this.state.region.latitude, this.state.region.longitude)
+          await Geocoder.from(region.latitude, region.longitude)
           .then(json => {
                var address = json.results[0].formatted_address;
                this.setState({
                     address: address,
-               });
-          })
+               }, () => {console.log(this.state.address)});
+          })          
      }           
 
      //수정사항 : this.state.hostsProfile로 하면 한번에 방에 참가한 사람들의 모든 프로필 이미지를 한번에 불러오지만 지도를 움직이지 않은 상태에서 3번 째부터는 이미지를 불러오지 못한다.

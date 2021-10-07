@@ -85,8 +85,10 @@ export default class App extends Component {
   }
 
   foreground = () => {
-    messaging().onMessage(payload => {                  
-      this.showNotification(payload.data.title, payload.data.body);
+    messaging().onMessage(remoteMessage => {                  
+      //this.showNotification(payload.data.title, payload.data.body);
+      console.log(remoteMessage);
+      this.showNotification(remoteMessage.data.title, remoteMessage.data.body);
     });    
   }
 

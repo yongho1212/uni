@@ -54,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
   const passwordInputRef = createRef();
 
    //chatting
-   const appID = '192332ba9a7ee10b';
+   const appID = '194886ce53b70b4a';
    const region = 'us';
    const appSetting = new CometChat.AppSettingsBuilder()
      .subscribePresenceForAllUsers()
@@ -118,6 +118,16 @@ const LoginScreen = ({ navigation }) => {
     .then(responseData => {
         if(responseData) {
           
+            
+            const url = 'https://api-us.cometchat.io/v3.0/users/110917783035367947415';
+            fetch(url, {
+              method: 'DELETE',
+              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: '194886ce53b70b4a', apiKey: 'a16d0c1f33bd96ff2246dd8259206eb96009aac3'},
+              body: JSON.stringify({permanent: true})
+            })
+            .then(response => response.json())
+            .then(responseData => console.log(responseData))
+            
 
           CometChat.init(appID, appSetting).then(
             () => {
@@ -125,19 +135,28 @@ const LoginScreen = ({ navigation }) => {
             },
             (error) => {
               console.log('Initialization failed with error:', error);
-            },
-          );
+            }            
+          ).then(
+            CometChat.login(id, 'a16d0c1f33bd96ff2246dd8259206eb96009aac3').then (
+              User => {
+                console.log("Login Successful:", { User });
+              },
+              error => {
+                console.log("Login failed with exception:", { error });
+              }
+            )  
+          ).then(
+            CometChat.registerTokenForPushNotification(fcmToken).then(
+              () => {
+                console.log('OK');
+              },
+              (error) => {
+                console.log('Fail: ', error);
+              }
+            )
+          )                        
 
-          CometChat.login(id, '92a48b2397822aea1cbebd8c615115bd3a14d4fa').then (
-            User => {
-              console.log("Login Successful:", { User });
-            },
-            error => {
-              console.log("Login failed with exception:", { error });
-            }
-          )                   
-
-          navigation.navigate('DrawerNav');             
+          navigation.navigate('DrawerNav');               
         }else {
           console.log(responseData);          
           navigation.navigate('Nickname');
@@ -275,11 +294,11 @@ async function onAppleButtonPress() {
 
   // Sign the user in with the credential
   return auth().signInWithCredential(appleCredential).then((identityToken)=> {
-    var id = identityToken.additionalUserInfo.profile.nonce
+    var id = identityToken.additionalUserInfo.profile.sub
     var email = identityToken.user.email
-      console.log(identityToken); 
-      console.log(identityToken.additionalUserInfo.profile.nonce); 
-      console.log(identityToken.user.email); 
+      console.log(identityToken.additionalUserInfo.profile.sub); 
+      //console.log(identityToken.additionalUserInfo.profile.nonce); 
+      //console.log(identityToken.user.email); 
 
     connect (id, email);
   })

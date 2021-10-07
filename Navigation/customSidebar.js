@@ -30,11 +30,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 
-
-
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-
-
 
 
 const CustomSidebarMenu = (props) => {  
@@ -42,8 +38,10 @@ const CustomSidebarMenu = (props) => {
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
 
-  useEffect(() => {
-    getUserInfo();
+  useEffect(() => {   
+    props.navigation.addListener('focus', () => {
+      getUserInfo();
+    })      
   }, []);
 
   const getUserInfo = async() => {

@@ -144,6 +144,7 @@ export default class UserList extends Component {
             body: JSON.stringify({
                 _id: this.props.route.params.sendd._id,
                 id: userId,
+                hostId: this.state.id,
             })
         })
         .then(response => response.json())

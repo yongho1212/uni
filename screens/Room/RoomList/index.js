@@ -57,7 +57,7 @@ export default class RoomList extends Component {
           let roomList = [];
           var key = 0;
           
-          if(this.state.hostRoomInfo !== 0) {
+          if(this.state.hostRoomInfo !== undefined) {
                this.state.hostRoomInfo.map(data => roomList.push (
                     <View
                          style={styles.cardContainer}
@@ -97,7 +97,7 @@ export default class RoomList extends Component {
           let roomList = [];
           var key = 0;
 
-          if(this.state.joinRoomInfo !== 0) {
+          if(this.state.joinRoomInfo !== undefined) {
                this.state.joinRoomInfo.map(data => roomList.push (
                     <View
                          style={styles.cardContainer}

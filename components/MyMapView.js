@@ -60,6 +60,10 @@ export default class MyMapView extends Component {
     createMarker = () => {        
         let marker = []
         var key = 0;
+        
+        if(this.props.roomData.length === 0) {
+            this.state.trackView = true;
+        }
 
         for(let index = 0; index < this.props.roomData.length; index++) {
             this.props.roomData.map(roomInfo => marker.push (                  
@@ -69,7 +73,7 @@ export default class MyMapView extends Component {
                         this.props.sendData(roomInfo);                    
                     }}
                     key={key++}
-                    tracksViewChanges={false}
+                    tracksViewChanges={this.state.trackView}   
                 >
                     
                     {roomInfo.category === '축구' ?
@@ -232,19 +236,13 @@ export default class MyMapView extends Component {
     
 
     render() {
-        let region;
-        if(this.state.test === 0) {
-            region = {
-                latitude: 37.49783315274643, 
-                longitude: 127.02783092726877,
-                latitudeDelta: 0.015,
-                longitudeDelta: 0.0121,     
-            }
-        }
+        
         let marker = 
                     <View style={{top: '50%', left: '50%', marginLeft: -15, marginTop: -40, position: 'absolute'}}>
                         <Image style={{height: 50, resizeMode:'contain'}} source={require('../assets/marker/mpin.png')}/>   
                      </View>
+
+        let region;
         
         return (
             <View>                        
@@ -274,6 +272,7 @@ export default class MyMapView extends Component {
                     :
                     <View>                                        
                         <MapView
+                            ref={ref => {this.map = ref}}
                             style={{width: '100%', height: '100%'}}                    
                             showsUserLocation={true}                                                                                             
                             region={this.state.pressedCurrentBtn === true ? this.props.region : region}                                   
