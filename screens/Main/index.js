@@ -20,7 +20,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Moment from 'moment';
 import 'moment/locale/ko';
 
-
+import { GEO_KEY, SERVER_URL } from '@env'
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
 
@@ -70,6 +70,7 @@ export default class Main extends Component {
                this.removeStorage();     
                this.connect();                       
           })                  
+          
      }     
 
      removeStorage = async() => {
@@ -87,7 +88,8 @@ export default class Main extends Component {
           var Interest = new Array();
           var hobbyList = new Array();
 
-          const URL = "https://loof-back.herokuapp.com/main";
+          const URL = `${SERVER_URL}/main`;
+        
           fetch(URL, {
                method: 'POST',
                headers: {
@@ -249,7 +251,7 @@ export default class Main extends Component {
                const id = await AsyncStorage.getItem('id');
                this.state.onFilter = true;
        
-               const URL = "https://loof-back.herokuapp.com/main";
+               const URL = `${SERVER_URL}/main`;
                fetch(URL, {
                     method: 'POST',
                     headers: {
@@ -281,7 +283,7 @@ export default class Main extends Component {
                               longitudeDelta: 0.0121,
                          },
                     });
-                    Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', { language: 'ko' });
+                    Geocoder.init(GEO_KEY, { language: 'ko' });
                     Geocoder.from(position.coords.latitude, position.coords.longitude)
                          .then(json => {
                               var address = json.results[0].formatted_address;
@@ -297,7 +299,7 @@ export default class Main extends Component {
 
      onMapRegionChange = async(region) => {                             
           this.setState({region: region})
-          Geocoder.init('AIzaSyCTml8KmT7QuXIgxDNwTkrnJcuAV_35PY8', { language: 'ko' });
+          Geocoder.init(GEO_KEY, { language: 'ko' });
           await Geocoder.from(region.latitude, region.longitude)
           .then(json => {
                var address = json.results[0].formatted_address;
@@ -316,7 +318,7 @@ export default class Main extends Component {
                this.setState({roomInfo: data});    
                
                for(let i = 0; i < data.hostUser.length; i++) {
-                    fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + data.hostUser[i] + "&time=" + new Date())
+                    fetch(`${SERVER_URL}/firstProfile/?id=` + data.hostUser[i] + "&time=" + new Date())
                     .then(responseData => {
                          if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {
                               hostsProfile.push(responseData.url);
@@ -326,7 +328,7 @@ export default class Main extends Component {
                }
 
                for(let i = 0; i < data.joinUser.length; i++) {
-                    fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + data.joinUser[i]  + "&time=" + new Date())
+                    fetch(`${SERVER_URL}/firstProfile/?id=` + data.joinUser[i]  + "&time=" + new Date())
                     .then(responseData => {
                          if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
                               usersProfile.push(responseData.url);    
@@ -343,7 +345,7 @@ export default class Main extends Component {
      }
 
      joinRoom = async(hostId, roomId) => {          
-          const URL = "https://loof-back.herokuapp.com/joinRoom";
+          const URL = `${SERVER_URL}/joinRoom`;
           fetch(URL, {
                method: 'POST',
                headers: {
@@ -360,7 +362,7 @@ export default class Main extends Component {
      joinSuccess = async(hostId, roomId, responseData) => {
           console.log(responseData.recipients);
           if(responseData.recipients !== 0) {
-               const URL = "https://loof-back.herokuapp.com/joinRoom";
+               const URL = `${SERVER_URL}/joinRoom`;
                fetch(URL, {
                     method: 'POST',
                     headers: {
@@ -378,7 +380,7 @@ export default class Main extends Component {
      }
 
      checkJoin = async() => {
-          const URL = "https://loof-back.herokuapp.com/checkJoin";
+          const URL = `${SERVER_URL}/checkJoin`;
           fetch(URL, {
                method: 'POST',
                headers: {
