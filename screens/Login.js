@@ -37,7 +37,7 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import messaging from '@react-native-firebase/messaging';
 
-
+import { CHAT_APP_ID, CHAT_API_KEY,CHAT_AUTH_KEY, SERVER_URL, GOOGLE_WEB_CLIENT_ID } from '@env'
 
 
 const LoginScreen = ({ navigation }) => {
@@ -54,7 +54,7 @@ const LoginScreen = ({ navigation }) => {
   const passwordInputRef = createRef();
 
    //chatting
-   const appID = '194886ce53b70b4a';
+   const appID = CHAT_APP_ID;
    const region = 'us';
    const appSetting = new CometChat.AppSettingsBuilder()
      .subscribePresenceForAllUsers()
@@ -74,7 +74,7 @@ const LoginScreen = ({ navigation }) => {
        // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
         // Repleace with your webClientId
         // Generated from Firebase console
-        webClientId: '913377494399-3utpu41533gamaa6fgqtui5ajcu54pt6.apps.googleusercontent.com',
+        webClientId: GOOGLE_WEB_CLIENT_ID,
       });
       // Check if user is already signed in
     
@@ -101,8 +101,8 @@ const LoginScreen = ({ navigation }) => {
     } catch (e) {
       console.log(e);
     }  
-
-    const URL = "https://loof-back.herokuapp.com/signIn";
+    
+    const URL = `${SERVER_URL}/signIn`;
     fetch(URL, {
         method: 'POST',
         headers: {
@@ -122,7 +122,7 @@ const LoginScreen = ({ navigation }) => {
             const url = 'https://api-us.cometchat.io/v3.0/users/110917783035367947415';
             fetch(url, {
               method: 'DELETE',
-              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: '194886ce53b70b4a', apiKey: 'a16d0c1f33bd96ff2246dd8259206eb96009aac3'},
+              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: CHAT_APP_ID, apiKey: CHAT_API_KEY},
               body: JSON.stringify({permanent: true})
             })
             .then(response => response.json())
@@ -137,7 +137,7 @@ const LoginScreen = ({ navigation }) => {
               console.log('Initialization failed with error:', error);
             }            
           ).then(
-            CometChat.login(id, 'a16d0c1f33bd96ff2246dd8259206eb96009aac3').then (
+            CometChat.login(id, CHAT_AUTH_KEY).then (
               User => {
                 console.log("Login Successful:", { User });
               },

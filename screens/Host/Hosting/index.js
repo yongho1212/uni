@@ -11,7 +11,7 @@ import { CometChat } from '@cometchat-pro/react-native-chat';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-
+import { SERVER_URL } from '@env'
 import styles from './styles';
 
 
@@ -110,7 +110,7 @@ export default class Hosting extends Component {
         const {id, address, lat, lng, category, title, time, timeInfo} = this.state.room;
         var GUID = Moment(new Date()).format('MMDD_HHmmss');
 
-        const URL = "https://loof-back.herokuapp.com/createRoom";
+        const URL = `${ SERVER_URL }/createRoom`;
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -137,7 +137,7 @@ export default class Hosting extends Component {
 
         console.log(_id);
         
-        const URL = "https://loof-back.herokuapp.com/modifyRoom";
+        const URL = `${ SERVER_URL }/modifyRoom`
         fetch(URL, {
             method: 'POST',
             headers: {

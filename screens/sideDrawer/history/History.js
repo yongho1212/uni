@@ -22,7 +22,7 @@ function History ({ navigation }) {
                    
                 </View>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
-      <Button onPress={() => console.log(Config.GOOGLE_MAPS_API_KEY)} title="CSLOG" />
+     
     </SafeAreaView>
      );
 };

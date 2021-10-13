@@ -14,6 +14,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import styles from './styles';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { SERVER_URL,  } from '@env'
+
 export default class EditProfile extends Component {
     constructor(props) {
         super(props);
@@ -47,14 +49,14 @@ export default class EditProfile extends Component {
             id: id,
         })
 
-        fetch("https://loof-back.herokuapp.com/firstProfile/?id=" + id  + "&time=" + new Date())
+        fetch(`${SERVER_URL}/firstProfile/?id=` + id  + "&time=" + new Date())
         .then(responseData => {
             if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
                 this.state.image[0].uri = responseData.url;     
             }
         })
         .then(() =>
-            fetch("https://loof-back.herokuapp.com/secondProfile/?id=" + id + "&time=" + new Date())
+            fetch(`${SERVER_URL}/secondProfile/?id=` + id + "&time=" + new Date())
             .then(responseData => {  
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {
                     this.state.image[1].uri = responseData.url;                                     
@@ -62,7 +64,7 @@ export default class EditProfile extends Component {
             })
         )
         .then(() =>
-            fetch("https://loof-back.herokuapp.com/thirdProfile/?id=" + id + "&time=" + new Date())
+            fetch(`${SERVER_URL}/thirdProfile/?id=` + id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[2].uri = responseData.url;                                   
@@ -70,21 +72,21 @@ export default class EditProfile extends Component {
             })
         )
         .then(() =>
-            fetch("https://loof-back.herokuapp.com/fourthProfile/?id=" + id + "&time=" + new Date())
+            fetch(`${SERVER_URL}/fourthProfile/?id=` + id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[3].uri = responseData.url;     
                 }
             })
         ).then(() =>
-            fetch("https://loof-back.herokuapp.com/fifthProfile/?id=" + id + "&time=" + new Date())
+            fetch(`${SERVER_URL}/fifthProfile/?id=` + id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[4].uri = responseData.url;                                     
                 }
             })
         ).then(() => 
-            fetch("https://loof-back.herokuapp.com/sixthProfile/?id=" + id + "&time=" + new Date())
+            fetch(`${SERVER_URL}/sixthProfile/?id=` + id + "&time=" + new Date())
             .then(responseData => {
                 if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {  
                     this.state.image[5].uri = responseData.url;                                     
@@ -213,7 +215,7 @@ export default class EditProfile extends Component {
             type: type,
         })
 
-        const URL = "https://loof-back.herokuapp.com/uploadProfile";
+        const URL = `${SERVER_URL}/uploadProfile`;
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -263,7 +265,7 @@ export default class EditProfile extends Component {
         this.state.interestList = '';
 
         const id = await AsyncStorage.getItem('id');
-        const URL = "https://loof-back.herokuapp.com/userInfo";
+        const URL = `${SERVER_URL}/userInfo`;
         var interest = new Array();
 
         fetch(URL, {

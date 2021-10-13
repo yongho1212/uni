@@ -14,12 +14,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { CometChat } from '@cometchat-pro/react-native-chat';
 
+import {CHAT_APP_ID, CHAT_API_KEY } from '@env'
+
 const SplashScreen = ({ navigation }) => {
   //State for ActivityIndicator animation
   const [animating, setAnimating] = useState(true);
 
   //chatting  
-  const appID = '192332ba9a7ee10b';
+  const appID = CHAT_APP_ID;
   const region = 'us';
   const appSetting = new CometChat.AppSettingsBuilder()
     .subscribePresenceForAllUsers()
@@ -47,7 +49,7 @@ const SplashScreen = ({ navigation }) => {
         console.log('Initialization failed with error:', error);
       },
     ).then(
-      CometChat.login(id, '92a48b2397822aea1cbebd8c615115bd3a14d4fa').then (
+      CometChat.login(id, CHAT_API_KEY).then (
         User => {
           console.log("Login Successful:", { User });
         },

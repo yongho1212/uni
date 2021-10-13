@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
+import { SERVER_URL } from '@env'
 import styles from './styles';
 
 export default class Nickname extends Component {
@@ -57,7 +57,7 @@ export default class Nickname extends Component {
                 console.log(e);
             }
 
-            const URL = "https://loof-back.herokuapp.com/setNickname";
+            const URL = `${SERVER_URL}/setNickname`;
             fetch(URL, {
                 method: 'POST',
                 headers: {

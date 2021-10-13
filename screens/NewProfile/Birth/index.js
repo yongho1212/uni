@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import DatePicker from 'react-native-date-picker';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import { SERVER_URL } from '@env'
 
 import styles from './styles';
 
@@ -58,7 +58,7 @@ export default class Birth extends Component {
     }   
 
     connect = async () => {
-        const URL = "https://loof-back.herokuapp.com/setBirth";
+        const URL = `${SERVER_URL}/setBirth`;
         fetch(URL, {
             method: 'POST',
             headers: {

@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+import { SERVER_URL } from '@env'
+
 import styles from './styles';
 
 export default class RoomList extends Component {
@@ -34,7 +36,7 @@ export default class RoomList extends Component {
                console.log(e);
           }
 
-          const URL = "https://loof-back.herokuapp.com/roomList";
+          const URL = `${SERVER_URL}/roomList`;
           fetch(URL, {
               method: 'POST',
               headers: {

@@ -8,7 +8,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import LinearGradient from 'react-native-linear-gradient';
-
+import { SERVER_URL } from '@env'
 import styles from './styles';
 
 export default class Gender extends Component {
@@ -54,7 +54,7 @@ export default class Gender extends Component {
 
     connect = async () => {
         
-        const URL = "https://loof-back.herokuapp.com/setGender";
+        const URL = `${SERVER_URL}/setGender`;
         fetch(URL, {
             method: 'POST',
             headers: {
