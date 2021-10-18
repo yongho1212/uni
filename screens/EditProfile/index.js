@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {KeyboardAvoidingView, View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert, SafeAreaView, ImageBackground} from 'react-native';
+import {KeyboardAvoidingView, View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, SafeAreaView, ImageBackground} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -103,7 +103,7 @@ export default class EditProfile extends Component {
             picker.push (
                 <TouchableOpacity
                     style={styles.imageBoard}
-                    onPress={() => {this.setState({index : index}); this.bs.current.snapTo(0);}}
+                    onPress={() => {this.setState({index : index}); this.pickImage('gallery');}}
                     key={index}
                 >                    
                     {data.uri === undefined ?
@@ -190,7 +190,7 @@ export default class EditProfile extends Component {
                 
                 this.uploadImage(image, this.state.index);
                 this.picker();    
-            }).catch((e) => Alert.alert(JSON.stringify(e)));
+            }).catch((e) =>console.log(JSON.stringify(e)));
         }
 
         this.bs.current.snapTo(1);        

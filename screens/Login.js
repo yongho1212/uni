@@ -118,7 +118,7 @@ const LoginScreen = ({ navigation }) => {
     .then(responseData => {
         if(responseData) {
           
-            
+            /*
             const url = 'https://api-us.cometchat.io/v3.0/users/110917783035367947415';
             fetch(url, {
               method: 'DELETE',
@@ -127,7 +127,7 @@ const LoginScreen = ({ navigation }) => {
             })
             .then(response => response.json())
             .then(responseData => console.log(responseData))
-            
+            */
 
           CometChat.init(appID, appSetting).then(
             () => {
@@ -444,16 +444,16 @@ async function onAppleButtonPress() {
                 </Text>
               </Pressable>
               </View>
-              <AppleButton
-        buttonStyle={AppleButton.Style.WHITE}
-        buttonType={AppleButton.Type.SIGN_IN}
-        style={{width:200, height:50}}
-        onPress={() =>
-          onAppleButtonPress().then(() =>
-            console.log('Apple sign-in complete!'),
-          )
-        }
-      />
+             {/* <AppleButton
+                  buttonStyle={AppleButton.Style.WHITE}
+                  buttonType={AppleButton.Type.SIGN_IN}
+                  style={{width:200, height:50}}
+                  onPress={() =>
+                    onAppleButtonPress().then(() =>
+                      console.log('Apple sign-in complete!'),
+                    )
+                  }
+                /> */}
 
               <View style={styles.sectionStyle}>
              

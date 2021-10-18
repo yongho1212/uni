@@ -15,6 +15,8 @@ import ViewProfiles from '../../components/ViewProfiles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 
 
 import Moment from 'moment';
@@ -46,7 +48,7 @@ export default class Main extends Component {
                address: 0,
                id: '',
                push: 0,
-
+               GUID: [],
                roomData: [],
                userData: [],
                hobbyList: [],               
@@ -106,6 +108,7 @@ export default class Main extends Component {
                this.setState({
                     roomData: responseData[0],
                     userData: responseData[1],
+                    GUID: responseData[2],
                })
      
                this.state.userData.map(userData => {
@@ -239,6 +242,28 @@ export default class Main extends Component {
                           </ActionButton.Item>                    
                         )                              
                     })
+                    hobbyList.push (
+                         <ActionButton.Item
+                              key={"all"} buttonColor='#49ffbd'
+                              onPress={() => 
+                                   {
+                                        this.connectFilter("all");
+                                        this.state.hobby = "all";
+                                   }}
+                         >
+                              <FontAwesome 
+                                   name={"repeat"}
+                                   size={37}   
+                                   color={'#000'}
+                              />
+                         </ActionButton.Item>
+                    )
+     
+                    console.log(this.state.GUID);
+     
+                    if(this.state.GUID.length !== 0) {
+                         this.deleteGroupChat(this.state.GUID);
+                    };
                })
                .then(() => {
                     this.setState({
@@ -246,6 +271,21 @@ export default class Main extends Component {
                     })
                })                      
           }
+
+          deleteGroupChat = async(GUID) => {  
+               GUID.map((data, index) => {
+                    CometChat.deleteGroup(data.GUID).then(
+                         response => {
+                              console.log("Groups deleted successfully:", response);
+                         },
+                         error => {
+                              console.log("Group delete failed with exception:", error);
+                         }
+                    )
+               })                        
+          }
+     
+
 
           connectFilter = async(hobby) => {
                const id = await AsyncStorage.getItem('id');
