@@ -20,6 +20,7 @@ import { Touchable } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 
 
+
 export default class MyMapView extends Component {
     constructor(props){
         super(props);
@@ -96,106 +97,102 @@ export default class MyMapView extends Component {
                     : roomInfo.category === '볼링' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <FontAwesome5 
-                        name={"bowling-ball"}
-                        size={37}   
-                        color={'#bc2b62'}
-                    />
+                        <Image  
+                                  style={{ width:38,height:38, zIndex:10, marginBottom:10 }}   
+                                  source={require('../assets/cateicon/bowling.png')}/>
                     </View>
-                    : roomInfo.category === '야구' ?
-                    <View style={{ justifyContent:'center', alignItems:'center'}} >
-                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <FontAwesome5 
-                        name={"baseball-outline"}
-                        size={37}   
-                        color={'#bc2b62'}
-                    />
-                    </View>
-                    : roomInfo.category === '배드민턴' ?
-                    <View style={{ justifyContent:'center', alignItems:'center'}} >
-                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <MaterialCommunityIcons 
-                        name={"badminton"}
-                        size={37}   
-                        color={'#bc2b62'}
-                    />
-                    </View>
+                    
+                    
                     : roomInfo.category === '등산' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <Foundation 
-                        name={"mountains"}
-                        size={37}   
-                        color={'#bc2b62'}
-                    />
-                    </View>
-                    : roomInfo.category === '당구' ?
-                    <View style={{ justifyContent:'center', alignItems:'center'}} >
-                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
                         <Image  
-                        style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
-                        source={require('../assets/cateicon/pool.png')}/>
+                        style={{  width:39,height:39, zIndex:10, marginBottom:8, borderRadius:19 ,backgroundColor:'#fff'  }}   
+                        source={require('../assets/cateicon/hiking.png')}/>
                     </View>
-                    : roomInfo.category === '요가' ?
-                    <View style={{ justifyContent:'center', alignItems:'center'}} >
-                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <MaterialCommunityIcons 
-                        name={"yoga"}
-                        size={37}   
-                        color={'#bc2b62'}
-                    />
-                    </View>
+
+                    
+
+                   
+
                     : roomInfo.category === '웨이트' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <MaterialCommunityIcons 
-                        name={"weight-lifter"}
-                        size={37}   
-                        color={'#bc2b62'}
-                    />
+                        <Image  
+                        style={{  width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 , backgroundColor:'#fff' }}   
+                        source={require('../assets/cateicon/weight.png')}/>
                     </View>
-                    : roomInfo.category === '자전거' ?
-                    <View style={{ justifyContent:'center', alignItems:'center'}} >
-                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <Ionicons 
-                        name={"bicycle"}
-                        size={37}   
-                        color={'#000'}
-                    />
-                    </View>
+
+                   
+
                     : roomInfo.category === '런닝' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
                         <Image  
-                        style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
-                        source={require('../assets/cateicon/running.png')}/>
+                        style={{  width:39,height:39, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                        source={require('../assets/cateicon/run.png')}/>
                     </View>
+
                     : roomInfo.category === '골프' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
-                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <MaterialCommunityIcons 
-                        name={"golf"}
-                        size={37}   
-                        color={'#000'}
-                    />
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute', }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                        source={require('../assets/cateicon/golf-player.png')}/>
                     </View>
+
                     : roomInfo.category === '탁구' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
-                    <FontAwesome5 
-                        name={"gotable-tennislf"}
-                        size={37}   
-                        color={'#000'}
-                    />
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                        source={require('../assets/cateicon/table-tennis.png')}/>
                     </View>
-                    : roomInfo.category === '스케이트 보드' ?
+                    : roomInfo.category === '보드게임' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                        source={require('../assets/cateicon/board-game.png')}/>
+                    </View>
+                    : roomInfo.category === '언어교환' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                        source={require('../assets/cateicon/languages.png')}/>
+                    </View>
+                    : roomInfo.category === '리그오브레전드' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{  width:32,height:36, zIndex:30, marginBottom:7,    }}   
+                        source={require('../assets/cateicon/lol.png')}/>
+                    </View>
+                    : roomInfo.category === '배틀그라운드' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{  width:36,height:30, zIndex:30, marginBottom:7, backgroundColor:'#fff', borderRadius:10    }}   
+                        source={require('../assets/cateicon/pubg.png')}/>
+                    </View>
+                    : roomInfo.category === '술 한잔' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{  width:39,height:39, zIndex:30, marginBottom:7, backgroundColor:'#fff', borderRadius:19   }}   
+                        source={require('../assets/cateicon/soju.png')}/>
+                    </View>
+
+                    /*: roomInfo.category === '스케이트 보드' ?
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
                         <Image  
                         style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
                         source={require('../assets/cateicon/skateboard.png')}/>
-                         {/*https://www.flaticon.com/authors/photo3idea-studio*/}
+                         https://www.flaticon.com/authors/photo3idea-studio
                     </View>
+
                      : roomInfo.category === '커피 한잔' ?
                      <View style={{ justifyContent:'center', alignItems:'center'}} >
                          <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
@@ -205,6 +202,7 @@ export default class MyMapView extends Component {
                          color={'#000'}
                      />
                      </View>
+
                      : roomInfo.category === '밥 한끼!' ? 
                      <View style={{ justifyContent:'center', alignItems:'center'}} >
                          <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
@@ -213,6 +211,7 @@ export default class MyMapView extends Component {
                          source={require('../assets/cateicon/dish.png')}/>
                           
                      </View>
+                     
                     : roomInfo.category === '클럽' ? 
                     <View style={{ justifyContent:'center', alignItems:'center'}} >
                         <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
@@ -220,7 +219,7 @@ export default class MyMapView extends Component {
                         style={{ backgroundColor:'#fff', width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
                         source={require('../assets/cateicon/disco-ball.png')}/>
                          
-                    </View>
+                </View>*/
                     
                     : null}
                 </Marker>
@@ -249,6 +248,7 @@ export default class MyMapView extends Component {
                 {this.state.dragCount === 0 ? 
                     <View>                          
                         <MapView
+                        
                             style={{width: '100%', height: '100%'}}                    
                             showsUserLocation={true}                                                                                               
                             region={this.props.region}    

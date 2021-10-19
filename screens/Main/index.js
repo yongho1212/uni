@@ -134,110 +134,80 @@ export default class Main extends Component {
                                   color={'black'}
                                   style={{ zIndex:10,  }}   
                                   />
+
                                   : hobby === '농구' ?
-                                  <Ionicons
-                                      name={"basketball"}
-                                      size={37}    
-                                      style={{ zIndex:10, }}                                        
-                                  /> 
-                                  : hobby === '볼링' ?
-                                  <FontAwesome5 
-                                      name={"bowling-ball"}
-                                      size={37}   
-                                      color={'#bc2b62'}
-                                  />
-                                  : hobby === '야구' ?
-                                  <Ionicons 
-                                  name={"baseball-outline"}
-                                  size={37}   
-                                  
-                                  />
-                                  : hobby === '배드민턴' ?
-                                  <MaterialCommunityIcons 
-                                      name={"badminton"}
-                                      size={37}   
-                                      
-                                  />
-                                  : hobby === '요가' ?
-                                  <FontAwesome5 
-                                      name={"baseball-outline"}
-                                      size={37}   
-                                      
-                                  />
-                                  : hobby === '웨이트' ?
-                                  <MaterialCommunityIcons 
-                                      name={"weight-lifter"}
-                                      size={37}   
-                                      
-                                  />
-                                  : hobby === '등산' ?
-                                  <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../../assets/marker/pingk.png')}/>
-                                  : hobby === '자전거' ?
-                                  <Ionicons 
-                                      name={"bicycle"}
-                                      size={37}   
-                                      color={'#000'}
-                                  />
-                                  : hobby === '런닝' ?
-                                  <FontAwesome5 
-                                      name={"running"}
-                                      size={37}   
-                                      color={'#000'}
-                                  />
-                                  : hobby === '골프' ?
-                                  
-                                  <MaterialCommunityIcons 
-                                      name={"golf"}
-                                      size={37}   
-                                      color={'#000'}
-                                  />
-                                  : hobby === '당구' ?
-                                  
                                   <Image  
-                                  style={{ width:38,height:38, zIndex:10,  borderRadius:19 ,  }}   
-                                  source={require('../../assets/cateicon/pool.png')}/>
+                                   style={{ width:38,height:38, zIndex:10,    }}   
+                                   source={require('../../assets/cateicon/basketball.png')}/>
+                             
                                   
-                                  : hobby === '탁구' ?
-                                  
-                                  <FontAwesome5 
-                                      name={"gotable-tennislf"}
-                                      size={37}   
-                                      color={'#000'}
-                                  />
-                                  
-                                  : hobby === '스케이트 보드' ?
-                                  
-                                  <Image  
-                                  style={{ width:38,height:38, zIndex:10,  borderRadius:19 ,  }}   
-                                  source={require('../../assets/cateicon/skateboard.png')}/>
-         
-                                   : hobby === '커피 한잔' ?
-                                  
-                                   <MaterialCommunityIcons 
-                                       name={"coffee"}
-                                       size={37}   
-                                       color={'#000'}
-                                   />
-                               
-                                   : hobby === '밥 한끼!' ? 
-                              
-                                       <Image  
-                                       style={{ width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
-                                       source={require('../../assets/cateicon/dish.png')}/>
-                                        
-                              
-                                  : hobby === '클럽' ? 
-                                  
-                                  
-                                      <Image  
-                                      style={{  width:38,height:38,  borderRadius:19 ,  }}   
-                                      source={require('../../assets/cateicon/disco-ball.png')}/>
-                                       
-                                  
-                          : <Text>{hobby}</Text>
+                                  : hobby === '언어교환' ?
+                                   <Image  
+                                   style={{ width:38,height:38, zIndex:10,    }}   
+                                   source={require('../../assets/cateicon/languages.png')}/>
                           
-                              
-                              }
+                                   : hobby === '볼링' ?
+                                   <Image  
+                                   style={{ width:38,height:38, zIndex:10,  }}   
+                                   source={require('../../assets/cateicon/bowling.png')}/>
+                                     
+                                   : hobby === '등산' ?
+                                   <Image  
+                                   style={{  width:38,height:38, zIndex:10,}}   
+                                   source={require('../../assets/cateicon/hiking.png')}/>
+                                     
+                                   : hobby === '웨이트' ?
+                                   <Image  
+                                   style={{  width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 , backgroundColor:'#fff' }}   
+                                   source={require('../../assets/cateicon/weight.png')}/>
+                                     
+                                   : hobby === '런닝' ?
+                                   <Image  
+                                   style={{  width:39,height:39, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                                   source={require('../../assets/cateicon/run.png')}/>
+                                      
+                   
+                                   : hobby === '골프' ?        
+                                   <Image  
+                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../assets/cateicon/golf-player.png')}/>
+                                      
+                                   : hobby === '탁구' ?
+                                   <Image  
+                                   style={{ width:38,height:38, zIndex:10,  }}   
+                                   source={require('../../assets/cateicon/table-tennis.png')}/>
+                                     
+                                   : hobby === '보드게임' ?
+                                      
+                                   <Image  
+                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../assets/cateicon/board-game.png')}/>
+                                      
+                                   : hobby === '언어교환' ?
+                                       
+                                   <Image  
+                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../assets/cateicon/languages.png')}/>
+                                    
+                                   : hobby === '리그오브레전드' ?
+                                       
+                                   <Image  
+                                   style={{  width:32,height:36, zIndex:30, marginBottom:7,    }}   
+                                   source={require('../../assets/cateicon/lol.png')}/>
+                                       
+                                   : hobby === '배틀그라운드' ?    
+                                   <Image  
+                                   style={{  width:36,height:30, zIndex:30, marginBottom:7, backgroundColor:'#fff', borderRadius:10    }}   
+                                   source={require('../../assets/cateicon/pubg.png')}/>
+                                     
+                                   : hobby === '술 한잔' ?    
+                                   <Image  
+                                   style={{  width:39,height:39, zIndex:30, marginBottom:7, backgroundColor:'#fff', borderRadius:19   }}   
+                                   source={require('../../assets/cateicon/soju.png')}/>
+                                         
+                                   
+                          : <Text>{hobby}</Text>
+                         }
                               
                           </ActionButton.Item>                    
                         )                              
@@ -486,7 +456,7 @@ export default class Main extends Component {
                          <Text style={styles.categoryText}>Category</Text>
                          <TextInput
                               style={styles.categoryInfo}
-                              value={this.state.roomInfo.category}
+                              value={this.state.hobby}
                               editable={false}
                          />                         
                     </View>
@@ -511,12 +481,12 @@ export default class Main extends Component {
                          onPress={() => this.props.navigation.push('Hosting', 
                               {
                                    _id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
-                                   category: this.state.roomInfo.category, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'
+                                   category: this.state.hobby, title: this.state.roomInfo.title, time: JSON.stringify(this.state.roomInfo.time), timeInfo: this.state.roomInfo.timeInfo, Info: 'modify'
                               }
                          )}                              
                          style={styles.modifyButton}
                     >
-                         <Text>modify</Text>
+                         <Text>수 정</Text>
                     </Pressable>                   
                     :
                     <Pressable

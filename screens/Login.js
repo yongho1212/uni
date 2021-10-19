@@ -315,24 +315,16 @@ async function onAppleButtonPress() {
       <View
         keyboardShouldPersistTaps="handled"
       >
-        <ImageBackground
-        source={require("../assets/imgs/1.png")} resizeMode="cover" 
-        style={{width:"100%", height:'100%'}}
-        >
+       
         <View style={{alignItems:'center', justifyContent:'center'}}> 
           <KeyboardAvoidingView enabled>
             <View style={{ alignItems: "center", flex:1, top:150 , flexDirection:'row', justifyContent:'center'}}>
-              <Text style={{ fontSize:133, fontWeight:'bold', color:'#fb009e'}}>
-                L
-              </Text>
+              
               <Image
-              source={require("../assets/logo/pinklogo.png")}
-              style={{width: 180, height:100, resizeMode:'contain',}}
+              source={require("../assets/logo/halflogo2.png")}
+              style={{width: 100, height:100, resizeMode:'contain', }}
               />
-              <Text style={{ fontSize:133, fontWeight:'bold', color:'#fb009e'}}>
-                F
-                
-              </Text>
+              
               
               
             </View>
@@ -539,7 +531,7 @@ async function onAppleButtonPress() {
             </Text>*/}
           </KeyboardAvoidingView>
         </View>
-        </ImageBackground>
+        
       </View>
     
     
@@ -552,6 +544,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   mainBody: {
     justifyContent:'center',
+    backgroundColor:'#fff'
 
   },
   sectionStyle: {
