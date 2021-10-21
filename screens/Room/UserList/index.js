@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, Image,ImageBackground} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, Image} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -7,9 +7,9 @@ import { CometChat } from '@cometchat-pro/react-native-chat';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import styles from './styles';
-
 import { SERVER_URL } from '@env'
+
+import styles from './styles';
 
 export default class UserList extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ export default class UserList extends Component {
     }
   
     componentDidMount = async() => {
-        console.log(this.props.route.params.sendd._id);
+        console.log(this.props.route.params.sendd.GUID);
         this.connect();
     }
 
@@ -38,7 +38,7 @@ export default class UserList extends Component {
 
         var usersId = new Array();
         var usersNick = new Array();
-        `${SERVER_URL}/signIn`
+        
         const URL = `${SERVER_URL}/userList`
         fetch(URL, {
             method: 'POST',
@@ -69,17 +69,17 @@ export default class UserList extends Component {
         var usersProfile = new Array();
 
         for(let i = 0; i < this.state.usersId.length; i++) {               
-             fetch(`${SERVER_URL}/firstProfile/?id=` + this.state.usersId[i] + "&time=" + new Date())
-             .then(responseData => {
-                  if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
-                       usersProfile.push(responseData.url);
-                  }
-             })
-             .then(() => {
-                  this.setState({
-                       usersProfile: usersProfile,
-                  })
-             })
+            fetch(`${SERVER_URL}/firstProfile/?id=` + this.state.usersId[i] + "&time=" + new Date())
+            .then(responseData => {
+                if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
+                    usersProfile.push(responseData.url);
+                }
+            })
+            .then(() => {
+                this.setState({
+                    usersProfile: usersProfile,
+                })
+            })
         }          
     }
 
@@ -118,7 +118,7 @@ export default class UserList extends Component {
                             <AntDesign
                                  name={"checkcircleo"}
                                  style={styles.allowIcon}           
-                                 onPress={() => {this.allowUser(this.state.usersId[i]); this.joinGroup()}}                                             
+                                 onPress={() => {this.allowUser(this.state.usersId[i]); this.joinGroup(this.state.usersId[i])}}                                             
                             />
                             <AntDesign
                                  name={"closecircleo"}
@@ -147,6 +147,7 @@ export default class UserList extends Component {
                 _id: this.props.route.params.sendd._id,
                 id: userId,
                 hostId: this.state.id,
+                GUID: this.props.route.params.sendd.GUID,
             })
         })
         .then(response => response.json())
@@ -167,10 +168,23 @@ export default class UserList extends Component {
     }
 
     //그룹채팅 합류
-    joinGroup = () => {
-        var GUID = this.props.route.params.GUID;
-        var groupType = CometChat.GROUP_TYPE.PUBLIC;
+    joinGroup = (requestId) => {
+        var GUID = this.props.route.params.sendd.GUID;
+        var new_member = [
+            new CometChat.GroupMember(requestId, CometChat.GROUP_MEMBER_SCOPE.ADMIN)
+        ]
 
+        CometChat.addMembersToGroup(GUID, new_member, []).then(
+            response => {
+                console.log("response", response);
+            },
+            error => {
+                console.log("Something went wrong", error);
+            }
+        )
+
+        /*
+        var groupType = CometChat.GROUP_TYPE.PUBLIC;
         CometChat.joinGroup(GUID, groupType).then(
             group => {
                 console.log("Group joined successfully:", group);
@@ -179,31 +193,25 @@ export default class UserList extends Component {
                 console.log("Group joining failed with exception:", error);
             }
         )
+        */
     }
 
     render() {
         return (
-            <View style={{backgroundColor:'#fff', flex:1}}>
-                 
-                <View style={{alignItems:'center'}}>
-                    {this.showUsersProfile()}
-                </View>
+            <View>
                 {/*
-                <ImageBackground
-                source={require("../../../assets/imgs/3rs.png")} resizeMode="cover" 
-                style={{width:"100%", height:'100%'}}
-                >
-                </ImageBackground>
-                <View style={styles.headerConatiner}>
+                <View style={styles.headerConatiner}>                        
                         <AntDesign
                             name={"arrowleft"}
                             style={styles.backIcon}
                             onPress={() => {this.props.navigation.navigate('RoomList');}}
                         />  
-                        <Text>Request User List</Text>                    
-        </View>*/}
-                
-                
+                        <Text>Request User List</Text>                                            
+                </View>
+                */}
+                <View>
+                    {this.showUsersProfile()}
+                </View>
             </View>
         )
     }

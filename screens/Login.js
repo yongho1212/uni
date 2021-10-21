@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Pressable,
+  Button
 } from "react-native";
 
 import auth from "@react-native-firebase/auth";
@@ -46,6 +47,7 @@ const LoginScreen = ({ navigation }) => {
   const [userPassword, setUserPassword] = useState("");
   const [fcmToken, setFcmToken] = useState("");
   const [errortext, setErrortext] = useState("");
+  const [shouldShow, setShouldShow] = useState(true);
   // google
   const [loggedIn, setloggedIn] = useState(false);
   const [userInfo, setuserInfo] = useState([]);
@@ -179,9 +181,15 @@ const LoginScreen = ({ navigation }) => {
     auth()
       .signInWithEmailAndPassword(userEmail, userPassword)
       .then((user) => {
-        console.log(user);
+        
+        console.log(user.user.uid);
+        console.log(userEmail);
+
+        var id = user.user.uid
+        var email = userEmail
         // If server response message same as Data Matched
-        if (user) navigation.replace("DrawerNav");
+        // if (user) navigation.replace("DrawerNav");
+        connect (id, email);
       })
       .catch((error) => {
         console.log(error);
@@ -316,63 +324,24 @@ async function onAppleButtonPress() {
         keyboardShouldPersistTaps="handled"
       >
        
-        <View style={{alignItems:'center', justifyContent:'center'}}> 
+        <View style={{alignItems:'center', justifyContent:'center', }}> 
           <KeyboardAvoidingView enabled>
-            <View style={{ alignItems: "center", flex:1, top:150 , flexDirection:'row', justifyContent:'center'}}>
+            <View style={{ alignItems: "center", flex:1,   justifyContent:'center'}}>
               
               <Image
               source={require("../assets/logo/halflogo2.png")}
               style={{width: 100, height:100, resizeMode:'contain', }}
               />
               
-              
-              
             </View>
-             {/*<View style={styles.sectionStyle}>
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={(UserEmail) =>
-                  setUserEmail(UserEmail)
-                }
-                placeholder="Enter Email"
-                placeholderTextColor="#8b9cb5"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                returnKeyType="next"
-                onSubmitEditing={() =>
-                  passwordInputRef.current &&
-                  passwordInputRef.current.focus()
-                }
-                underlineColorAndroid="#f000"
-                blurOnSubmit={false}
-              />
-            </View>
-           <View style={styles.sectionStyle}>
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={(UserPassword) =>
-                  setUserPassword(UserPassword)
-                }
-                placeholder="Enter Password"
-                placeholderTextColor="#8b9cb5"
-                keyboardType="default"
-                ref={passwordInputRef}
-                onSubmitEditing={Keyboard.dismiss}
-                blurOnSubmit={false}
-                secureTextEntry={true}
-                underlineColorAndroid="#f000"
-                returnKeyType="next"
-              />
-            </View>*/}
-            {/*{errortext != "" ? (
-              <Text style={styles.errorTextStyle}>
-                {" "}
-                {errortext}{" "}
-              </Text>
-            ) : null}*/}
 
 
-            <View style={{flex:2, justifyContent:'center', alignItems:'center', top:50}}>
+           
+
+
+
+
+            <View style={{flex:2,  alignItems:'center', marginTop:50,}}>
 
             {/*PHONE LOGIN */}
             {/*  <View style={styles.sectionStyle}>
@@ -406,6 +375,18 @@ async function onAppleButtonPress() {
               </Text>
             </TouchableOpacity>
           </View>*/}
+
+
+         
+
+
+
+
+
+            
+              
+
+
             <View style={styles.sectionStyle}>
               <Pressable
                 onPress={g_signIn}
@@ -515,20 +496,126 @@ async function onAppleButtonPress() {
             
             
             <View>
+
+
+
+              
               
             </View>
             
               </View>
+               {/*CUSTOM LOGIN */}
+        <View style={styles.customSectionStyle}>
+        {/*Here we will return the view when state is true 
+        and will return false if state is false*/}
+        {shouldShow ? (
+          
+          <View>
               
-              </View>
-           {/* <Text
+              <Pressable
+                onPress={() => setShouldShow(!shouldShow)}
+                style={{
+                backgroundColor: "white",
+                borderColor: "black",
+                width:312, 
+                height:48, 
+                flexDirection:'row', 
+                justifyContent: 'space-between',
+                paddingHorizontal:30,
+                alignItems:'center',
+                borderRadius:25,
+                shadowOpacity: 0.5,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:20,
+                }}
+              >
+                <Image
+                source={require('../assets/logo/halflogo.png')}
+                style={{width:37, height:21,}}
+                />
+                <Text 
+                style={styles.buttonTextStyle}>
+                 Continue with LOOF
+                </Text>
+              </Pressable>
+             
+          </View>
+        ) : 
+        
+        <View style={{alignItems:'center'}}>
+          <View style={styles.sectionStyle}>
+              <TextInput
+                style={styles.inputStyle}
+                onChangeText={(UserEmail) =>
+                  setUserEmail(UserEmail)
+                }
+                placeholder="Enter Email"
+                placeholderTextColor="#8b9cb5"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                returnKeyType="next"
+                onSubmitEditing={() =>
+                  passwordInputRef.current &&
+                  passwordInputRef.current.focus()
+                }
+                underlineColorAndroid="#f000"
+                blurOnSubmit={false}
+              />
+            </View>
+           <View style={styles.sectionStyle}>
+              <TextInput
+                style={styles.inputStyle}
+                onChangeText={(UserPassword) =>
+                  setUserPassword(UserPassword)
+                }
+                placeholder="Enter Password"
+                placeholderTextColor="#8b9cb5"
+                keyboardType="default"
+                ref={passwordInputRef}
+                onSubmitEditing={Keyboard.dismiss}
+                blurOnSubmit={false}
+                secureTextEntry={true}
+                underlineColorAndroid="#f000"
+                returnKeyType="next"
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              activeOpacity={0.5}
+              onPress={handleSubmitPress}
+            >
+              <Text style={styles.loginBtn}>
+                LOGIN
+              </Text>
+            </TouchableOpacity>
+            {errortext != "" ? (
+              <Text style={styles.errorTextStyle}>
+                {" "}
+                {errortext}{" "}
+              </Text>
+            ) : null}
+             <Text
               style={styles.registerTextStyle}
               onPress={() =>
                 navigation.navigate("RegisterScreen")
               }
             > 
               New Here ? Register
-            </Text>*/}
+            </Text>
+          <Button
+          title="Hide/Show Component"
+          onPress={() => setShouldShow(!shouldShow)}
+          />
+        </View>
+        }
+
+       
+      </View>
+              </View>
+              
+           
           </KeyboardAvoidingView>
         </View>
         
@@ -544,28 +631,35 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   mainBody: {
     justifyContent:'center',
-    backgroundColor:'#fff'
+    backgroundColor:'#000'
 
   },
   sectionStyle: {
     flexDirection: "row",
     height: 40,
     marginTop: 20,
-    marginLeft: 35,
-    marginRight: 35,
+
     margin: 10,
   },
+  customSectionStyle:{
+    flexDirection: "row",
+    height: 250,
+    marginTop: 20,
+    margin: 10,
+    
+  },
   buttonStyle: {
-    backgroundColor: "white",
-              borderColor: "#1877F2",
-              width:312, 
-              height:48, 
-              flexDirection:'row', 
-              justifyContent:'space-around',
-              alignItems:'center',
-              borderWidth:2,
-              borderRadius:40
+    backgroundColor: "#fb009e",
+    width:312, 
+    height:30, 
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:40
 
+  },
+  loginBtn:{
+    color:'#fff',
+    fontWeight:'bold'
   },
   buttonTextStyle: {
     color: "black",
@@ -575,7 +669,7 @@ const styles = StyleSheet.create({
     
   },
   inputStyle: {
-    
+    width:312,
     color: "white",
     paddingLeft: 15,
     paddingRight: 15,
@@ -588,7 +682,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     fontSize: 14,
-    alignSelf: "center",
+
     padding: 10,
   },
   errorTextStyle: {
@@ -599,5 +693,6 @@ const styles = StyleSheet.create({
   googleButtonStyle:{
     justifyContent:'center',
     alignItems:'center'
-  }
+  },
+
 });

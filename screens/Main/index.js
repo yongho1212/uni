@@ -22,7 +22,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Moment from 'moment';
 import 'moment/locale/ko';
 
-import { GEO_KEY, SERVER_URL } from '@env'
+import { GEO, SERVER_URL } from '@env'
 import Geolocation from 'react-native-geolocation-service';
 import Geocoder from 'react-native-geocoding';
 
@@ -293,7 +293,7 @@ export default class Main extends Component {
                               longitudeDelta: 0.0121,
                          },
                     });
-                    Geocoder.init(GEO_KEY, { language: 'ko' });
+                    Geocoder.init(GEO, { language: 'ko' });
                     Geocoder.from(position.coords.latitude, position.coords.longitude)
                          .then(json => {
                               var address = json.results[0].formatted_address;
@@ -309,7 +309,7 @@ export default class Main extends Component {
 
      onMapRegionChange = async(region) => {                             
           this.setState({region: region})
-          Geocoder.init(GEO_KEY, { language: 'ko' });
+          Geocoder.init(GEO, { language: 'ko' });
           await Geocoder.from(region.latitude, region.longitude)
           .then(json => {
                var address = json.results[0].formatted_address;
@@ -386,6 +386,7 @@ export default class Main extends Component {
                })                            
           }else {
                Alert.alert('다시 시도해주세요');
+               console.log('s');
           }
      }
 
@@ -404,6 +405,7 @@ export default class Main extends Component {
           .then(responseData => {
                this.setState({
                     push: responseData,
+                    
                })
           })
      }

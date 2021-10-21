@@ -188,11 +188,11 @@ export default class Hosting extends Component {
         }else if(this.state.room.category === '테니스') {
             icon = 'https://cdn.pixabay.com/photo/2016/11/29/01/14/athletes-1866487_960_720.jpg';
         }else if(this.state.room.category === '탁구') {
-            icon = 'https://cdn.pixabay.com/photo/2019/03/07/16/40/table-tennis-4040584_960_720.jpg';
+            icon = 'https://cdn-icons-png.flaticon.com/512/3081/3081124.png';
         }else if(this.state.room.category === '풋살') {
             icon = 'https://t4.ftcdn.net/jpg/02/51/90/51/240_F_251905127_onmn1GR6Gmq7WXzIsA0WRWQ7atoQEgkt.jpg';
         }else if(this.state.room.category === '볼링') {
-            icon = 'https://cdn.pixabay.com/photo/2014/01/03/02/48/bowling-237905_960_720.jpg';
+            icon = 'https://loof-img.s3.ap-northeast-2.amazonaws.com/1634311850572_78B970DA-FB95-4617-95CC-821BC9E30CD9.jpg';
         }
         
         var group = new CometChat.Group(GUID, groupName, groupType, password, icon);
