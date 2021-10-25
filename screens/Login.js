@@ -1,4 +1,4 @@
-import React, { useState, createRef, useEffect } from "react";
+import React, {useState, createRef, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,10 +11,11 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Pressable,
-  Button
-} from "react-native";
+  Linking,
+  Dimensions
+} from 'react-native';
 
-import auth from "@react-native-firebase/auth";
+import auth from '@react-native-firebase/auth';
 
 import {
   GoogleSignin,
@@ -22,105 +23,106 @@ import {
   statusCodes,
 } from '@react-native-google-signin/google-signin';
 
-import {
-  AccessToken,LoginManager
-} from 'react-native-fbsdk-next';
+import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
 
 import PhoneAuth from '../components/phoneAuth/PhoneAuth';
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { CometChat } from '@cometchat-pro/react-native-chat';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {CometChat} from '@cometchat-pro/react-native-chat';
 import {
   AppleButton,
   appleAuth,
 } from '@invertase/react-native-apple-authentication';
 
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import messaging from '@react-native-firebase/messaging';
 
-import { CHAT_APP_ID, CHAT_API_KEY,CHAT_AUTH_KEY, SERVER_URL, GOOGLE_WEB_CLIENT_ID } from '@env'
+import {
+  CHAT_APP_ID,
+  CHAT_API_KEY,
+  CHAT_AUTH_KEY,
+  SERVER_URL,
+  GOOGLE_WEB_CLIENT_ID,
+} from '@env';
 
-
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({navigation}) => {
   //custom
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [fcmToken, setFcmToken] = useState("");
-  const [errortext, setErrortext] = useState("");
-  const [shouldShow, setShouldShow] = useState(true);
+  const [userEmail, setUserEmail] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [fcmToken, setFcmToken] = useState('');
+  const [errortext, setErrortext] = useState('');
+
   // google
   const [loggedIn, setloggedIn] = useState(false);
   const [userInfo, setuserInfo] = useState([]);
-  
 
   const passwordInputRef = createRef();
 
-   //chatting
-   const appID = CHAT_APP_ID;
-   const region = 'us';
-   const appSetting = new CometChat.AppSettingsBuilder()
-     .subscribePresenceForAllUsers()
-     .setRegion(region)
-     .build();
- 
-   const usersRequest = new CometChat.UsersRequestBuilder()
-     .setLimit(100)
-     .friendsOnly(true)
-     .build();
+  //chatting
+  const appID = CHAT_APP_ID;
+  const region = 'us';
+  const appSetting = new CometChat.AppSettingsBuilder()
+    .subscribePresenceForAllUsers()
+    .setRegion(region)
+    .build();
 
-    useEffect(() => {
-      getFcmToken();
-      // Initial configuration
-      GoogleSignin.configure({
-        // Mandatory method to call before calling signIn()
-       // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
-        // Repleace with your webClientId
-        // Generated from Firebase console
-        webClientId: GOOGLE_WEB_CLIENT_ID,
-      });
-      // Check if user is already signed in
-    
-    }, []);
+  const usersRequest = new CometChat.UsersRequestBuilder()
+    .setLimit(100)
+    .friendsOnly(true)
+    .build();
 
-    const getFcmToken = async() => {
-      const authStatus = await messaging().requestPermission();
-  
-      const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-      if (enabled) {
-        const token = await messaging().getToken();   
-        setFcmToken(token); 
-        console.log(token);
-      } else {
-        console.log('fcm auth fail');    
-      }
+  useEffect(() => {
+    getFcmToken();
+    // Initial configuration
+    GoogleSignin.configure({
+      // Mandatory method to call before calling signIn()
+      // scopes: ['https://www.googleapis.com/auth/drive.readonly'],
+      // Repleace with your webClientId
+      // Generated from Firebase console
+      webClientId: GOOGLE_WEB_CLIENT_ID,
+    });
+    // Check if user is already signed in
+  }, []);
+
+  const getFcmToken = async () => {
+    const authStatus = await messaging().requestPermission();
+
+    const enabled =
+      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
+      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    if (enabled) {
+      const token = await messaging().getToken();
+      setFcmToken(token);
+      console.log(token);
+    } else {
+      console.log('fcm auth fail');
     }
-  
+  };
 
-// BACK
-  const connect = async(id, email) => {
+  // BACK
+  const connect = async (id, email) => {
     try {
-      await AsyncStorage.setItem('id', id)    
+      await AsyncStorage.setItem('id', id);
     } catch (e) {
       console.log(e);
-    }  
-    
+    }
+
     const URL = `${SERVER_URL}/signIn`;
     fetch(URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            id: id,
-            email: email,
-            fcm: fcmToken,
-        })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: id,
+        email: email,
+        fcm: fcmToken,
+      }),
     })
-    .then(response => response.json())
-    .then(responseData => {
-        if(responseData) {
-          
-            /*
+      .then(response => response.json())
+      .then(responseData => {
+        if (responseData) {
+          /*
             const url = 'https://api-us.cometchat.io/v3.0/users/110917783035367947415';
             fetch(url, {
               method: 'DELETE',
@@ -131,82 +133,81 @@ const LoginScreen = ({ navigation }) => {
             .then(responseData => console.log(responseData))
             */
 
-          CometChat.init(appID, appSetting).then(
-            () => {
-              console.log('Initialization completed successfully');
-            },
-            (error) => {
-              console.log('Initialization failed with error:', error);
-            }            
-          ).then(
-            CometChat.login(id, CHAT_AUTH_KEY).then (
-              User => {
-                console.log("Login Successful:", { User });
+          CometChat.init(appID, appSetting)
+            .then(
+              () => {
+                console.log('Initialization completed successfully');
               },
               error => {
-                console.log("Login failed with exception:", { error });
-              }
-            )  
-          ).then(
-            CometChat.registerTokenForPushNotification(fcmToken).then(
-              () => {
-                console.log('OK');
+                console.log('Initialization failed with error:', error);
               },
-              (error) => {
-                console.log('Fail: ', error);
-              }
             )
-          )                        
+            .then(
+              CometChat.login(id, CHAT_AUTH_KEY).then(
+                User => {
+                  console.log('Login Successful:', {User});
+                },
+                error => {
+                  console.log('Login failed with exception:', {error});
+                },
+              ),
+            )
+            .then(
+              CometChat.registerTokenForPushNotification(fcmToken).then(
+                () => {
+                  console.log('OK');
+                },
+                error => {
+                  console.log('Fail: ', error);
+                },
+              ),
+            );
 
-          navigation.navigate('DrawerNav');               
-        }else {
-          console.log(responseData);          
+          navigation.navigate('DrawerNav');
+        } else {
+          console.log(responseData);
           navigation.navigate('Nickname');
         }
-    })
-  }  
+      });
+  };
 
-
-// CUSTOM
+  // CUSTOM
   const handleSubmitPress = () => {
-    setErrortext("");
+    setErrortext('');
     if (!userEmail) {
-      alert("Please fill Email");
+      alert('Please fill Email');
       return;
     }
     if (!userPassword) {
-      alert("Please fill Password");
+      alert('Please fill Password');
       return;
     }
     auth()
       .signInWithEmailAndPassword(userEmail, userPassword)
-      .then((user) => {
-        
+      .then(user => {
         console.log(user.user.uid);
         console.log(userEmail);
 
-        var id = user.user.uid
-        var email = userEmail
+        alert('Email sent');
+
+        var id = user.user.uid;
+        var email = userEmail;
         // If server response message same as Data Matched
         // if (user) navigation.replace("DrawerNav");
-        connect (id, email);
+        connect(id, email);
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
-        if (error.code === "auth/invalid-email")
-          setErrortext(error.message);
-        else if (error.code === "auth/user-not-found")
-          setErrortext("No User Found");
+        if (error.code === 'auth/invalid-email') setErrortext(error.message);
+        else if (error.code === 'auth/user-not-found')
+          setErrortext('No User Found');
         else {
-          setErrortext(
-            "Please check your email id or password"
-          );
+          setErrortext('Please check your email id or password');
         }
       });
   };
 
   // GOOGLE
-
 
   const g_signIn = async () => {
     // It will prompt google Signin Widget
@@ -219,28 +220,26 @@ const LoginScreen = ({ navigation }) => {
         idToken,
         accessToken,
       );
-      await auth().signInWithCredential(credential)
-      .then((idToken) => {
-        console.log(idToken);
-        // If server response message same as Data Matched
-        // if (idToken) navigation.replace("Gender");
-        var id = idToken.additionalUserInfo.profile.sub;          
-        var email = idToken.additionalUserInfo.profile.email;
-                
-        // If server response message same as Data Matched
-        //if (idToken) navigation.replace("HomeScreen");
-        connect(id, email);
-      })
-     
+      await auth()
+        .signInWithCredential(credential)
+        .then(idToken => {
+          console.log(idToken);
+          // If server response message same as Data Matched
+          // if (idToken) navigation.replace("Gender");
+          var id = idToken.additionalUserInfo.profile.sub;
+          var email = idToken.additionalUserInfo.profile.email;
+
+          // If server response message same as Data Matched
+          //if (idToken) navigation.replace("HomeScreen");
+          connect(id, email);
+        });
     } catch (error) {
       console.log('Message', JSON.stringify(error));
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         alert('User Cancelled the Login Flow');
       } else if (error.code === statusCodes.IN_PROGRESS) {
         alert('Signing In');
-      } else if (
-          error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE
-        ) {
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         alert('Play Services Not Available or Outdated');
       } else {
         alert(error.message);
@@ -248,103 +247,97 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
+  /// FBLOGIN
+  const onFacebookButtonPress = async () => {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
 
-/// FBLOGIN
-const onFacebookButtonPress = async() => {
-  // Attempt login with permissions
-  const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
 
-  if (result.isCancelled) {
-    throw 'User cancelled the login process';
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+
+    // Sign-in the user with the credential
+    return auth()
+      .signInWithCredential(facebookCredential)
+      .then(accessToken => {
+        console.log(accessToken);
+        // If server response message same as Data Matched
+        // if (idToken) navigation.replace("Gender");
+        var id = accessToken.additionalUserInfo.profile.id;
+        var email = accessToken.user.email;
+        console.log(email);
+
+        // If server response message same as Data Matched
+        //if (idToken) navigation.replace("HomeScreen");
+        connect(id, email);
+      });
+  };
+
+  async function onAppleButtonPress() {
+    // Start the sign-in request
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+      requestedOperation: appleAuth.Operation.LOGIN,
+      requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+    });
+
+    // Ensure Apple returned a user identityToken
+    if (!appleAuthRequestResponse.identityToken) {
+      throw 'Apple Sign-In failed - no identify token returned';
+    }
+
+    // Create a Firebase credential from the response
+    const {identityToken, nonce, user, email, fullNmae} =
+      appleAuthRequestResponse;
+    const appleCredential = auth.AppleAuthProvider.credential(
+      identityToken,
+      nonce,
+    );
+
+    // Sign the user in with the credential
+    return auth()
+      .signInWithCredential(appleCredential)
+      .then(identityToken => {
+        var id = identityToken.additionalUserInfo.profile.sub;
+        var email = identityToken.user.email;
+        console.log(identityToken.additionalUserInfo.profile.sub);
+        //console.log(identityToken.additionalUserInfo.profile.nonce);
+        //console.log(identityToken.user.email);
+
+        connect(id, email);
+      });
   }
-
-  // Once signed in, get the users AccesToken
-  const data = await AccessToken.getCurrentAccessToken();
-
-  if (!data) {
-    throw 'Something went wrong obtaining access token';
-  }
-
-  // Create a Firebase credential with the AccessToken
-  const facebookCredential = auth.FacebookAuthProvider.credential(data.accessToken);
-
-  // Sign-in the user with the credential
-  return auth().signInWithCredential(facebookCredential).then((accessToken) => {
-    console.log(accessToken);
-    // If server response message same as Data Matched
-    // if (idToken) navigation.replace("Gender");
-    var id = accessToken.additionalUserInfo.profile.id
-    var email = accessToken.user.email
-    console.log(email);
-            
-    // If server response message same as Data Matched
-    //if (idToken) navigation.replace("HomeScreen");
-    connect(id, email);
-  }) 
-
-}
-
-async function onAppleButtonPress() {
-  // Start the sign-in request
-  const appleAuthRequestResponse = await appleAuth.performRequest({
-    requestedOperation: appleAuth.Operation.LOGIN,
-    requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
-  });
-
-  // Ensure Apple returned a user identityToken
-  if (!appleAuthRequestResponse.identityToken) {
-    throw 'Apple Sign-In failed - no identify token returned';
-  }
-
-  // Create a Firebase credential from the response
-  const { identityToken, nonce, user, email, fullNmae } = appleAuthRequestResponse;
-  const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
-
-  // Sign the user in with the credential
-  return auth().signInWithCredential(appleCredential).then((identityToken)=> {
-    var id = identityToken.additionalUserInfo.profile.sub
-    var email = identityToken.user.email
-      console.log(identityToken.additionalUserInfo.profile.sub); 
-      //console.log(identityToken.additionalUserInfo.profile.nonce); 
-      //console.log(identityToken.user.email); 
-
-    connect (id, email);
-  })
-  
-}
-  
-
-
-  
 
   return (
     <View style={styles.mainBody}>
-      
-      <View
-        keyboardShouldPersistTaps="handled"
-      >
-       
-        <View style={{alignItems:'center', justifyContent:'center', }}> 
+      <View keyboardShouldPersistTaps="handled">
+        <View style={{alignItems: 'center', justifyContent: 'center'}}>
           <KeyboardAvoidingView enabled>
-            <View style={{ alignItems: "center", flex:1,   justifyContent:'center'}}>
-              
+            <View
+              style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
               <Image
-              source={require("../assets/logo/halflogo2.png")}
-              style={{width: 100, height:100, resizeMode:'contain', }}
+                source={require('../assets/logo/halflogo2.png')}
+                style={{width: 100, height: 100, resizeMode: 'contain'}}
               />
-              
             </View>
 
-
-           
-
-
-
-
-            <View style={{flex:2,  alignItems:'center', marginTop:50,}}>
-
-            {/*PHONE LOGIN */}
-            {/*  <View style={styles.sectionStyle}>
+            <View style={{flex: 2, alignItems: 'center', marginTop: 50}}>
+              {/*PHONE LOGIN */}
+              {/*  <View style={styles.sectionStyle}>
             <TouchableOpacity
               style={{backgroundColor: "white",
               borderColor: "black",
@@ -375,49 +368,102 @@ async function onAppleButtonPress() {
               </Text>
             </TouchableOpacity>
           </View>*/}
+              {/*CUSTOM LOGIN */}
+              <View style={styles.customSectionStyle}>
+                {/*Here we will return the view when state is true 
+        and will return false if state is false*/}
 
-
-         
-
-
-
-
-
-            
-              
-
-
-            <View style={styles.sectionStyle}>
-              <Pressable
-                onPress={g_signIn}
-                style={{
-                backgroundColor: "white",
-                borderColor: "black",
-                width:312, 
-                height:48, 
-                flexDirection:'row', 
-                justifyContent: 'space-between',
-                paddingHorizontal:30,
-                alignItems:'center',
-                borderRadius:25,
-                shadowOpacity: 0.5,
-                                shadowRadius: 5,
-                                shadowColor: 'grey',
-                                shadowOffset: { height: 2, width: 2 },
-                                borderRadius:20,
-                }}
-              >
-                <Image
-                source={require('../assets/logo/g-logo.png')}
-                style={{width:38, height:38,}}
-                />
-                <Text 
-                style={styles.buttonTextStyle}>
-                 Continue with Google
-                </Text>
-              </Pressable>
+                <View style={{ }}>
+                  <View >
+                    <TextInput
+                      style={styles.inputStyle}
+                      onChangeText={UserEmail => setUserEmail(UserEmail)}
+                      placeholder="Enter Email"
+                      placeholderTextColor="#8b9cb5"
+                      autoCapitalize="none"
+                      keyboardType="email-address"
+                      returnKeyType="next"
+                      onSubmitEditing={() =>
+                        passwordInputRef.current &&
+                        passwordInputRef.current.focus()
+                      }
+                      underlineColorAndroid="#f000"
+                      blurOnSubmit={false}
+                    />
+                  </View>
+                  <View >
+                    <TextInput
+                      style={styles.inputStyle}
+                      onChangeText={UserPassword =>
+                        setUserPassword(UserPassword)
+                      }
+                      placeholder="Enter Password"
+                      placeholderTextColor="#8b9cb5"
+                      keyboardType="default"
+                      ref={passwordInputRef}
+                      onSubmitEditing={Keyboard.dismiss}
+                      blurOnSubmit={false}
+                      secureTextEntry={true}
+                      underlineColorAndroid="#f000"
+                      returnKeyType="next"
+                    />
+                  </View>
+                  <TouchableOpacity
+                    style={styles.buttonStyle}
+                    activeOpacity={0.5}
+                    onPress={handleSubmitPress}>
+                    <Text style={styles.loginBtn}>LOGIN</Text>
+                  </TouchableOpacity>
+                  {errortext != '' ? (
+                    <Text style={styles.errorTextStyle}> {errortext} </Text>
+                  ) : null}
+                  <Text
+                    style={styles.registerTextStyle}
+                    onPress={() => navigation.navigate('RegisterScreen')}>
+                    New Here ? Register
+                  </Text>
+                </View>
               </View>
-             {/* <AppleButton
+
+
+                {/*경계 선*/}
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <View style={{flex: 1, height: 1, backgroundColor: '#fff'}} />
+                <View>
+                  <Text style={{width: 150, textAlign: 'center', color: '#fff'}}>
+                    Or continue with
+                  </Text>
+                </View>
+                <View style={{flex: 1, height: 1, backgroundColor: '#fff'}} />
+              </View>
+               {/*로그인 뷰 선*/}
+              <View style={{flexDirection: 'row', marginTop:40, }}>
+                <View style={styles.sectionStyle}>
+                  <Pressable
+                    onPress={g_signIn}
+                    style={{
+                      backgroundColor: 'white',
+                      borderColor: 'black',
+                      width: 70,
+                      height: 70,
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      paddingHorizontal: 30,
+                      alignItems: 'center',
+                      borderRadius: 100,
+                      shadowOpacity: 0.5,
+                      shadowRadius: 5,
+                      shadowColor: 'grey',
+                      shadowOffset: {height: 2, width: 2},
+                      borderRadius: 20,
+                    }}>
+                    <Image
+                      source={require('../assets/logo/g-logo.png')}
+                      style={{width: 35, height: 35}}
+                    />
+                  </Pressable>
+                </View>
+                {/* <AppleButton
                   buttonStyle={AppleButton.Style.WHITE}
                   buttonType={AppleButton.Type.SIGN_IN}
                   style={{width:200, height:50}}
@@ -428,201 +474,80 @@ async function onAppleButtonPress() {
                   }
                 /> */}
 
-              <View style={styles.sectionStyle}>
-             
-              <Pressable
-              
-                style={{      backgroundColor: "white",
-                borderColor: "black",
-                width:312, 
-                height:48, 
-                flexDirection:'row', 
-                justifyContent: 'space-between',
-                paddingHorizontal:30,
-                alignItems:'center',
-                borderRadius:25,
-                shadowOpacity: 0.5,
-                            shadowRadius: 5,
-                            shadowColor: 'grey',
-                            shadowOffset: { height: 2, width: 2 },
-                            borderRadius:20,}}
-                onPress={() =>
-                  onAppleButtonPress().then(() =>
-                    console.log('Apple sign-in complete!'),
-                  )
-                }
-              >
-                <Ionicons 
-                        name={"ios-logo-apple"}
-                        style={{fontSize:38}}
-                        />
-                <Text style={styles.buttonTextStyle}>
-                Continue with Apple
-                </Text>
-                </Pressable>
+                <View style={styles.sectionStyle}>
+                  <Pressable
+                    style={{
+                      backgroundColor: 'white',
+                      borderColor: 'black',
+                      width: 70,
+                      height: 70,
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+
+                      alignItems: 'center',
+                      borderRadius: 25,
+                      shadowOpacity: 0.5,
+                      shadowRadius: 5,
+                      shadowColor: 'grey',
+                      shadowOffset: {height: 2, width: 2},
+                      borderRadius: 20,
+                    }}
+                    onPress={() =>
+                      onAppleButtonPress().then(() =>
+                        console.log('Apple sign-in complete!'),
+                      )
+                    }>
+                    <Ionicons name={'ios-logo-apple'} style={{fontSize: 38}} />
+                  </Pressable>
+                </View>
+
+                <View style={styles.sectionStyle}>
+                  <Pressable
+                    onPress={() => onFacebookButtonPress()}
+                    style={{
+                      backgroundColor: 'white',
+                      borderColor: 'black',
+                      width: 70,
+                      height: 70,
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      paddingHorizontal: 30,
+                      alignItems: 'center',
+                      borderRadius: 100,
+                      shadowOpacity: 0.5,
+                      shadowRadius: 5,
+                      shadowColor: 'grey',
+                      shadowOffset: {height: 2, width: 2},
+                      borderRadius: 20,
+                    }}>
+                    <Image
+                      source={require('../assets/logo/flogo.png')}
+                      style={{width: 38, height: 38}}
+                    />
+                  </Pressable>
+
+                  
+                </View>
                 
-              
-            </View>
-            
-
-              
-              <View style={styles.sectionStyle}>
-                <Pressable
-                  onPress={() => onFacebookButtonPress()}
-                  style={{
-                    backgroundColor: "white",
-                    borderColor: "black",
-                    width:312, 
-                    height:48, 
-                    flexDirection:'row', 
-                    justifyContent: 'space-between',
-                    paddingHorizontal:30,
-                    alignItems:'center',
-                    borderRadius:25,
-                    shadowOpacity: 0.5,
-                                shadowRadius: 5,
-                                shadowColor: 'grey',
-                                shadowOffset: { height: 2, width: 2 },
-                                borderRadius:20,
-
-                  }}
-                >
-              <Image
-              source={require('../assets/logo/flogo.png')}
-              style={{width:38, height:38}}
-              />
-              <Text style={{fontWeight:'bold', color:'black', fontSize: 16,}}> Continue with Facebook</Text>
-            </Pressable>
-            
-            
-            <View>
-
-
-
-              
-              
-            </View>
-            
               </View>
-               {/*CUSTOM LOGIN */}
-        <View style={styles.customSectionStyle}>
-        {/*Here we will return the view when state is true 
-        and will return false if state is false*/}
-        {shouldShow ? (
-          
-          <View>
-              
-              <Pressable
-                onPress={() => setShouldShow(!shouldShow)}
-                style={{
-                backgroundColor: "white",
-                borderColor: "black",
-                width:312, 
-                height:48, 
-                flexDirection:'row', 
-                justifyContent: 'space-between',
-                paddingHorizontal:30,
-                alignItems:'center',
-                borderRadius:25,
-                shadowOpacity: 0.5,
-                                shadowRadius: 5,
-                                shadowColor: 'grey',
-                                shadowOffset: { height: 2, width: 2 },
-                                borderRadius:20,
-                }}
-              >
-                <Image
-                source={require('../assets/logo/halflogo.png')}
-                style={{width:37, height:21,}}
-                />
-                <Text 
-                style={styles.buttonTextStyle}>
-                 Continue with LOOF
+              <View style={{marginTop:50,  flexDirection:'row',width: Dimensions.get('window').width*0.8,flexWrap: 'wrap', marginHorizontal:Dimensions.get('window').width*0.1}}>
+                <Text style={styles.termText}>가입하시면 LOOF의 </Text>
+                <Text style={styles.termLinkText}
+                      onPress={() => Linking.openURL('https://www.loof.party/Privacy')}>
+                  개인정보 처리방침
                 </Text>
-              </Pressable>
-             
-          </View>
-        ) : 
-        
-        <View style={{alignItems:'center'}}>
-          <View style={styles.sectionStyle}>
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={(UserEmail) =>
-                  setUserEmail(UserEmail)
-                }
-                placeholder="Enter Email"
-                placeholderTextColor="#8b9cb5"
-                autoCapitalize="none"
-                keyboardType="email-address"
-                returnKeyType="next"
-                onSubmitEditing={() =>
-                  passwordInputRef.current &&
-                  passwordInputRef.current.focus()
-                }
-                underlineColorAndroid="#f000"
-                blurOnSubmit={false}
-              />
-            </View>
-           <View style={styles.sectionStyle}>
-              <TextInput
-                style={styles.inputStyle}
-                onChangeText={(UserPassword) =>
-                  setUserPassword(UserPassword)
-                }
-                placeholder="Enter Password"
-                placeholderTextColor="#8b9cb5"
-                keyboardType="default"
-                ref={passwordInputRef}
-                onSubmitEditing={Keyboard.dismiss}
-                blurOnSubmit={false}
-                secureTextEntry={true}
-                underlineColorAndroid="#f000"
-                returnKeyType="next"
-              />
-            </View>
-            <TouchableOpacity
-              style={styles.buttonStyle}
-              activeOpacity={0.5}
-              onPress={handleSubmitPress}
-            >
-              <Text style={styles.loginBtn}>
-                LOGIN
-              </Text>
-            </TouchableOpacity>
-            {errortext != "" ? (
-              <Text style={styles.errorTextStyle}>
-                {" "}
-                {errortext}{" "}
-              </Text>
-            ) : null}
-             <Text
-              style={styles.registerTextStyle}
-              onPress={() =>
-                navigation.navigate("RegisterScreen")
-              }
-            > 
-              New Here ? Register
-            </Text>
-          <Button
-          title="Hide/Show Component"
-          onPress={() => setShouldShow(!shouldShow)}
-          />
-        </View>
-        }
-
-       
-      </View>
+                <Text style={styles.termLinkText}
+                      onPress={() => Linking.openURL('https://www.loof.party/Privacy')}>
+                  , 이용약관에
+                </Text>
+                <Text style={styles.termText}>동의하게 됩니다.</Text>
               </View>
               
-           
+            </View>
+            
           </KeyboardAvoidingView>
         </View>
-        
       </View>
-    
-    
-              
     </View>
   );
 };
@@ -630,69 +555,74 @@ export default LoginScreen;
 
 const styles = StyleSheet.create({
   mainBody: {
-    justifyContent:'center',
-    backgroundColor:'#000'
-
+    justifyContent: 'center',
+    backgroundColor: '#000',
   },
   sectionStyle: {
-    flexDirection: "row",
+    flexDirection: 'row',
     height: 40,
     marginTop: 20,
 
-    margin: 10,
+    margin: 17,
   },
-  customSectionStyle:{
-    flexDirection: "row",
+  customSectionStyle: {
+    flexDirection: 'row',
     height: 250,
-    marginTop: 20,
-    margin: 10,
     
+    margin: 10,
   },
   buttonStyle: {
-    backgroundColor: "#fb009e",
-    width:312, 
-    height:30, 
-    justifyContent:'center',
-    alignItems:'center',
-    borderRadius:40
-
+    backgroundColor: '#fb009e',
+    width: 312,
+    height: 50,
+  
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 40,
   },
-  loginBtn:{
-    color:'#fff',
-    fontWeight:'bold'
+  loginBtn: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize:25
   },
   buttonTextStyle: {
-    color: "black",
+    color: '#fff',
     paddingVertical: 10,
     fontSize: 16,
-    fontWeight:'bold',
-    
+    fontWeight: 'bold',
   },
   inputStyle: {
-    width:312,
-    color: "white",
+    width: 312,
+    height:50,
+    color: 'white',
     paddingLeft: 15,
     paddingRight: 15,
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 30,
-    borderColor: "#dadae8",
+    borderColor: '#fff',
+    marginBottom:20
   },
   registerTextStyle: {
-    color: "#FFFFFF",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 14,
+    color: '#49ffbd',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
 
     padding: 10,
   },
   errorTextStyle: {
-    color: "red",
-    textAlign: "center",
+    color: 'red',
+    textAlign: 'center',
     fontSize: 14,
   },
-  googleButtonStyle:{
-    justifyContent:'center',
-    alignItems:'center'
+  googleButtonStyle: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-
+  termLinkText: {
+    color:'#49ffbd'
+  },
+  termText:{
+    color:'#fff'
+  }
 });

@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 import auth from "@react-native-firebase/auth";
+import { Alert } from "react-native";
 
 const RegisterScreen = ({ navigation }) => {
   const [userName, setUserName] = useState("");
@@ -38,6 +39,8 @@ const RegisterScreen = ({ navigation }) => {
         console.log(
           "Registration Successful. Please Login to proceed"
         );
+        user.user.sendEmailVerification();
+        alert('이메일 인증을 완료해주세요!')
         console.log(user);
         if (user) {
           auth()
@@ -46,7 +49,7 @@ const RegisterScreen = ({ navigation }) => {
               photoURL:
                 "https://aboutreact.com/profile.png",
             })
-            .then(() => navigation.replace("DrawerNav"))
+            .then(() => navigation.replace("Auth"))
             .catch((error) => {
               alert(error);
               console.error(error);
@@ -67,7 +70,7 @@ const RegisterScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView
-      style={{ flex: 1, backgroundColor: "#307ecc" }}
+      style={{ flex: 1, backgroundColor: "#fff" }}
     >
       <ScrollView
         keyboardShouldPersistTaps="handled"
@@ -76,17 +79,7 @@ const RegisterScreen = ({ navigation }) => {
           alignContent: "center",
         }}
       >
-        <View style={{ alignItems: "center" }}>
-          <Image
-            source={require("../assets/logo/logo.jpg")}
-            style={{
-              width: "50%",
-              height: 100,
-              resizeMode: "contain",
-              margin: 30,
-            }}
-          />
-        </View>
+        
         <KeyboardAvoidingView enabled>
           <View style={styles.sectionStyle}>
             <TextInput
@@ -204,13 +197,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonTextStyle: {
-    color: "#FFFFFF",
+    color: "#000",
     paddingVertical: 10,
     fontSize: 16,
   },
   inputStyle: {
     flex: 1,
-    color: "white",
+    color: "#000",
     paddingLeft: 15,
     paddingRight: 15,
     borderWidth: 1,
