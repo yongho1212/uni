@@ -328,14 +328,14 @@ const LoginScreen = ({navigation}) => {
         <View style={{alignItems: 'center', justifyContent: 'center'}}>
           <KeyboardAvoidingView enabled>
             <View
-              style={{alignItems: 'center', flex: 1, justifyContent: 'center'}}>
+              style={{alignItems: 'center', flex: 1, justifyContent: 'center', marginVertical:20}}>
               <Image
                 source={require('../assets/logo/halflogo2.png')}
-                style={{width: 100, height: 100, resizeMode: 'contain'}}
+                style={{width: 140, height: 140, resizeMode: 'contain'}}
               />
             </View>
 
-            <View style={{flex: 2, alignItems: 'center', marginTop: 50}}>
+            <View style={{flex: 3, alignItems: 'center', marginTop: 50}}>
               {/*PHONE LOGIN */}
               {/*  <View style={styles.sectionStyle}>
             <TouchableOpacity
@@ -444,8 +444,8 @@ const LoginScreen = ({navigation}) => {
                     style={{
                       backgroundColor: 'white',
                       borderColor: 'black',
-                      width: 70,
-                      height: 70,
+                      width: 80,
+                      height: 80,
                       flexDirection: 'row',
                       justifyContent: 'center',
                       paddingHorizontal: 30,
@@ -455,7 +455,7 @@ const LoginScreen = ({navigation}) => {
                       shadowRadius: 5,
                       shadowColor: 'grey',
                       shadowOffset: {height: 2, width: 2},
-                      borderRadius: 20,
+                      
                     }}>
                     <Image
                       source={require('../assets/logo/g-logo.png')}
@@ -479,18 +479,17 @@ const LoginScreen = ({navigation}) => {
                     style={{
                       backgroundColor: 'white',
                       borderColor: 'black',
-                      width: 70,
-                      height: 70,
+                      width: 80,
+                      height:80,
+                      borderRadius:100,
                       flexDirection: 'row',
                       justifyContent: 'center',
-
                       alignItems: 'center',
-                      borderRadius: 25,
                       shadowOpacity: 0.5,
                       shadowRadius: 5,
                       shadowColor: 'grey',
                       shadowOffset: {height: 2, width: 2},
-                      borderRadius: 20,
+                      
                     }}
                     onPress={() =>
                       onAppleButtonPress().then(() =>
@@ -506,19 +505,16 @@ const LoginScreen = ({navigation}) => {
                     onPress={() => onFacebookButtonPress()}
                     style={{
                       backgroundColor: 'white',
-                      borderColor: 'black',
-                      width: 70,
-                      height: 70,
-                      flexDirection: 'row',
+                      width: 80,
+                      height: 80,
+                      borderRadius:100,
                       justifyContent: 'center',
-                      paddingHorizontal: 30,
                       alignItems: 'center',
-                      borderRadius: 100,
                       shadowOpacity: 0.5,
                       shadowRadius: 5,
                       shadowColor: 'grey',
                       shadowOffset: {height: 2, width: 2},
-                      borderRadius: 20,
+                      
                     }}>
                     <Image
                       source={require('../assets/logo/flogo.png')}
@@ -556,11 +552,11 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   mainBody: {
     justifyContent: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#121212',
   },
   sectionStyle: {
-    flexDirection: 'row',
-    height: 40,
+
+
     marginTop: 20,
 
     margin: 17,
@@ -606,8 +602,8 @@ const styles = StyleSheet.create({
     color: '#49ffbd',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 16,
-
+    fontSize: 17,
+    
     padding: 10,
   },
   errorTextStyle: {

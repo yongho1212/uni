@@ -14,6 +14,7 @@ import {
 
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
+import { a } from "hangul-js";
 
 const RegisterScreen = ({ navigation }) => {
   const [userName, setUserName] = useState("");
@@ -70,7 +71,7 @@ const RegisterScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView
-      style={{ flex: 1, backgroundColor: "#fff" }}
+      style={{ flex: 1, backgroundColor: "#121212",  }}
     >
       <ScrollView
         keyboardShouldPersistTaps="handled"
@@ -82,6 +83,17 @@ const RegisterScreen = ({ navigation }) => {
         
         <KeyboardAvoidingView enabled>
           <View style={styles.sectionStyle}>
+
+          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom:10}}>
+                <View style={{ height: 1, backgroundColor: '#fff'}} />
+                <View>
+                  <Text style={{width: 100, textAlign:'left', color: '#fff', fontWeight:'bold', fontSize:20}}>
+                    Name
+                  </Text>
+                </View>
+                <View style={{flex: 1, height: 1, backgroundColor: '#fff'}} />
+              </View>
+
             <TextInput
               style={styles.inputStyle}
               onChangeText={(UserName) =>
@@ -100,12 +112,23 @@ const RegisterScreen = ({ navigation }) => {
             />
           </View>
           <View style={styles.sectionStyle}>
+
+          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom:10}}>
+                <View style={{ height: 1, backgroundColor: '#fff'}} />
+                <View>
+                  <Text style={{width: 100, textAlign:'left', color: '#fff', fontWeight:'bold', fontSize:20}}>
+                    Email
+                  </Text>
+                </View>
+                <View style={{flex: 1, height: 1, backgroundColor: '#fff'}} />
+              </View>
+
             <TextInput
               style={styles.inputStyle}
               onChangeText={(UserEmail) =>
                 setUserEmail(UserEmail)
               }
-              underlineColorAndroid="#f000"
+              underlineColorAndroid="#fff"
               placeholder="Enter Email"
               placeholderTextColor="#8b9cb5"
               keyboardType="email-address"
@@ -119,12 +142,23 @@ const RegisterScreen = ({ navigation }) => {
             />
           </View>
           <View style={styles.sectionStyle}>
+
+              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom:10}}>
+                <View style={{ height: 1, backgroundColor: '#fff'}} />
+                <View>
+                  <Text style={{width: 100, textAlign:'left', color: '#fff', fontWeight:'bold', fontSize:20}}>
+                    Password
+                  </Text>
+                </View>
+                <View style={{flex: 1, height: 1, backgroundColor: '#fff'}} />
+              </View>
+
             <TextInput
               style={styles.inputStyle}
               onChangeText={(UserPassword) =>
                 setUserPassword(UserPassword)
               }
-              underlineColorAndroid="#f000"
+              underlineColorAndroid="#fff"
               placeholder="Enter Password"
               placeholderTextColor="#8b9cb5"
               ref={passwordInputRef}
@@ -151,24 +185,7 @@ const RegisterScreen = ({ navigation }) => {
           </TouchableOpacity>
         </KeyboardAvoidingView>
       </ScrollView>
-      <Text
-        style={{
-          fontSize: 18,
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        React Native Firebase Authentication
-      </Text>
-      <Text
-        style={{
-          fontSize: 16,
-          textAlign: "center",
-          color: "white",
-        }}
-      >
-        www.aboutreact.com
-      </Text>
+      
     </SafeAreaView>
   );
 };
@@ -176,39 +193,46 @@ export default RegisterScreen;
 
 const styles = StyleSheet.create({
   sectionStyle: {
-    flexDirection: "row",
-    height: 40,
+    
+    height: 80,
     marginTop: 20,
     marginLeft: 35,
     marginRight: 35,
     margin: 10,
   },
+  text:{
+color:'#fff'
+  },
   buttonStyle: {
-    backgroundColor: "#7DE24E",
-    borderWidth: 0,
+    backgroundColor: "#fb009e",
+    
     color: "#FFFFFF",
-    borderColor: "#7DE24E",
+    
     height: 40,
-    alignItems: "center",
+    
     borderRadius: 30,
-    marginLeft: 35,
-    marginRight: 35,
+    width:312,
     marginTop: 20,
     marginBottom: 20,
+    justifyContent:'center',
+    alignItems:'center'
   },
   buttonTextStyle: {
-    color: "#000",
+    color: "#fff",
     paddingVertical: 10,
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight:'bold',
+
+  
   },
   inputStyle: {
-    flex: 1,
-    color: "#000",
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingLeft:20,
+    color: "#fff",
+    width: 312,
+    height:45,
     borderWidth: 1,
     borderRadius: 30,
-    borderColor: "#dadae8",
+    borderColor: "#fff",
   },
   errorTextStyle: {
     color: "red",

@@ -56,14 +56,25 @@ const Auth = () => {
             name="RegisterScreen"
             component={RegisterScreen}
             options={{
-            title: "Register", 
-            headerStyle: {
-                backgroundColor: "#307ecc", 
+            title: "회원가입", 
+            headerTitleStyle:{
+                color:'#fff'
             },
-            headerTintColor: "#fff", 
-            headerTitleStyle: {
-                fontWeight: "bold", 
+            headerStyle:{
+                backgroundColor:"#121212",
+                shadowColor: 'transparent'
             },
+            headerBackImage: ()=>( 
+                <MaterialIcons name={"arrow-back-ios"} 
+                size={35} 
+                color={'#fff'}
+                style={{marginLeft:30}}
+                />),
+                headerBackTitle:' ',
+                headerBackTitleStyle:{
+                    fontSize:20,
+                    color:'#fff'
+                }
             }}
         />
         <Stack.Screen
