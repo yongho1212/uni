@@ -13,6 +13,7 @@ import detailPaneIcon from './resources/detailpane.png';
 import { logger } from '../../../utils/common';
 import { CometChat } from '@cometchat-pro/react-native-chat';
 import { CometChatContext } from '../../../utils/CometChatContext';
+
 class CometChatMessageHeader extends React.Component {
   static contextType = CometChatContext;
   constructor(props) {
@@ -21,8 +22,9 @@ class CometChatMessageHeader extends React.Component {
     this.state = {
       status: '',
       presence: 'offline',
+      viewMember: false,
     };
-  }
+  }  
 
   componentDidMount() {
     this.MessageHeaderManager = new MessageHeaderManager();
@@ -339,7 +341,7 @@ class CometChatMessageHeader extends React.Component {
 
     let info = (
       <TouchableOpacity
-        onPress={() => this.props.actionGenerated(actions.VIEW_DETAIL)}
+        onPress={() => this.props.actionGenerated(actions.VIEW_DETAIL)}                
         style={styles.videoCallContainer}>
         <Image style={styles.callIcon} source={detailPaneIcon} />
       </TouchableOpacity>
@@ -353,7 +355,7 @@ class CometChatMessageHeader extends React.Component {
           <Icon
             name="chevron-back-sharp"
             size={32}
-            color={'#000'}
+            color={this.props.theme.color.blue}
           />
         </TouchableOpacity>
         <View style={styles.headerDetailContainer}>
@@ -374,12 +376,12 @@ class CometChatMessageHeader extends React.Component {
             {presence}
           </View>
           <View style={styles.itemDetailContainer}>
-            <Text style={styles.itemNameText} numberOfLines={1}>
+            <Text style={styles.itemNameText} numberOfLines={2}>
               {this.props.item.name}
             </Text>
             {status}
           </View>
-          {videoCallBtn}
+          {/*{videoCallBtn}*/}
           {audioCallBtn}
           {info}
         </View>

@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-
+import PassMeter from "react-native-passmeter";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
 import { a } from "hangul-js";
@@ -24,6 +24,10 @@ const RegisterScreen = ({ navigation }) => {
 
   const emailInputRef = createRef();
   const passwordInputRef = createRef();
+
+  const MAX_LEN = 15,
+  MIN_LEN = 6,
+  PASS_LABELS = ["Too Short", "Weak", "Normal", "Strong", "Secure"];
 
   const handleSubmitButton = () => {
     setErrortext("");
@@ -167,6 +171,31 @@ const RegisterScreen = ({ navigation }) => {
               onSubmitEditing={Keyboard.dismiss}
               blurOnSubmit={false}
             />
+            <View style={{width:312, }}>
+            <PassMeter
+              showLabels
+              password={userPassword}
+              maxLength={MAX_LEN}
+              minLength={MIN_LEN}
+              labels={PASS_LABELS}
+           
+            />
+            </View>
+            <TextInput
+              style={styles.inputStyle}
+              onChangeText={(UserPassword) =>
+                setUserPassword(UserPassword)
+              }
+              underlineColorAndroid="#fff"
+              placeholder="Enter Password"
+              placeholderTextColor="#8b9cb5"
+              ref={passwordInputRef}
+              returnKeyType="next"
+              secureTextEntry={true}
+              onSubmitEditing={Keyboard.dismiss}
+              blurOnSubmit={false}
+            />
+            
           </View>
           {errortext != "" ? (
             <Text style={styles.errorTextStyle}>
@@ -174,15 +203,18 @@ const RegisterScreen = ({ navigation }) => {
               {errortext}{" "}
             </Text>
           ) : null}
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            activeOpacity={0.5}
-            onPress={handleSubmitButton}
-          >
-            <Text style={styles.buttonTextStyle}>
-              REGISTER
-            </Text>
-          </TouchableOpacity>
+          <View style={{justifyContent:'center', alignItems:'center', marginTop:80}}>
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              activeOpacity={0.5}
+              onPress={handleSubmitButton}
+            >
+              <Text style={styles.buttonTextStyle}>
+                REGISTER
+              </Text>
+            </TouchableOpacity>
+          </View>
+          
         </KeyboardAvoidingView>
       </ScrollView>
       
@@ -233,6 +265,7 @@ color:'#fff'
     borderWidth: 1,
     borderRadius: 30,
     borderColor: "#fff",
+    marginBottom:10
   },
   errorTextStyle: {
     color: "red",

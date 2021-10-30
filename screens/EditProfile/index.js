@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {KeyboardAvoidingView, View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, SafeAreaView, ImageBackground} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import ImageResizer from 'react-native-image-resizer';
+import { Buffer } from 'buffer';
 
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from 'react-native-reanimated';
@@ -164,7 +166,7 @@ export default class EditProfile extends Component {
             })
         }else {
             ImagePicker.openPicker({
-                width: 300, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,
+                cropping: true, freeStyleCropEnabled: true, includeBase64: true,
             }).then((image) => {
                 var sequence = 6;
                 var check = 0;
@@ -196,11 +198,14 @@ export default class EditProfile extends Component {
         this.bs.current.snapTo(1);        
     }
 
-    uploadImage = async(image, index) => {
+    uploadImage = async(image, index) => { 
+        var profile;             
+        profile = await ImageResizer.createResizedImage(image.path, 1000, 1000, 'JPEG', 100, 0, undefined, false, {mode: 'contain'});
+
         const formData = new FormData();
 
-        var path = image.path;
-        var name = image.path.substring(path.lastIndexOf('/') + 1, path.length);
+        var path = profile.uri;        
+        var name = profile.uri.substring(path.lastIndexOf('/') + 1, path.length);      
         var type = image.mime;
 
         var id = this.state.id;

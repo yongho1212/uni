@@ -16,8 +16,11 @@ import {
 import { CometChatContextProvider } from '../../../utils/CometChatContext';
 import { CometChatImageViewer } from '../../Messages';
 import theme from '../../../resources/theme';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { logger } from '../../../utils/common';
+
+import Icon from 'react-native-vector-icons/Ionicons';
+import styles from './styles';
 
 const readAt = 'readAt';
 
@@ -589,9 +592,9 @@ class CometChatConversationListWithMessages extends React.Component {
     }
 
     return (
-      <CometChatContextProvider ref={(el) => (this.contextProviderRef = el)}>
+      <CometChatContextProvider ref={(el) => (this.contextProviderRef = el)}>        
         <View style={{}}>
-          <View style={{}}>
+          <View style={{}}>            
             <CometChatConversationList
               theme={this.theme}
               item={this.state.item}

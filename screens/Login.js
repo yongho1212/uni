@@ -188,7 +188,7 @@ const LoginScreen = ({navigation}) => {
         console.log(user.user.uid);
         console.log(userEmail);
 
-        alert('Email sent');
+     
 
         var id = user.user.uid;
         var email = userEmail;

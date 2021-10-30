@@ -4,20 +4,17 @@ import { widthRatio, heightRatio } from '../../../utils/consts';
 export default StyleSheet.create({
   conversationWrapperStyle: {
     height: '100%',
-    
+    backgroundColor: 'white',
   },
   headingContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    //justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop:20
-    
-    
   },
   conversationHeaderStyle: {
     paddingBottom: 32,
     position: 'relative',
-    paddingHorizontal: 22 * widthRatio,
+    paddingHorizontal: 16,
   },
   contactHeaderCloseStyle: {
     height: 24,

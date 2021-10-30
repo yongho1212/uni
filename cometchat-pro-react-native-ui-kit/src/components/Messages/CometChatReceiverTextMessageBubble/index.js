@@ -191,6 +191,7 @@ const CometChatReceiverTextMessageBubble = (props) => {
               borderWidth={0}
               image={senderAvatar}
               name={message.sender.name}
+              uid={message.sender.uid}                      
             />
           </View>
         ) : null}

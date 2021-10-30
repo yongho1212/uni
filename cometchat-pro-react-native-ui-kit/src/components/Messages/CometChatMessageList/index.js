@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-state */
 /* eslint-disable no-shadow */
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Alert, Pressable } from 'react-native';
 import { CometChat } from '@cometchat-pro/react-native-chat';
 
 import { CometChatManager } from '../../../utils/controller';
@@ -9,10 +9,10 @@ import { MessageListManager } from './controller';
 
 import * as enums from '../../../utils/enums';
 import * as actions from '../../../utils/actions';
-import CometChatSenderPollMessageBubble from '../Extensions/CometChatSenderPollMessageBubble';
-import CometChatSenderStickerMessageBubble from '../Extensions/CometChatSenderStickerMessageBubble';
-import CometChatReceiverPollMessageBubble from '../Extensions/CometChatReceiverPollMessageBubble';
-import CometChatReceiverStickerMessageBubble from '../Extensions/CometChatReceiverStickerMessageBubble';
+import CometChatSenderPollMessageBubble from '../../Messages/Extensions/CometChatSenderPollMessageBubble';
+import CometChatSenderStickerMessageBubble from '../../Messages/Extensions/CometChatSenderStickerMessageBubble';
+import CometChatReceiverPollMessageBubble from '../../Messages/Extensions/CometChatReceiverPollMessageBubble';
+import CometChatReceiverStickerMessageBubble from '../../Messages/Extensions/CometChatReceiverStickerMessageBubble';
 import CometChatActionMessageBubble from '../CometChatActionMessageBubble';
 import CometChatDeleteMessageBubble from '../CometChatDeleteMessageBubble';
 import CometChatReceiverVideoMessageBubble from '../CometChatReceiverVideoMessageBubble';
@@ -1000,7 +1000,7 @@ class CometChatMessageList extends React.PureComponent {
     if (message.message) {
       component = (
         <View style={styles.actionMessageStyle} key={key}>
-          <Text style={styles.actionMessageTxtStyle}>{message.message}</Text>
+          <Text style={styles.actionMessageTxtStyle}>{message.message}</Text>          
         </View>
       );
 
@@ -1079,7 +1079,7 @@ class CometChatMessageList extends React.PureComponent {
     );
   };
 
-  renderItem = ({ item, index }) => {
+  renderItem = ({ item, index }) => {    
     let messages = [...this.props.messages];
     if (messages.length) {
       messages = messages.reverse();
@@ -1179,7 +1179,7 @@ class CometChatMessageList extends React.PureComponent {
           }
           data={messages}
           keyExtractor={(item, index) => item.messageId + '_' + index}
-          renderItem={this.renderItem}
+          renderItem={this.renderItem}          
         />
         {this.state.showNewMsg ? newMsgPopUp : null}
       </>

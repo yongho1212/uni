@@ -26,11 +26,13 @@ import {
   Image,
   TouchableOpacity,
   Pressable,
+  Alert
 } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
 import { logger } from '../../../utils/common';
 import { SwipeListView } from 'react-native-swipe-list-view';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Feather from 'react-native-vector-icons/Feather';
+
 class CometChatConversationList extends React.Component {
   loggedInUser = null;
 
@@ -868,18 +870,16 @@ class CometChatConversationList extends React.Component {
       <View style={[styles.conversationHeaderStyle]}>
         <View style={styles.headingContainer}>
           <Pressable
-          onPress={()=>this.props.navigation.navigate('DrawerNav')}
-          >
-           
+            onPress={()=>this.props.navigation.navigate('DrawerNav')}
+          >           
             <MaterialIcons 
               name={"arrow-back-ios"} 
               size={35} 
               color={'#000'}
               style={{marginLeft:10}}
-              />
- 
+            />
           </Pressable>
-          <Text style={styles.conversationHeaderTitleStyle}>Chats</Text>
+          <Text style={styles.conversationHeaderTitleStyle}>Chat</Text>          
         </View>
       </View>
     );
@@ -977,7 +977,7 @@ class CometChatConversationList extends React.Component {
   render() {
     return (
       <CometChatContextProvider ref={(el) => (this.contextProviderRef = el)}>
-        <View style={{ backgroundColor: 'white' }}>
+        <SafeAreaView style={{ backgroundColor: 'white' }}>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.conversationWrapperStyle}>
@@ -1029,7 +1029,7 @@ class CometChatConversationList extends React.Component {
                   <CometChatConversationListItem
                     theme={this.theme}
                     config={this.props.config}
-                    conversation={item}
+                    conversation={item}                    
                     selectedConversation={this.state.selectedConversation}
                     loggedInUser={this.loggedInUser}
                     handleClick={this.handleClick}
@@ -1045,7 +1045,7 @@ class CometChatConversationList extends React.Component {
             />
           </KeyboardAvoidingView>
           <DropDownAlert ref={(ref) => (this.dropDownAlertRef = ref)} />
-        </View>
+        </SafeAreaView>
       </CometChatContextProvider>
     );
   }

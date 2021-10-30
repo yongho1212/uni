@@ -7,6 +7,7 @@ import {
   Modal,
   Dimensions,
   KeyboardAvoidingView,
+  Alert,
 } from 'react-native';
 import { CometChat } from '@cometchat-pro/react-native-chat';
 import * as actions from '../../../utils/actions';
@@ -38,6 +39,8 @@ import DropDownAlert from '../../Shared/DropDownAlert';
 import BottomSheet from 'reanimated-bottom-sheet';
 import style from './styles';
 import CometChatUserProfile from '../../Users/CometChatUserProfile';
+
+import { LogBox } from 'react-native';
 
 class CometChatMessages extends React.PureComponent {
   static contextType = CometChatContext;
@@ -75,6 +78,10 @@ class CometChatMessages extends React.PureComponent {
   }
 
   componentDidMount() {
+    LogBox.ignoreLogs([
+      'Non-serializable values were found in the navigation state',  
+    ]);
+
     this.checkRestrictions();
     new CometChatManager()
       .getLoggedInUser()
@@ -385,7 +392,7 @@ class CometChatMessages extends React.PureComponent {
     const { route } = this.props;
 
     const params = route?.params || this.props;
-// 에러뜨면 navigate push로 돌려놓기
+
     this.props.navigation.push(enums.NAVIGATION_CONSTANTS.COMET_CHAT_MESSAGES, {
       theme: params.theme,
       item: { ...message.sender },
@@ -985,7 +992,7 @@ class CometChatMessages extends React.PureComponent {
                   <CometChatMessageThread
                     theme={this.theme}
                     tab={this.state.tab}
-                    item={this.state.threadMessageItem}
+                    item={this.state.threadMessageItem}                    
                     type={this.state.threadMessageType}
                     parentMessage={this.state.threadMessageParent}
                     loggedInUser={this.loggedInUser}
@@ -1013,7 +1020,7 @@ class CometChatMessages extends React.PureComponent {
               <CometChatUserProfile
                 open
                 close={() => this.setState({ showProfile: null })}
-                url={this.state.user?.link}
+                url={this.state.user?.link}                
               />
             ) : null}
             {this.state.videoMessage ? (
@@ -1084,7 +1091,7 @@ class CometChatMessages extends React.PureComponent {
                 params.type === CometChat.RECEIVER_TYPE.USER
                   ? this.state.user
                   : this.state.item
-              }
+              }              
               type={params.type}
               scrollToBottom={this.state.scrollToBottom}
               messageConfig={params.messageconfig}

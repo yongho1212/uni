@@ -1,9 +1,11 @@
+/* eslint-disable import/no-duplicates */
 import React, { useEffect, useRef, useState } from 'react';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { View, Text } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { CometChatGroupListWithMessages } from '../Groups';
 import { CometChatUserListWithMessages } from '../Users';
 import { CometChatUserList } from '../Users';
+import { CometChatAddFriends } from '../Users';
 import { CometChatConversationListWithMessages } from '../Chats';
 import { CometChatContextProvider } from '../../utils/CometChatContext';
 import { CometChatUserProfile } from '../UserProfile';
@@ -13,9 +15,7 @@ import MCIIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import theme from '../../resources/theme';
 import { heightRatio } from '../../utils/consts';
 
-
-
-const Tab = createMaterialTopTabNavigator();
+const Tab = createBottomTabNavigator();
 
 function CometChatUI() {
   const [tabs, setTabs] = useState(null);
@@ -42,9 +42,7 @@ function CometChatUI() {
     <CometChatContextProvider ref={contextRef}>
       {tabs ? (
         <Tab.Navigator
-        
           screenOptions={({ route }) => ({
-            
             tabBarIcon: ({ color }) => {
               let iconName;
 
@@ -62,7 +60,7 @@ function CometChatUI() {
                   />
                 );
               }
-              if (route.name === 'Friends') {
+              if (route.name === 'Users') {
                 iconName = 'ios-person-circle-sharp';
               } else if (route.name === 'Groups') {
                 iconName = 'people';
@@ -80,28 +78,34 @@ function CometChatUI() {
           })}
           tabBarOptions={{
             activeTintColor: theme.color.blue,
-            activeTintColor: '#fff',
+            inactiveTintColor: 'rgba(0,0,0,0.5)',
             activeBackgroundColor: theme.color.white,
             inactiveBackgroundColor: theme.color.white,
-            labelStyle: { fontSize: 20 , fontWeight:'bold'},
-            style: { backgroundColor: '#fb009e', height:80, borderRadius:25 },
-          }}
-          tabBarPosition={'bottom'}
-          
-          >
+            labelStyle: { fontSize: 12 },
+          }}>
           {tabs.isChatEnabled && (
             <Tab.Screen
               name="Chats"
               component={CometChatConversationListWithMessages}
-              
+              //options={{ tabBarBadge: 3 }}
             />
           )}
+          {/*
           {tabs.isUserListEnabled && (
             <Tab.Screen
-              name="Friends"
-              component={CometChatUserList}
+              name="Users"
+              component={CometChatUserList}                                            
             />
           )}
+          */}
+          {/*
+          {tabs.isUserListEnabled && (
+            <Tab.Screen
+              name="AddFriends"
+              component={CometChatAddFriends}                                            
+            />
+          )}
+          */}
           {/*
           {tabs.isGroupListEnabled && (
             <Tab.Screen

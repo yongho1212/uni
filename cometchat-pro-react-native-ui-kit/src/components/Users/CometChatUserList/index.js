@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-fragments */
+/* eslint-disable react/no-did-update-set-state */
 import React from 'react';
 import {
   View,
@@ -8,15 +10,16 @@ import {
   Platform,
   KeyboardAvoidingView,
   Keyboard,
-  Pressable,
-  Alert,
+  Pressable
 } from 'react-native';
+
 import {
   CometChatContextProvider,
   CometChatContext,
 } from '../../../utils/CometChatContext';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import { CometChatManager } from '../../../utils/controller';
 
 import { UserListManager } from './controller';
@@ -42,8 +45,7 @@ class CometChatUserList extends React.PureComponent {
     this.state = {
       userList: [],
       selectedUser: null,
-      searchValue: '',
-      textInputValue: '',    
+      textInputValue: '',
       textInputFocused: false,
       showSmallHeader: false,
       restrictions: null,
@@ -197,61 +199,51 @@ class CometChatUserList extends React.PureComponent {
    * Retrieve user from user list while searching
    * @param
    */
-  searchUsers = () => {      
-    this.setState({
-      textInputValue: this.state.searchValue
-    })
+  searchUsers = (val) => {
+    this.setState(
+      { textInputValue: val },
 
-    this.timeout = setTimeout(() => {
-      this.UserListManager = new UserListManager(this.state.searchValue);
-      this.setState({ userList: [] }, () => this.getUsers());
-    }, 500);
+      () => {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+        }
+
+        this.timeout = setTimeout(() => {
+          this.UserListManager = new UserListManager(val);
+          this.setState({ userList: [] }, () => this.getUsers());
+        }, 500);
+      },
+    );
   };
 
-  onChangeText = (val) => {
-    this.setState(
-      {searchValue: val},
-    )
-  }
   /**
    * Retrieve user list from sdk acc to logged in user
    * @param
    */
   getUsers = () => {
-    var check = false;
-
-    if(this.state.textInputValue !== '') {
-      new CometChatManager()
-        .getLoggedInUser()
-        .then(() => {
-          this.UserListManager.fetchNextUsers()
-            .then((userList) => {
-              userList.map((data) => {
-                if(data.name === this.state.textInputValue) {
-                  check = true;
-                }
-              })
-
-              if (!check) {
-                this.decoratorMessage = 'No users found';
-              } else {              
-                this.setState({ userList: [...this.state.userList, ...userList] })
-              }              
-            })
-            .catch((error) => {
-              const errorCode = error?.message || 'ERROR';
-              this.dropDownAlertRef?.showMessage('error', errorCode);
-              this.decoratorMessage = 'Error';
-              logger('[CometChatUserList] getUsers fetchNext error', error);
-            });
-        })
-        .catch((error) => {
-          const errorCode = error?.message || 'ERROR';
-          this.dropDownAlertRef?.showMessage('error', errorCode);
-          this.decoratorMessage = 'Error';
-          logger('[CometChatUserList] getUsers getLoggedInUser error', error);
-        });
-      }
+    new CometChatManager()
+      .getLoggedInUser()
+      .then(() => {
+        this.UserListManager.fetchNextUsers()
+          .then((userList) => {
+            if (userList.length === 0) {
+              this.decoratorMessage = 'No users found';
+            }
+            this.setState({ userList: [...this.state.userList, ...userList] });
+          })
+          .catch((error) => {
+            const errorCode = error?.message || 'ERROR';
+            this.dropDownAlertRef?.showMessage('error', errorCode);
+            this.decoratorMessage = 'Error';
+            logger('[CometChatUserList] getUsers fetchNext error', error);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error?.message || 'ERROR';
+        this.dropDownAlertRef?.showMessage('error', errorCode);
+        this.decoratorMessage = 'Error';
+        logger('[CometChatUserList] getUsers getLoggedInUser error', error);
+      });
   };
 
   /**
@@ -330,33 +322,20 @@ class CometChatUserList extends React.PureComponent {
   listHeaderComponent = () => {
     return (
       <View style={[style.contactHeaderStyle]}>
-        <View style={{flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginTop:20
-        }}>
-        <Pressable
-          onPress={()=>this.props.navigation.navigate('DrawerNav')}
-          >
-           
-           <MaterialIcons 
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', /*marginTop: 20*/}}>
+          <Pressable
+            onPress={()=>this.props.navigation.navigate('DrawerNav')}
+          >           
+            <MaterialIcons 
               name={"arrow-back-ios"} 
               size={35} 
               color={'#000'}
               style={{marginLeft:10}}
-              />
- 
+            />
           </Pressable>
-        <Text style={style.contactHeaderTitleStyle}>Friends</Text>
+          <Text style={style.contactHeaderTitleStyle}>Users</Text>
         </View>
-        
-        <Pressable
-          onPress={() => this.searchUsers()}
-          style={{width:200, backgroundColor:'red'}}
-        >
-          <Text>확인</Text>
-        </Pressable>
-        {this.state.restrictions?.isUserSearchEnabled ? (     
+        {this.state.restrictions?.isUserSearchEnabled ? (
           <TouchableWithoutFeedback
             onPress={() => this.textInputRef.current.focus()}>
             <View
@@ -370,10 +349,10 @@ class CometChatUserList extends React.PureComponent {
               <TextInput
                 ref={this.textInputRef}
                 autoCompleteType="off"
-                value={this.state.searchValue}
-                placeholder="Friends Nickname"
+                value={this.state.textInputValue}
+                placeholder="Search"
                 placeholderTextColor={this.theme.color.textInputPlaceholder}
-                onChangeText={this.onChangeText}
+                onChangeText={this.searchUsers}
                 onFocus={() => {
                   this.setState({ textInputFocused: true });
                 }}

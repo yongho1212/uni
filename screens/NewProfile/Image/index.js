@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, Pressable, Dimensions, Image, TextInput, Alert, SafeAreaView, ImageBackground} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import ImageResizer from 'react-native-image-resizer';
 import {Convert} from 'mongo-image-converter';
 
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -44,6 +45,8 @@ export default class NewProfileImg extends Component {
     }
 
     getProfile = async () => {
+        var type = '';
+
         try {
             const id = await AsyncStorage.getItem('id');
             if(id !== null) {
@@ -162,7 +165,7 @@ export default class NewProfileImg extends Component {
     pickImage = async(option) => {
         if(option === 'camera') {
             ImagePicker.openCamera({
-                width: 300, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,           
+                cropping: true, freeStyleCropEnabled: true, includeBase64: true,   
             })
             .then(image => {
                 var sequence = 6;
@@ -192,7 +195,7 @@ export default class NewProfileImg extends Component {
             })
         }else {
             ImagePicker.openPicker({
-                width: 200, height: 300, cropping: true, freeStyleCropEnabled: true, includeBase64: true,
+                cropping: true, freeStyleCropEnabled: true, includeBase64: true,   
             }).then((image) => {
                 var sequence = 6;
                 var check = 0;
@@ -225,10 +228,13 @@ export default class NewProfileImg extends Component {
     }
 
     uploadImage = async(image, index) => {
+        var profile;             
+        profile = await ImageResizer.createResizedImage(image.path, 700, 700, 'JPEG', 100, 0, undefined, false, {mode: 'contain'});
+
         const formData = new FormData();
 
-        var path = image.path;
-        var name = image.path.substring(path.lastIndexOf('/') + 1, path.length);
+        var path = profile.uri;        
+        var name = profile.uri.substring(path.lastIndexOf('/') + 1, path.length);        
         var type = image.mime;
 
         var id = this.state.id;
