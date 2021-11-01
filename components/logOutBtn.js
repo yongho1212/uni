@@ -49,6 +49,7 @@ const LogoutBtn = () => {
                 if (error.code === "auth/no-current-user")
                   navigation.replace("Auth");
                 else alert(error);
+                
               });
           },
         },

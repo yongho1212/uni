@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, Pressable, Dimensions, StyleSheet, Alert} from 'react-native';
+import {View, Text, Pressable, Dimensions, StyleSheet, Alert, BackHandler } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 import { firebase } from '@react-native-firebase/auth';
 import auth from "@react-native-firebase/auth";
-
+import RNExitApp from 'react-native-exit-app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { SERVER_URL } from '@env';
@@ -17,12 +17,14 @@ export default class DropUser extends Component {
         }
     }
 
-    dropUser = async() => {
-        var user = firebase.auth().currentUser;
+    dropFunc = async() => {
+
+        const user = auth().currentUser;
         var id = await AsyncStorage.getItem('id');
         const URL = `${SERVER_URL}/dropUser`;
 
-        user.delete().then(() => {
+         user.delete().then(() => {
+            RNExitApp.exitApp();
             console.log('User Deleted Successfully');
             fetch(URL, {
                 method: 'POST',
@@ -33,18 +35,70 @@ export default class DropUser extends Component {
                     id: id,                
                 })
             })
-        }).catch(function(error) {
+            
+        })
+        
+        .catch(function(error) {
             Alert.alert(error.message);
-        })                     
+        }) 
     }
+
+    dropUser = () => {
+
+    
+        Alert.alert(
+            "Logout",
+            "Are you sure? You want to logout?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => {
+                  return null;
+                },
+              },
+              {
+                text: "Confirm",
+                onPress: () => {
+                    this.dropFunc();
+                },
+              },
+            ],
+            
+        );
+    }
+
+    backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to go back?", [
+          {
+            text: "Cancel",
+            onPress: () => null,
+            style: "cancel"
+          },
+          { text: "YES", onPress: () => this.dropUser() }
+        ]);
+        return true;
+      };
+
+      componentDidMount() {
+        this.backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          this.backAction
+        );
+      }
+
+      componentWillUnmount() {
+        this.backHandler.remove();
+      }
+
 
     render() {
         return (       
-            <View>
+            <View >
                 <TouchableHighlight 
                     onPress={() => this.dropUser()}
+                    style={styles.buttonStyle}
                 >
-                    <Text>회원탈퇴</Text>                    
+                    <Text style={styles.textStyle}>회원탈퇴</Text>                    
                 </TouchableHighlight>
             </View>
         )
@@ -53,4 +107,24 @@ export default class DropUser extends Component {
 
 const styles = StyleSheet.create({
 
+        buttonStyle: {
+            minWidth: 300,
+            backgroundColor: "#1212",
+            borderWidth: 0,
+            color: "red",
+            height: 40,
+            
+            borderRadius: 30,
+            marginLeft: 35,
+            marginRight: 35,
+            marginTop: 20,
+            marginBottom: 25,
+            alignItems:'center',
+            justifyContent:'center'
+    },
+    textStyle:{
+        color:'red',
+        fontSize: 20,
+        fontWeight:'bold'
+    }
 }); 

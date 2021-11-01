@@ -249,7 +249,7 @@ export default class NewProfileImg extends Component {
             type: type,
         })
 
-        const URL = `${SERVER_URL}/upload`;
+        const URL = `${SERVER_URL}/uploadProfile`;
         fetch(URL, {
             method: 'POST',
             headers: {

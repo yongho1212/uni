@@ -24,7 +24,7 @@ import Setting from'../screens/sideDrawer/setting/Setting';
 
 import CustomSidebarMenu from './customSidebar';
 import EditProfile from '../screens/EditProfile';
-
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
@@ -138,15 +138,16 @@ function DrawerNav({ navigation }) {
       }}
        component={Cs} />
        <Drawer.Screen
-       name="SetPage"
+       name=" "
        options={{ 
          drawerLabel: 'Setting ⚙️',
-         headerShown: false,
-         headerLeft: () => (
+         headerShown: true,
+         headerRight: () => (
           <Button
-            onPress={() => navigation.goBack()}
-            title="<"
+            onPress={() => navigation.navigate('Main')}
+            title="완료 "
             color="black"
+            style={{}}
             />
           ),
         }}

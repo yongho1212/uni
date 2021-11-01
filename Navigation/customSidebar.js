@@ -30,8 +30,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-
+// const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
+const adUnitId = 'ca-app-pub-1901350005999235/8368424198'
 
 const CustomSidebarMenu = (props) => {  
   const [url, setUrl] = useState('https://cdn.pixabay.com/photo/2014/10/14/20/24/soccer-488700_960_720.jpg');
@@ -111,7 +111,10 @@ const CustomSidebarMenu = (props) => {
               requestOptions={{
                 requestNonPersonalizedAdsOnly: true,
               }}
-              style={{}}
+              onAdLoaded={() => {
+                console.log('Advert loaded');}}
+                onAdFailedToLoad={(error) => {
+                console.error('Advert failed to load: ', error);}}
             />
           </View>
           

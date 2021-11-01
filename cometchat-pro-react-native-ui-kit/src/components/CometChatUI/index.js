@@ -43,6 +43,7 @@ function CometChatUI() {
       {tabs ? (
         <Tab.Navigator
           screenOptions={({ route }) => ({
+            headerShown:false,
             tabBarIcon: ({ color }) => {
               let iconName;
 

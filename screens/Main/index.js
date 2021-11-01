@@ -158,7 +158,7 @@ export default class Main extends Component {
                                      
                                    : hobby === '웨이트' ?
                                    <Image  
-                                   style={{  width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 , backgroundColor:'#fff' }}   
+                                   style={{  width:38,height:38, zIndex:10, marginBottom:8, borderRadius:19 }}   
                                    source={require('../../assets/cateicon/weight.png')}/>
                                      
                                    : hobby === '런닝' ?
@@ -169,7 +169,7 @@ export default class Main extends Component {
                    
                                    : hobby === '골프' ?        
                                    <Image  
-                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                                   style={{  width:39,height:39, zIndex:30,  borderRadius:19 , resizeMode:'contain'  }}   
                                    source={require('../../assets/cateicon/golf-player.png')}/>
                                       
                                    : hobby === '탁구' ?
@@ -180,13 +180,13 @@ export default class Main extends Component {
                                    : hobby === '보드게임' ?
                                       
                                    <Image  
-                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, borderRadius:19 , resizeMode:'contain'  }}   
                                    source={require('../../assets/cateicon/board-game.png')}/>
                                       
                                    : hobby === '언어교환' ?
                                        
                                    <Image  
-                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, marginBottom:8, borderRadius:19 , resizeMode:'contain'  }}   
+                                   style={{ backgroundColor:'#fff', width:39,height:39, zIndex:30, borderRadius:19 , resizeMode:'contain'  }}   
                                    source={require('../../assets/cateicon/languages.png')}/>
                                     
                                    : hobby === '리그오브레전드' ?

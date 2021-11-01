@@ -358,7 +358,7 @@ const Router = ({navigation}) => {
                     component={UserProfile}  
                     options={{
                         headerShown: true,
-                        title: '유저 프로필',
+                        title: 'Profile',
                         headerTitleStyle:{
                             fontSize:19
                         },

@@ -20,6 +20,15 @@ const styles = StyleSheet.create({
        fontSize:18
          
           
+    },
+    textBtn:{
+        width:"100%",
+        alignItems:'flex-start',
+        fontSize:25,
+        marginLeft:20,
+        marginVertical:5
+        
+
     }
     
 });
