@@ -73,13 +73,15 @@ const styles = StyleSheet.create({
         
     },
     categoryIcon:{
-        backgroundColor:'#96FFD9',
+        backgroundColor:'#fff',
         width:80,
         height:80,
         borderRadius:50,
         flex:1,
         justifyContent:'center',
         alignItems:'center',
+        borderWidth:4,
+        borderColor:"#96FFD9"
         
         
     },

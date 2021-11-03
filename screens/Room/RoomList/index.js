@@ -4,7 +4,7 @@ import {Text, View, TextInput, Pressable, ScrollView, Image} from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SERVER_URL } from '@env'
 
 import styles from './styles';
@@ -73,7 +73,94 @@ export default class RoomList extends Component {
                          <View style={styles.roomCard}>
                               
                                    <View style={styles.categoryIcon}>
-                                        <Text style={styles.categoryText}> {data.category}</Text> 
+                                        
+                                        {
+
+                                              data.category === '축구' ?              
+                                  <MaterialCommunityIcons
+                                  name={"soccer"}
+                                  size={37}
+                                  color={'black'}
+                                  style={{ zIndex:10,  }}   
+                                  />
+
+                                  : data.category === '농구' ?
+                                  <Image  
+                                   style={{ width:50,height:50, zIndex:10,    }}   
+                                   source={require('../../../assets/cateicon/basketball.png')}/>
+                             
+                                  
+                                  : data.category === '언어교환' ?
+                                   <Image  
+                                   style={{ width:50,height:50, zIndex:10,    }}   
+                                   source={require('../../../assets/cateicon/languages.png')}/>
+                          
+                                   : data.category === '볼링' ?
+                                   <Image  
+                                   style={{ width:50,height:50, zIndex:10,  }}   
+                                   source={require('../../../assets/cateicon/bowling.png')}/>
+                                     
+                                   : data.category === '등산' ?
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:10,}}   
+                                   source={require('../../../assets/cateicon/hiking.png')}/>
+                                     
+                                   : data.category === '웨이트' ?
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:10, marginBottom:8, borderRadius:19 }}   
+                                   source={require('../../../assets/cateicon/weight.png')}/>
+                                     
+                                   : data.category === '런닝' ?
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                                   source={require('../../../assets/cateicon/run.png')}/>
+                                      
+                   
+                                   : data.category === '골프' ?        
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:30,  borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../../assets/cateicon/golf-player.png')}/>
+                                      
+                                   : data.category === '탁구' ?
+                                   <Image  
+                                   style={{ width:50,height:50, zIndex:10,  }}   
+                                   source={require('../../../assets/cateicon/table-tennis.png')}/>
+                                     
+                                   : data.category === '보드게임' ?
+                                      
+                                   <Image  
+                                   style={{ backgroundColor:'#fff', width:50,height:50, zIndex:30, borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../../assets/cateicon/board-game.png')}/>
+                                      
+                                   : data.category === '언어교환' ?
+                                       
+                                   <Image  
+                                   style={{ backgroundColor:'#fff', width:50,height:50, zIndex:30, borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../../assets/cateicon/languages.png')}/>
+                                    
+                                   : data.category === '리그오브레전드' ?
+                                       
+                                   <Image  
+                                   style={{  width:40,height:50, zIndex:30,     }}   
+                                   source={require('../../../assets/cateicon/lol.png')}/>
+                                       
+                                   : data.category === '배틀그라운드' ?    
+                                   <Image  
+                                   style={{  width:50,height:40, zIndex:30,  backgroundColor:'#fff', borderRadius:10    }}   
+                                   source={require('../../../assets/cateicon/pubg.png')}/>
+
+                                   : data.category === '파티' ?    
+                                   <Image  
+                                   style={{  width:50,height:40, zIndex:30,  backgroundColor:'#fff', borderRadius:10    }}   
+                                   source={require('../../../assets/cateicon/disco-ball.png')}/>
+                                     
+                                   : data.category === '술 한잔' ?    
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:30,  backgroundColor:'#fff', borderRadius:19   }}   
+                                   source={require('../../../assets/cateicon/soju.png')}/>
+
+                                   : <Text>{data.category}</Text>
+                                        }
                                    </View>
                               <View style={styles.infoContainer}>
                               

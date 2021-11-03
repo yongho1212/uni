@@ -14,6 +14,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MCIIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import theme from '../../resources/theme';
 import { heightRatio } from '../../utils/consts';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']);
 
 const Tab = createBottomTabNavigator();
 
@@ -49,7 +52,7 @@ function CometChatUI() {
 
               if (route.name === 'Chats') {
                 return (
-                  <MCIIcons name="chat" size={25 * heightRatio} color={color} />
+                  <MCIIcons name="chat" size={25 * heightRatio} color='#fb009e' />
                 );
               }
               if (route.name === 'More') {

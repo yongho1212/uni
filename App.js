@@ -12,6 +12,10 @@ import PushNotificationIOS from "@react-native-community/push-notification-ios";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']);
+
 /* Main Navigator */
 
 PushNotification.configure({

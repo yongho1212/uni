@@ -20,6 +20,7 @@ const RegisterScreen = ({ navigation }) => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [userPasswordCheck, setUserPasswordCheck] = useState("")
   const [errortext, setErrortext] = useState("");
 
   const emailInputRef = createRef();
@@ -30,10 +31,12 @@ const RegisterScreen = ({ navigation }) => {
   PASS_LABELS = ["Too Short", "Weak", "Normal", "Strong", "Secure"];
 
   const handleSubmitButton = () => {
+    
     setErrortext("");
     if (!userName) return alert("Please fill Name");
     if (!userEmail) return alert("Please fill Email");
     if (!userPassword) return alert("Please fill Address");
+    if (userPassword ==! userPasswordCheck) alert ("password check");
 
     auth()
       .createUserWithEmailAndPassword(
@@ -72,6 +75,14 @@ const RegisterScreen = ({ navigation }) => {
         }
       });
   };
+
+  const passwordCheck = () => {
+    if (userPassword === userPasswordCheck){
+      true
+    } else {
+      false
+    };
+  }
 
   return (
     <SafeAreaView
@@ -171,20 +182,11 @@ const RegisterScreen = ({ navigation }) => {
               onSubmitEditing={Keyboard.dismiss}
               blurOnSubmit={false}
             />
-            <View style={{width:312, }}>
-            <PassMeter
-              showLabels
-              password={userPassword}
-              maxLength={MAX_LEN}
-              minLength={MIN_LEN}
-              labels={PASS_LABELS}
            
-            />
-            </View>
-            <TextInput
+           {/* <TextInput
               style={styles.inputStyle}
-              onChangeText={(UserPassword) =>
-                setUserPassword(UserPassword)
+              onChangeText={(userPasswordCheck) =>
+                setUserPasswordCheck(userPasswordCheck)
               }
               underlineColorAndroid="#fff"
               placeholder="Enter Password"
@@ -194,7 +196,17 @@ const RegisterScreen = ({ navigation }) => {
               secureTextEntry={true}
               onSubmitEditing={Keyboard.dismiss}
               blurOnSubmit={false}
+            />*/}
+             <View style={{ marginTop:10}}>
+            <PassMeter
+              showLabels
+              password={userPassword}
+              maxLength={MAX_LEN}
+              minLength={MIN_LEN}
+              labels={PASS_LABELS}
+           
             />
+            </View>
             
           </View>
           {errortext != "" ? (
@@ -203,14 +215,14 @@ const RegisterScreen = ({ navigation }) => {
               {errortext}{" "}
             </Text>
           ) : null}
-          <View style={{justifyContent:'center', alignItems:'center', marginTop:80}}>
+          <View style={{justifyContent:'center', alignItems:'center', marginTop:100}}>
             <TouchableOpacity
               style={styles.buttonStyle}
               activeOpacity={0.5}
               onPress={handleSubmitButton}
             >
               <Text style={styles.buttonTextStyle}>
-                REGISTER
+                회원가입
               </Text>
             </TouchableOpacity>
           </View>
@@ -265,7 +277,8 @@ color:'#fff'
     borderWidth: 1,
     borderRadius: 30,
     borderColor: "#fff",
-    marginBottom:10
+    marginBottom:10,
+    marginTop:10  
   },
   errorTextStyle: {
     color: "red",

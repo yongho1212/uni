@@ -8,6 +8,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import { SERVER_URL } from '@env'
 import styles from './styles';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']);
 
 export default class Nickname extends Component {
     constructor(props) {

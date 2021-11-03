@@ -10,16 +10,21 @@ const styles = StyleSheet.create({
     placeText: {
         fontSize: 20,
         marginBottom: 5,
+        fontWeight:'bold'
     },
     placeInfo: {    
         paddingLeft:20,    
         height: 50,
         width: Dimensions.get('window').width * 0.9,  
         height:Dimensions.get('window').width * 0.15,      
-        borderRadius: 30,
-        backgroundColor: '#EBEBEB',
+        borderRadius: 25,
+        backgroundColor: '#fff',
         justifyContent: 'center',
-        color: 'black',
+        color: '#000',
+        fontSize:17,
+        borderWidth:3,
+        borderColor:"#fb009e",
+        marginTop:4
     },
     categoryContainer: {
         paddingBottom: 15,
@@ -27,6 +32,7 @@ const styles = StyleSheet.create({
     categoryText: {
         fontSize: 20,
         marginBottom: 5,
+        fontWeight:'bold'
     },
     categoryInfo: {   
         paddingLeft:20,   
@@ -34,9 +40,13 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.9,
         height:Dimensions.get('window').width * 0.15,   
         borderRadius: 25,
-        backgroundColor: '#EBEBEB',
+        backgroundColor: '#fff',
         justifyContent: 'center',
-        color: 'black',
+        color: '#000',
+        fontSize:17,
+        borderWidth:3,
+        borderColor:"#fb009e",
+        marginTop:4
     },
     titleContainer: {
         paddingBottom: 15,
@@ -44,6 +54,7 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 20,
         marginBottom: 5,
+        fontWeight:'bold'
     },
     titleInfo: {      
         paddingLeft:20,
@@ -51,9 +62,13 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width * 0.9,
         height:Dimensions.get('window').width * 0.15,   
         borderRadius: 25,
-        backgroundColor: '#EBEBEB',
+        backgroundColor: '#fff',
         justifyContent: 'center',
-        color: 'black',
+        color: '#000',
+        fontSize:17,
+        borderWidth:3,
+        borderColor:"#fb009e",
+        marginTop:4
     },
     timeContainer: {
         paddingBottom: 15,
@@ -61,6 +76,7 @@ const styles = StyleSheet.create({
     timeText: {
         fontSize: 20,
         marginBottom: 5,
+        fontWeight:'bold'
     },
     timeInfo: {      
         paddingLeft:20,
@@ -69,31 +85,35 @@ const styles = StyleSheet.create({
         height:Dimensions.get('window').width * 0.15,    
         
         borderRadius: 25,
-        backgroundColor: '#EBEBEB',
+        backgroundColor: '#fff',
         justifyContent: 'center',
-        color: 'black',
+        color: '#000',
+        fontSize:17,
+        borderWidth:3,
+        borderColor:"#fb009e",
+        marginTop:4
     },
     joinButton: {
         backgroundColor: '#00FF7F',
-        height: 60,
+        height: 50,
         width: Dimensions.get('window').width * 0.6,
         marginLeft: Dimensions.get('window').width * 0.15,
         borderRadius: 30,
         textAlign: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:30
+        marginTop:50
     },
     modifyButton: {
         backgroundColor: '#00FF7F',
-        height: 60,
+        height: 50,
         width: Dimensions.get('window').width * 0.6,
         marginLeft: Dimensions.get('window').width * 0.15,
         borderRadius: 30,
         textAlign: 'center',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:30
+        marginTop:50
     },
     actionButtonIcon: {
         fontSize: 20,
@@ -126,6 +146,10 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: { height: 3, width: 3 },
         zIndex:30
+      },
+      btnText:{
+          
+          fontSize:20
       }
 });
 

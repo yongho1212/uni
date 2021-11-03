@@ -10,7 +10,7 @@ function Roominfo({ route, navigation }) {
      const { sendd } = route.params;
 
      return (
-          <View style={{backgroundColor:"#fff"}}>
+          <View style={{backgroundColor:"#F2F2F2"}}>
                <ScrollView>
                <View style={styles.infoContainer}>
                     <View style={styles.l1Container}>

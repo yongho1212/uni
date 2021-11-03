@@ -29,8 +29,8 @@ const LogoutBtn = () => {
 
   const logout = () => {
     Alert.alert(
-      "Logout",
-      "Are you sure? You want to logout?",
+      "로그아웃",
+      "로그아웃 하시겠습니까?",
       [
         {
           text: "Cancel",

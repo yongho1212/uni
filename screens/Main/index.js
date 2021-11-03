@@ -30,6 +30,11 @@ import messaging from '@react-native-firebase/messaging';
 // import OneSignal from 'react-native-onesignal';
 
 import styles from './styles';
+import { TouchableOpacity } from 'react-native';
+
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']);
 
 
 export default class Main extends Component {
@@ -139,6 +144,10 @@ export default class Main extends Component {
                                   <Image  
                                    style={{ width:38,height:38, zIndex:10,    }}   
                                    source={require('../../assets/cateicon/basketball.png')}/>
+                                   : hobby === '농구' ?
+                                  <Image  
+                                   style={{ width:38,height:38, zIndex:10,    }}   
+                                   source={require('../../assets/cateicon/disco-ball.png')}/>
                              
                                   
                                   : hobby === '언어교환' ?
@@ -338,13 +347,15 @@ export default class Main extends Component {
                }
 
                for(let i = 0; i < data.joinUser.length; i++) {
-                    fetch(`${SERVER_URL}/firstProfile/?id=` + data.joinUser[i]  + "&time=" + new Date())
-                    .then(responseData => {
-                         if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {              
-                              usersProfile.push(responseData.url);    
-                         }
-                    })                    
-                    .then(() => this.state.usersProfile = usersProfile)                               
+                    if(data.hostUser[i] !== data.joinUser[i]) {
+                         fetch(`${SERVER_URL}/firstProfile/?id=` + data.joinUser[i]  + "&time=" + new Date())
+                         .then(responseData => {
+                              if(responseData.headers.get('content-type') !== 'text/html; charset=utf-8') {                                            
+                                   usersProfile.push(responseData.url);    
+                              }
+                         })                    
+                         .then(() => this.setState({usersProfile: usersProfile}));                          
+                    }                                                  
                }
 
                this.bs.current.snapTo(0);                          
@@ -414,7 +425,7 @@ export default class Main extends Component {
 
      renderContent = () => (    
           <View
-             style={{flex: 0, backgroundColor: '#fff', padding: 20, height: 700,}}
+             style={{flex: 0, backgroundColor: '#F2F2F2', padding: 20, height: 700,}}
           >
                {this.state.roomInfo !== undefined ? 
                /* ScrollView 끝에 잘리는거 수정 필요 */
@@ -458,9 +469,9 @@ export default class Main extends Component {
                          <Text style={styles.categoryText}>Category</Text>
                          <TextInput
                               style={styles.categoryInfo}
-                              value={this.state.hobby}
+                              value={this.state.roomInfo.category}
                               editable={false}
-                         />                         
+                         />                           
                     </View>
                     <View style={styles.titleContainer}>
                          <Text style={styles.titleText}>Title</Text>
@@ -479,7 +490,7 @@ export default class Main extends Component {
                          />
                     </View>           
                     {this.state.id === this.state.roomInfo.id ?
-                    <Pressable
+                    <TouchableOpacity
                          onPress={() => this.props.navigation.push('Hosting', 
                               {
                                    _id: this.state.roomInfo._id, address: this.state.roomInfo.address, lat: this.state.roomInfo.latitude, lng: this.state.roomInfo.longitude, 
@@ -488,15 +499,15 @@ export default class Main extends Component {
                          )}                              
                          style={styles.modifyButton}
                     >
-                         <Text>수 정</Text>
-                    </Pressable>                   
+                         <Text style={styles.btnText}>수 정</Text>
+                    </TouchableOpacity>                   
                     :
-                    <Pressable
+                    <TouchableOpacity
                          onPress={() => this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id)}
                          style={styles.joinButton}
                     >
-                         <Text>join</Text>
-                    </Pressable>  
+                         <Text style={styles.btnText}>Join</Text>
+                    </TouchableOpacity>  
                     }                                
                </View>                                           
                : null}

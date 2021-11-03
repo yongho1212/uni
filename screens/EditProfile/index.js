@@ -319,14 +319,14 @@ export default class EditProfile extends Component {
                         </View>
                         <View style={{ flexDirection:'row', alignItems:'flex-end' }}>
                             <Text style={styles.announceTitle}>
-                                사진
+                                프로필
                             </Text>
                             <Text style={styles.announce}>
                                 을 
                             </Text>
                         </View>
                         <Text style={styles.announce}>
-                             추가해 주세요! 
+                             수정해 주세요! 
                         </Text>                                           
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', marginTop: 60 }}>  

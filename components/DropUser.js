@@ -47,8 +47,8 @@ export default class DropUser extends Component {
 
     
         Alert.alert(
-            "Logout",
-            "Are you sure? You want to logout?",
+            "회원탈퇴",
+            "탈퇴 하시겠습니까?",
             [
               {
                 text: "Cancel",
@@ -68,7 +68,7 @@ export default class DropUser extends Component {
     }
 
     backAction = () => {
-        Alert.alert("Hold on!", "Are you sure you want to go back?", [
+        Alert.alert("탈퇴 하시겠습니까?", [
           {
             text: "Cancel",
             onPress: () => null,

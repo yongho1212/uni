@@ -110,6 +110,13 @@ export default class MyMapView extends Component {
                         style={{  width:39,height:39, zIndex:10, marginBottom:8, borderRadius:19 ,backgroundColor:'#fff'  }}   
                         source={require('../assets/cateicon/hiking.png')}/>
                     </View>
+                    : roomInfo.category === '파티' ?
+                    <View style={{ justifyContent:'center', alignItems:'center'}} >
+                        <Image style={{resizeMode:'contain', width:50, position:'absolute' }} source={require('../assets/marker/pingk.png')}/>
+                        <Image  
+                        style={{  width:39,height:39, zIndex:10, marginBottom:8, borderRadius:19 ,backgroundColor:'#fff'  }}   
+                        source={require('../assets/cateicon/disco-ball.png')}/>
+                    </View>
 
                     
 

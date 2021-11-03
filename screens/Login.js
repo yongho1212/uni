@@ -38,12 +38,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import messaging from '@react-native-firebase/messaging';
 
 import {
-  CHAT_APP_ID,
-  CHAT_API_KEY,
-  CHAT_AUTH_KEY,
+  CHAT_APP_ID_1,
+  CHAT_API_KEY_2,
+  CHAT_AUTH_KEY_1,
   SERVER_URL,
   GOOGLE_WEB_CLIENT_ID,
 } from '@env';
+
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']);
 
 const LoginScreen = ({navigation}) => {
   //custom
@@ -59,7 +63,7 @@ const LoginScreen = ({navigation}) => {
   const passwordInputRef = createRef();
 
   //chatting
-  const appID = CHAT_APP_ID;
+  const appID = CHAT_APP_ID_1;
   const region = 'us';
   const appSetting = new CometChat.AppSettingsBuilder()
     .subscribePresenceForAllUsers()
@@ -126,13 +130,13 @@ const LoginScreen = ({navigation}) => {
             const url = 'https://api-us.cometchat.io/v3.0/users/110917783035367947415';
             fetch(url, {
               method: 'DELETE',
-              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: CHAT_APP_ID, apiKey: CHAT_API_KEY},
+              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: CHAT_APP_ID_1, apiKey: CHAT_API_KEY_1},
               body: JSON.stringify({permanent: true})
             })
             .then(response => response.json())
             .then(responseData => console.log(responseData))
-            */
-
+            
+*/
           CometChat.init(appID, appSetting)
             .then(
               () => {
@@ -143,7 +147,7 @@ const LoginScreen = ({navigation}) => {
               },
             )
             .then(
-              CometChat.login(id, CHAT_AUTH_KEY).then(
+              CometChat.login(id, CHAT_AUTH_KEY_1).then(
                 User => {
                   console.log('Login Successful:', {User});
                 },

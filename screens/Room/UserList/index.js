@@ -198,7 +198,7 @@ export default class UserList extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{backgroundColor:'#F2F2F2', flex:1}}>
                 {/*
                 <View style={styles.headerConatiner}>                        
                         <AntDesign

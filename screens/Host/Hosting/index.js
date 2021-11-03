@@ -13,6 +13,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { SERVER_URL } from '@env'
 import styles from './styles';
+import { TouchableOpacity } from 'react-native';
 
 
 
@@ -287,12 +288,12 @@ export default class Hosting extends Component {
                         
                     </View>
                     {this.state.check === 'modify' ?
-                    <Pressable
+                    <TouchableOpacity
                         style={styles.modifyButton}  
                         onPress={() => this.modifyRoom()}                           
                     >
-                        <Text>Complete</Text>
-                    </Pressable>
+                        <Text style={{fontWeight:'bold'}}>완 료</Text>
+                    </TouchableOpacity>
                     :        
                     <Pressable
                         style={styles.hostButton}

@@ -31,7 +31,7 @@ import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 
 
 // const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-const adUnitId = 'ca-app-pub-1901350005999235/8368424198'
+const adUnitId = 'ca-app-pub-1901350005999235/1205084194'
 
 const CustomSidebarMenu = (props) => {  
   const [url, setUrl] = useState('https://cdn.pixabay.com/photo/2014/10/14/20/24/soccer-488700_960_720.jpg');
