@@ -94,7 +94,7 @@ function DrawerNav({ navigation }) {
      
      drawerContentOptions={{
        activeTintColor: '#e91e63',
-       itemStyle: { marginVertical: 5 },
+       itemStyle: { marginVertical: 5, fontFamily:'Jost-Medium'},
      }}
      drawerContent={(props) => <CustomSidebarMenu {...props} />}
      drawerStyle={{

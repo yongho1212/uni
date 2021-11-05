@@ -14,7 +14,7 @@ export default class Room extends Component {
                         style={styles.backIcon}
                         onPress={() => {this.props.navigation.navigate('Main');}}
                     />  
-                    <Text>Room</Text>
+                    <Text style={{fontFamily:'Jost-Medium'}}>Room</Text>
                 </View>
           )
      }

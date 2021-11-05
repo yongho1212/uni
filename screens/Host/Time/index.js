@@ -93,7 +93,7 @@ export default class Time extends Component {
                 onPress={() => this.props.navigation.push('Hosting', {time: JSON.stringify(this.state.time), timeInfo: this.state.showTime, Info: 'time'})}
                 style={styles.setBtn}
                 >
-                    <Text style={{color:'#fff', fontSize:25, fontWeight:'bold'}}>
+                    <Text style={{color:'#fff', fontSize:25, fontWeight:'bold', fontFamily:'Jost-Medium'}}>
                         SET
                     </Text>
                 </Pressable>

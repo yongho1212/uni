@@ -16,14 +16,16 @@ function Roomctrl (props) {
      
      return(
      <Tab.Navigator
-          initialRouteName="Chatting"
+          initialRouteName="Roominfo"
           tabBarOptions={{
+               
                activeTintColor: '#fff',
-               labelStyle: { fontSize: 20 , fontWeight:'bold'},
+               
+               labelStyle: { fontSize: 25 , fontFamily:'Jost-Bold'},
                style: { backgroundColor: '#fb009e', height:80, borderRadius:25 },
              }}
              tabBarPosition={'bottom'}
-             style={{ marginBottom:-10}}
+             style={{ marginBottom:-10, backgroundColor:'#fb009e'}}
     >
       <Tab.Screen name="Roominfo" component={Roominfo} initialParams={params}/>
       <Tab.Screen name="UserList" component={UserList} initialParams={params}/>

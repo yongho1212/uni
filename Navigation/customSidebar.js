@@ -80,10 +80,10 @@ const CustomSidebarMenu = (props) => {
       <View style={{height:280}}>
         <View style={{flexDirection:'row',  alignItems:'center', justifyContent: 'center', flex:3}}>
               <View style={{flex:1, paddingHorizontal:10, }} >
-                <Text style={{fontWeight:'bold', fontSize:23, marginVertical:5}}>
+                <Text style={{fontWeight:'bold', fontSize:23, marginVertical:5, fontFamily:'Jost-Medium'}}>
                 {nickname}
                 </Text>
-                <Text numberOfLines={1} style={{fontWeight:'bold', fontSize:15, marginVertical:5}}>
+                <Text numberOfLines={2} style={{fontWeight:'bold', fontSize:15, marginVertical:5, fontFamily:'Jost-Medium'}}>
                 {email}
                 </Text> 
               </View>
@@ -97,7 +97,7 @@ const CustomSidebarMenu = (props) => {
             style={{justifyContent:'center', alignItems:'center', marginTop:10, flexDirection:'row',  }}
             onPress={()=> props.navigation.navigate('EditProfile')}
             >
-              <Text style={{color:'grey', fontSize:13, }}>
+              <Text style={{color:'grey', fontSize:13,fontFamily:'Jost-Medium' }}>
                 My Profile 
               </Text>
               <Icon name="keyboard-arrow-right" color="grey" size={30} /> 
@@ -160,7 +160,8 @@ const CustomSidebarMenu = (props) => {
         style={{
           fontSize: 16,
           textAlign: 'center',
-          color: 'grey'
+          color: 'grey',
+          fontFamily:'Jost-Medium'
         }}>
         loof.party
       </Text>
@@ -183,6 +184,7 @@ const styles = StyleSheet.create({
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
+    
   },
 });
 

@@ -59,7 +59,8 @@ const Auth = () => {
             options={{
             title: "회원가입", 
             headerTitleStyle:{
-                color:'#fff'
+                color:'#fff',
+                fontFamily:'Jost-Medium'
             },
             headerStyle:{
                 backgroundColor:"#121212",
@@ -115,12 +116,13 @@ const Router = ({navigation}) => {
                         },
                         title: '',
                         headerTitleStyle:{
-                            fontSize:19
+                            fontSize:19,
+                            fontFamily:'Jost-Medium'
                         },
                         headerBackImage: ()=>( 
                         <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'#000'}
                         style={{marginLeft:30}}
                         />),
                         headerBackTitle:' ',
@@ -141,12 +143,13 @@ const Router = ({navigation}) => {
                         },
                         title: '',
                         headerTitleStyle:{
-                            fontSize:19
+                            fontSize:19,
+                            fontFamily:'Jost-Medium'
                         },
                         headerBackImage: ()=>( 
                         <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'#000'}
                         style={{marginLeft:30}}
                         />),
                         headerBackTitle:' ',
@@ -166,12 +169,13 @@ const Router = ({navigation}) => {
                         },
                         title: '',
                         headerTitleStyle:{
-                            fontSize:19
+                            fontSize:19,
+                            fontFamily:'Jost-Medium'
                         },
                         headerBackImage: ()=>( 
                         <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'#000'}
                         style={{marginLeft:30}}
                         />),
                         headerBackTitle:' ',
@@ -191,12 +195,13 @@ const Router = ({navigation}) => {
                         },
                         title: '',
                         headerTitleStyle:{
-                            fontSize:19
+                            fontSize:19,
+                            fontFamily:'Jost-Medium'
                         },
                         headerBackImage: ()=>( 
                         <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'#000'}
                         style={{marginLeft:30}}
                         />),
                         headerBackTitle:' ',
@@ -216,12 +221,13 @@ const Router = ({navigation}) => {
                         },
                         title: '',
                         headerTitleStyle:{
-                            fontSize:19
+                            fontSize:19,
+                            fontFamily:'Jost-Medium'
                         },
                         headerBackImage: ()=>( 
                         <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'#000'}
                         style={{marginLeft:30}}
                         />),
                         headerBackTitle:' ',
@@ -274,7 +280,8 @@ const Router = ({navigation}) => {
                         headerShown: true,
                         title: '참가 정보',
                         headerTitleStyle:{
-                            fontSize:19
+                            fontSize:19,
+                            fontFamily:'Jost-Medium'
                         },
                         headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
                         headerBackTitle:' ',
@@ -289,15 +296,16 @@ const Router = ({navigation}) => {
                     component={Roomctrl}
                     options={{
                         headerShown: true,
+                        headerTitle: 'Room',
                         headerBackImage: ()=>( 
                             <MaterialIcons name={"arrow-back-ios"} 
                             size={35} 
-                            color={'balck'}
+                            color={'#000'}
                             style={{marginLeft:30}}
                             />),
                             headerBackTitle:' ',
                             headerStyle:{
-                                backgroundColor:"#fff",
+                                backgroundColor:"#49ffbd",
 
                             },
                             headerBackTitleStyle:{
@@ -360,7 +368,8 @@ const Router = ({navigation}) => {
                         headerShown: true,
                         title: 'Profile',
                         headerTitleStyle:{
-                            fontSize:19
+                            fontSize:19,
+                            fontFamily:'Jost-Medium'
                         },
                         headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
                         headerBackTitle:' ',

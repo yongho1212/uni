@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     },
     headerText:{
         fontSize:19,
-        fontWeight:'500'
+        fontWeight:'500',
+        fontFamily:'Jost-Medium'
     },
     headerTextContainer:{
         justifyContent: 'center',
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 5,
         marginLeft: Dimensions.get('window').width * 0.05,
+        fontFamily:'Jost-Medium'
     },
     placeInput: {
         paddingLeft: 10,
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 5,
         marginLeft: Dimensions.get('window').width * 0.05,
+        fontFamily:'Jost-Medium'
     },
     categoryInput: {
         paddingLeft: 10,
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 5,
         marginLeft: Dimensions.get('window').width * 0.05,
+        fontFamily:'Jost-Medium'
     },
     titleInput: {
         height:Dimensions.get('window').height * 0.07,
@@ -110,6 +114,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginBottom: 5,
         marginLeft: Dimensions.get('window').width * 0.05,
+        fontFamily:'Jost-Medium'
     },
     timeInput: {
         height: 50,
@@ -128,6 +133,7 @@ const styles = StyleSheet.create({
     timePlaceHolder: {
         justifyContent: 'flex-start',
         marginRight: Dimensions.get('window').width * 0.35,
+        fontFamily:'Jost-Medium'
     },
     timeInfo: {
         flexDirection: 'row',

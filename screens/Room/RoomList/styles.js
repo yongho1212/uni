@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
         zIndex:10,
         fontWeight:'bold',
         marginTop:15,
-        color:'grey'
+        color:'grey',
+        fontFamily:'Jost-Medium'
     },
     renderContainer:{
         backgroundColor:'#fff',
@@ -57,19 +58,22 @@ const styles = StyleSheet.create({
     titleText:{
         fontSize:20,
         fontWeight:'bold',
+        fontFamily:'Jost-Medium'
         
         
     },
     locationText:{
         fontSize:14,
         color:'grey',
-        marginTop:10
+        marginTop:10,
+        fontFamily:'Jost-Medium'
 
     },
   
     timeText:{
         fontSize:15,
-        marginTop:10
+        marginTop:10,
+        fontFamily:'Jost-Medium'
         
     },
     categoryIcon:{
@@ -89,7 +93,8 @@ const styles = StyleSheet.create({
         fontSize:20,
         color:'#fff',
         marginLeft:-3,
-        color:'#000'
+        color:'#000',
+        fontFamily:'Jost-Medium'
     },
     infoContainer:{
         flex:3,

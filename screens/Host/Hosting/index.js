@@ -282,7 +282,7 @@ export default class Hosting extends Component {
                         >                                      
                             <View style={styles.timeInfo}>
                                 <Text style={styles.timePlaceHolder}>약속시간 설정</Text>
-                                <Text>{this.state.room.timeInfo}</Text>
+                                <Text style={{fontFamily:'Jost-Medium'}}>{this.state.room.timeInfo}</Text>
                             </View>                                                                
                         </Pressable>
                         
@@ -292,14 +292,14 @@ export default class Hosting extends Component {
                         style={styles.modifyButton}  
                         onPress={() => this.modifyRoom()}                           
                     >
-                        <Text style={{fontWeight:'bold'}}>완 료</Text>
+                        <Text style={{fontWeight:'bold', fontFamily:'Jost-Medium'}}>완 료</Text>
                     </TouchableOpacity>
                     :        
                     <Pressable
                         style={styles.hostButton}
                         onPress={() => {this.hosting(); this.createGroup();}}                              
                     >
-                        <Text style={{color:'#000', fontSize:25, fontWeight:'bold'}}>Hosting</Text>
+                        <Text style={{color:'#000', fontSize:25, fontWeight:'bold', fontFamily:'Jost-Medium'}}>Hosting</Text>
                     </Pressable>
                     }
                 </View>

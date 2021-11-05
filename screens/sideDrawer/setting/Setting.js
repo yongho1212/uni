@@ -55,7 +55,7 @@ function Setting ({ navigation }) {
                </View>
                
           </View>
-          <View style={{justifyContent:'center', alignItems:'center', marginTop:30}}>
+          <View style={{justifyContent:'center', alignItems:'center', marginTop:40}}>
                <LogoutBtn/>
                <DropUser/>
           </View>

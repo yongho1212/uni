@@ -1,8 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
+
 const styles = StyleSheet.create({
 infoContainer:{
-     height: Dimensions.get('window').height*0.65,
+     height: Dimensions.get('window').height*0.5,
 },
 l1Container:{
      flexDirection:'row',
@@ -10,12 +11,17 @@ l1Container:{
      marginTop:20,
      
 },
+sectionName:{
+     fontFamily:'Jost-Bold',
+     fontSize:20,
+     fontFamily:'Jost-Medium'
+},
 category:{
      flex:1,
      backgroundColor:'#fff',
      borderRadius:25,
      padding:10,
-     margin:10,
+     marginLeft:-20,
      justifyContent:'center',
      alignItems:'center',
      shadowOpacity: 0.3,
@@ -24,20 +30,28 @@ category:{
                         shadowOffset: { height: 3, width: 3 },
 },
 time:{
-     flex:2,
+     flex:1,
      backgroundColor:'#fff',
+     justifyContent:'center',
+     alignItems:'center',
      borderRadius:25,
      padding:10,
      margin:10,
-     justifyContent:'center',
      alignItems:'center',
      shadowOpacity: 0.3,
      shadowRadius: 5,
      shadowColor: 'grey',
      shadowOffset: { height: 3, width: 3 },
+     
+     
+
 },
 l2Container:{
-     
+     marginTop:20
+},
+timeContainer:{
+     flexDirection:'row',
+     marginTop:20
 },
 title:{
      backgroundColor:'#fff',
@@ -50,6 +64,7 @@ title:{
      shadowRadius: 5,
      shadowColor: 'grey',
      shadowOffset: { height: 3, width: 3 },
+     height: Dimensions.get('window').height*0.15,
      
 },
 host:{
@@ -78,10 +93,10 @@ location:{
      shadowRadius: 5,
      shadowColor: 'grey',
      shadowOffset: { height: 3, width: 3 },
+     height: Dimensions.get('window').height*0.15,
 },
 
 btnContainer:{
-     justifyContent:'center',
      alignItems:'center'
 },
   chatBtn:{
@@ -128,23 +143,30 @@ btnContainer:{
    chatBtnText:{
      fontSize:25,
      fontWeight:'bold',
-     color:'#fff'
+     color:'#fff',
+     fontFamily:'Jost-Bold'
+     
      },
    dateText:{
-     fontSize:20,
-     marginBottom:-5
+     fontSize:30,
+     marginBottom:-5,
+     fontFamily:'Jost-Medium'
    },
    timeText:{
-     fontSize:45,
-     fontWeight:'bold'
+     fontSize:39,
+     
+     fontFamily:'Jost-Medium',
+     
      
    },
    titleText:{
      fontSize:30,
-     marginLeft:5
+     marginLeft:5,
+     fontFamily:'Jost-Medium'
    },
    locationText:{
      fontSize:23,
+     fontFamily:'Jost-Medium'
      
    },
 

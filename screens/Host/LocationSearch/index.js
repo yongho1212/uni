@@ -9,6 +9,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { GOOGLE_PLACE_API_KEY,  } from '@env'
 
 import styles from './styles';
+import { TouchableOpacity } from 'react-native';
 
 export default class LocationSearch extends Component {
     render() {
@@ -17,7 +18,7 @@ export default class LocationSearch extends Component {
                 <View style={styles.headerConatiner}>
                     <MaterialIcons name={"arrow-back-ios"} 
                         size={35} 
-                        color={'balck'}
+                        color={'#000'}
                         style={{marginLeft:30}}
                         onPress={() => this.props.navigation.push('Hosting', {address: null, Info: 'place'})}
                      />
@@ -26,37 +27,58 @@ export default class LocationSearch extends Component {
                     </View>
                     
                 </View>
+                
+                    
                 <GooglePlacesAutocomplete
-                    placeholder=' 주소 또는 건물명을 입력하세요'
-                    enableHighAccuracyLocation={true}
-                    enablePoweredByContainer={false}
-                    listViewDisplayed="auto"
-                    isRowScrollable={true}  
-                    fetchDetails={true}
-                    renderRow={(rowData) => {
-                        const main = rowData.structured_formatting.main_text;
-                        const second = rowData.structured_formatting.secondary_text;
-                        return (
-                            <View style={styles.resultContainer}>
-                                <Text style={{fontWeight:'bold', fontSize:16}}>{main}</Text>
-                                <Text>{second}</Text>
-                            </View>
-                        )
-                    }}
-                    onPress={(data, details = null) => {
-                        this.props.navigation.push('Hosting', {address: data.description, lat: details.geometry.location.lat, lng: details.geometry.location.lng, Info: 'place'})
-                    }}
-                    query={{
-                        key: GOOGLE_PLACE_API_KEY,
-                        components: 'country:kr',
-                        language: 'ko',
-                        rankby: 'distance',
-                        
-                    }}
+                
+                placeholder=' 주소 또는 건물명을 입력하세요 '
+                enableHighAccuracyLocation={true}
+                enablePoweredByContainer={false}
+                listViewDisplayed="auto"
+                isRowScrollable={true}  
+                fetchDetails={true}
+                
+                renderRow={(rowData) => {
+                    const main = rowData.structured_formatting.main_text;
+                    const second = rowData.structured_formatting.secondary_text;
+                    return (
+                        <View style={styles.resultContainer}>
+                            <Text style={{fontWeight:'bold', fontSize:16, fontFamily:'Jost-Medium'}}>{main}</Text>
+                            <Text style={{fontFamily:'Jost-Medium'}}>{second}</Text>
+                        </View>
+                    )
+                }}
+                onPress={(data, details = null) => {
+                    this.props.navigation.push('Hosting', {address: data.description, lat: details.geometry.location.lat, lng: details.geometry.location.lng, Info: 'place'})
+                }}
+                query={{
+                    key: GOOGLE_PLACE_API_KEY,
+                    components: 'country:kr',
+                    language: 'ko',
+                    rankby: 'distance',
                     
-                   
+                }}
+                styles={{
+                    textInputContainer: {
+                      backgroundColor: '#fb009e',
+
+                    },
+                    textInput: {
+                      height: 40,
+                      color: '#5d5d5d',
+                      fontSize: 16,
+                      borderRadius: 5,
+                      marginTop:5,
+                      fontFamily:'Jost-Medium'
+                    },
                     
-                />
+                }}
+                
+               
+                
+            />
+                
+                
             </SafeAreaView>
         )
     }

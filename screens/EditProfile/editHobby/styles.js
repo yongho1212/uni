@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
     shadowOffset: { height: 3, width: 3 },
   },
   boxText:{
-    fontSize:20
+    fontSize:20,
+    fontFamily:'Jost-Medium'
   },
   vaccum: {
     width: Dimensions.get('window').width,
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
   },
   listName:{
     fontSize: 30, 
-    marginTop: 30
+    marginTop: 30,
+    fontFamily:'Jost-Medium'
   },
   announceContainer:{
     marginLeft: Dimensions.get('window').width * 0.05,
@@ -63,16 +65,19 @@ const styles = StyleSheet.create({
   announceTitle:{
     fontSize: 75,
     color: '#000',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily:'Jost-Medium'
   },
   announce:{
     fontSize: 35,
     color: '#000',
+    fontFamily:'Jost-Medium'
   },
   announceSpecific:{
     fontSize: 18,
     color: 'grey',
-    lineHeight: 70
+    lineHeight: 70,
+    fontFamily:'Jost-Medium'
   }  
 });
 

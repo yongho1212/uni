@@ -23,7 +23,7 @@ PushNotification.configure({
   smallIcon: "ic_notification",
   
   onRegister: function (token) {
-    console.log("TOKEN:", token);
+   
   },
   onNotification: function (notification) {
     console.log("NOTIFICATION:", notification);

@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
       alignItems:'center'
      },
      headerText:{
-        fontSize:18
+        fontSize:18,
+        fontFamily:'Jost-Medium'
      },
     backIcon: {
         fontSize: 22,
@@ -37,12 +38,13 @@ const styles = StyleSheet.create({
         marginRight: 15,
       },
       locationText: {
-    
+        fontFamily:'Jost-Medium'
       },
       textInput: {
         fontSize: 20,
         marginBottom: 20,
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        fontFamily:'Jost-Medium'
       },
       resultContainer: {
         borderWidth:1, 

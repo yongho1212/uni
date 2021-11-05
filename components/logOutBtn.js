@@ -67,7 +67,7 @@ const LogoutBtn = () => {
             onPress={logout}
           >
             <Text style={styles.buttonTextStyle}>
-              Logout
+              로그아웃
             </Text>
           </Pressable>
           </View>
@@ -82,7 +82,7 @@ export default LogoutBtn;
 const styles = StyleSheet.create({
   buttonStyle: {
     minWidth: 300,
-    backgroundColor: "grey",
+    backgroundColor: "#e6e6e6",
     borderWidth: 0,
     color: "red",
     
@@ -93,11 +93,14 @@ const styles = StyleSheet.create({
     marginRight: 35,
     marginTop: 20,
     marginBottom: 25,
+    alignItems:'center',
+    justifyContent:'center'
   },
   buttonTextStyle: {
     color: "red",
-    paddingVertical: 10,
-    fontSize: 20,
+    fontSize: 25,
+    fontFamily:'Jost-Medium',
+    fontWeight:'bold'
     
   },
 });

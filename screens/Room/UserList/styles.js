@@ -51,11 +51,13 @@ const styles = StyleSheet.create({
     usersNick: {
         marginLeft: 10,
         fontSize:16,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontFamily:'Jost-Medium'
         
     },
     introText: {
         marginLeft: 10,
+        fontFamily:'Jost-Medium'
         
     },
     checkList: {
@@ -73,7 +75,8 @@ const styles = StyleSheet.create({
     refuseIcon: {
         fontSize: 28,
         color:'red',
-        marginLeft:5
+        marginLeft:5,
+        
     }
 });
 

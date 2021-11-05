@@ -159,7 +159,7 @@ export default class EditHobby extends Component {
                         }
                     }
                 >
-                    <Text style={{fontSize:20}}>Complete  ({this.state.cnt}/5)</Text>
+                    <Text style={{fontSize:20, fontFamily:'Jost-Medium'}}>Complete  ({this.state.cnt}/5)</Text>
                 </Pressable> 
             </View>    
         )
@@ -243,7 +243,7 @@ export default class EditHobby extends Component {
                         }
                     }
                 >
-                    <Text style={{fontSize:20}}>Complete  ({this.state.cnt}/5)</Text>
+                    <Text style={{fontSize:20, fontFamily:'Jost-Medium'}}>Complete  ({this.state.cnt}/5)</Text>
                 </Pressable> 
             </View>    
         )

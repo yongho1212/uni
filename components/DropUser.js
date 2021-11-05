@@ -123,8 +123,9 @@ const styles = StyleSheet.create({
             justifyContent:'center'
     },
     textStyle:{
-        color:'red',
-        fontSize: 20,
-        fontWeight:'bold'
+      color: "red",
+      fontSize: 25,
+      fontFamily:'Jost-Medium',
+      fontWeight:'bold'
     }
 }); 

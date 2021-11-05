@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
      alignItems:'center'
     },
     headerText:{
-       fontSize:18
+       fontSize:18,
+       fontFamily:'Jost-Medium'
          
           
     },

@@ -132,7 +132,7 @@ export default class Category extends Component {
                                         }
                                     }
                                 >
-                                    <Text>{item.category}</Text>
+                                    <Text style={{fontFamily:'Jost-Medium'}}>{item.category}</Text>
                                 </Pressable>
                             </View>
                         )

@@ -16,7 +16,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 
-import { CHAT_APP_ID_1, CHAT_API_KEY_2, SERVER_URL, CHAT_AUTH_KEY_1 } from '@env'
+import { CHAT_APP_ID, CHAT_API_KEY, SERVER_URL, CHAT_AUTH_KEY } from '@env'
 
 import styles from './styles';
 import { LogBox } from 'react-native';
@@ -290,7 +290,7 @@ export default class NewProfileImg extends Component {
         .setRegion('us')
         .build();
 
-        CometChat.init(CHAT_APP_ID_1, appSetting).then(
+        CometChat.init(CHAT_APP_ID, appSetting).then(
             () => {
                 console.log('Initialization completed successfully');
             },
@@ -309,8 +309,8 @@ export default class NewProfileImg extends Component {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    appId: CHAT_APP_ID_1,
-                    apiKey: CHAT_API_KEY_2,
+                    appId: CHAT_APP_ID,
+                    apiKey: CHAT_API_KEY,
                 },
                 body: JSON.stringify({
                     uid: this.state.id,
@@ -321,7 +321,7 @@ export default class NewProfileImg extends Component {
             .then(response => response.json())
             .then(responseData => console.log(responseData))   
             .then(() => {
-                CometChat.login(this.state.id, CHAT_AUTH_KEY_1).then (
+                CometChat.login(this.state.id, CHAT_AUTH_KEY).then (
                     User => {
                       console.log("Login Successful:", { User });
                     },

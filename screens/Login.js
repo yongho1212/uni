@@ -38,16 +38,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import messaging from '@react-native-firebase/messaging';
 
 import {
-  CHAT_APP_ID_1,
-  CHAT_API_KEY_2,
-  CHAT_AUTH_KEY_1,
+  CHAT_APP_ID,
+  CHAT_API_KEY,
+  CHAT_AUTH_KEY,
   SERVER_URL,
   GOOGLE_WEB_CLIENT_ID,
 } from '@env';
 
 import { LogBox } from 'react-native';
 
-LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
 
 const LoginScreen = ({navigation}) => {
   //custom
@@ -63,7 +63,7 @@ const LoginScreen = ({navigation}) => {
   const passwordInputRef = createRef();
 
   //chatting
-  const appID = CHAT_APP_ID_1;
+  const appID = CHAT_APP_ID;
   const region = 'us';
   const appSetting = new CometChat.AppSettingsBuilder()
     .subscribePresenceForAllUsers()
@@ -97,7 +97,7 @@ const LoginScreen = ({navigation}) => {
     if (enabled) {
       const token = await messaging().getToken();
       setFcmToken(token);
-      console.log(token);
+  //  console.log(token);
     } else {
       console.log('fcm auth fail');
     }
@@ -130,7 +130,7 @@ const LoginScreen = ({navigation}) => {
             const url = 'https://api-us.cometchat.io/v3.0/users/110917783035367947415';
             fetch(url, {
               method: 'DELETE',
-              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: CHAT_APP_ID_1, apiKey: CHAT_API_KEY_1},
+              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: CHAT_APP_ID, apiKey: CHAT_API_KEY_1},
               body: JSON.stringify({permanent: true})
             })
             .then(response => response.json())
@@ -147,7 +147,7 @@ const LoginScreen = ({navigation}) => {
               },
             )
             .then(
-              CometChat.login(id, CHAT_AUTH_KEY_1).then(
+              CometChat.login(id, CHAT_AUTH_KEY).then(
                 User => {
                   console.log('Login Successful:', {User});
                 },
@@ -169,7 +169,7 @@ const LoginScreen = ({navigation}) => {
 
           navigation.navigate('DrawerNav');
         } else {
-          console.log(responseData);
+  //        console.log(responseData);
           navigation.navigate('Nickname');
         }
       });
@@ -189,8 +189,8 @@ const LoginScreen = ({navigation}) => {
     auth()
       .signInWithEmailAndPassword(userEmail, userPassword)
       .then(user => {
-        console.log(user.user.uid);
-        console.log(userEmail);
+  //      console.log(user.user.uid);
+   //     console.log(userEmail);
 
      
 
@@ -201,7 +201,7 @@ const LoginScreen = ({navigation}) => {
         connect(id, email);
       })
       .catch(error => {
-        console.log(error);
+   //     console.log(error);
         if (error.code === 'auth/invalid-email') setErrortext(error.message);
         else if (error.code === 'auth/user-not-found')
           setErrortext('No User Found');
@@ -227,7 +227,7 @@ const LoginScreen = ({navigation}) => {
       await auth()
         .signInWithCredential(credential)
         .then(idToken => {
-          console.log(idToken);
+   //       console.log(idToken);
           // If server response message same as Data Matched
           // if (idToken) navigation.replace("Gender");
           var id = idToken.additionalUserInfo.profile.sub;
@@ -238,13 +238,13 @@ const LoginScreen = ({navigation}) => {
           connect(id, email);
         });
     } catch (error) {
-      console.log('Message', JSON.stringify(error));
+ //     console.log('Message', JSON.stringify(error));
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        alert('User Cancelled the Login Flow');
+        alert('로그인을 취소하셨습니다');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        alert('Signing In');
+        alert('로그인중');
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        alert('Play Services Not Available or Outdated');
+        alert('잠시후 다시 시도해주세요');
       } else {
         alert(error.message);
       }
@@ -279,12 +279,12 @@ const LoginScreen = ({navigation}) => {
     return auth()
       .signInWithCredential(facebookCredential)
       .then(accessToken => {
-        console.log(accessToken);
+  //      console.log(accessToken);
         // If server response message same as Data Matched
         // if (idToken) navigation.replace("Gender");
         var id = accessToken.additionalUserInfo.profile.id;
         var email = accessToken.user.email;
-        console.log(email);
+    //    console.log(email);
 
         // If server response message same as Data Matched
         //if (idToken) navigation.replace("HomeScreen");
@@ -318,7 +318,7 @@ const LoginScreen = ({navigation}) => {
       .then(identityToken => {
         var id = identityToken.additionalUserInfo.profile.sub;
         var email = identityToken.user.email;
-        console.log(identityToken.additionalUserInfo.profile.sub);
+    //    console.log(identityToken.additionalUserInfo.profile.sub);
         //console.log(identityToken.additionalUserInfo.profile.nonce);
         //console.log(identityToken.user.email);
 
@@ -434,7 +434,7 @@ const LoginScreen = ({navigation}) => {
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <View style={{flex: 1, height: 1, backgroundColor: '#fff'}} />
                 <View>
-                  <Text style={{width: 150, textAlign: 'center', color: '#fff'}}>
+                  <Text style={{width: 150, textAlign: 'center', color: '#fff', fontFamily:'Jost-Medium'}}>
                     Or continue with
                   </Text>
                 </View>
@@ -497,7 +497,7 @@ const LoginScreen = ({navigation}) => {
                     }}
                     onPress={() =>
                       onAppleButtonPress().then(() =>
-                        console.log('Apple sign-in complete!'),
+                      console.log('Apple sign-in complete!'),
                       )
                     }>
                     <Ionicons name={'ios-logo-apple'} style={{fontSize: 38}} />
@@ -583,13 +583,15 @@ const styles = StyleSheet.create({
   loginBtn: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize:25
+    fontSize:25,
+    fontFamily:'Jost-Medium'
   },
   buttonTextStyle: {
     color: '#fff',
     paddingVertical: 10,
     fontSize: 16,
     fontWeight: 'bold',
+    fontFamily:'Jost-Medium'
   },
   inputStyle: {
     width: 312,
@@ -600,13 +602,15 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 30,
     borderColor: '#fff',
-    marginBottom:20
+    marginBottom:20,
+    fontFamily:'Jost-Medium'
   },
   registerTextStyle: {
     color: '#49ffbd',
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 17,
+    fontFamily:'Jost-Medium',
     
     padding: 10,
   },
@@ -614,6 +618,7 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     fontSize: 14,
+    fontFamily:'Jost-Medium'
   },
   googleButtonStyle: {
     justifyContent: 'center',
@@ -623,6 +628,7 @@ const styles = StyleSheet.create({
     color:'#49ffbd'
   },
   termText:{
-    color:'#fff'
+    color:'#fff',
+    fontFamily:'Jost-Medium'
   }
 });

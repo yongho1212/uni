@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, Image} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, Image, ImageBackground} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -198,7 +198,13 @@ export default class UserList extends Component {
 
     render() {
         return (
-            <View style={{backgroundColor:'#F2F2F2', flex:1}}>
+            <View style={{ flex:1}}>
+                <ImageBackground
+                source={require("../../../assets/imgs/2.png")} resizeMode="cover" 
+                style={{width:"100%", height:'100%', }}
+                >
+
+               
                 {/*
                 <View style={styles.headerConatiner}>                        
                         <AntDesign
@@ -212,6 +218,7 @@ export default class UserList extends Component {
                 <View>
                     {this.showUsersProfile()}
                 </View>
+                </ImageBackground>
             </View>
         )
     }

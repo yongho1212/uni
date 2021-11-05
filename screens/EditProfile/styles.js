@@ -40,11 +40,13 @@ const styles = StyleSheet.create({
   intro_Title: {
     paddingLeft: 10,
     marginTop: 15,
+    fontFamily:'Jost-Medium'
   },
   intro_Input: {
     width: Dimensions.get('window').width,
     height: 50,
     backgroundColor: "#fff",
+    fontFamily:'Jost-Medium'
     //backgroundColor: "#dcdcdc",
   },
   interest_Input: {
@@ -52,9 +54,11 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: "#fff",
     justifyContent: 'center',
+    fontFamily:'Jost-Medium'
   },
   btnFonts:{
-    fontSize: 20,        
+    fontSize: 20,      
+    fontFamily:'Jost-Medium'  
   },
   announceContainer: {
     marginLeft: Dimensions.get('window').width * 0.05, 
@@ -64,16 +68,19 @@ const styles = StyleSheet.create({
   announceTitle:{
     fontSize: 75,
     color: '#000',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily:'Jost-Medium'
   },
   announce:{
     fontSize: 35,
     color: '#000',
+    fontFamily:'Jost-Medium'
   },
   announceSpecific:{
     fontSize: 18,
     color: 'grey',
-    lineHeight: 70
+    lineHeight: 70,
+    fontFamily:'Jost-Medium'
   },
   interestContainer: {
     marginTop:30,
