@@ -42,8 +42,8 @@ const RegisterScreen = ({ navigation }) => {
       return false;
     } 
 
-    console.log(userPassword);
-    console.log(userPasswordCheck);
+ //   console.log(userPassword);
+ //   console.log(userPasswordCheck);
 
     auth()
       .createUserWithEmailAndPassword(
@@ -56,7 +56,7 @@ const RegisterScreen = ({ navigation }) => {
         );
         user.user.sendEmailVerification();
         alert('이메일 인증을 완료해주세요!')
-        console.log(user);
+   //     console.log(user);
         if (user) {
           auth()
             .currentUser.updateProfile({
@@ -67,12 +67,12 @@ const RegisterScreen = ({ navigation }) => {
             .then(() => navigation.replace("Auth"))
             .catch((error) => {
               alert(error);
-              console.error(error);
+   //           console.error(error);
             });
         }
       })
       .catch((error) => {
-        console.log(error);
+   //     console.log(error);
         if (error.code === "auth/email-already-in-use") {
           setErrortext(
             "That email address is already in use!"

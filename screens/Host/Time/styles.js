@@ -36,12 +36,14 @@ const styles = StyleSheet.create({
     timeInfoText: {
         fontSize: 30,
         fontWeight:'bold',  
-        color:"darkgrey"
+        color:"darkgrey",
+        fontFamily:'Jost-Medium'
     },
     timeInfoTextTime:{
         fontSize: 43,
         fontWeight:'bold',
-        color:'#000'
+        color:'#000',
+        fontFamily:'Jost-Medium'
     },
     setBtn:{
         justifyContent:'center',

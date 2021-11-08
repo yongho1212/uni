@@ -15,7 +15,25 @@ function Roomctrl (props) {
      const params = props.route.params;
      
      return(
-     <Tab.Navigator
+          <Tab.Navigator 
+          screenOptions={({ route }) => ({
+              tabBarIcon: ({ color }) => {                      
+                  if (route.name === 'Roominfo') {
+                      return (
+                          <AntDesign name="user" size={20} color={color} />
+                      );
+                  }
+                  if (route.name === 'UserList') {
+                      return (
+                          <AntDesign
+                              name="infocirlceo"
+                              size={20}
+                              color={color}
+                          />
+                      );
+                  }             
+              },
+          })}          
           initialRouteName="Roominfo"
           tabBarOptions={{
                

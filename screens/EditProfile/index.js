@@ -338,7 +338,7 @@ export default class EditProfile extends Component {
                                 style={styles.interestList}
                                 onPress={() => this.props.navigation.push('editHobby', {interest: this.state.userInterest})}
                             >
-                                <Text style={{fontSize:18}}>{this.state.interestList}</Text>
+                                <Text style={{fontSize:1,fontFamily:'Jost-Medium'}}>{this.state.interestList}</Text>
                             </Pressable>                                                     
                         </View>   
                         <BottomSheet

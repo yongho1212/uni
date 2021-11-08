@@ -23,18 +23,18 @@ PushNotification.configure({
   smallIcon: "ic_notification",
   
   onRegister: function (token) {
-   
+    //console.log("TOKEN:", token);
   },
   onNotification: function (notification) {
-    console.log("NOTIFICATION:", notification);
+    // console.log("NOTIFICATION:", notification);
     //notification.finish(PushNotificationIOS.FetchResult.NoData);
   },
   onAction: function (notification) {
-    console.log("ACTION:", notification.action);
-    console.log("NOTIFICATION:", notification);
+   // console.log("ACTION:", notification.action);
+   // console.log("NOTIFICATION:", notification);
   },
   onRegistrationError: function(err) {
-    console.error(err.message, err);
+  //  console.error(err.message, err);
   },
   permissions: {
     alert: true,
@@ -91,7 +91,7 @@ export default class App extends Component {
   foreground = () => {
     messaging().onMessage(remoteMessage => {                  
       //this.showNotification(payload.data.title, payload.data.body);
-      console.log(remoteMessage);
+ //     console.log(remoteMessage);
       this.showNotification(remoteMessage.data.title, remoteMessage.data.body);
     });    
   }

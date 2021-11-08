@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { ImageBackground, Text, View, Pressable, ScrollView, Image } from 'react-native'
 import styles from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
@@ -6,9 +6,114 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 
 
-function Roominfo({ route, navigation }) {
 
+import { CometChat } from '@cometchat-pro/react-native-chat';
+
+import { SERVER_URL } from '@env';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
+function Roominfo({ route, navigation }) {
+     const [id, setId] = useState('');
      const { sendd } = route.params;
+     
+
+     useEffect(() => {   
+          getId();
+      }, []);
+  
+      const getId = async() => {
+          var id = await AsyncStorage.getItem('id');
+          setId(id);
+      }
+  
+      const deleteGroup = async() => {        
+          CometChat.deleteGroup(sendd.GUID).then(
+              response => {
+                   console.log("Groups deleted successfully:", response);
+              },
+              error => {
+                   console.log("Group delete failed with exception:", error);
+              }
+          )
+  
+          fetch(`${SERVER_URL}/deleteGroup`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type' : 'application/json',
+              },
+              body: JSON.stringify({
+                  id: id,
+              })
+          })
+      }
+  
+      const leaveGroup = async() => {
+          CometChat.leaveGroup(sendd.GUID).then(
+              response => {
+                   console.log("Leave group successfully:", response);
+              },
+              error => {
+                   console.log("Leave group failed with exception:", error);
+              }
+          )        
+  
+          fetch(`${SERVER_URL}/leaveGroup`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type' : 'application/json',
+              },
+              body: JSON.stringify({
+                  id: id,
+                  GUID: sendd.GUID,
+              })
+          })
+      }
+  
+      const deleteAlert = async() => {
+          Alert.alert (
+              "방 삭제",
+              "방을 삭제하시겠습니까?",
+              [
+                  {
+                      text: "아니요",
+                      onPress: () => {
+                          return null;
+                      },
+                  },
+                  {
+                      text: "네",
+                      onPress: () => {
+                          deleteGroup();
+                      },
+                  },
+              ],            
+          );
+      }
+  
+      const leaveAlert = async() => {
+          Alert.alert (
+              "방 나가기",
+              "방을 나가시겠습니까?",
+              [
+                  {
+                      text: "아니요",
+                      onPress: () => {
+                          return null;
+                      },
+                  },
+                  {
+                      text: "네",
+                      onPress: () => {
+                          leaveGroup();
+                      },
+                  },
+              ],            
+          );
+      }
+  
 
      return (
           <View style={{ flex:1}}>
@@ -163,23 +268,35 @@ function Roominfo({ route, navigation }) {
                </View>
 
 
-               {/*<View style={styles.btnContainer}>
-                    <Pressable style={styles.chatBtn}>
-                         <Text style={styles.chatBtnText}>
-                              Chat
-                         </Text>
-                    </Pressable>
-                    <Pressable style={styles.editBtn}>
-                         <Text style={styles.chatBtnText}>
-                              Edit
-                         </Text>
-                    </Pressable>
-                    <Pressable style={styles.delBtn}>
-                         <Text style={styles.chatBtnText}>
-                              Delete
-                         </Text>
-                    </Pressable>
-                    </View>*/}
+               <View style={styles.btnContainer}>
+                    <Pressable 
+                                style={styles.chatBtn}
+                                onPress={() => navigation.navigate('Chat')}
+                            >
+                               <Text style={styles.chatBtnText}>
+                                    Chat
+                                </Text>
+                            </Pressable> 
+                            {id === sendd.id ?
+                                <Pressable 
+                                    style={styles.delBtn}
+                                    onPress={() => deleteAlert()}
+                                >
+                                <Text style={styles.chatBtnText}>
+                                    Delete
+                                </Text>
+                                </Pressable>
+                            :
+                                <Pressable 
+                                    style={styles.delBtn} 
+                                    onPress={() => leaveAlert()}                                   
+                                >
+                                <Text style={styles.chatBtnText}>
+                                    Leave
+                                </Text>
+                                </Pressable>
+                            }  
+                    </View>
                </ScrollView>
                </ImageBackground>
           </View>

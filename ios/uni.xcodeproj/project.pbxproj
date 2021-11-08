@@ -32,7 +32,6 @@
 		B6C76300CB7B4C4AA1B5B808 /* Jost-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 10A3D590F53744D6AAA7C0FB /* Jost-Black.ttf */; };
 		CB62EA07780445739AECEAE9 /* Jost-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B08BFDC41D04510BEB88140 /* Jost-Regular.ttf */; };
 		EF969A3626E91C6F000A9D4E /* OpenSSL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF969A3526E91C6F000A9D4E /* OpenSSL.xcframework */; };
-		EF969A3726E91C6F000A9D4E /* OpenSSL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EF969A3526E91C6F000A9D4E /* OpenSSL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE52FF79D42C50E036B461EC /* libPods-uni-uniTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1D252BBBA93DC02D95C1EC /* libPods-uni-uniTests.a */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				EF969A3726E91C6F000A9D4E /* OpenSSL.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;

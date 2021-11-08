@@ -3,7 +3,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
 infoContainer:{
-     height: Dimensions.get('window').height*0.5,
+     height: Dimensions.get('window').height*0.7,
+     
 },
 l1Container:{
      flexDirection:'row',
@@ -97,12 +98,13 @@ location:{
 },
 
 btnContainer:{
-     alignItems:'center'
+     alignItems:'center',
+     
 },
   chatBtn:{
      width: Dimensions.get('window').width*0.7,
      height:50,
-       backgroundColor:'#fb009e',
+       backgroundColor:'#FFF',
        justifyContent:'center',
        alignItems:'center',
        marginVertical:15,
@@ -143,7 +145,7 @@ btnContainer:{
    chatBtnText:{
      fontSize:25,
      fontWeight:'bold',
-     color:'#fff',
+     color:'#000',
      fontFamily:'Jost-Bold'
      
      },
