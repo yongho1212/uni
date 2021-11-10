@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, Text, View, Pressable, ScrollView, Image } from 'react-native'
+import { ImageBackground, Text, View, Pressable, ScrollView, Image, Alert } from 'react-native'
 import styles from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
-
-
 
 
 import { CometChat } from '@cometchat-pro/react-native-chat';
@@ -45,9 +42,11 @@ function Roominfo({ route, navigation }) {
                   'Content-Type' : 'application/json',
               },
               body: JSON.stringify({
-                  id: id,
-              })
+                id: id,
+                GUID: sendd.GUID,
+            })
           })
+          .then(() => navigation.push('DrawerNav'))
       }
   
       const leaveGroup = async() => {
@@ -70,6 +69,7 @@ function Roominfo({ route, navigation }) {
                   GUID: sendd.GUID,
               })
           })
+          .then(() => navigation.push('DrawerNav'))
       }
   
       const deleteAlert = async() => {
@@ -109,6 +109,7 @@ function Roominfo({ route, navigation }) {
                       onPress: () => {
                           leaveGroup();
                       },
+                      
                   },
               ],            
           );

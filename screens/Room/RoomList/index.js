@@ -177,9 +177,19 @@ export default class RoomList extends Component {
                          </Pressable>  
                     </View>
                ))
-     
-               return roomList;
-          }                   
+          }else {
+               roomList.push (
+                    <View style={styles.noneCard}>
+                         <View style={styles.infoContainer}>                              
+                              <View style={{width: Dimensions.get('window').width}}>
+                                   <Text numberOfLines={1} style={styles.titleText}>호스팅 한 방이 없습니다.</Text>
+                              </View>                                                                                                         
+                         </View>
+                    </View>
+               )
+          }
+          
+          return roomList;                
      }
 
      showJoinRoomList = () => {
@@ -192,31 +202,131 @@ export default class RoomList extends Component {
                          style={styles.cardContainer}
                          key={key++}
                     >
-                         <Pressable
+                          <Pressable
                               onPress={() => this.props.navigation.push('Roomctrl', 
                                    {sendd: data}
                               )}
-                         >
-                              <View style={styles.roomCard}>                              
+                              >
+                         <View style={styles.roomCard}>
+                              
                                    <View style={styles.categoryIcon}>
-                                        <Text style={styles.categoryText}>{data.category}</Text> 
+                                        
+                                        {
+
+                                              data.category === '축구' ?              
+                                  <MaterialCommunityIcons
+                                  name={"soccer"}
+                                  size={37}
+                                  color={'black'}
+                                  style={{ zIndex:10,  }}   
+                                  />
+
+                                  : data.category === '농구' ?
+                                  <Image  
+                                   style={{ width:50,height:50, zIndex:10,    }}   
+                                   source={require('../../../assets/cateicon/basketball.png')}/>
+                             
+                                  
+                                  : data.category === '언어교환' ?
+                                   <Image  
+                                   style={{ width:50,height:50, zIndex:10,    }}   
+                                   source={require('../../../assets/cateicon/languages.png')}/>
+                          
+                                   : data.category === '볼링' ?
+                                   <Image  
+                                   style={{ width:50,height:50, zIndex:10,  }}   
+                                   source={require('../../../assets/cateicon/bowling.png')}/>
+                                     
+                                   : data.category === '등산' ?
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:10,}}   
+                                   source={require('../../../assets/cateicon/hiking.png')}/>
+                                     
+                                   : data.category === '웨이트' ?
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:10, marginBottom:8, borderRadius:19 }}   
+                                   source={require('../../../assets/cateicon/weight.png')}/>
+                                     
+                                   : data.category === '런닝' ?
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:10, marginBottom:8, borderRadius:19 ,  }}   
+                                   source={require('../../../assets/cateicon/run.png')}/>
+                                      
+                   
+                                   : data.category === '골프' ?        
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:30,  borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../../assets/cateicon/golf-player.png')}/>
+                                      
+                                   : data.category === '탁구' ?
+                                   <Image  
+                                   style={{ width:50,height:50, zIndex:10,  }}   
+                                   source={require('../../../assets/cateicon/table-tennis.png')}/>
+                                     
+                                   : data.category === '보드게임' ?
+                                      
+                                   <Image  
+                                   style={{ backgroundColor:'#fff', width:50,height:50, zIndex:30, borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../../assets/cateicon/board-game.png')}/>
+                                      
+                                   : data.category === '언어교환' ?
+                                       
+                                   <Image  
+                                   style={{ backgroundColor:'#fff', width:50,height:50, zIndex:30, borderRadius:19 , resizeMode:'contain'  }}   
+                                   source={require('../../../assets/cateicon/languages.png')}/>
+                                    
+                                   : data.category === '리그오브레전드' ?
+                                       
+                                   <Image  
+                                   style={{  width:40,height:50, zIndex:30,     }}   
+                                   source={require('../../../assets/cateicon/lol.png')}/>
+                                       
+                                   : data.category === '배틀그라운드' ?    
+                                   <Image  
+                                   style={{  width:50,height:40, zIndex:30,  backgroundColor:'#fff', borderRadius:10    }}   
+                                   source={require('../../../assets/cateicon/pubg.png')}/>
+
+                                   : data.category === '파티' ?    
+                                   <Image  
+                                   style={{  width:50,height:40, zIndex:30,  backgroundColor:'#fff', borderRadius:10    }}   
+                                   source={require('../../../assets/cateicon/disco-ball.png')}/>
+                                     
+                                   : data.category === '술 한잔' ?    
+                                   <Image  
+                                   style={{  width:50,height:50, zIndex:30,  backgroundColor:'#fff', borderRadius:19   }}   
+                                   source={require('../../../assets/cateicon/soju.png')}/>
+
+                                   : <Text>{data.category}</Text>
+                                        }
                                    </View>
-                                   <View style={styles.infoContainer}>                              
-                                        <View style={styles.titleContainer}>
-                                             <Text numberOfLines={1}  style={styles.titleText}>{data.title}</Text>
-                                        </View>
-                                        <Text style={styles.timeText}> {data.timeInfo}~</Text> 
-                                        <Text numberOfLines={2} style={styles.locationText}>{data.address}</Text>                                                      
-                                   </View>                                                              
+                              <View style={styles.infoContainer}>
+                              
+                                   <View style={styles.titleContainer}>
+                                        <Text numberOfLines={1}  style={styles.titleText}> {data.title}</Text>
+                                   </View>
+                                   <Text style={styles.timeText}> {data.timeInfo}~ </Text> 
+                                   <Text numberOfLines={2} style={styles.locationText}> {data.address}</Text>                    
+                                  
                               </View>
+                              
+                                
+                         </View>
                          </Pressable>  
                     </View>
                ))
-
-               
-               return roomList;
-          }                   
-                     
+          }else {
+               roomList.push (                                        
+                    <View style={styles.noneCard}>                         
+                         <View style={styles.infoContainer}>                              
+                              <View style={{width:'100%'}}>
+                                   <Text numberOfLines={1} style={styles.titleText}>참가중인 방이 없습니다.</Text>
+                              </View>                                                                                                         
+                         </View>
+                    </View>
+               )
+          }
+          
+          return roomList;                                     
      }
 
 

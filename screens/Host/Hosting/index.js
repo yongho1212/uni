@@ -156,7 +156,7 @@ export default class Hosting extends Component {
             })
         })
         
-        this.props.navigation.push('DrawerNav', {lat: this.state.room.lat, lng: this.state.room.lng})
+        .then(this.props.navigation.push('DrawerNav'));
     }
 
     hosting = async() => {
@@ -170,7 +170,7 @@ export default class Hosting extends Component {
             Alert.alert('시간을 설정하세요');
         }else {
             this.createRoom();
-            this.props.navigation.push('DrawerNav', {lat: this.state.room.lat, lng: this.state.room.lng})
+            this.props.navigation.push('DrawerNav', {lat: this.state.room.lat, lng: this.state.room.lng})             
         }        
     }      
 

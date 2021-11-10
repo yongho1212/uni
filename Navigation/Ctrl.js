@@ -57,7 +57,7 @@ const NavigationDrawerStructure = (props)=> {
 }
 
 
-function homeScreenStack({ navigation }) {
+function homeScreenStack({ route, navigation }) {       
   return (
       <Stack.Navigator initialRouteName="HomePage">
         <Stack.Screen
@@ -70,8 +70,9 @@ function homeScreenStack({ navigation }) {
                 navigationProps={navigation}
               />,
               headerShown: true,
-              headerTransparent: true,
-          }}
+              headerTransparent: true,                    
+            }}                          
+            initialParams={{params: route.params}}          
         />
         <Stack.Screen
                     name={"EditProfile"}
@@ -88,7 +89,7 @@ function homeScreenStack({ navigation }) {
 
 
 
-function DrawerNav({ navigation }) {
+function DrawerNav({ route, navigation }) {          
   return (
      <Drawer.Navigator
      
@@ -106,7 +107,9 @@ function DrawerNav({ navigation }) {
        name="HomePage"
        options={{ drawerLabel: 'Home 🏠' ,
      }}
-       component={homeScreenStack} />     
+     component={homeScreenStack}     
+     initialParams={{params: route.params}}  
+      />     
      <Drawer.Screen
        name="FirstPage"
        options={{ 

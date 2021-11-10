@@ -41,44 +41,58 @@ export default class Main extends Component {
      constructor(props) {
           super(props);
           this.state = {
-               region: {
-                    latitude: 37.49783315274643, 
-                    longitude: 127.02783092726877,
-                    latitudeDelta: 0.015,
-                    longitudeDelta: 0.0121,     
-               },
+               region: undefined,     
                roomInfo: undefined,
                hostsProfile: [],
                usersProfile: [],
                address: 0,
                id: '',
                push: 0,
-               GUID: [],
                roomData: [],
                userData: [],
+               GUID: [],
                hobbyList: [],               
                hobby: '',
                onFilter: false,   
-               firstLoading: true,            
+               firstLoading: true, 
+               
+               check: false,    
+               
+               //trackview controll value
+               cnt: 0,
+               temp: 0,
+
+               //bottom sheet
+               isOpen: false,
           }
      }
     
      
-     componentDidMount = async() => {                    
-          if(this.state.firstLoading) {
-               console.log(this.state.firstLoading);
+     componentDidMount = async() => {            
+          if(this.props.route.params.params.params !== undefined) {               
+               this.state.firstLoading = false;         
+          }
+          
+         
+                                                      
+          if(this.state.firstLoading) {   
+               console.log('FIRSTLOADING');                                                         
                this.state.firstLoading = false;               
-               this.getCurrentLocation();     
+               this.getCurrentLocation();
           }else {
                this.hosted();
           }
 
-          this.props.navigation.addListener('focus', async () => {
-               this.removeStorage();     
-               this.connect();                       
-          })                  
-          
-     }     
+          this.props.navigation.addListener('focus', async () => {                                                                   
+               this.setState({ 
+                    temp: 1,
+               })   
+               this.removeStorage();                                   
+          })               
+     }   
+
+   
+
 
      removeStorage = async() => {
           await AsyncStorage.removeItem('check');
@@ -127,6 +141,7 @@ export default class Main extends Component {
                               key={index} buttonColor='#49ffbd' 
                               onPress={() => 
                                    {
+                                        this.state.cnt = 1;
                                         this.connectFilter(hobby); 
                                         this.state.hobby = hobby;
                                    }}
@@ -226,6 +241,7 @@ export default class Main extends Component {
                               key={"all"} buttonColor='#49ffbd'
                               onPress={() => 
                                    {
+                                        this.state.cnt = 1;
                                         this.connectFilter("all");
                                         this.state.hobby = "all";
                                    }}
@@ -238,7 +254,7 @@ export default class Main extends Component {
                          </ActionButton.Item>
                     )
      
-                    console.log(this.state.GUID);
+               
      
                     if(this.state.GUID.length !== 0) {
                          this.deleteGroupChat(this.state.GUID);
@@ -314,9 +330,14 @@ export default class Main extends Component {
                error => console.log(error),           
                { enableHighAccuracy: true, timeout: 30000, maximumAge: 1000 }
           )
+          this.setState({
+               check: true,
+          })
      }
 
-     onMapRegionChange = async(region) => {                             
+     onMapRegionChange = async(region) => {                           
+          this.state.cnt = 0;  
+          this.state.temp = 0;        
           this.setState({region: region})
           Geocoder.init(GEO, { language: 'ko' });
           await Geocoder.from(region.latitude, region.longitude)
@@ -324,9 +345,9 @@ export default class Main extends Component {
                var address = json.results[0].formatted_address;
                this.setState({
                     address: address,
-               }, () => {console.log(this.state.address)});
+               });
           })          
-     }           
+     }         
 
      //수정사항 : this.state.hostsProfile로 하면 한번에 방에 참가한 사람들의 모든 프로필 이미지를 한번에 불러오지만 지도를 움직이지 않은 상태에서 3번 째부터는 이미지를 불러오지 못한다.
      getRoomData = async(data) => { 
@@ -358,10 +379,12 @@ export default class Main extends Component {
                     }                                                  
                }
 
-               this.bs.current.snapTo(0);                          
+               this.bs.current.snapTo(0);          
+               this.state.isOpen = true;                                 
           }else {
                this.setState({hostsProfile: null, usersProfile: null})
                this.bs.current.snapTo(5);
+               this.state.isOpen = false;
           }
      }
 
@@ -527,15 +550,17 @@ export default class Main extends Component {
      }
 
      //방 만들었을 때 방 만든 주소를 중심으로 지도를 띄운다.
-     hosted = () => {
+     hosted = () => {                    
           this.setState({
                region: {
-                    latitude: parseFloat(this.props.route.params.lat),
-                    longitude: parseFloat(this.props.route.params.lng),
+                    latitude: parseFloat(this.props.route.params.params.params.lat),
+                    longitude: parseFloat(this.props.route.params.params.params.lng),
                     latitudeDelta: 0.015,
                     longitudeDelta: 0.0121,
                },
-          });
+          });    
+
+          console.log(this.state.region);
      } 
 
      render() {
