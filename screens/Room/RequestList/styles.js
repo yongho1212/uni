@@ -14,17 +14,38 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     line: {
-        
-        
-        
+
+
+
     },
     infoContainer:{
         flexDirection: 'row',
-         alignItems: 'center',
-         flex:4
+        alignItems: 'center',
+        flex: 4
     },
-    imgContainer:{
-       
+    userImg: {
+        width: 80, height: 80, borderRadius: 40, overflow: 'hidden', borderWidth: 3,
+    },
+    usersList: {
+        width: Dimensions.get('window').width*0.95,
+        height: Dimensions.get('window').height*0.1,
+        marginHorizontal: Dimensions.get('window').width*0.025,
+        flexDirection: 'row',
+        alignItems: 'center',        
+        marginTop: 10,
+        borderRadius: 20,
+        backgroundColor: '#fff',
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        shadowColor: 'grey',
+        shadowOffset: { height: 3, width: 3 },
+        borderWidth: 3,
+        borderColor: '#fb009e'        
+    },
+    usersNick: {
+        marginLeft: 10,
+        fontSize: 16,
+        fontWeight: 'bold'        
     },
     usersAge: {
         marginLeft: 10,
@@ -36,39 +57,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold'        
     },
-    userImg: {
-        width: 80, height: 80, borderRadius: 40, overflow: 'hidden', borderWidth: 3,
-    },
-    usersList: {
-        width: Dimensions.get('window').width*0.95,
-        height: Dimensions.get('window').height*0.1,
-        marginHorizontal: Dimensions.get('window').width*0.025,
-        flexDirection: 'row',
-        alignItems: 'center',
-        
-        marginTop:10,
-        borderRadius:20,
-        backgroundColor:'#fff',
-        shadowOpacity: 0.3,
-        shadowRadius: 5,
-        shadowColor: 'grey',
-        shadowOffset: { height: 3, width: 3 },
-        borderWidth:3,
-        borderColor:'#fb009e'
-
-        
-    },
-    usersNick: {
-        marginLeft: 10,
-        fontSize:16,
-        fontWeight:'bold',
-        fontFamily:'Jost-Medium'
-        
-    },
     introText: {
-        marginLeft: 10,
-        fontFamily:'Jost-Medium'
-        
+        marginLeft: 10,        
     },
     checkList: {
         flexDirection: 'row',
@@ -85,8 +75,7 @@ const styles = StyleSheet.create({
     refuseIcon: {
         fontSize: 28,
         color:'red',
-        marginLeft:5,
-        
+        marginLeft:5
     }
 });
 

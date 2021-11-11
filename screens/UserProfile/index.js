@@ -89,7 +89,7 @@ export default class Category extends Component {
             <View style={{ width: Dimensions.get('window').width * 0.96 , marginHorizontal: Dimensions.get('window').width * 0.02,}}>                
                 <Image                     
                     source={{ uri: this.state.profile }}
-                    style={{ width: Dimensions.get('window').width * 1, height: Dimensions.get('window').height * 0.4 }}                                
+                    style={{ width: '100%', height: Dimensions.get('window').height * 0.4 }}                                
                 />
                 <View style={styles.userContainer}>
                     <View style={{flexDirection:'row'}}>

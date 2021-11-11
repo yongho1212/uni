@@ -6,16 +6,66 @@ import { firebase } from '@react-native-firebase/auth';
 import auth from "@react-native-firebase/auth";
 import RNExitApp from 'react-native-exit-app';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import { SERVER_URL } from '@env';
+import { CometChat } from '@cometchat-pro/react-native-chat';
+import { SERVER_URL, CHAT_APP_ID, CHAT_API_KEY } from '@env';
 
 export default class DropUser extends Component { 
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: '',
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+        id: '',
+        GUID: [],
     }
+}    
+
+componentDidMount() {
+    this.connect();
+}
+
+
+connect = async() => {
+    var id = await AsyncStorage.getItem('id');
+
+    const URL = `${SERVER_URL}/chatInfo`;
+    fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json',
+        },
+        body: JSON.stringify({
+            id: id,                
+        })
+    })
+    .then(response => response.json())
+    .then(responseData => {
+        this.setState({
+            GUID: responseData
+        })
+    })
+}
+
+deleteGroup = async(GUID) => {
+    CometChat.deleteGroup(GUID).then(
+        response => {
+             console.log("Groups deleted successfully:", response);
+        },
+        error => {
+             console.log("Group delete failed with exception:", error);
+        }
+    )
+}
+
+leaveGroup = async(GUID) => {
+    CometChat.leaveGroup(GUID).then(
+        response => {
+             console.log("Leave group successfully:", response);
+        },
+        error => {
+             console.log("Leave group failed with exception:", error);
+        }
+    )     
+}
+
 
     dropFunc = async() => {
 
@@ -37,9 +87,31 @@ export default class DropUser extends Component {
             })
             
         })
-        
+        .then(() => {
+          const url = 'https://api-us.cometchat.io/v3.0/users/' + id;
+          fetch(url, {
+              method: 'DELETE',
+              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: CHAT_APP_ID, apiKey: CHAT_API_KEY},
+              body: JSON.stringify({permanent: true})
+          })
+          .then(response => response.json())
+          .then(responseData => console.log(responseData))  
+      })
+      .then(() => {
+          console.log(this.state.GUID);
+          console.log(this.state.GUID.length);
+          for(let i = 0; i < this.state.GUID.length; i++) {
+              //탈퇴하는 회원이 방의 호스트 일 경우
+              if(this.state.GUID[i].hostUser.length === 1 && this.state.GUID[i].hostUser.indexOf(id) > -1) {
+                  this.deleteGroup(this.state.GUID[i].GUID);
+              //탈퇴하는 회원이 방의 참가자 일 경우                    
+              }else {
+                  this.leaveGroup(this.state.GUID[i].GUID);
+              }                
+          }
+      })
         .catch(function(error) {
-            Alert.alert(error.message);
+          Alert.alert('Login again please');
         }) 
     }
 

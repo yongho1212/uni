@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, TextInput, Pressable, Alert, Image, ImageBackground, BackHandler} from 'react-native';
+import {Text, View, TextInput, Pressable, Alert, Image, ImageBackground} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -13,12 +13,12 @@ import { LogBox } from "react-native"
 
 import styles from './styles';
 
-export default class UserList extends Component {
+export default class RequestList extends Component {
     constructor(props) {
         super(props);
-        this.state = {            
+        this.state = {
+            _id: '',
             id: '',
-            GUID: '',
             usersId: [],
             usersNick: [],
             usersAge: [],
@@ -26,11 +26,11 @@ export default class UserList extends Component {
             usersProfile: [],               
         }
     }
-  
+
     componentDidMount = async() => {
         LogBox.ignoreAllLogs(true); 
-       
-        
+         
+
         this.connect();
     }
 
@@ -45,22 +45,23 @@ export default class UserList extends Component {
 
         this.setState({
             id: id,
-            GUID: this.props.route.params.sendd.GUID,
+            _id: this.props.route.params.sendd._id,
         })
 
         var usersId = new Array();
         var usersNick = new Array();
         var usersAge = new Array();
         var usersGender = new Array();
-        
-        const URL = `${SERVER_URL}/joinList`
+
+        const URL = `${SERVER_URL}/userList`
         fetch(URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                GUID: this.state.GUID,
+                id: id,
+                _id: this.state._id,
             })
         })
         .then(response => response.json())
@@ -127,7 +128,7 @@ export default class UserList extends Component {
                                     >
                                         {this.state.usersNick[i]}
                                     </Text>
-                                    <Text 
+                                    <Text
                                         style={styles.usersAge}
                                     >
                                         {this.state.usersAge[i] + '살'}
@@ -143,12 +144,57 @@ export default class UserList extends Component {
                                 </Text>
                             </View>                            
                        </View>
+                       <View style={styles.checkList}>
+                            <AntDesign
+                                 name={"checkcircleo"}
+                                 style={styles.allowIcon}           
+                                 onPress={() => {this.allowUser(this.state.usersId[i]); this.joinGroup(this.state.usersId[i])}}                                             
+                            />
+                            <AntDesign
+                                 name={"closecircleo"}
+                                 style={styles.refuseIcon}                                   
+                            />
+                       </View>
                     </View>
                 </View>
             )
         }
 
         return profile;
+    }
+
+    allowUser = async(userId) => {
+        var usersId = new Array();
+        var usersNick = new Array();
+
+        const URL = `${SERVER_URL}/allowUser`;
+        fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                _id: this.props.route.params.sendd._id,
+                id: userId,
+                hostId: this.state.id,
+                GUID: this.props.route.params.sendd.GUID,
+            })
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            console.log(responseData);
+            responseData.map((data, index) => {
+                usersId.push(data.id);
+                usersNick.push(data.nickname);
+            })
+        })
+        .then(() => {
+            this.setState({
+                 usersId: usersId,
+                 usersNick: usersNick,
+            })
+        })
+        .then(() => this.getUsersProfile())
     }
 
     //그룹채팅 합류
@@ -194,4 +240,4 @@ export default class UserList extends Component {
             </View>
         )
     }
-}
+} 

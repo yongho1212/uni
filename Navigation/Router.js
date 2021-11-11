@@ -41,6 +41,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import RNBootSplash from "react-native-bootsplash";
 import auth from "@react-native-firebase/auth";
+import RequestList from "../screens/Room/RequestList";
 
 
 const Stack = createStackNavigator();
@@ -210,6 +211,23 @@ const Router = ({navigation}) => {
                             color:'black'
                         }
                      }}
+                />
+                 <Stack.Screen
+                    name={"RequestList"}
+                    component={RequestList}
+                    options={{
+                        headerShown: true,
+                        title: '참가 요청 유저',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:' ',
+                        headerBackTitleStyle:{
+                            fontSize: 18,
+                            color: 'black'
+                        }
+                    }}
                 />
                 <Stack.Screen
                     name="NewProfileImg"

@@ -8,17 +8,7 @@ export default class MainButton extends Component {
     render() {
         return (       
             <View style={styles.btnContainer}>
-                <Pressable
-                    style={styles.Button}
-                    onPress={() => this.props.navigate('Hosting')}
-                >
-                    <Ionicons
-                    color="#fff"
-                    name='golf'
-                    size={30}
-                    />
-                    <Text style={styles.Txt}>Make</Text>
-                </Pressable>
+                
 
                 <Pressable
                     style={styles.Button}
@@ -30,6 +20,17 @@ export default class MainButton extends Component {
                     size={30}
                     />
                     <Text style={styles.Txt}>Chat</Text>
+                </Pressable>
+                <Pressable
+                    style={styles.HostingButton}
+                    onPress={() => this.props.navigate('Hosting')}
+                >
+                    <Ionicons
+                    color="#fff"
+                    name='golf'
+                    size={30}
+                    />
+                    <Text style={styles.Txt}>Hosting</Text>
                 </Pressable>
                 <Pressable
                     style={styles.Button}
@@ -63,6 +64,19 @@ const styles = StyleSheet.create({
         
         
     },
+    HostingButton:{
+        width:75,
+        height:75,
+        backgroundColor:'#fb009e',
+        borderRadius:25,
+        justifyContent:'center',
+        alignItems:'center',
+        marginHorizontal:26,
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowColor: '#000',
+        shadowOffset: { height: 3, width: 3 },
+    },
     Button: {
         width:70,
         height:70,
@@ -80,6 +94,7 @@ const styles = StyleSheet.create({
     Txt:{
         fontWeight:'900',
         color:'#fff',
-        fontSize:15
+        fontSize:15,
+        fontFamily:'Jost-medium'
     }
 });

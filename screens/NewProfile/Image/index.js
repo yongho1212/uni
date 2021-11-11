@@ -44,6 +44,7 @@ export default class NewProfileImg extends Component {
     }
 
     componentDidMount = () => {
+        LogBox.ignoreAllLogs(true); 
         this.getProfile();
     }
 
