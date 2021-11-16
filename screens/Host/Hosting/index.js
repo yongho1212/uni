@@ -183,18 +183,33 @@ export default class Hosting extends Component {
         var icon;
 
         if(this.state.room.category === '축구') {            
-            icon = 'https://cdn.pixabay.com/photo/2014/10/14/20/24/soccer-488700_960_720.jpg';
+            icon = 'https://cdn-icons-png.flaticon.com/512/3379/3379077.png';
         }else if(this.state.room.category === '농구') {
-            icon = 'https://cdn.pixabay.com/photo/2015/05/15/14/49/basketball-768713_960_720.jpg';
-        }else if(this.state.room.category === '테니스') {
-            icon = 'https://cdn.pixabay.com/photo/2016/11/29/01/14/athletes-1866487_960_720.jpg';
+            icon = 'https://cdn-icons-png.flaticon.com/512/2527/2527948.png';
         }else if(this.state.room.category === '탁구') {
-            icon = 'https://cdn-icons-png.flaticon.com/512/3081/3081124.png';
-        }else if(this.state.room.category === '풋살') {
-            icon = 'https://t4.ftcdn.net/jpg/02/51/90/51/240_F_251905127_onmn1GR6Gmq7WXzIsA0WRWQ7atoQEgkt.jpg';
+            icon = 'https://cdn-icons-png.flaticon.com/512/4500/4500081.png';
         }else if(this.state.room.category === '볼링') {
-            icon = 'https://loof-img.s3.ap-northeast-2.amazonaws.com/1634311850572_78B970DA-FB95-4617-95CC-821BC9E30CD9.jpg';
+            icon = 'https://cdn-icons-png.flaticon.com/512/3523/3523431.png';
+        }else if(this.state.room.category === '등산') {
+            icon = 'https://cdn-icons-png.flaticon.com/512/1028/1028346.png';
+        }else if(this.state.room.category === '골프') {
+            icon = 'https://cdn-icons-png.flaticon.com/512/1039/1039403.png';               
+        }else if(this.state.room.category === '런닝') {
+            icon = 'https://cdn-icons-png.flaticon.com/512/1869/1869509.png';
+        }else if(this.state.room.category === '웨이트') {
+            icon = 'https://cdn-icons-png.flaticon.com/512/502/502128.png';   
+        }else if(this.state.room.category === '술 한잔') {
+            icon = 'https://cdn-icons-png.flaticon.com/512/4516/4516609.png';
+        }else if(this.state.room.category === '리그오브레전드') {
+            icon = '롤';   
+        }else if(this.state.room.category === '배틀그라운드') {
+            icon = '배그';   
+        }else if(this.state.room.category === '보드게임') {
+            icon = 'https://cdn-icons-png.flaticon.com/512/3909/3909075.png';
+        }else if(this.state.room.category === '언어교환') {
+            icon = 'https://cdn-icons-png.flaticon.com/512/3898/3898150.png';  
         }
+
         
         var group = new CometChat.Group(GUID, groupName, groupType, password, icon);
 

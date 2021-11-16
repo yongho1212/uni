@@ -4,7 +4,7 @@ import {SafeAreaView, View, Text, ImageBackground, Pressable, Dimensions, Image,
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import FontAwesome from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import LinearGradient from 'react-native-linear-gradient';
@@ -115,6 +115,9 @@ export default class Gender extends Component {
                            
                          
                              <Text style={styles.btnFonts}>남성</Text>
+                             
+
+                             
                         </Pressable>
                         
                     
@@ -139,6 +142,7 @@ export default class Gender extends Component {
                             
                             
                             <Text style={styles.btnFonts}>여성</Text>
+                            
                         </Pressable>
                     </View>
                     

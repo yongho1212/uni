@@ -381,7 +381,7 @@ export default class NewProfileImg extends Component {
                     <Text style={{fontSize: 18}}>사진 설정</Text>
                     <Pressable style={styles.vaccum}></Pressable>
         </View>   */}
-                <View style={{ flex:1, justifyContent:'center', }}>  
+                <View style={{ flex:3, justifyContent:'center', }}>  
                     <View style={{flexDirection:'row', flexWrap: 'wrap', justifyContent:'center', width: Dimensions.get('window').width*0.9, marginHorizontal:Dimensions.get('window').width*0.05,}}>
                     {this.state.picker}
                     </View>

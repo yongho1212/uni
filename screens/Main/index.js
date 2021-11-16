@@ -75,21 +75,26 @@ export default class Main extends Component {
           
          
                                                       
-          if(this.state.firstLoading) {   
-               console.log('FIRSTLOADING');                                                         
+          if(this.state.firstLoading) {                                                                        
                this.state.firstLoading = false;               
                this.getCurrentLocation();
+               setTimeout(() => {
+                    this.setState({temp: 0});
+               }, 1000);
           }else {
                this.hosted();
           }
 
-          this.props.navigation.addListener('focus', async () => {                                                                   
+          this.props.navigation.addListener('focus', async () => {                    
                this.setState({ 
                     temp: 1,
-               })   
+               })                  
+               setTimeout(() => {
+                    this.setState({temp: 0});
+               }, 1000);              
                this.removeStorage();                                   
           })               
-     }   
+     }    
 
    
 

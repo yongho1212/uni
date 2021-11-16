@@ -8,7 +8,7 @@ import {
   Alert,
   Pressable,
 } from "react-native";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from '@react-navigation/native';
 
 import auth from "@react-native-firebase/auth";
@@ -18,7 +18,7 @@ const LogoutBtn = () => {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged((user) => {
-      console.log("user", JSON.stringify(user));
+      
       setUser(user);
     });
 
@@ -33,13 +33,13 @@ const LogoutBtn = () => {
       "로그아웃 하시겠습니까?",
       [
         {
-          text: "Cancel",
+          text: "취소",
           onPress: () => {
             return null;
           },
         },
         {
-          text: "Confirm",
+          text: "확인",
           onPress: () => {
             auth()
               .signOut()
@@ -60,7 +60,7 @@ const LogoutBtn = () => {
 
   return (
   
-       <View style={{width:100, height:39, justifyContent:'center', alignItems:'center', zIndex:200}}>
+       <View style={{ height:39,  zIndex:200}}>
           <Pressable
             style={styles.buttonStyle}
             activeOpacity={0.5}
@@ -87,10 +87,9 @@ const styles = StyleSheet.create({
     color: "red",
     
     height: 40,
-    alignItems: "center",
+
     borderRadius: 30,
-    marginLeft: 35,
-    marginRight: 35,
+  
     marginTop: 20,
     marginBottom: 25,
     alignItems:'center',

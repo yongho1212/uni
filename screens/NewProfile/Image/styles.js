@@ -62,7 +62,8 @@ const styles = StyleSheet.create({
   announceContainer:{
     position:'absolute',
     top:20,
-    marginLeft:20
+    marginLeft:20,
+    flex:1
 },
 announceTitle:{
     fontSize:75,

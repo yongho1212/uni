@@ -26,7 +26,7 @@ import {
 import {AccessToken, LoginManager} from 'react-native-fbsdk-next';
 
 import PhoneAuth from '../components/phoneAuth/PhoneAuth';
-
+import PushNotification, {Importance} from 'react-native-push-notification';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CometChat} from '@cometchat-pro/react-native-chat';
 import {

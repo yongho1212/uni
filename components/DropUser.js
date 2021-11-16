@@ -98,8 +98,7 @@ leaveGroup = async(GUID) => {
           .then(responseData => console.log(responseData))  
       })
       .then(() => {
-          console.log(this.state.GUID);
-          console.log(this.state.GUID.length);
+          
           for(let i = 0; i < this.state.GUID.length; i++) {
               //탈퇴하는 회원이 방의 호스트 일 경우
               if(this.state.GUID[i].hostUser.length === 1 && this.state.GUID[i].hostUser.indexOf(id) > -1) {
@@ -151,17 +150,9 @@ leaveGroup = async(GUID) => {
         return true;
       };
 
-      componentDidMount() {
-        this.backHandler = BackHandler.addEventListener(
-          "hardwareBackPress",
-          this.backAction
-        );
-      }
+ 
 
-      componentWillUnmount() {
-        this.backHandler.remove();
-      }
-
+  
 
     render() {
         return (       

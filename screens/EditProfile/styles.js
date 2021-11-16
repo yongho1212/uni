@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
   },
   announceContainer: {
     marginLeft: Dimensions.get('window').width * 0.05, 
-    position: 'absolute',
-    top: 20,   
+    marginTop: 20,   
+    flex:1
   },
   announceTitle:{
     fontSize: 75,

@@ -329,7 +329,7 @@ export default class EditProfile extends Component {
                              수정해 주세요! 
                         </Text>                                           
                     </View>
-                    <View style={{ flex: 1, justifyContent: 'center', marginTop: 60 }}>  
+                    <View style={{ flex: 2,   }}>  
                         <View style={{flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', width: Dimensions.get('window').width*0.9, marginHorizontal: Dimensions.get('window').width*0.05}}>
                             {this.state.picker}
                         </View>                        
@@ -338,7 +338,7 @@ export default class EditProfile extends Component {
                                 style={styles.interestList}
                                 onPress={() => this.props.navigation.push('editHobby', {interest: this.state.userInterest})}
                             >
-                                <Text style={{fontSize:1,fontFamily:'Jost-Medium'}}>{this.state.interestList}</Text>
+                                <Text style={{fontFamily:'Jost-Medium'}}>{this.state.interestList}</Text>
                             </Pressable>                                                     
                         </View>   
                         <BottomSheet

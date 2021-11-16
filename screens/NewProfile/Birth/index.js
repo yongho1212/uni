@@ -100,8 +100,8 @@ export default class Birth extends Component {
                             생일은 변경이 불가하니 신중하게 골라주세요!
                         </Text>
                     </View>
-                    
-                        <DatePicker
+                    <View style={{marginTop:Dimensions.get('window').height*0.1}}>
+                    <DatePicker
                             mode='date'
                             date={this.state.date}                                       
                             minuteInterval={10}
@@ -109,9 +109,11 @@ export default class Birth extends Component {
                             androidVariant="iosClone"
                             locale="ko"
                             is24hourSource="locale"
-                            style={{width:300, height:300, backgroundColor: 'rgba(255, 255, 255, 0.8)'}}
+                            style={{width:Dimensions.get('window').width, height:300, backgroundColor: 'rgba(255, 255, 255, 0.8)'}}
                             textColor="#000"
                         />
+                    </View>
+                        
 
                                     
                     

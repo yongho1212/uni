@@ -62,18 +62,31 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+<dict>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
+	<key>NSExceptionDomains</key>
+	<dict>
+		<key>localhost</key>
+		<dict>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>LOOF would like to use your camera</string>
+	<string>LOOF가 프로필 사진 설정을 위해 카메라에 접근하도록 허용하시겠습니까?</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>LOOF requires location services to work</string>
+	<string>LOOF가 앱의 원활한 사용을 위해 위치 정보에 접근하도록 허용하시겠습니까?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>LOOF requires location services to work</string>
+	<string>LOOF가 앱의 원활한 사용을 위해 위치 정보에 접근하도록 허용하시겠습니까?</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>LOOF would like to your microphone (for videos)</string>
+	<string>LOOF가 통화를 위해 마이크에 접근하도록 허용하시겠습니까?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>LOOF would like access to your photo gallery</string>
+	<string>LOOF가 프로필 사진 설정을 위해 사진에 접근하도록 허용하시겠습니까?</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

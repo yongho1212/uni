@@ -19,7 +19,7 @@ export default class MainButton extends Component {
                     name='chatbubbles-sharp'
                     size={30}
                     />
-                    <Text style={styles.Txt}>Chat</Text>
+                   {/*<Text style={styles.Txt}>Chat</Text>*/}
                 </Pressable>
                 <Pressable
                     style={styles.HostingButton}
@@ -30,7 +30,7 @@ export default class MainButton extends Component {
                     name='golf'
                     size={30}
                     />
-                    <Text style={styles.Txt}>Hosting</Text>
+                   {/*<Text style={styles.Txt}>Hosting</Text>*/}
                 </Pressable>
                 <Pressable
                     style={styles.Button}
@@ -41,7 +41,7 @@ export default class MainButton extends Component {
                     name='results-demographics'
                     size={30}
                     />
-                    <Text style={styles.Txt}>Room</Text>
+                    {/*<Text style={styles.Txt}>Room</Text>*/}
                 </Pressable>
             </View>
         )

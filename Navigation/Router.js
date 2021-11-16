@@ -29,6 +29,9 @@ import { CometChatGroupListWithMessages } from '../cometchat-pro-react-native-ui
 import RoomList from '../screens/Room/RoomList';
 import Roomctrl from "../screens/Room/Roomctrl";
 import UserProfile from "../screens/UserProfile";
+import Notify from "../components/Notify";
+import notifyContent from "../components/notifyContents";
+import Privacy from "../screens/sideDrawer/privacy";
 
 import DrawerNav from './Ctrl';
 import EditProfile from '../screens/EditProfile';
@@ -396,6 +399,57 @@ const Router = ({navigation}) => {
                             color: 'black'
                         }
                     }}                                      
+                />
+                <Stack.Screen
+                    name={"Privacy"}
+                    component={Privacy}
+                    options={{
+                        headerShown: true,
+                        title: '서비스 이용약관',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:' ',
+                        headerBackTitleStyle:{
+                            fontSize: 18,
+                            color: 'black'
+                        }
+                    }}   
+                />
+                <Stack.Screen
+                    name={"Notify"}
+                    component={Notify}
+                    options={{
+                        headerShown: true,
+                        title: '공지사항',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:' ',
+                        headerBackTitleStyle:{
+                            fontSize: 18,
+                            color: 'black'
+                        }
+                    }}   
+                />
+                <Stack.Screen
+                    name={"notifyContent"}
+                    component={notifyContent}
+                    options={{
+                        headerShown: true,
+                        title: '공지사항',
+                        headerTitleStyle:{
+                            fontSize:19
+                        },
+                        headerBackImage: ()=>(<Ionicons name={"ios-chevron-back"} size={30}/>),
+                        headerBackTitle:' ',
+                        headerBackTitleStyle:{
+                            fontSize: 18,
+                            color: 'black'
+                        }
+                    }}   
                 />
             </Stack.Navigator>
         </NavigationContainer>

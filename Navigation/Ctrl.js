@@ -144,7 +144,7 @@ function DrawerNav({ route, navigation }) {
        name=" "
        options={{ 
          drawerLabel: 'Setting ⚙️',
-         headerShown: true,
+         headerShown: false,
          headerRight: () => (
           <Button
             onPress={() => navigation.navigate('Main')}
