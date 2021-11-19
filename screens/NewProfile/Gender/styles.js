@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
       
     },
     selectboxContainer: {
-       position:'absolute',
+       
        flexDirection:'row',
     },
     announceContainer:{

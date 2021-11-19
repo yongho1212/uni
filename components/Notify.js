@@ -21,8 +21,6 @@ export default class Notify extends Component {
           
     }
 
- 
-
 
     getNotify = async() => {             
         const URL = `${SERVER_URL}/getNotify`;

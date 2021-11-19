@@ -839,14 +839,14 @@ export default class CometChatMessageComposer extends React.PureComponent {
           sendMediaMessage={this.sendMediaMessage}
         />
         <View style={style.mainContainer}>
-          <TouchableOpacity
+          {/*<TouchableOpacity
             style={style.plusCircleContainer}
             disabled={disabled}
             onPress={() => {
               this.setState({ composerActionsVisible: true });
             }}>
             <AntDIcon size={26} name="pluscircle" color="rgba(0,0,0,0.35)" />
-          </TouchableOpacity>
+          </TouchableOpacity>*/}
           <View style={style.textInputContainer}>
             <TextInput
               style={style.messageInputStyle}

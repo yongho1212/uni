@@ -134,34 +134,38 @@ export default class Setting extends Component {
                         />
                         }                                      
                     </View>  
+                    <TouchableOpacity
+                               
+                                onPress={() => this.props.navigation.navigate('Privacy')}                            
+                            >
                     <View style={{flexDirection: 'row', paddingVertical: 25, borderBottomColor: 'lightgrey', borderBottomWidth: 1}}>
                         <View
                             style={{marginRight: Dimensions.get('screen').width * 0.65}}
                         >
-                            <TouchableOpacity
-                                style={{marginLeft: 10}}
-                                onPress={() => this.props.navigation.navigate('Privacy')}                            
-                            >
-                                <Text>서비스 이용약관</Text>
-                            </TouchableOpacity>
+                            
+                                <Text  style={{marginLeft: 10}}>서비스 이용약관</Text>
+                            
                         </View>
                             <Entypov                                         
                                 name={'chevron-right'}
                                 size={24}
                                 color={'#fb009e'}
                             />
-                    </View>                                       
+                    </View>        
+                    </TouchableOpacity>                               
                 </View>
+                
+                <TouchableOpacity
+                                
+                            onPress={() => this.props.navigation.navigate('Notify')}
+                        >
                 <View style={{flexDirection: 'row', paddingVertical: 25, borderBottomColor: 'lightgrey', borderBottomWidth: 1}}>
                     <View
                         style={{marginRight: Dimensions.get('screen').width * 0.76}}
                     >
-                        <TouchableOpacity
-                            style={{marginLeft: 10}}    
-                            onPress={() => this.props.navigation.navigate('Notify')}
-                        >
-                            <Text>공지사항</Text>
-                        </TouchableOpacity>
+                        
+                            <Text style={{marginLeft: 10}}>공지사항</Text>
+                        
                     </View>                    
                     <Entypov                                         
                         name={'chevron-right'}
@@ -169,6 +173,7 @@ export default class Setting extends Component {
                         color={'#fb009e'}
                     />                  
                 </View>
+                </TouchableOpacity>
                 <View style={{   justifyContent:'center', alignItems:'center', marginVertical:20}}>
                 
                         <LogoutBtn/>

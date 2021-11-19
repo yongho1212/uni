@@ -20,7 +20,8 @@ export default class Birth extends Component {
            
            date: '',
            check: 0,    
-           nextColor: '#fff',                   
+           nextColor: '#fff',          
+           noneColor:'#fff'              
         }
     }
 
@@ -112,6 +113,29 @@ export default class Birth extends Component {
                             style={{width:Dimensions.get('window').width, height:300, backgroundColor: 'rgba(255, 255, 255, 0.8)'}}
                             textColor="#000"
                         />
+                         <Pressable
+                            style={{
+                                width: Dimensions.get('window').width * 0.8,
+                                height: Dimensions.get('window').width * 0.1,
+                                backgroundColor: this.state.noneColor,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginVertical:10,
+                                marginHorizontal:Dimensions.get('window').width * 0.1,
+                                
+                                shadowOpacity: 0.75,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:25
+                            }}
+                            onPress={() => {this.setState({date: '선택안함'}); this.setState({nextColor: '#49ffbd', noneColor: 'lightgrey'})}}
+                        >
+                            
+                            
+                            <Text style={{fontSize:20}}>선택안함</Text>
+                            
+                        </Pressable>
                     </View>
                         
 

@@ -19,7 +19,8 @@ export default class Gender extends Component {
            gender: '',     
            manColor: '#fff', 
            womanColor: '#fff',
-           nextColor: '#fff',             
+           nextColor: '#fff',   
+           noneColor:'#fff'          
         }
     }
 
@@ -44,9 +45,16 @@ export default class Gender extends Component {
         if(gender === '남성') {
             this.state.manColor = '#fb009e';
             this.state.womanColor = '#fff';
+            this.state.noneColor = '#fff';
         }else {
             this.state.womanColor = '#fb009e';
             this.state.manColor = '#fff';
+            this.state.noneColor = '#fff';
+        }
+        if(gender === '선택안함') {
+            this.state.manColor = '#fff';
+            this.state.womanColor = '#fff';
+            this.state.noneColor = '#fb009e';
         }
 
         this.state.nextColor = '#49ffbd';
@@ -92,6 +100,7 @@ export default class Gender extends Component {
                             성별은 변경이 불가하니 신중하게 골라주세요!
                         </Text>
                     </View>
+                    <View>
                     <View style={styles.selectboxContainer}>
                         <Pressable
                             style={{
@@ -101,7 +110,7 @@ export default class Gender extends Component {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 marginVertical:10,
-                                marginHorizontal:10,
+                                marginHorizontal:Dimensions.get('window').width * 0.05,
                                 
                                 shadowOpacity: 0.5,
                                 shadowRadius: 5,
@@ -129,7 +138,7 @@ export default class Gender extends Component {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 marginVertical:10,
-                                marginHorizontal:10,
+                                marginHorizontal:Dimensions.get('window').width * 0.05,
                                 
                                 shadowOpacity: 0.75,
                                 shadowRadius: 5,
@@ -144,7 +153,36 @@ export default class Gender extends Component {
                             <Text style={styles.btnFonts}>여성</Text>
                             
                         </Pressable>
+                        
                     </View>
+                    <View>
+                    <Pressable
+                            style={{
+                                width: Dimensions.get('window').width * 0.8,
+                                height: Dimensions.get('window').width * 0.1,
+                                backgroundColor: this.state.noneColor,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                marginVertical:10,
+                                marginHorizontal:Dimensions.get('window').width * 0.1,
+                                
+                                shadowOpacity: 0.75,
+                                shadowRadius: 5,
+                                shadowColor: 'grey',
+                                shadowOffset: { height: 2, width: 2 },
+                                borderRadius:25
+                            }}
+                            onPress={() => {this.setState({gender: '선택안함'}); this.check_Gender('선택안함');}}
+                        >
+                            
+                            
+                            <Text style={{fontSize:20}}>선택안함</Text>
+                            
+                        </Pressable>
+                    </View>
+                    
+                    </View>
+                    
                     
                     
                     <Pressable

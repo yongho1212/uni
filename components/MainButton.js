@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
         
     },
     HostingButton:{
-        width:75,
-        height:75,
+        width:65,
+        height:65,
         backgroundColor:'#fb009e',
         borderRadius:25,
         justifyContent:'center',
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
         shadowOffset: { height: 3, width: 3 },
     },
     Button: {
-        width:70,
-        height:70,
+        width:60,
+        height:60,
         backgroundColor:'#fb009e',
         borderRadius:25,
         justifyContent:'center',
