@@ -12,7 +12,8 @@ import {
   KeyboardAvoidingView,
   Pressable,
   Linking,
-  Dimensions
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
@@ -46,10 +47,14 @@ import {
 } from '@env';
 
 import { LogBox } from 'react-native';
+import { TouchableHighlight } from 'react-native';
 
 LogBox.ignoreAllLogs();
 
 const LoginScreen = ({navigation}) => {
+  // activity indicator shown 
+  const [loading, setLoading] = useState(false);
+
   //custom
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -61,6 +66,15 @@ const LoginScreen = ({navigation}) => {
   const [userInfo, setuserInfo] = useState([]);
 
   const passwordInputRef = createRef();
+
+  //loading
+  const startLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+  };
+
 
   //chatting
   const appID = CHAT_APP_ID;
@@ -97,7 +111,7 @@ const LoginScreen = ({navigation}) => {
     if (enabled) {
       const token = await messaging().getToken();
       setFcmToken(token);
-  //  console.log(token);
+      console.log(token);
     } else {
       console.log('fcm auth fail');
     }
@@ -105,6 +119,7 @@ const LoginScreen = ({navigation}) => {
 
   // BACK
   const connect = async (id, email) => {
+    
     try {
       await AsyncStorage.setItem('id', id);
     } catch (e) {
@@ -177,6 +192,7 @@ const LoginScreen = ({navigation}) => {
 
   // CUSTOM
   const handleSubmitPress = () => {
+    
     setErrortext('');
     if (!userEmail) {
       alert('Please fill Email');
@@ -186,6 +202,7 @@ const LoginScreen = ({navigation}) => {
       alert('Please fill Password');
       return;
     }
+    startLoading();
     auth()
       .signInWithEmailAndPassword(userEmail, userPassword)
       .then(user => {
@@ -199,6 +216,7 @@ const LoginScreen = ({navigation}) => {
         // If server response message same as Data Matched
         // if (user) navigation.replace("DrawerNav");
         connect(id, email);
+        
       })
       .catch(error => {
    //     console.log(error);
@@ -214,6 +232,7 @@ const LoginScreen = ({navigation}) => {
   // GOOGLE
 
   const g_signIn = async () => {
+    
     // It will prompt google Signin Widget
     try {
       await GoogleSignin.hasPlayServices();
@@ -224,6 +243,7 @@ const LoginScreen = ({navigation}) => {
         idToken,
         accessToken,
       );
+      startLoading();
       await auth()
         .signInWithCredential(credential)
         .then(idToken => {
@@ -236,6 +256,7 @@ const LoginScreen = ({navigation}) => {
           // If server response message same as Data Matched
           //if (idToken) navigation.replace("HomeScreen");
           connect(id, email);
+          
         });
     } catch (error) {
  //     console.log('Message', JSON.stringify(error));
@@ -253,6 +274,10 @@ const LoginScreen = ({navigation}) => {
 
   /// FBLOGIN
   const onFacebookButtonPress = async () => {
+    
+    if(Platform.OS === "ios") {
+      LoginManager.setLoginBehavior("web_only")
+    }
     // Attempt login with permissions
     const result = await LoginManager.logInWithPermissions([
       'public_profile',
@@ -276,9 +301,13 @@ const LoginScreen = ({navigation}) => {
     );
 
     // Sign-in the user with the credential
+    
     return auth()
       .signInWithCredential(facebookCredential)
+      .then(startLoading())
       .then(accessToken => {
+        
+        
   //      console.log(accessToken);
         // If server response message same as Data Matched
         // if (idToken) navigation.replace("Gender");
@@ -288,11 +317,15 @@ const LoginScreen = ({navigation}) => {
 
         // If server response message same as Data Matched
         //if (idToken) navigation.replace("HomeScreen");
+        
         connect(id, email);
+        
       });
+      
   };
 
   async function onAppleButtonPress() {
+   
     // Start the sign-in request
     const appleAuthRequestResponse = await appleAuth.performRequest({
       requestedOperation: appleAuth.Operation.LOGIN,
@@ -313,8 +346,10 @@ const LoginScreen = ({navigation}) => {
     );
 
     // Sign the user in with the credential
+    startLoading();
     return auth()
       .signInWithCredential(appleCredential)
+      .then(startLoading())
       .then(identityToken => {
         var id = identityToken.additionalUserInfo.profile.sub;
         var email = identityToken.user.email;
@@ -337,6 +372,29 @@ const LoginScreen = ({navigation}) => {
                 source={require('../assets/logo/halflogo2.png')}
                 style={{width: 140, height: 140, resizeMode: 'contain'}}
               />
+
+                <View  style={{zIndex:100,position:'absolute', top:200}}>
+                  {loading ? (
+                    <View>
+                    <ActivityIndicator
+                      //visibility of Overlay Loading Spinner
+                      size="large"
+                      color="#fff"
+                      visible={loading}
+                      //Text with the Spinner
+                      textContent={'Loading...'}
+                      //Text style of the Spinner Text
+                      textStyle={styles.spinnerTextStyle}
+                    />
+                    <Text style={{color:'#fff'}}>Loading...</Text>
+                    </View>
+                  ) : (
+                    <>
+                      
+                    </>
+                  )}
+                </View>
+
             </View>
 
             <View style={{flex: 3, alignItems: 'center', marginTop: 50}}>
@@ -631,5 +689,6 @@ const styles = StyleSheet.create({
   termText:{
     color:'#fff',
     fontFamily:'Jost-Medium'
-  }
+  },
+  
 });
