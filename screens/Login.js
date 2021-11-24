@@ -72,7 +72,7 @@ const LoginScreen = ({navigation}) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 10000);
+    }, 15000);
   };
 
 

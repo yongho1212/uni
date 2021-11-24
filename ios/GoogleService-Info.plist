@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>913377494399-6pd7a9jptuo6htrgc8olfun1b98tj8il.apps.googleusercontent.com</string>
+	<string>913377494399-dvc9ikm9n0bfcemtafsgnem8i7buogf0.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.913377494399-6pd7a9jptuo6htrgc8olfun1b98tj8il</string>
+	<string>com.googleusercontent.apps.913377494399-dvc9ikm9n0bfcemtafsgnem8i7buogf0</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>913377494399-1bm29sjdobhei6dkuui4h3fekavrm148.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBusr_2ED-c59VwOsuAPquXuqGB-1ld0UY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.uni</string>
+	<string>com.uni.loof</string>
 	<key>PROJECT_ID</key>
 	<string>uni-auth-35622</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:913377494399:ios:77651ef0febeeb2979464a</string>
+	<string>1:913377494399:ios:5527b987c73208ea79464a</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-1901350005999235~8368424198</string>
 </dict>
 </plist>
