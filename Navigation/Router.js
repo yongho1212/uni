@@ -83,10 +83,7 @@ const Auth = () => {
                 }
             }}
         />
-        <Stack.Screen
-            name="PhoneAuth"
-            component={PhoneAuth}
-        />
+       
          
         </Stack.Navigator>
     );

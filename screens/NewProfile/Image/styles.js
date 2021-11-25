@@ -60,10 +60,24 @@ const styles = StyleSheet.create({
         
   },
   announceContainer:{
-    position:'absolute',
-    top:20,
+    
+    height:Dimensions.get('window').height*0.2,
     marginLeft:20,
-    flex:1
+    justifyContent:'center',
+    
+    width: Dimensions.get('window').width*0.9,
+},
+imgPickerContainer:{
+  flexDirection:'row', 
+  flexWrap: 'wrap',
+  height:Dimensions.get('window').height * 0.4, 
+  justifyContent:'center', 
+  width: Dimensions.get('window').width*0.9,
+   marginHorizontal:Dimensions.get('window').width*0.05,
+   
+},
+nextBtnContainer:{
+  height:Dimensions.get('window').height*0.2,
 },
 announceTitle:{
     fontSize:75,

@@ -15,16 +15,27 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     contentContainer: {
-        justifyContent: 'center',
         alignItems: 'center',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.8,
+        height: Dimensions.get('window').height * 0.9,
      
     },
     announceContainer:{
-      position:'absolute',
-      top:20
+      height: Dimensions.get('window').height * 0.25,
+      justifyContent:'center',
+      
   },
+  dateContainer:{
+    height: Dimensions.get('window').height * 0.45,
+    justifyContent:'center',
+    
+  },
+  nextBtnContainer:{
+    height: Dimensions.get('window').height * 0.2,
+    justifyContent:'center',
+    
+  },
+  
   announceTitle:{
       fontSize:75,
       color: '#000',

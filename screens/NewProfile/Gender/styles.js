@@ -16,21 +16,29 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
     },
     contentContainer: {
-        justifyContent: 'center',
+        
         alignItems: 'center',
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height * 0.8,
+        height: Dimensions.get('window').height * 0.9,
       
       
-    },
-    selectboxContainer: {
-       
-       flexDirection:'row',
     },
     announceContainer:{
-        position:'absolute',
-        top:20
+        height:Dimensions.get('window').height * 0.25,
+        
+        justifyContent:'center'
     },
+    selectboxContainer: {
+        height: Dimensions.get('window').height * 0.35,
+       
+       justifyContent:'center'
+       
+    },
+    nextBtnContainer:{
+        height: Dimensions.get('window').height * 0.3,
+        justifyContent:'center'
+    },
+    
     announceTitle:{
         fontSize:75,
         color: '#000',

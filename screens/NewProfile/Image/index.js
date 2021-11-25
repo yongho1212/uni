@@ -381,11 +381,11 @@ export default class NewProfileImg extends Component {
                     <Text style={{fontSize: 18}}>사진 설정</Text>
                     <Pressable style={styles.vaccum}></Pressable>
         </View>   */}
-                <View style={{ flex:3, justifyContent:'center', }}>  
-                    <View style={{flexDirection:'row', flexWrap: 'wrap', justifyContent:'center', width: Dimensions.get('window').width*0.9, marginHorizontal:Dimensions.get('window').width*0.05,}}>
+                <View style={{  justifyContent:'center', }}>  
+                    <View style={styles.imgPickerContainer}>
                     {this.state.picker}
                     </View>
-                    <View>
+                    <View style={styles.nextBtnContainer}>
                         <Pressable
                             style={{
                                 width: Dimensions.get('window').width * 0.7,
@@ -413,14 +413,14 @@ export default class NewProfileImg extends Component {
                         </Pressable>
                     </View>
                     
-                    <BottomSheet
+                   {/* <BottomSheet
                         ref={this.bs}
                         snapPoints={[300, 0]}
                         initialSnap={1}
                         renderContent={this.renderContent}                   
                         enabledContentTapInteraction={false}
                         enabledInnerScrolling={false}
-                    />                                       
+                   />  */}                                     
                 </View>
                 </ImageBackground>
             </View> 

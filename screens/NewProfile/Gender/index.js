@@ -84,8 +84,8 @@ export default class Gender extends Component {
                 >
                 <View style={styles.contentContainer}>
                 <View style={styles.announceContainer}>
-                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
-                    <Text style={ styles.announceTitle}>
+                    <View style={{ flexDirection:'row', alignItems:'flex-end', }}>
+                        <Text style={ styles.announceTitle}>
                             성별
                         </Text>
                         <Text style={ styles.announce}>
@@ -100,8 +100,10 @@ export default class Gender extends Component {
                             성별은 변경이 불가하니 신중하게 골라주세요!
                         </Text>
                     </View>
+
                     <View>
                     <View style={styles.selectboxContainer}>
+                        <View style={{flexDirection:'row'}}>
                         <Pressable
                             style={{
                                 width: Dimensions.get('window').width * 0.4,
@@ -153,9 +155,8 @@ export default class Gender extends Component {
                             <Text style={styles.btnFonts}>여성</Text>
                             
                         </Pressable>
-                        
-                    </View>
-                    <View>
+                        </View>
+                        <View>
                     <Pressable
                             style={{
                                 width: Dimensions.get('window').width * 0.8,
@@ -180,11 +181,15 @@ export default class Gender extends Component {
                             
                         </Pressable>
                     </View>
+                    </View>
+                    
                     
                     </View>
                     
                     
                     
+                        
+                    <View style={styles.nextBtnContainer}>
                     <Pressable
                         style={{
                             width: Dimensions.get('window').width * 0.7,
@@ -198,7 +203,7 @@ export default class Gender extends Component {
                             shadowColor: 'grey',
                             shadowOffset: { height: 2, width: 2 },
                             borderRadius:25,
-                            position:'absolute',
+                            
                             bottom:10
                             
                        
@@ -217,6 +222,9 @@ export default class Gender extends Component {
                             style={styles.btnFonts}
                             />
                     </Pressable>
+                    </View>
+                    
+                    
           
                 </View>  
                 </ImageBackground>                   

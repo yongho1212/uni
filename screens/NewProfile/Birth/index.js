@@ -84,14 +84,14 @@ export default class Birth extends Component {
                 style={{width:"100%", height:'100%', }}
                 >
                 <View style={styles.contentContainer}>
-                <View style={styles.announceContainer}>
-                    <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
-                    <Text style={ styles.announceTitle}>
-                            생일
-                        </Text>
-                        <Text style={ styles.announce}>
-                             을 
-                        </Text>
+                    <View style={styles.announceContainer}>
+                        <View style={{ flexDirection:'row', alignItems:'flex-end'}}>
+                        <Text style={ styles.announceTitle}>
+                                생일
+                            </Text>
+                            <Text style={ styles.announce}>
+                                을 
+                            </Text>
                         </View>
                         <Text style={ styles.announce}>
                              알려주세요! 
@@ -101,7 +101,7 @@ export default class Birth extends Component {
                             생일은 변경이 불가하니 신중하게 골라주세요!
                         </Text>
                     </View>
-                    <View style={{marginTop:Dimensions.get('window').height*0.1}}>
+                    <View style={styles.dateContainer}>
                     <DatePicker
                             mode='date'
                             date={this.state.date}                                       
@@ -110,7 +110,7 @@ export default class Birth extends Component {
                             androidVariant="iosClone"
                             locale="ko"
                             is24hourSource="locale"
-                            style={{width:Dimensions.get('window').width, height:300, backgroundColor: 'rgba(255, 255, 255, 0.8)'}}
+                            style={{width:Dimensions.get('window').width, height:280, backgroundColor: 'rgba(255, 255, 255, 0.8)'}}
                             textColor="#000"
                         />
                          <Pressable
@@ -138,9 +138,7 @@ export default class Birth extends Component {
                         </Pressable>
                     </View>
                         
-
-                                    
-                    
+                    <View style={styles.nextBtnContainer}>
                     <Pressable
                         style={{
                             width: Dimensions.get('window').width * 0.7,
@@ -154,8 +152,7 @@ export default class Birth extends Component {
                             shadowColor: 'grey',
                             shadowOffset: { height: 2, width: 2 },
                             borderRadius:25,
-                            position:'absolute',
-                            bottom:10
+                            
 
                         }}
                         onPress={() => {this.connect(); this.props.navigation.navigate('Interest');}}
@@ -166,6 +163,8 @@ export default class Birth extends Component {
                             style={styles.btnFonts}
                             />
                     </Pressable>
+                    </View>
+                    
                 </View>
                 </ImageBackground>
             </View>
