@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ImageBackground, Text, View, Pressable, ScrollView, Image, Alert } from 'react-native'
 import styles from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-
+import ActionSheet from 'react-native-actionsheet';
 
 import { CometChat } from '@cometchat-pro/react-native-chat';
 
@@ -14,6 +14,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function Roominfo({ route, navigation }) {
      const [id, setId] = useState('');
+     const [reason, setReason] = useState([
+        '부적절한 메세지',
+        '부적절한 프로필 사진',
+        '기타',                    
+        '취소',
+    ]);
      const { sendd } = route.params;
      
 
@@ -113,6 +119,28 @@ function Roominfo({ route, navigation }) {
                   },
               ],            
           );
+      }
+
+      const bs = React.createRef();  
+
+      const showActionSheet = () => {        
+          bs.current.show();
+      };
+  
+      const report = (reason) => {        
+          if(reason !== '취소') {            
+              var URL = `${SERVER_URL}/reportRoom`;
+              fetch(URL, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type' : 'application/json',
+                  },
+                  body: JSON.stringify({
+                      id: sendd.GUID,
+                      reason: reason,
+                  })
+              })    
+          }  
       }
   
 
@@ -275,7 +303,7 @@ function Roominfo({ route, navigation }) {
                                 onPress={() => navigation.navigate('Chat')}
                             >
                                <Text style={styles.chatBtnText}>
-                                    Chat
+                                    채팅
                                 </Text>
                             </Pressable> 
                             {id === sendd.id ?
@@ -284,20 +312,39 @@ function Roominfo({ route, navigation }) {
                                     onPress={() => deleteAlert()}
                                 >
                                 <Text style={styles.chatBtnText}>
-                                    Delete
+                                    삭제
                                 </Text>
                                 </Pressable>
                             :
+                            <View>
                                 <Pressable 
                                     style={styles.delBtn} 
                                     onPress={() => leaveAlert()}                                   
                                 >
                                 <Text style={styles.chatBtnText}>
-                                    Leave
+                                    나가기
                                 </Text>
                                 </Pressable>
+                                    
+                                    <Pressable 
+                                        style={styles.reportBtn} 
+                                        onPress={() => showActionSheet()}                                   
+                                    >
+                                        <Text style={styles.reportBtnText}>
+                                            신고하기
+                                        </Text>
+                                    </Pressable> 
+                                
+                            </View>  
                             }  
                     </View>
+                    <ActionSheet 
+                            ref={bs}
+                            title={'신고 사유'}
+                            options={reason}
+                            cancelButtonIndex={3} 
+                            onPress={(index) => report(reason[index])}  
+                        />
                </ScrollView>
                </ImageBackground>
           </View>

@@ -142,6 +142,20 @@ btnContainer:{
      shadowColor: 'grey',
      shadowOffset: { height: 3, width: 3 },     
      },
+     reportBtn:{
+          width: Dimensions.get('window').width * 0.7,
+          height: Dimensions.get('screen').height * 0.06,
+          backgroundColor: '#fff',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginVertical: 10,
+          borderRadius: 25,
+          shadowOpacity: 0.3,
+          shadowRadius: 5,
+          shadowColor: 'grey',
+          shadowOffset: { height: 3, width: 3 }, 
+          elevation: 30,    
+      },
    chatBtnText:{
      fontSize:25,
      fontWeight:'bold',
@@ -149,6 +163,12 @@ btnContainer:{
      fontFamily:'Jost-Bold'
      
      },
+     reportBtnText:{
+          fontSize:25,
+          fontWeight:'bold',
+          color:'red',
+          fontFamily:'Jost-Bold' 
+      },
    dateText:{
      fontSize:30,
      marginBottom:-5,

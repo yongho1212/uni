@@ -8,6 +8,7 @@ import ActionSheet from 'react-native-actionsheet';
 
 import { SERVER_URL } from '@env';
 import { TouchableOpacity } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default class Category extends Component {
     constructor(props) {
@@ -21,9 +22,9 @@ export default class Category extends Component {
             visible: false,
 
             reason: [
-                    'message',
-                    'profile image',
-                    'appoint',                    
+                    '부적절한 메세지',
+                    '부적절한 이미지 ',
+                    'LOOF 정책 위배',                    
                     'Cancel',
             ]
         }
@@ -86,13 +87,16 @@ export default class Category extends Component {
 
     render() {
         return (
-            <View style={{ width: Dimensions.get('window').width * 0.96 , marginHorizontal: Dimensions.get('window').width * 0.02,}}>                
+            <View style={{ width: Dimensions.get('window').width * 0.96 , marginHorizontal: Dimensions.get('window').width * 0.02, }}>                
+                <View style={{height: Dimensions.get('window').height * 0.4, marginVertical:5}}>
                 <Image                     
                     source={{ uri: this.state.profile }}
-                    style={{ width: '100%', height: Dimensions.get('window').height * 0.4 }}                                
+                    style={{ height:"100%",width: '100%', zIndex:100 }}                                
                 />
+                </View>
+                
                 <View style={styles.userContainer}>
-                    <View style={{flexDirection:'row'}}>
+                    <View style={{flexDirection:'row', marginLeft:10}}>
                         <Text style={styles.userName}>{this.state.userName} </Text>   
                         <Text style={styles.userAge}> {this.state.age}</Text>    
                     </View>
@@ -112,19 +116,19 @@ export default class Category extends Component {
                         onPress={()=>alert('서비스 준비중')}
                         style={styles.userBtn}
                         >
-                            <Text style={{fontSize:20}}>{this.state.userName}님 친구추가</Text>
+                            <Text style={{fontSize:20 ,fontWeight:'bold'}}>{this.state.userName}님 친구추가</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                         onPress={()=>alert('서비스 준비중')}
                         style={styles.userBtn}
                         >
-                            <Text style={{fontSize:20}}>{this.state.userName}님에게 메세지 보내기</Text>
+                            <Text style={{fontSize:20,fontWeight:'bold'}}> 메세지 보내기</Text>
                         </TouchableOpacity>
                         <TouchableHighlight
                         onPress={this.showActionSheet}
                         style={styles.userRptBtn}
                         >
-                            <Text style={{fontSize:20, color:'red'}}>{this.state.userName}님 신고</Text>
+                            <Text style={{fontSize:20, color:'red',fontWeight:'bold'}}>{this.state.userName}님 신고</Text>
                         </TouchableHighlight>
                     </View>
                     
@@ -143,12 +147,15 @@ export default class Category extends Component {
 
 const styles = StyleSheet.create({
     userContainer: {        
-        marginLeft: Dimensions.get('window').width * 0.02,    
+           
+        height:Dimensions.get('window').height * 0.4,
+         
     },
     userName: {
         fontSize: 30,
         fontWeight:'bold',
-        marginBottom:5
+        marginBottom:5,
+        fontFamily:"Jost-medium"
     },
     userAge: {
         fontSize: 30,
@@ -177,7 +184,6 @@ const styles = StyleSheet.create({
     },
     userBtn:{
         width:250, 
-        
         alignItems:'center',
         marginVertical:10,
         paddingVertical:5,
@@ -185,7 +191,6 @@ const styles = StyleSheet.create({
     },
     userRptBtn:{
         width:250, 
-        
         alignItems:'center',
         marginVertical:10,
         paddingVertical:5,

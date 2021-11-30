@@ -595,7 +595,7 @@ const LoginScreen = ({navigation}) => {
                   개인정보 처리방침
                 </Text>
                 <Text style={styles.termLinkText}
-                      onPress={() => Linking.openURL('https://www.loof.party/Privacy')}>
+                      onPress={() => Linking.openURL('https://www.loof.party/Terms')}>
                   , 이용약관에
                 </Text>
                 <Text style={styles.termText}>동의하게 됩니다.</Text>
