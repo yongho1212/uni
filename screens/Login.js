@@ -141,17 +141,7 @@ const LoginScreen = ({navigation}) => {
       .then(response => response.json())
       .then(responseData => {
         if (responseData) {
-          /*
-            const url = 'https://api-us.cometchat.io/v3.0/users/110917783035367947415';
-            fetch(url, {
-              method: 'DELETE',
-              headers: {Accept: 'application/json', 'Content-Type': 'application/json', appId: CHAT_APP_ID, apiKey: CHAT_API_KEY_1},
-              body: JSON.stringify({permanent: true})
-            })
-            .then(response => response.json())
-            .then(responseData => console.log(responseData))
-            
-*/
+
           CometChat.init(appID, appSetting)
             .then(
               () => {

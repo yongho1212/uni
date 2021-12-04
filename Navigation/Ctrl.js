@@ -110,14 +110,7 @@ function DrawerNav({ route, navigation }) {
      component={homeScreenStack}     
      initialParams={{params: route.params}}  
       />     
-     <Drawer.Screen
-       name="FirstPage"
-       options={{ 
-          drawerLabel: '공지사항 📋',
-          
-          headerShown: true,
-       }}
-       component={Announce} />
+    
      {/*<Drawer.Screen
        name="SecondPage"
        options={{ drawerLabel: '이용내역 📑',
