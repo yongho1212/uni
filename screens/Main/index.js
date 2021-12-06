@@ -531,7 +531,7 @@ export default class Main extends Component {
                     </TouchableOpacity>                   
                     :
                     <TouchableOpacity
-                         onPress={() => this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id)}
+                         onPress={() => {this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id); Alert.alert('참가신청 완료');}}
                          style={styles.joinButton}
                     >
                          <Text style={styles.btnText}>Join</Text>

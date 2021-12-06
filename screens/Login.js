@@ -14,6 +14,7 @@ import {
   Linking,
   Dimensions,
   ActivityIndicator,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
@@ -34,7 +35,7 @@ import {
   AppleButton,
   appleAuth,
 } from '@invertase/react-native-apple-authentication';
-
+import jwtDecode from 'jwt-decode';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import messaging from '@react-native-firebase/messaging';
 
@@ -196,8 +197,9 @@ const LoginScreen = ({navigation}) => {
     auth()
       .signInWithEmailAndPassword(userEmail, userPassword)
       .then(user => {
-  //      console.log(user.user.uid);
-   //     console.log(userEmail);
+        console.log(user.user.uid);
+        console.log(userEmail);
+        console.log(user.uid + " " +"TEST")
 
      
 
@@ -333,6 +335,7 @@ const LoginScreen = ({navigation}) => {
     const appleCredential = auth.AppleAuthProvider.credential(
       identityToken,
       nonce,
+      user
     );
 
     // Sign the user in with the credential
@@ -341,11 +344,14 @@ const LoginScreen = ({navigation}) => {
       .signInWithCredential(appleCredential)
       .then(startLoading())
       .then(identityToken => {
-        var id = identityToken.additionalUserInfo.profile.sub;
+        var idb = identityToken.additionalUserInfo.profile.sub;
+        var ida = idb.replace(/\./g,"")
+        var id = ida
         var email = identityToken.user.email;
-    //    console.log(identityToken.additionalUserInfo.profile.sub);
+        
+
         //console.log(identityToken.additionalUserInfo.profile.nonce);
-        //console.log(identityToken.user.email);
+        console.log(ida);
 
         connect(id, email);
       });
@@ -353,6 +359,7 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.mainBody}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View keyboardShouldPersistTaps="handled">
         <View style={{alignItems: 'center', justifyContent: 'center'}}>
           <KeyboardAvoidingView enabled>
@@ -596,6 +603,7 @@ const LoginScreen = ({navigation}) => {
           </KeyboardAvoidingView>
         </View>
       </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };

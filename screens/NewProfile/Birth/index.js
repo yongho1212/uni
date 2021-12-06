@@ -129,7 +129,7 @@ export default class Birth extends Component {
                                 shadowOffset: { height: 2, width: 2 },
                                 borderRadius:25
                             }}
-                            onPress={() => {this.setState({date: '선택안함'}); this.setState({nextColor: '#49ffbd', noneColor: 'lightgrey'})}}
+                            onPress={() => {this.setState({date: new Date(2021, 1, 1)}); this.setState({nextColor: '#49ffbd', noneColor: 'lightgrey'})}}
                         >
                             
                             
