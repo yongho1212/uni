@@ -130,7 +130,7 @@ export default class UserList extends Component {
                                     <Text 
                                         style={styles.usersAge}
                                     >
-                                        {this.state.usersAge[i] + '살'}
+                                        {this.state.usersAge[i] + '세'}
                                     </Text>
                                     <Text
                                         style={styles.usersGender}

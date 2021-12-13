@@ -21,10 +21,22 @@ const styles = StyleSheet.create({
     infoContainer:{
         flexDirection: 'row',
         alignItems: 'center',
-        flex: 4
+        flex: 3,
+        
+    },
+    imgContainer:{
+        flex:1
+    },
+    introContainer:{
+        flex:3
     },
     userImg: {
-        width: 80, height: 80, borderRadius: 40, overflow: 'hidden', borderWidth: 3,
+        width: Dimensions.get('window').height*0.09,
+         height: Dimensions.get('window').height*0.09,
+          borderRadius: 40, overflow: 'hidden', 
+          borderWidth: 1,
+          borderColor:"gray",
+          marginLeft:5
     },
     usersList: {
         width: Dimensions.get('window').width*0.95,
@@ -43,26 +55,27 @@ const styles = StyleSheet.create({
         borderColor: '#fb009e'        
     },
     usersNick: {
-        marginLeft: 10,
-        fontSize: 16,
+        marginLeft:20,
+        fontSize: 20,
         fontWeight: 'bold'        
     },
     usersAge: {
-        marginLeft: 10,
+        marginLeft:20,
         fontSize: 16,
-        fontWeight: 'bold'        
+              
     },
     usersGender: {
-        marginLeft: 10,
+        marginLeft:10,
         fontSize: 16,
-        fontWeight: 'bold'        
+        
     },
     introText: {
         marginLeft: 10,        
     },
     checkList: {
         flexDirection: 'row',
-        flexWrap: 'wrap', 
+        justifyContent:'center',
+        alignItems:'center',
         marginHorizontal: 10,
         flex:1
     },

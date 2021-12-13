@@ -117,21 +117,24 @@ export default class RequestList extends Component {
                             <View style={styles.imgContainer}>
                                 <Image
                                     source={{uri : this.state.usersProfile[i]}}
-                                    style={{width: 70, height: 70, borderRadius: 40, overflow: 'hidden', borderWidth: 1,marginLeft:5}}
+                                    style={styles.userImg}
                                     key={key++}
                                 />
                             </View>
-                            <View>
-                                <View style={{flexDirection: 'row'}}>
+                            <View style={styles.introContainer}>
+                                <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'flex-end',flex:1}}>
                                     <Text
                                         style={styles.usersNick}
                                     >
                                         {this.state.usersNick[i]}
                                     </Text>
+                                    
+                                </View>
+                                <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center', flex:1, marginBottom:4}}>
                                     <Text
                                         style={styles.usersAge}
                                     >
-                                        {this.state.usersAge[i] + '살'}
+                                        {this.state.usersAge[i] + '세'}
                                     </Text>
                                     <Text
                                         style={styles.usersGender}
@@ -139,9 +142,7 @@ export default class RequestList extends Component {
                                         {this.state.usersGender[i]}
                                     </Text>
                                 </View>
-                                <Text style={styles.introText}>
-                                    introdoce about me
-                                </Text>
+                                
                             </View>                            
                        </View>
                        <View style={styles.checkList}>

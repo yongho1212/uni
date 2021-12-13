@@ -453,13 +453,13 @@ export default class Main extends Component {
 
      renderContent = () => (    
           <View
-             style={{flex: 0, backgroundColor: '#F2F2F2', padding: 20, height: 700,}}
+             style={{ backgroundColor: '#F2F2F2', padding: 20, height: 700,}}
           >
                {this.state.roomInfo !== undefined ? 
                /* ScrollView 끝에 잘리는거 수정 필요 */
                <View style={styles.roomContainer}>
-                    <View style={styles.placeContainer}>                                                                   
-                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <View style={styles.imgContainer}>                                                                   
+                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{height:60}}>
                               {this.state.hostsProfile !== null ?
                                    this.state.hostsProfile.map((data, index) => {
                                         return (
@@ -469,7 +469,9 @@ export default class Main extends Component {
                                                        style={{width: 50, height: 50, borderRadius: 25, borderWidth: 3, marginLeft: 7,}}
                                                        key={index++}
                                                   />
-                                                  <Image style={{position: 'absolute', left: 26, top: 22, flex: 1, width: 30, height: 30,}} source={require('../../assets/logo/crown.png')} key={index++}/> 
+                                                  <Image style={{position: 'absolute', left: 26, top: 22, flex: 1, width: 30, height: 30,}} 
+                                                  source={require('../../assets/logo/crown.png')} 
+                                                  key={index++}/> 
                                              </View>
                                         )
                                    })
@@ -485,7 +487,9 @@ export default class Main extends Component {
                                         )                                             
                                    }) 
                               : null}    
-                         </ScrollView>                                                                                      
+                         </ScrollView>      
+                         </View>      
+                    <View style={styles.placeContainer}>                                                                     
                          <Text style={styles.placeText}>Place</Text>
                          <TextInput
                               style={styles.placeInfo}
@@ -518,6 +522,7 @@ export default class Main extends Component {
                          />
                     </View>           
                     {this.state.id === this.state.roomInfo.id ?
+                    <View style={styles.btnContainer}>
                     <TouchableOpacity
                          onPress={() => this.props.navigation.push('Hosting', 
                               {
@@ -528,14 +533,17 @@ export default class Main extends Component {
                          style={styles.modifyButton}
                     >
                          <Text style={styles.btnText}>수 정</Text>
-                    </TouchableOpacity>                   
+                    </TouchableOpacity>   
+                    </View>                
                     :
+                    <View style={styles.btnContainer}>
                     <TouchableOpacity
                          onPress={() => {this.joinRoom(this.state.roomInfo.id, this.state.roomInfo._id); Alert.alert('참가신청 완료');}}
                          style={styles.joinButton}
                     >
                          <Text style={styles.btnText}>Join</Text>
                     </TouchableOpacity>  
+                    </View>  
                     }                                
                </View>                                           
                : null}

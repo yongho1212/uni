@@ -286,12 +286,14 @@ export default class NewProfileImg extends Component {
        //채팅 아이디 생성
        createUser = async() => {
 
+        const appID = CHAT_APP_ID;
+        const region = 'us'
         const appSetting = new CometChat.AppSettingsBuilder()
         .subscribePresenceForAllUsers()
-        .setRegion('us')
+        .setRegion(region)
         .build();
 
-        CometChat.init(CHAT_APP_ID, appSetting).then(
+        CometChat.init(appID, appSetting).then(
             () => {
                 console.log('Initialization completed successfully');
             },

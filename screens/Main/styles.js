@@ -4,19 +4,27 @@ const styles = StyleSheet.create({
     roomContainer: {
         width: Dimensions.get('window').width,
     },
-    placeContainer: {
-        paddingBottom: 15,
+    imgContainer: {
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.07,
+        justifyContent:'center',
+       
+    },
+    placeContainer:{
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.13,
+        justifyContent:'center',
+        
     },
     placeText: {
         fontSize: 20,
-        marginBottom: 5,
         fontWeight:'bold'
     },
     placeInfo: {    
         paddingLeft:20,    
         height: 50,
-        width: Dimensions.get('window').width * 0.9,  
-        height:Dimensions.get('window').width * 0.15,      
+        width: Dimensions.get('window').width * 0.9,
+        height:Dimensions.get('window').height * 0.07,       
         borderRadius: 25,
         backgroundColor: '#fff',
         justifyContent: 'center',
@@ -27,18 +35,21 @@ const styles = StyleSheet.create({
         marginTop:4
     },
     categoryContainer: {
-        paddingBottom: 15,
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.13,
+        justifyContent:'center',
+        
     },
     categoryText: {
         fontSize: 20,
-        marginBottom: 5,
+        
         fontWeight:'bold'
     },
     categoryInfo: {   
         paddingLeft:20,   
         height: 50,
         width: Dimensions.get('window').width * 0.9,
-        height:Dimensions.get('window').width * 0.15,   
+        height:Dimensions.get('window').height * 0.07,    
         borderRadius: 25,
         backgroundColor: '#fff',
         justifyContent: 'center',
@@ -49,18 +60,21 @@ const styles = StyleSheet.create({
         marginTop:4
     },
     titleContainer: {
-        paddingBottom: 15,
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.13,
+        justifyContent:'center',
+        
     },
     titleText: {
         fontSize: 20,
-        marginBottom: 5,
+        
         fontWeight:'bold'
     },
     titleInfo: {      
         paddingLeft:20,
         height: 50,
         width: Dimensions.get('window').width * 0.9,
-        height:Dimensions.get('window').width * 0.15,   
+        height:Dimensions.get('window').height * 0.07,    
         borderRadius: 25,
         backgroundColor: '#fff',
         justifyContent: 'center',
@@ -71,18 +85,20 @@ const styles = StyleSheet.create({
         marginTop:4
     },
     timeContainer: {
-        paddingBottom: 15,
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.13,
+        justifyContent:'center'
     },
     timeText: {
         fontSize: 20,
-        marginBottom: 5,
+        
         fontWeight:'bold'
     },
     timeInfo: {      
         paddingLeft:20,
         height: 50,
         width: Dimensions.get('window').width * 0.9,
-        height:Dimensions.get('window').width * 0.15,    
+        height:Dimensions.get('window').height * 0.07,    
         
         borderRadius: 25,
         backgroundColor: '#fff',
@@ -92,6 +108,11 @@ const styles = StyleSheet.create({
         borderWidth:3,
         borderColor:"#fb009e",
         marginTop:4
+    },
+    btnContainer:{
+        width: Dimensions.get('window').width * 0.9,
+        height: Dimensions.get('window').height * 0.15,
+        justifyContent:'center'
     },
     joinButton: {
         backgroundColor: '#00FF7F',
