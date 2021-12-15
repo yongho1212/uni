@@ -49,14 +49,22 @@ const SplashScreen = ({ navigation }) => {
         console.log('Initialization failed with error:', error);
       },
     ).then(
-      CometChat.login(id, CHAT_AUTH_KEY).then (
-        User => {
-          console.log("Login Successful:", { User });
-        },
-        error => {
-          console.log("Login failed with exception:", { error });
+      CometChat.getLoggedinUser().then(
+        (user) => {
+            if(!user){
+                CometChat.login(UID, authKey).then(
+                  user => {
+                    console.log("Login Successful:", { user });    
+                  }, error => {
+                    console.log("Login failed with exception:", { error });    
+                  }
+                );
+            }
+        }, error => {
+            console.log("Some Error Occured", { error });
         }
-      )
+    )
+
     )
   }
   return (

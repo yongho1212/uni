@@ -20,6 +20,7 @@ export default class DropUser extends Component {
 
 componentDidMount() {
     this.connect();
+    
 }
 
 
@@ -149,6 +150,8 @@ leaveGroup = async(GUID) => {
         ]);
         return true;
       };
+
+   
 
  
 

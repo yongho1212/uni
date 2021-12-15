@@ -324,6 +324,13 @@ export default class NewProfileImg extends Component {
             .then(response => response.json())
             .then(responseData => console.log(responseData))   
             .then(() => {
+                CometChat.createUser(nickname, CHAT_AUTH_KEY).then(
+                    user => {
+                        console.log("user created", user);
+                    },error => {
+                        console.log("error", error);
+                    }
+                ).then (
                 CometChat.login(this.state.id, CHAT_AUTH_KEY).then (
                     User => {
                       console.log("Login Successful:", { User });
@@ -331,6 +338,7 @@ export default class NewProfileImg extends Component {
                     error => {
                       console.log("Login failed with exception:", { error });
                     }
+                )
                 )
             }) 
         })            

@@ -80,7 +80,8 @@ export default class App extends Component {
   componentDidMount = () => {         
     this.foreground();   
     this.background();     
-    this.bootsplash();     
+    this.bootsplash();    
+  
   }
 
   componentWillUnmount = () => {
@@ -117,6 +118,8 @@ export default class App extends Component {
       channelId: 'TEST',      
     })
   }
+
+ 
 
   render() {
     return (

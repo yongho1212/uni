@@ -142,7 +142,6 @@ const LoginScreen = ({navigation}) => {
       .then(response => response.json())
       .then(responseData => {
         if (responseData) {
-
           CometChat.init(appID, appSetting)
             .then(
               () => {
