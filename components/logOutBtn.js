@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from '@react-navigation/native';
+import {CometChat} from '@cometchat-pro/react-native-chat';
 
 import auth from "@react-native-firebase/auth";
 
@@ -41,6 +42,13 @@ const LogoutBtn = () => {
         {
           text: "확인",
           onPress: () => {
+            CometChat.logout().then(
+              () => {
+                console.log("Logout completed successfully");
+              },error=>{
+                console.log("Logout failed with exception:",{error});
+              }
+            ).then(
             auth()
               .signOut()
               .then(() => navigation.replace("Auth"))
@@ -50,7 +58,8 @@ const LogoutBtn = () => {
                   navigation.replace("Auth");
                 else alert(error);
                 
-              });
+              })
+            )
           },
         },
       ],

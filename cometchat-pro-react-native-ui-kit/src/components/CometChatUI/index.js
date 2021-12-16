@@ -11,6 +11,7 @@ import { CometChatContextProvider } from '../../utils/CometChatContext';
 import { CometChatUserProfile } from '../UserProfile';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Entypo  from 'react-native-vector-icons/Entypo';
 import MCIIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import theme from '../../resources/theme';
 import { heightRatio } from '../../utils/consts';
@@ -52,7 +53,7 @@ function CometChatUI() {
 
               if (route.name === 'Chats') {
                 return (
-                  <MCIIcons name="chat" size={25 * heightRatio} color='#fb009e' />
+                  <Entypo name="chat" size={25 * heightRatio} color='#000' />
                 );
               }
               if (route.name === 'More') {
@@ -80,12 +81,13 @@ function CometChatUI() {
               );
             },
           })}
-          tabBarOptions={{
+          screenOptions={{
             activeTintColor: theme.color.blue,
             inactiveTintColor: 'rgba(0,0,0,0.5)',
             activeBackgroundColor: theme.color.white,
             inactiveBackgroundColor: theme.color.white,
             labelStyle: { fontSize: 12 },
+            headerShown:false
           }}>
           {tabs.isChatEnabled && (
             <Tab.Screen

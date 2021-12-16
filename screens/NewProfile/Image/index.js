@@ -301,7 +301,7 @@ export default class NewProfileImg extends Component {
                 console.log('Initialization failed with error:', error);
             },
         );
-
+        
         const nickname = await AsyncStorage.getItem('nickname'); 
         
         fetch(`${SERVER_URL}/firstProfile/?id=` + this.state.id  + "&time=" + new Date())

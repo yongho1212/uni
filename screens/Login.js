@@ -110,9 +110,11 @@ const LoginScreen = ({navigation}) => {
       authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
       authStatus === messaging.AuthorizationStatus.PROVISIONAL;
     if (enabled) {
+      
       const token = await messaging().getToken();
+      
       setFcmToken(token);
-      console.log(token);
+   //   console.log(token);
     } else {
       console.log('fcm auth fail');
     }
@@ -142,36 +144,6 @@ const LoginScreen = ({navigation}) => {
       .then(response => response.json())
       .then(responseData => {
         if (responseData) {
-          CometChat.init(appID, appSetting)
-            .then(
-              () => {
-                console.log('Initialization completed successfully');
-              },
-              error => {
-                console.log('Initialization failed with error:', error);
-              },
-            )
-            .then(
-              CometChat.login(id, CHAT_AUTH_KEY).then(
-                User => {
-                  console.log('Login Successful:', {User});
-                },
-                error => {
-                  console.log('Login failed with exception:', {error});
-                },
-              ),
-            )
-            .then(
-              CometChat.registerTokenForPushNotification(fcmToken).then(
-                () => {
-                  console.log('OK');
-                },
-                error => {
-                  console.log('Fail: ', error);
-                },
-              ),
-            );
-
           navigation.navigate('DrawerNav');
         } else {
   //        console.log(responseData);
@@ -179,6 +151,39 @@ const LoginScreen = ({navigation}) => {
         }
       });
   };
+
+  const ChatLogin = (id) => {
+     CometChat.init(appID, appSetting)
+      .then(
+          () => {
+            console.log('Initialization completed successfully');
+          },
+          error => {
+            console.log('Initialization failed with error:', error);
+          },
+        )  
+    
+      .then(
+        CometChat.login(id, CHAT_AUTH_KEY).then(
+        User => {
+          console.log('Login Successful:', {User});
+        },
+        error => {
+          console.log('Login failed with exception:', {error});
+        },
+      ))
+    
+    {/*.then(
+      CometChat.registerTokenForPushNotification(fcmToken).then(
+        () => {
+          console.log('OK');
+        },
+        error => {
+          console.log('Fail: ', error);
+        },
+      ),
+      );*/}
+  }
 
   // CUSTOM
   const handleSubmitPress = () => {
@@ -207,6 +212,7 @@ const LoginScreen = ({navigation}) => {
         // If server response message same as Data Matched
         // if (user) navigation.replace("DrawerNav");
         connect(id, email);
+        ChatLogin(id);
         
       })
       .catch(error => {
@@ -246,7 +252,12 @@ const LoginScreen = ({navigation}) => {
 
           // If server response message same as Data Matched
           //if (idToken) navigation.replace("HomeScreen");
+          console.log('gg1')
+          ChatLogin(id);
+          console.log('gg2')
           connect(id, email);
+          console.log('gg3')
+          
           
         });
     } catch (error) {
@@ -310,6 +321,7 @@ const LoginScreen = ({navigation}) => {
         //if (idToken) navigation.replace("HomeScreen");
         
         connect(id, email);
+        ChatLogin(id);
         
       });
       
@@ -353,6 +365,7 @@ const LoginScreen = ({navigation}) => {
         console.log(ida);
 
         connect(id, email);
+        ChatLogin(id);
       });
   }
 

@@ -52,7 +52,7 @@ const SplashScreen = ({ navigation }) => {
       CometChat.getLoggedinUser().then(
         (user) => {
             if(!user){
-                CometChat.login(UID, authKey).then(
+                CometChat.login(id, authKey).then(
                   user => {
                     console.log("Login Successful:", { user });    
                   }, error => {
