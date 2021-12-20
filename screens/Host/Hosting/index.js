@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, Pressable, Alert, SafeAreaView, TextInput, ImageBackground} from 'react-native';
+import {Text, View, Pressable, Alert, SafeAreaView, TextInput, Keyboard, ImageBackground, KeyboardAvoidingView, TouchableWithoutFeedback} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Moment from 'moment';
@@ -238,11 +238,20 @@ export default class Hosting extends Component {
 
     render() {
         return (
-            <View style={styles.hostingContainer}>
+            <View 
+            style={styles.hostingContainer}
+            
+            >
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <KeyboardAvoidingView
+                behavior={"position"}
+                
+                >
+                
           
                 <ImageBackground
-                source={require("../../../assets/imgs/3rs.png")} resizeMode="cover" 
-                style={{width:"100%", height:'100%' }}
+                source={require("../../../assets/imgs/3rs.png")} 
+                style={{width:"100%", height:'100%', }}
                 >
                       <SafeAreaView >
                     <View style={styles.headerConatiner}>
@@ -293,15 +302,6 @@ export default class Hosting extends Component {
                         </Pressable>
                     </View>
                     
-                    <View style={styles.titleConatiner}>
-                        <Text style={styles.titleText}>Title</Text>
-                        <TextInput
-                            style={styles.titleInput}
-                            autoCapitalize="none"
-                            onChangeText={text => this.onChangeText(text)}
-                            value={this.state.room.title}
-                        />
-                    </View>
                     <View style={styles.timeConatiner}>
                         <Text style={styles.timeText}>Time</Text>
                         <Pressable
@@ -314,6 +314,15 @@ export default class Hosting extends Component {
                             </View>                                                                
                         </Pressable>
                         
+                    </View>
+                    <View style={styles.titleConatiner}>
+                        <Text style={styles.titleText}>Title</Text>
+                        <TextInput
+                            style={styles.titleInput}
+                            autoCapitalize="none"
+                            onChangeText={text => this.onChangeText(text)}
+                            value={this.state.room.title}
+                        />
                     </View>
                     <View style={styles.chatlinkConatiner}>
                         <Text style={styles.chatlinkText}>Chat Link</Text>
@@ -344,6 +353,9 @@ export default class Hosting extends Component {
                 </View>
                 </SafeAreaView>
                 </ImageBackground>
+                
+                </KeyboardAvoidingView>
+                </TouchableWithoutFeedback>
             </View>
         )
     }
