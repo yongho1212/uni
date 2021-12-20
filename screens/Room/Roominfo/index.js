@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, Text, View, Pressable, ScrollView, Image, Alert } from 'react-native'
+import { ImageBackground, Text, View, Pressable, ScrollView, Image, Alert,Linking } from 'react-native'
 import styles from './styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import ActionSheet from 'react-native-actionsheet';
@@ -145,10 +145,10 @@ function Roominfo({ route, navigation }) {
   
 
      return (
-          <View style={{ flex:1}}>
+          <View style={{ }}>
                <ImageBackground
                 source={require("../../../assets/imgs/2r.png")} resizeMode="cover" 
-                style={{width:"100%", height:'100%', }}
+                style={{width:"100%",height:"100%" }}
                 >
 
                
@@ -247,10 +247,15 @@ function Roominfo({ route, navigation }) {
                          <Text style={{marginTop:10,fontSize:17, fontFamily:'Jost-Medium'}}>{JSON.stringify(sendd.category).replace(/\"/gi, "")}</Text> 
                          </View>
                          <View style={{flex:2}}>
+                         <View style={styles.timedate}>
                               
+                              <Text style={styles.dateText}> {JSON.stringify(sendd.timeInfo).replace(/\"/gi, "").slice(0,8)}</Text>
+                              <Text style={styles.timeText}>{JSON.stringify(sendd.timeInfo).replace(/\"/gi, "").slice(9)}</Text>
+                         </View>
                              
                          </View>
                     </View>
+                    {/* 
                     <View style={styles.timeContainer}>
                          <View style={styles.time}>
                               <Text style={styles.sectionName}>
@@ -265,6 +270,7 @@ function Roominfo({ route, navigation }) {
                               <Text style={styles.timeText}>{JSON.stringify(sendd.timeInfo).replace(/\"/gi, "").slice(9)}</Text>
                          </View>
                     </View>
+                    */}
                     <View style={styles.l2Container}>
                          <View style={styles.title}>
                          <Text style={styles.sectionName}>
@@ -294,10 +300,31 @@ function Roominfo({ route, navigation }) {
                          
                          </View>
                     </View>
+                    <View style={styles.l2Container}>
+                         <View style={styles.title}>
+                         <Text style={styles.sectionName}>
+                              Chat Link
+                         </Text>
+                              <Text 
+                              ellipsizeMode='tail' 
+                              numberOfLines={2} 
+                               style={styles.titleText}
+                               onPress={() => Linking.openURL(sendd.kakaolink)}
+                               >
+                              {JSON.stringify(sendd.kakaolink).replace(/\"/gi, "")}
+                              </Text>
+                              
+                         </View>
+                         {/*<View style={styles.host}>
+                              <Text>Host</Text>
+                              <Text>{JSON.stringify(sendd.joinUser).replace(/\"/gi, "")}</Text>
+                         </View>*/}
+                    </View>
                </View>
 
 
                <View style={styles.btnContainer}>
+                    {/* 
                     <Pressable 
                                 style={styles.chatBtn}
                                 onPress={() => navigation.navigate('Chat')}
@@ -306,6 +333,7 @@ function Roominfo({ route, navigation }) {
                                     채팅
                                 </Text>
                             </Pressable> 
+                            */}
                             {id === sendd.id ?
                                 <Pressable 
                                     style={styles.delBtn}

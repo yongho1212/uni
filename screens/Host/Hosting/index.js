@@ -44,6 +44,7 @@ export default class Hosting extends Component {
             await AsyncStorage.setItem('title', this.props.route.params.title);
             await AsyncStorage.setItem('time', JSON.parse(this.props.route.params.time));
             await AsyncStorage.setItem('timeInfo', this.props.route.params.timeInfo);
+            await AsyncStorage.setItem('kakaolink', this.props.route.params.timeInfo);
         }else if(this.props.route.params.Info === 'place') {    
             if(this.props.route.params.address !== null) {        
                 console.log(this.props.route.params.lat);
@@ -73,6 +74,7 @@ export default class Hosting extends Component {
             const title = await AsyncStorage.getItem('title');
             const time = await AsyncStorage.getItem('time');
             const timeInfo = await AsyncStorage.getItem('timeInfo');
+            const kakaolink = await AsyncStorage.getItem('kakaolink');
             this.setState({
                 room: {
                     id: id,
@@ -81,6 +83,7 @@ export default class Hosting extends Component {
                     lng: lng,
                     category: category,
                     title: title,
+                    kakaolink: kakaolink,
                     time: time,
                     timeInfo: timeInfo,
                 },
@@ -95,6 +98,7 @@ export default class Hosting extends Component {
         await AsyncStorage.removeItem('check');
         await AsyncStorage.removeItem('category');
         await AsyncStorage.removeItem('title');
+        await AsyncStorage.removeItem('kakaolink');
         await AsyncStorage.removeItem('time');
         await AsyncStorage.removeItem('timeInfo');
     }
@@ -103,12 +107,17 @@ export default class Hosting extends Component {
     onChangeText = async(text) => {
         await AsyncStorage.setItem('title', text);    
         const title = await AsyncStorage.getItem('title');
-        
         this.state.room.title = title;
     }
 
+    onChangeLink = async(text) => {
+        await AsyncStorage.setItem('kakaolink', text);    
+        const kakaolink = await AsyncStorage.getItem('kakaolink');
+        this.state.room.kakaolink = kakaolink;
+    }
+
     createRoom = async() => {        
-        const {id, address, lat, lng, category, title, time, timeInfo} = this.state.room;
+        const {id, address, lat, lng, category, title, time, timeInfo, kakaolink} = this.state.room;
         var GUID = Moment(new Date()).format('MMDD_HHmmss');
 
         const URL = `${ SERVER_URL }/createRoom`;
@@ -124,6 +133,7 @@ export default class Hosting extends Component {
                 lng: lng,                
                 category: category,
                 title: title,
+                kakaolink: kakaolink,
                 time: time,
                 timeInfo: timeInfo,
                 GUID: GUID,
@@ -134,7 +144,7 @@ export default class Hosting extends Component {
 
     modifyRoom = async() => {
         const {_id} = this.state;
-        const {address, lat, lng, category, title, time, timeInfo} = this.state.room;
+        const {address, lat, lng, category, title, time, timeInfo, kakaolink} = this.state.room;
 
         console.log(_id);
         
@@ -151,6 +161,7 @@ export default class Hosting extends Component {
                 lng: lng,
                 category: category,
                 title: title,
+                kakaolink: kakaolink,
                 time: time,
                 timeInfo: timeInfo,
             })
@@ -166,6 +177,8 @@ export default class Hosting extends Component {
             Alert.alert('카테고리를 설정하세요');
         }else if(this.state.room.title === null) {
             Alert.alert('제목을 입력하세요');
+        }else if(this.state.room.kakaolink === null) {
+            Alert.alert('링크를 입력하세요');
         }else if(this.state.room.time === null) {
             Alert.alert('시간을 설정하세요');
         }else {
@@ -302,6 +315,17 @@ export default class Hosting extends Component {
                         </Pressable>
                         
                     </View>
+                    <View style={styles.chatlinkConatiner}>
+                        <Text style={styles.chatlinkText}>Chat Link</Text>
+                        <TextInput
+                            style={styles.chatlinkInput}
+                            autoCapitalize="none"
+                            onChangeText={text => this.onChangeLink(text)}
+                            value={this.state.room.kakaolink}
+                            multiline ={true}
+                        />
+                    </View>
+                    
                     {this.state.check === 'modify' ?
                     <TouchableOpacity
                         style={styles.modifyButton}  

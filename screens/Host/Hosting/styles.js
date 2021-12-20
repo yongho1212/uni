@@ -107,6 +107,29 @@ const styles = StyleSheet.create({
         shadowOffset: { height: 2, width: 2 },
         
     },
+    chatlinkConatiner: {
+        marginVertical:10
+    },
+    chatlinkText: {
+        fontSize: 20,
+        marginBottom: 5,
+        marginLeft: Dimensions.get('window').width * 0.05,
+        fontFamily:'Jost-Medium'
+    },
+    chatlinkInput: {
+        height:Dimensions.get('window').height * 0.09,
+        width: Dimensions.get('window').width * 0.9,
+        marginLeft: Dimensions.get('window').width * 0.05,        
+        backgroundColor: '#FFF',
+        borderRadius:25,
+        paddingHorizontal:20,
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
+        shadowColor: 'grey',
+        shadowOffset: { height: 2, width: 2 },
+        flexShrink:1
+        
+    },
     timeConatiner: {
         marginVertical:10
     },

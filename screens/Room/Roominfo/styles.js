@@ -30,6 +30,20 @@ category:{
                         shadowColor: 'grey',
                         shadowOffset: { height: 3, width: 3 },
 },
+timedate:{
+     flex:1,
+     backgroundColor:'#fff',
+     borderRadius:25,
+     padding:10,
+     marginLeft:10,
+     marginRight:-20,
+     justifyContent:'center',
+     alignItems:'flex-start',
+     shadowOpacity: 0.3,
+     shadowRadius: 5,
+     shadowColor: 'grey',
+     shadowOffset: { height: 3, width: 3 },
+},
 time:{
      flex:1,
      backgroundColor:'#fff',
@@ -170,14 +184,14 @@ btnContainer:{
           fontFamily:'Jost-Bold' 
       },
    dateText:{
-     fontSize:30,
-     marginBottom:-5,
+     fontSize:28,
+     
      fontFamily:'Jost-Medium'
    },
    timeText:{
-     fontSize:39,
+     fontSize:33,
      
-     fontFamily:'Jost-Medium',
+     fontFamily:'Jost-Bold',
      
      
    },

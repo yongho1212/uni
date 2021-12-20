@@ -9,7 +9,7 @@ export default class MainButton extends Component {
         return (       
             <View style={styles.btnContainer}>
                 
-
+ {/*
                 <Pressable
                     style={styles.Button}
                     onPress={() => this.props.navigate('Chat')}
@@ -19,8 +19,8 @@ export default class MainButton extends Component {
                     name='chatbubbles-sharp'
                     size={30}
                     />
-                   {/*<Text style={styles.Txt}>Chat</Text>*/}
-                </Pressable>
+                  <Text style={styles.Txt}>Chat</Text>
+                </Pressable>*/}
                 <Pressable
                     style={styles.HostingButton}
                     onPress={() => this.props.navigate('Hosting')}
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
         shadowOffset: { height: 3, width: 3 },
     },
     Button: {
-        width:60,
-        height:60,
+        width:65,
+        height:65,
         backgroundColor:'#fb009e',
         borderRadius:25,
         justifyContent:'center',

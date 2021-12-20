@@ -522,7 +522,9 @@ export default class Main extends Component {
                          />
                     </View>           
                     {this.state.id === this.state.roomInfo.id ?
+                    
                     <View style={styles.btnContainer}>
+                         
                     <TouchableOpacity
                          onPress={() => this.props.navigation.push('Hosting', 
                               {
