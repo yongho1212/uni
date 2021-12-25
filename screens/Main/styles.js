@@ -139,8 +139,8 @@ const styles = StyleSheet.create({
     actionButtonIcon: {
         fontSize: 20,
         position:'absolute',
-        top:25,
-        right:-10
+        top:Dimensions.get('window').width * 0.06,
+        right:Dimensions.get('window').width * 0.001,
       },
       actionButtonIconClose:{
           fontSize:25,

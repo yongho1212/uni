@@ -595,7 +595,7 @@ export default class Main extends Component {
                     </MyMapView>
                     
                     <ActionButton 
-                         size={48}
+                         size={45}
                          buttonColor="#fb009e" 
                          verticalOrientation="down"
                          renderIcon={active => active ? (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconOpen} /> ) : (<Ionicons name="ios-funnel-sharp" style={styles.actionButtonIconClose} />)}

@@ -121,14 +121,15 @@ const LoginScreen = ({navigation}) => {
   };
 
   // BACK
-  const connect = async (id, email) => {
+  const connect = (id, email) => {
     
     try {
-      await AsyncStorage.setItem('id', id);
+      AsyncStorage.setItem('id', id);
+    
     } catch (e) {
       console.log(e);
     }
-
+    
     const URL = `${SERVER_URL}/signIn`;
     fetch(URL, {
       method: 'POST',
@@ -141,6 +142,7 @@ const LoginScreen = ({navigation}) => {
         fcm: fcmToken,
       }),
     })
+    
       .then(response => response.json())
       .then(responseData => {
         if (responseData) {
@@ -625,7 +627,8 @@ const styles = StyleSheet.create({
   mainBody: {
     justifyContent: 'center',
     backgroundColor: '#121212',
-    flex:1
+    flex:1,
+    height: Dimensions.get('window').height*1.0
   },
   sectionStyle: {
 

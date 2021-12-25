@@ -145,14 +145,14 @@ function Roominfo({ route, navigation }) {
   
 
      return (
-          <View style={{ }}>
+          <View style={{ flex:1}}>
                <ImageBackground
                 source={require("../../../assets/imgs/2r.png")} resizeMode="cover" 
-                style={{width:"100%",height:"100%" }}
+                style={{width:"100%",height:"130%" }}
                 >
 
                
-               <ScrollView>
+               <ScrollView contentContainerStyle={{ flexGrow: 1, height: '110%'}}>
                <View style={styles.infoContainer}>
                     <View style={styles.l1Container}>
                          <View style={styles.category}>
@@ -320,10 +320,7 @@ function Roominfo({ route, navigation }) {
                               <Text>{JSON.stringify(sendd.joinUser).replace(/\"/gi, "")}</Text>
                          </View>*/}
                     </View>
-               </View>
-
-
-               <View style={styles.btnContainer}>
+                    <View style={styles.btnContainer}>
                     {/* 
                     <Pressable 
                                 style={styles.chatBtn}
@@ -366,6 +363,11 @@ function Roominfo({ route, navigation }) {
                             </View>  
                             }  
                     </View>
+                    
+               </View>
+
+
+               
                     <ActionSheet 
                             ref={bs}
                             title={'신고 사유'}
