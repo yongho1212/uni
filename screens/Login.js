@@ -205,12 +205,13 @@ const LoginScreen = ({navigation}) => {
       .then(user => {
         console.log(user.user.uid);
         console.log(userEmail);
-        console.log(user.uid + " " +"TEST")
+        
 
      
 
-        var id = user.user.uid;
+        var id = user.user.uid.toLowerCase();
         var email = userEmail;
+        console.log(id)
         // If server response message same as Data Matched
         // if (user) navigation.replace("DrawerNav");
         connect(id, email);
@@ -254,11 +255,11 @@ const LoginScreen = ({navigation}) => {
 
           // If server response message same as Data Matched
           //if (idToken) navigation.replace("HomeScreen");
-          console.log('gg1')
+          
           ChatLogin(id);
-          console.log('gg2')
+          
           connect(id, email);
-          console.log('gg3')
+          
           
           
         });

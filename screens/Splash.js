@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-import auth from "@react-native-firebase/auth";
+import auth, { firebase } from "@react-native-firebase/auth";
 import RNBootSplash from "react-native-bootsplash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -28,12 +28,24 @@ const SplashScreen = ({ navigation }) => {
     .setRegion(region)
     .build();
 
-  React.useEffect(() => {
+ 
+
+    const loginCheck = () => {
+      const user = auth().currentUser;
+      if (user) {
+        navigation.replace("DrawerNav")
+      } else {
+        navigation.replace("Auth")
+      }
+    }
+
+  useEffect(() => {
+    loginCheck();
     setTimeout(() => {
-      navigation.replace(
+    {/*  navigation.replace(
         auth().currentUser ? "DrawerNav" : "Auth"        
       );
-
+    */}
       auth().currentUser ? chatInit() : console.log('Login Please');
     }, 1);
   }, []);  
