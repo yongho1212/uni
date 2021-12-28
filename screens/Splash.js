@@ -19,6 +19,27 @@ import {CHAT_APP_ID, CHAT_AUTH_KEY } from '@env'
 const SplashScreen = ({ navigation }) => {
   //State for ActivityIndicator animation
   const [animating, setAnimating] = useState(true);
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  // Handle user state changes
+  async function onAuthStateChanged(user) {
+    const id = await AsyncStorage.getItem('id')
+    
+    if (id == null) setUser(false);
+  }
+
+  useEffect(() => {
+   
+    if (user == true) {
+      navigation.replace("DrawerNav")
+    } else {
+      navigation.replace("Auth")
+    }
+  }, []);
+
+
+  
 
   //chatting  
   const appID = CHAT_APP_ID;
@@ -39,16 +60,16 @@ const SplashScreen = ({ navigation }) => {
       }
     }
 
-  useEffect(() => {
-    loginCheck();
-    setTimeout(() => {
+  // useEffect(() => {
+   // loginCheck();
+  //  setTimeout(() => {
     {/*  navigation.replace(
         auth().currentUser ? "DrawerNav" : "Auth"        
       );
     */}
-      auth().currentUser ? chatInit() : console.log('Login Please');
-    }, 1);
-  }, []);  
+    //  auth().currentUser ? chatInit() : console.log('Login Please');
+  //  }, 1);
+//  }, []);  
 
   const chatInit = async() => {    
     var id = await AsyncStorage.getItem('id');

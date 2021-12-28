@@ -139,7 +139,7 @@ export default class UserList extends Component {
                                     </Text>
                                 </View>
                                 <Text style={styles.introText}>
-                                    introdoce about me
+                                    
                                 </Text>
                             </View>                            
                        </View>

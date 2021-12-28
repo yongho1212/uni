@@ -17,8 +17,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-
-
+import auth, { firebase } from "@react-native-firebase/auth";
+import { useNavigation } from '@react-navigation/native';
 import Moment from 'moment';
 import 'moment/locale/ko';
 
@@ -33,6 +33,8 @@ import styles from './styles';
 import { TouchableOpacity } from 'react-native';
 
 import { LogBox } from 'react-native';
+import { id } from 'prelude-ls';
+import { run } from 'jest';
 
 LogBox.ignoreLogs(['Warning: ...']);
 
@@ -64,11 +66,39 @@ export default class Main extends Component {
 
                //bottom sheet
                isOpen: false,
+
+               loginOk: false
           }
      }
+
+     logOutNull = () => {
+               auth()
+              .signOut()
+              .then(() => this.props.navigation.replace("Auth"))
+              .catch((error) => {
+                console.log(error);
+                if (error.code === "auth/no-current-user")
+                    this.props.navigation.replace("Auth");
+                else console.log(error);
+              })
+
+     }
+
+     
     
      
      componentDidMount = async() => {            
+          const id = await AsyncStorage.getItem('id');
+          
+          if(id == null){
+               this.logOutNull()
+               
+          }else{
+               this.setState({loginOk:true})
+          }
+          
+
+
           if(this.props.route.params.params.params !== undefined) {               
                this.state.firstLoading = false;         
           }
@@ -107,14 +137,22 @@ export default class Main extends Component {
           await AsyncStorage.removeItem('timeInfo');
      } 
 
+     
+
      connect = async() => {
-          const id = await AsyncStorage.getItem('id');
-          this.setState({id: id});
 
           var Interest = new Array();
           var hobbyList = new Array();
 
           const URL = `${SERVER_URL}/main`;
+          const loginOk = this.state.loginOk 
+          console.log(loginOk)
+          const id = await AsyncStorage.getItem('id');
+          this.setState({id: id})
+          console.log("connect")
+            
+         
+          
         
           fetch(URL, {
                method: 'POST',
@@ -127,7 +165,11 @@ export default class Main extends Component {
                     category: this.state.hobby,
                })            
           })
-          .then(response => response.json())
+          
+          .then(response => {if(loginOk == true)
+               {response.json()}
+               else{console,log('err')}
+          })
           .then(responseData => {
                this.setState({
                     roomData: responseData[0],
@@ -240,7 +282,9 @@ export default class Main extends Component {
                               
                           </ActionButton.Item>                    
                         )                              
+                        
                     })
+                    
                     hobbyList.push (
                          <ActionButton.Item
                               key={"all"} buttonColor='#49ffbd'
@@ -269,7 +313,8 @@ export default class Main extends Component {
                     this.setState({
                          hobbyList: hobbyList,
                     })
-               })                      
+               })    
+                
           }
 
           deleteGroupChat = async(GUID) => {  

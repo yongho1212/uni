@@ -64,21 +64,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-
-<key>NSAppTransportSecurity</key>
-<dict>
-	<key>NSAllowsArbitraryLoads</key>
-	<true/>
-	<key>NSExceptionDomains</key>
-	<dict>
-		<key>localhost</key>
-		<dict>
-			<key>NSExceptionAllowsInsecureHTTPLoads</key>
-			<true/>
-		</dict>
-	</dict>
-</dict>
-
 	<key>NSCameraUsageDescription</key>
 	<string>사진 라이브러리에 접근 권한을 허용해 주시면, 사진을 프로필 사진에 업로드할 수 있어요.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
